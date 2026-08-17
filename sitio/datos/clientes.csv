@@ -1,0 +1,1801 @@
+cliente_id,razon_social,ciudad,tipo_cliente,fecha_alta,canal_captacion
+C00001,Cliente 00001,Guayaquil,Minorista,2023-02-27,Punto de venta
+C00002,Cliente 00002,Quito,Mayorista,2025-09-15,Redes sociales
+C00003,Cliente 00003,Guayaquil,Minorista,2024-03-10,Punto de venta
+C00004,Cliente 00004,Quito,Minorista,2024-03-25,Referido
+C00005,Cliente 00005,Cuenca,Minorista,2023-01-26,Redes sociales
+C00006,Cliente 00006,Guayaquil,Minorista,,Punto de venta
+C00007,Cliente 00007,Guayaquil,Minorista,2024-07-16,Visita comercial
+C00008,Cliente 00008,Quito,Minorista,2021-09-15,Visita comercial
+C00009,Cliente 00009,Guayaquil,Minorista,2022-07-29,Punto de venta
+C00010,Cliente 00010,Quito,Minorista,2024-03-01,Referido
+C00011,Cliente 00011,Quito,Minorista,2024-04-07,Visita comercial
+C00012,Cliente 00012,Quito,Minorista,2021-12-09,Referido
+C00013,Cliente 00013,Loja,Minorista,2024-12-26,Referido
+C00014,Cliente 00014,Manta,Minorista,2023-11-30,Redes sociales
+C00015,Cliente 00015,Cuenca,Minorista,2022-07-30,Punto de venta
+C00016,Cliente 00016,Quito,Mayorista,2024-10-30,Punto de venta
+C00017,Cliente 00017,Loja,Minorista,2025-11-16,Punto de venta
+C00018,Cliente 00018,Cuenca,Minorista,2023-05-23,Punto de venta
+C00019,Cliente 00019,Cuenca,Minorista,2022-10-11,Referido
+C00020,Cliente 00020,Guayaquil,Minorista,2022-11-06,Punto de venta
+C00021,Cliente 00021,Quito,Minorista,2024-02-18,Visita comercial
+C00022,Cliente 00022, Quito,Mayorista,2021-09-28,Visita comercial
+C00023,Cliente 00023,Manta,Mayorista,2023-08-27,Punto de venta
+C00024,Cliente 00024,Guayaquil,Minorista,2021-08-23,Punto de venta
+C00025,Cliente 00025,Quito,Minorista,2021-09-14,Referido
+C00026,Cliente 00026,Quito,Mayorista,2023-06-03,Punto de venta
+C00027,Cliente 00027,Guayaquil ,Minorista,2024-10-19,Redes sociales
+C00028,Cliente 00028,Quito,Minorista,,Referido
+C00029,Cliente 00029,Manta ,Minorista,2021-12-02,Referido
+C00030,Cliente 00030,Cuenca,Minorista,2022-08-09,Visita comercial
+C00031,Cliente 00031,Cuenca,Minorista,2023-05-20,Redes sociales
+C00032,Cliente 00032,Guayaquil,Minorista,2024-01-19,Referido
+C00033,Cliente 00033,Guayaquil,Mayorista,2025-11-10,Redes sociales
+C00034,Cliente 00034,Guayaquil,Minorista,2024-07-13,Visita comercial
+C00035,Cliente 00035,Guayaquil,Minorista,2023-11-23,Punto de venta
+C00036,Cliente 00036,Quito,Minorista,2021-10-20,Redes sociales
+C00037,Cliente 00037,Guayaquil,Minorista,2021-11-21,Punto de venta
+C00038,Cliente 00038,Quito,Minorista,2022-03-16,Visita comercial
+C00039,Cliente 00039,Guayaquil,Minorista,2024-06-06,Redes sociales
+C00040,Cliente 00040,Quito,Minorista,2022-12-27,Punto de venta
+C00041,Cliente 00041,Quito,Minorista,2022-08-04,Referido
+C00042,Cliente 00042,Quito,Minorista,2024-06-21,Visita comercial
+C00043,Cliente 00043,Guayaquil,Minorista,2025-02-08,Referido
+C00044,Cliente 00044,Quito,Minorista,2023-06-17,Referido
+C00045,Cliente 00045,Loja,Minorista,2025-05-25,Referido
+C00046,Cliente 00046,Guayaquil,Minorista,2024-10-01,Referido
+C00047,Cliente 00047,Quito,Mayorista,2024-09-03,Referido
+C00048,Cliente 00048,Guayaquíl,Minorista,2025-05-03,Redes sociales
+C00049,Cliente 00049,Quito,Minorista,2022-05-05,Visita comercial
+C00050,Cliente 00050,Loja,Minorista,2024-11-09,Referido
+C00051,Cliente 00051,Guayaquil,Minorista,2025-09-24,Punto de venta
+C00052,Cliente 00052,Cuenca,Minorista,2025-11-18,Visita comercial
+C00053,Cliente 00053,Quito,Minorista,2024-01-25,Referido
+C00054,Cliente 00054,Guayaquil,Minorista,2024-11-02,Visita comercial
+C00055,Cliente 00055,Guayaquil,Minorista,2025-06-05,Visita comercial
+C00056,Cliente 00056,Loja,Minorista,2025-04-08,Redes sociales
+C00057,Cliente 00057,Guayaquil,Minorista,2025-06-20,Visita comercial
+C00058,Cliente 00058,Guayaquil,Mayorista,2025-03-07,Referido
+C00059,Cliente 00059,Quito,Mayorista,2023-03-17,Punto de venta
+C00060,Cliente 00060,Quito,Minorista,2024-09-25,Punto de venta
+C00061,Cliente 00061,Guayaquil,Mayorista,2023-05-02,Visita comercial
+C00062,Cliente 00062,Guayaquil,Minorista,2025-01-17,Referido
+C00063,Cliente 00063,Quito,Mayorista,2025-01-31,Redes sociales
+C00064,Cliente 00064,Manta,Mayorista,2025-08-18,Punto de venta
+C00065,Cliente 00065,Manta,Minorista,2024-02-11,Punto de venta
+C00066,Cliente 00066,Quito,Minorista,2023-08-14,Visita comercial
+C00067,Cliente 00067,Guayaquil,Mayorista,2022-04-05,Visita comercial
+C00068,Cliente 00068,Quito,Mayorista,2024-05-01,Referido
+C00069,Cliente 00069,Cuenca,Mayorista,2024-01-07,Punto de venta
+C00070,Cliente 00070,Quito,Minorista,2023-10-16,Punto de venta
+C00071,Cliente 00071,Cuenca,Minorista,2024-07-01,Visita comercial
+C00072,Cliente 00072,Cuenca,Mayorista,2025-04-06,Redes sociales
+C00073,Cliente 00073,Cuenca,Minorista,2022-03-09,Visita comercial
+C00074,Cliente 00074,Quito,Minorista,2023-06-05,Punto de venta
+C00075,Cliente 00075,Manta,Minorista,2024-09-12,Punto de venta
+C00076,Cliente 00076,Quito,Minorista,2025-02-15,Referido
+C00077,Cliente 00077,Quito,Minorista,2024-12-11,Visita comercial
+C00078,Cliente 00078,Guayaquil,Minorista,2025-01-13,Redes sociales
+C00079,Cliente 00079,Quito,Minorista,2025-04-13,Referido
+C00080,Cliente 00080,Manta,Minorista,2025-10-01,Punto de venta
+C00081,Cliente 00081,Manta,Mayorista,2024-03-13,Referido
+C00082,Cliente 00082,Quito,Minorista,2022-08-17,Punto de venta
+C00083,Cliente 00083,Loja,Minorista,2024-01-02,Referido
+C00084,Cliente 00084,Quito ,Minorista,2024-08-23,Visita comercial
+C00085,Cliente 00085,Guayaquil,Mayorista,2021-12-23,Referido
+C00086,Cliente 00086,Quito,Minorista,2024-11-07,Visita comercial
+C00087,Cliente 00087,Loja,Minorista,,Referido
+C00088,Cliente 00088,Quito,Minorista,2025-08-21,Punto de venta
+C00089,Cliente 00089,Quito,Minorista,2022-06-18,Visita comercial
+C00090,Cliente 00090,Guayaquil,Minorista,2025-07-05,Visita comercial
+C00091,Cliente 00091,Loja,Mayorista,2023-07-01,Visita comercial
+C00092,Cliente 00092,Manta,Minorista,2024-01-18,Visita comercial
+C00093,Cliente 00093,Cuenca,Minorista,2024-06-05,Punto de venta
+C00094,Cliente 00094,Manta,Mayorista,2024-01-27,Punto de venta
+C00095,Cliente 00095,Manta,Minorista,2025-06-30,Visita comercial
+C00096,Cliente 00096,Guayaquil,Mayorista,2022-04-08,Punto de venta
+C00097,Cliente 00097,Quito,Minorista,2024-09-24,Punto de venta
+C00098,Cliente 00098,Cuenca,Minorista,2025-10-21,Punto de venta
+C00099,Cliente 00099,Cuenca,Mayorista,2022-07-02,Referido
+C00100,Cliente 00100,Quito,Minorista,2022-08-27,Referido
+C00101,Cliente 00101,Quito,Minorista,2023-08-14,Referido
+C00102,Cliente 00102,cuenca,Mayorista,2024-09-16,Punto de venta
+C00103,Cliente 00103,quito,Minorista,2025-09-26,Punto de venta
+C00104,Cliente 00104,Loja,Minorista,2025-01-08,Redes sociales
+C00105,Cliente 00105,Quito,Minorista,2025-01-05,Referido
+C00106,Cliente 00106, Quito,Minorista,2023-06-20,Punto de venta
+C00107,Cliente 00107,Manta ,Minorista,2024-05-12,Punto de venta
+C00108,Cliente 00108,Quito,Minorista,2022-06-17,Referido
+C00109,Cliente 00109,Quito,Minorista,2023-07-26,Punto de venta
+C00110,Cliente 00110,Guayaquil,Minorista,2022-05-13,Referido
+C00111,Cliente 00111,Manta ,Minorista,,Redes sociales
+C00112,Cliente 00112,Quito,Mayorista,2025-04-15,Redes sociales
+C00113,Cliente 00113,Quito,Minorista,2025-01-22,Punto de venta
+C00114,Cliente 00114,Cuenca,Mayorista,2023-10-10,Punto de venta
+C00115,Cliente 00115,Loja,Minorista,2021-08-07,Referido
+C00116,Cliente 00116,Guayaquil,Mayorista,2021-12-06,Referido
+C00117,Cliente 00117,Quito,Minorista,2022-01-09,Referido
+C00118,Cliente 00118,Quito,Minorista,2024-09-04,Visita comercial
+C00119,Cliente 00119,Quito,Mayorista,2022-06-05,Referido
+C00120,Cliente 00120,Quito ,Minorista,2022-08-19,Visita comercial
+C00121,Cliente 00121,Cuenca,Minorista,2025-04-22,Referido
+C00122,Cliente 00122,Quito,Minorista,2025-05-17,Visita comercial
+C00123,Cliente 00123,Guayaquil,Minorista,2024-11-16,Referido
+C00124,Cliente 00124,Cuenca,Minorista,2022-11-22,Punto de venta
+C00125,Cliente 00125,Guayaquil,Minorista,2024-01-28,Referido
+C00126,Cliente 00126,Quito,Minorista,2022-05-31,Redes sociales
+C00127,Cliente 00127,Manta,Minorista,2025-04-17,Punto de venta
+C00128,Cliente 00128,Cuenca,Minorista,2021-11-27,Redes sociales
+C00129,Cliente 00129,Cuenca,Minorista,2024-10-18,Visita comercial
+C00130,Cliente 00130,Quito,Minorista,2023-10-11,Referido
+C00131,Cliente 00131,Quito,Minorista,2024-11-07,Redes sociales
+C00132,Cliente 00132, Loja,Minorista,2023-07-06,Redes sociales
+C00133,Cliente 00133,GUAYAQUIL,Minorista,2022-03-24,Visita comercial
+C00134,Cliente 00134,Quito,Minorista,2024-10-29,Referido
+C00135,Cliente 00135,Guayaquil,Minorista,2024-04-19,Redes sociales
+C00136,Cliente 00136,Cuenca,Minorista,2023-07-28,Referido
+C00137,Cliente 00137,Loja,Minorista,2023-03-03,Redes sociales
+C00138,Cliente 00138,Quito,Minorista,2023-01-16,Visita comercial
+C00139,Cliente 00139,Loja,Minorista,2023-08-23,Referido
+C00140,Cliente 00140,Quito,Mayorista,2022-09-06,Punto de venta
+C00141,Cliente 00141,Guayaquil,Minorista,2022-10-09,Referido
+C00142,Cliente 00142,Guayaquil,Minorista,,Redes sociales
+C00143,Cliente 00143,QUITO,Minorista,2021-08-04,Referido
+C00144,Cliente 00144, Quito,Minorista,2025-08-07,Referido
+C00145,Cliente 00145,Guayaquil,Minorista,2022-07-28,Punto de venta
+C00146,Cliente 00146,Loja,Minorista,2022-04-05,Referido
+C00147,Cliente 00147,Guayaquil,Minorista,2022-03-13,Referido
+C00148,Cliente 00148,LOJA,Minorista,2025-11-12,Punto de venta
+C00149,Cliente 00149, Manta,Mayorista,2023-08-16,Punto de venta
+C00150,Cliente 00150,Guayaquil,Mayorista,2022-12-20,Punto de venta
+C00151,Cliente 00151,Cuenca,Minorista,2023-04-22,Visita comercial
+C00152,Cliente 00152,Quito,Minorista,2021-12-03,Visita comercial
+C00153,Cliente 00153,Quito,Minorista,2022-11-28,Redes sociales
+C00154,Cliente 00154,Manta,Minorista,2022-08-16,Visita comercial
+C00155,Cliente 00155,Cuenca,Mayorista,2025-01-20,Referido
+C00156,Cliente 00156,Quito,Minorista,2021-10-16,Punto de venta
+C00157,Cliente 00157,Guayaquil,Mayorista,2023-05-26,Referido
+C00158,Cliente 00158,Guayaquil,Mayorista,2024-12-30,Visita comercial
+C00159,Cliente 00159,manta,Minorista,2025-03-09,Visita comercial
+C00160,Cliente 00160,Guayaquil,Minorista,2023-10-13,Referido
+C00161,Cliente 00161,Guayaquil,Minorista,2022-07-06,Redes sociales
+C00162,Cliente 00162,Quito,Minorista,2023-01-05,Punto de venta
+C00163,Cliente 00163,Guayaquil,Minorista,2022-07-05,Visita comercial
+C00164,Cliente 00164,Cuenca,Mayorista,2024-06-08,Visita comercial
+C00165,Cliente 00165,Manta,Minorista,2022-10-26,Redes sociales
+C00166,Cliente 00166,Guayaquil,Minorista,2024-04-19,Referido
+C00167,Cliente 00167,Quito,Mayorista,2024-05-29,Redes sociales
+C00168,Cliente 00168,Quito,Minorista,2025-08-26,Punto de venta
+C00169,Cliente 00169,Cuenca,Minorista,2023-02-27,Redes sociales
+C00170,Cliente 00170,Manta,Mayorista,2025-09-30,Referido
+C00171,Cliente 00171,Quito,Minorista,2023-04-17,Punto de venta
+C00172,Cliente 00172,Quito,Minorista,2024-07-08,Visita comercial
+C00173,Cliente 00173,GUAYAQUIL,Minorista,2024-06-07,Punto de venta
+C00174,Cliente 00174,Quito,Mayorista,2025-02-12,Redes sociales
+C00175,Cliente 00175,Manta,Minorista,2023-08-04,Redes sociales
+C00176,Cliente 00176,Quito,Minorista,2025-01-02,Punto de venta
+C00177,Cliente 00177,Quito,Minorista,2023-02-03,Redes sociales
+C00178,Cliente 00178,Loja,Minorista,2023-09-09,Referido
+C00179,Cliente 00179,Quito,Mayorista,2023-09-22,Referido
+C00180,Cliente 00180,Quito,Minorista,2024-08-15,Punto de venta
+C00181,Cliente 00181,Quito,Mayorista,2024-03-30,Redes sociales
+C00182,Cliente 00182,Quito,Minorista,2021-11-17,Visita comercial
+C00183,Cliente 00183,Quito,Minorista,2025-01-29,Punto de venta
+C00184,Cliente 00184,Quito,Mayorista,2024-11-08,Redes sociales
+C00185,Cliente 00185,Quito,Minorista,2021-12-29,Referido
+C00186,Cliente 00186,Quito,Minorista,2025-09-30,Visita comercial
+C00187,Cliente 00187,Guayaquil,Mayorista,2024-06-06,Referido
+C00188,Cliente 00188,Cuenca,Minorista,2021-11-27,Visita comercial
+C00189,Cliente 00189,Guayaquil,Minorista,2023-09-09,Visita comercial
+C00190,Cliente 00190,Quito,Mayorista,2025-03-13,Referido
+C00191,Cliente 00191,Guayaquil,Minorista,2022-10-05,Visita comercial
+C00192,Cliente 00192,Manta,Minorista,2025-08-15,Referido
+C00193,Cliente 00193,Manta,Minorista,2023-05-15,Punto de venta
+C00194,Cliente 00194,Quito,Minorista,2022-07-11,Referido
+C00195,Cliente 00195,Quito,Minorista,2023-02-05,Punto de venta
+C00196,Cliente 00196,Quito,Minorista,2023-11-01,Punto de venta
+C00197,Cliente 00197,Quito,Minorista,2024-07-20,Redes sociales
+C00198,Cliente 00198,Guayaquil,Minorista,2025-08-07,Punto de venta
+C00199,Cliente 00199,Guayaquil,Minorista,2022-05-22,Punto de venta
+C00200,Cliente 00200,quito,Minorista,2025-09-28,Referido
+C00201,Cliente 00201,Quito,Minorista,2023-11-06,Punto de venta
+C00202,Cliente 00202,Guayaquil,Minorista,2022-02-04,Visita comercial
+C00203,Cliente 00203,Quito,Minorista,2025-08-05,Punto de venta
+C00204,Cliente 00204,Manta,Minorista,2023-01-24,Redes sociales
+C00205,Cliente 00205,Quito,Mayorista,2024-04-02,Visita comercial
+C00206,Cliente 00206,Loja,Minorista,2024-08-05,Referido
+C00207,Cliente 00207,Quito,Minorista,2021-08-05,Punto de venta
+C00208,Cliente 00208, Manta,Mayorista,2022-07-04,Referido
+C00209,Cliente 00209,Manta,Minorista,2024-07-17,Visita comercial
+C00210,Cliente 00210,Loja,Minorista,2022-12-16,Visita comercial
+C00211,Cliente 00211,MANTA,Minorista,2021-07-29,Redes sociales
+C00212,Cliente 00212,Cuenca,Minorista,2021-08-21,Punto de venta
+C00213,Cliente 00213,Guayaquil,Minorista,2025-02-26,Punto de venta
+C00214,Cliente 00214,Cuenca,Minorista,2022-03-17,Referido
+C00215,Cliente 00215,Quito,Minorista,2021-12-22,Visita comercial
+C00216,Cliente 00216,Guayaquil,Mayorista,2023-12-31,Visita comercial
+C00217,Cliente 00217,Guayaquil,Mayorista,2022-01-21,Redes sociales
+C00218,Cliente 00218,Manta,Minorista,2024-05-24,Punto de venta
+C00219,Cliente 00219,Guayaquil,Minorista,2023-12-02,Punto de venta
+C00220,Cliente 00220,Guayaquil,Minorista,2024-05-18,Referido
+C00221,Cliente 00221,GUAYAQUIL,Mayorista,2023-09-09,Redes sociales
+C00222,Cliente 00222,Quito,Minorista,2024-12-11,Referido
+C00223,Cliente 00223,Quito,Minorista,2024-05-11,Redes sociales
+C00224,Cliente 00224,Guayaquil,Minorista,2023-05-10,Redes sociales
+C00225,Cliente 00225,Guayaquil,Minorista,2021-08-08,Punto de venta
+C00226,Cliente 00226,Quito,Minorista,2022-09-25,Redes sociales
+C00227,Cliente 00227,Quito,Minorista,2022-02-10,Punto de venta
+C00228,Cliente 00228,Quito,Minorista,2021-08-08,Referido
+C00229,Cliente 00229,Quito,Mayorista,2022-09-25,Visita comercial
+C00230,Cliente 00230,Quito,Minorista,2022-06-10,Referido
+C00231,Cliente 00231,Cuenca,Minorista,2021-11-14,Redes sociales
+C00232,Cliente 00232,Quito,Minorista,2022-11-26,Redes sociales
+C00233,Cliente 00233,Loja,Minorista,2023-10-03,Redes sociales
+C00234,Cliente 00234,Manta,Minorista,2022-04-26,Punto de venta
+C00235,Cliente 00235,Guayaquil,Minorista,,Referido
+C00236,Cliente 00236,Quito,Minorista,2021-08-16,Punto de venta
+C00237,Cliente 00237,Guayaquil,Minorista,2021-10-03,Punto de venta
+C00238,Cliente 00238,Manta,Minorista,2022-03-23,Referido
+C00239,Cliente 00239,Cuenca,Minorista,2023-07-09,Referido
+C00240,Cliente 00240,Manta,Minorista,2024-06-14,Visita comercial
+C00241,Cliente 00241,Guayaquil,Minorista,2024-12-27,Referido
+C00242,Cliente 00242,Guayaquil,Minorista,2024-04-17,Punto de venta
+C00243,Cliente 00243,Quito,Minorista,2024-03-27,Punto de venta
+C00244,Cliente 00244,Cuenca,Minorista,2025-08-20,Redes sociales
+C00245,Cliente 00245,Quito,Minorista,2022-08-28,Referido
+C00246,Cliente 00246,Cuenca,Mayorista,2025-01-12,Punto de venta
+C00247,Cliente 00247,Manta,Mayorista,2025-08-21,Punto de venta
+C00248,Cliente 00248,Quito,Minorista,2024-01-09,Referido
+C00249,Cliente 00249,Guayaquil,Minorista,2025-03-20,Punto de venta
+C00250,Cliente 00250,Quito,Minorista,2022-02-20,Visita comercial
+C00251,Cliente 00251,Cuenca,Minorista,2025-05-21,Visita comercial
+C00252,Cliente 00252,Quito,Minorista,2024-01-03,Visita comercial
+C00253,Cliente 00253,Loja,Mayorista,2022-07-04,Visita comercial
+C00254,Cliente 00254,Quito,Mayorista,2021-10-21,Punto de venta
+C00255,Cliente 00255,Loja,Minorista,2024-09-08,Referido
+C00256,Cliente 00256,Manta,Minorista,2023-06-04,Referido
+C00257,Cliente 00257,GUAYAQUIL,Mayorista,2022-11-23,Referido
+C00258,Cliente 00258,Cuenca,Minorista,2023-03-31,Referido
+C00259,Cliente 00259,Cuenca,Mayorista,2025-11-16,Referido
+C00260,Cliente 00260,Loja,Minorista,2023-05-30,Visita comercial
+C00261,Cliente 00261,Quito,Mayorista,2021-11-18,Punto de venta
+C00262,Cliente 00262,Guayaquil,Minorista,2022-10-05,Visita comercial
+C00263,Cliente 00263,Quito,Minorista,2022-03-04,Punto de venta
+C00264,Cliente 00264,Guayaquil,Minorista,2024-07-16,Visita comercial
+C00265,Cliente 00265,Quito,Minorista,2025-01-15,Punto de venta
+C00266,Cliente 00266,Guayaquil,Minorista,2025-03-21,Punto de venta
+C00267,Cliente 00267,Guayaquil,Mayorista,2024-04-22,Visita comercial
+C00268,Cliente 00268,Guayaquil,Minorista,2024-11-25,Visita comercial
+C00269,Cliente 00269,Guayaquil,Mayorista,2023-05-13,Punto de venta
+C00270,Cliente 00270,Cuenca,Minorista,2024-04-14,Redes sociales
+C00271,Cliente 00271,Cuenca,Minorista,2022-01-02,Redes sociales
+C00272,Cliente 00272,Guayaquíl,Minorista,2023-11-23,Visita comercial
+C00273,Cliente 00273,Guayaquil,Minorista,2023-12-23,Referido
+C00274,Cliente 00274,Loja,Minorista,2021-09-02,Redes sociales
+C00275,Cliente 00275,Quito,Minorista,2023-12-09,Punto de venta
+C00276,Cliente 00276,Quito,Minorista,2024-09-13,Referido
+C00277,Cliente 00277,Quito,Minorista,2023-02-23,Punto de venta
+C00278,Cliente 00278,Cuenca,Mayorista,2023-12-03,Punto de venta
+C00279,Cliente 00279,Guayaquil,Minorista,2022-10-15,Visita comercial
+C00280,Cliente 00280,Cuenca,Mayorista,2022-09-21,Referido
+C00281,Cliente 00281,Cuenca,Minorista,2022-02-07,Referido
+C00282,Cliente 00282,Quito,Minorista,2022-12-21,Referido
+C00283,Cliente 00283,Manta,Minorista,2025-01-20,Redes sociales
+C00284,Cliente 00284,Cuenca,Minorista,2025-08-19,Referido
+C00285,Cliente 00285,Quito,Minorista,2024-04-27,Referido
+C00286,Cliente 00286,Quito,Minorista,2024-04-08,Punto de venta
+C00287,Cliente 00287,Quito,Minorista,2024-03-23,Redes sociales
+C00288,Cliente 00288,Quito,Minorista,2023-08-15,Redes sociales
+C00289,Cliente 00289,Quito,Minorista,2023-05-22,Redes sociales
+C00290,Cliente 00290,Loja,Minorista,2024-04-03,Referido
+C00291,Cliente 00291,Guayaquil,Mayorista,2024-12-21,Punto de venta
+C00292,Cliente 00292,Guayaquil,Minorista,2023-05-07,Referido
+C00293,Cliente 00293,Cuenca,Mayorista,2024-01-06,Referido
+C00294,Cliente 00294,Guayaquil,Mayorista,2023-08-06,Visita comercial
+C00295,Cliente 00295,Loja,Mayorista,2022-10-14,Redes sociales
+C00296,Cliente 00296,Cuenca,Mayorista,2022-10-22,Redes sociales
+C00297,Cliente 00297,Guayaquil,Minorista,2021-11-18,Referido
+C00298,Cliente 00298,Quito,Minorista,2023-06-18,Punto de venta
+C00299,Cliente 00299,Loja,Minorista,2024-08-27,Punto de venta
+C00300,Cliente 00300,Cuenca,Mayorista,2024-07-15,Visita comercial
+C00301,Cliente 00301,Loja,Minorista,,Punto de venta
+C00302,Cliente 00302,Quito,Minorista,2021-09-16,Referido
+C00303,Cliente 00303,Manta,Mayorista,2024-11-13,Punto de venta
+C00304,Cliente 00304,Guayaquil,Minorista,2025-01-07,Referido
+C00305,Cliente 00305,Quito,Minorista,2023-06-13,Referido
+C00306,Cliente 00306,Guayaquil,Minorista,2022-10-10,Referido
+C00307,Cliente 00307,Cuenca,Minorista,2023-02-06,Referido
+C00308,Cliente 00308,Quito,Minorista,2024-07-11,Punto de venta
+C00309,Cliente 00309,Guayaquil,Mayorista,2025-04-24,Redes sociales
+C00310,Cliente 00310,Manta,Minorista,2024-05-08,Referido
+C00311,Cliente 00311,Quito,Minorista,2023-10-15,Redes sociales
+C00312,Cliente 00312,Guayaquil,Minorista,2024-05-24,Punto de venta
+C00313,Cliente 00313,Guayaquil,Minorista,2021-11-04,Punto de venta
+C00314,Cliente 00314,Quito,Minorista,2024-03-14,Redes sociales
+C00315,Cliente 00315,MANTA,Mayorista,2021-09-20,Referido
+C00316,Cliente 00316,Cuenca ,Mayorista,2025-09-26,Visita comercial
+C00317,Cliente 00317,Quito,Minorista,2025-06-06,Punto de venta
+C00318,Cliente 00318,Loja,Minorista,2023-10-06,Punto de venta
+C00319,Cliente 00319,Manta,Minorista,2023-03-05,Redes sociales
+C00320,Cliente 00320,Quito,Minorista,2024-09-28,Punto de venta
+C00321,Cliente 00321,Manta,Minorista,2024-04-30,Visita comercial
+C00322,Cliente 00322,Quito,Minorista,2024-08-16,Punto de venta
+C00323,Cliente 00323, Loja,Minorista,2023-10-17,Visita comercial
+C00324,Cliente 00324,Cuenca,Mayorista,2022-07-28,Visita comercial
+C00325,Cliente 00325,Cuenca,Minorista,2021-11-09,Redes sociales
+C00326,Cliente 00326,Quito,Mayorista,2022-10-11,Referido
+C00327,Cliente 00327,Manta,Minorista,2023-11-08,Punto de venta
+C00328,Cliente 00328,Quito,Mayorista,2023-05-24,Referido
+C00329,Cliente 00329,Quito,Minorista,2023-10-03,Punto de venta
+C00330,Cliente 00330,Quito,Minorista,2022-10-02,Punto de venta
+C00331,Cliente 00331,Cuenca,Mayorista,2025-08-23,Punto de venta
+C00332,Cliente 00332,Quito,Mayorista,2023-02-21,Punto de venta
+C00333,Cliente 00333,Manta,Minorista,2025-03-29,Referido
+C00334,Cliente 00334,Cuenca,Minorista,2023-04-01,Referido
+C00335,Cliente 00335, Quito,Minorista,2023-06-24,Visita comercial
+C00336,Cliente 00336,QUITO,Minorista,2024-03-07,Referido
+C00337,Cliente 00337,Quito,Minorista,2022-09-09,Punto de venta
+C00338,Cliente 00338,guayaquil,Mayorista,2022-07-01,Redes sociales
+C00339,Cliente 00339,Manta,Minorista,2023-03-13,Referido
+C00340,Cliente 00340,Quito,Minorista,2025-01-21,Visita comercial
+C00341,Cliente 00341,MANTA,Minorista,2022-03-03,Redes sociales
+C00342,Cliente 00342,Quito,Minorista,2023-06-15,Punto de venta
+C00343,Cliente 00343,Manta,Minorista,2024-06-24,Referido
+C00344,Cliente 00344,Loja,Minorista,2024-08-17,Punto de venta
+C00345,Cliente 00345,Cuenca,Minorista,2023-06-10,Redes sociales
+C00346,Cliente 00346,Cuenca,Minorista,2021-11-22,Punto de venta
+C00347,Cliente 00347,Manta,Mayorista,2021-08-09,Referido
+C00348,Cliente 00348,Quito,Minorista,2023-08-05,Redes sociales
+C00349,Cliente 00349,Quito,Mayorista,,Visita comercial
+C00350,Cliente 00350,Quito,Minorista,2021-08-29,Referido
+C00351,Cliente 00351,Guayaquil,Minorista,2025-06-03,Punto de venta
+C00352,Cliente 00352,Cuenca,Minorista,2024-06-30,Redes sociales
+C00353,Cliente 00353,Guayaquil,Minorista,2021-07-27,Visita comercial
+C00354,Cliente 00354,Manta,Minorista,2023-01-15,Punto de venta
+C00355,Cliente 00355,Quito,Minorista,2022-07-02,Visita comercial
+C00356,Cliente 00356,Cuenca,Minorista,,Redes sociales
+C00357,Cliente 00357,Quito,Minorista,2023-12-19,Punto de venta
+C00358,Cliente 00358,Quito,Minorista,2022-12-15,Redes sociales
+C00359,Cliente 00359,Cuenca,Minorista,2022-10-02,Punto de venta
+C00360,Cliente 00360,Loja,Minorista,2024-01-03,Redes sociales
+C00361,Cliente 00361,Guayaquil,Minorista,2021-07-23,Punto de venta
+C00362,Cliente 00362,Quito,Minorista,2022-08-30,Punto de venta
+C00363,Cliente 00363,Guayaquil,Minorista,2022-04-05,Punto de venta
+C00364,Cliente 00364,Quito,Minorista,2024-04-02,Referido
+C00365,Cliente 00365,Manta,Minorista,2024-06-19,Punto de venta
+C00366,Cliente 00366,Cuenca,Minorista,2023-08-01,Referido
+C00367,Cliente 00367,Quito,Minorista,2022-02-24,Punto de venta
+C00368,Cliente 00368,Quito,Mayorista,2023-02-28,Referido
+C00369,Cliente 00369,Quito,Minorista,2025-03-24,Referido
+C00370,Cliente 00370,Loja,Mayorista,2022-06-05,Punto de venta
+C00371,Cliente 00371,Guayaquil,Mayorista,2022-04-02,Referido
+C00372,Cliente 00372,Cuenca,Minorista,2022-01-09,Referido
+C00373,Cliente 00373,Guayaquil,Minorista,2025-02-10,Punto de venta
+C00374,Cliente 00374,Guayaquil,Minorista,2022-01-22,Visita comercial
+C00375,Cliente 00375,Quito,Mayorista,2024-01-31,Visita comercial
+C00376,Cliente 00376,Loja,Minorista,2025-11-29,Redes sociales
+C00377,Cliente 00377,Quito,Minorista,2024-05-06,Referido
+C00378,Cliente 00378,Guayaquil,Minorista,2023-05-05,Referido
+C00379,Cliente 00379,Cuenca,Minorista,2022-06-10,Visita comercial
+C00380,Cliente 00380,Guayaquil,Minorista,2021-07-18,Referido
+C00381,Cliente 00381,Loja,Minorista,2022-03-20,Referido
+C00382,Cliente 00382,Quito,Minorista,2025-09-16,Visita comercial
+C00383,Cliente 00383,Guayaquil,Mayorista,2022-03-01,Redes sociales
+C00384,Cliente 00384,Guayaquil,Minorista,2021-08-15,Redes sociales
+C00385,Cliente 00385,Guayaquil,Minorista,2025-02-09,Visita comercial
+C00386,Cliente 00386,Quito,Minorista,2023-05-15,Referido
+C00387,Cliente 00387,Quito,Mayorista,2023-02-06,Punto de venta
+C00388,Cliente 00388,Quito ,Mayorista,2024-09-04,Redes sociales
+C00389,Cliente 00389,Quito,Minorista,2023-10-29,Referido
+C00390,Cliente 00390,Guayaquil,Minorista,2025-07-17,Redes sociales
+C00391,Cliente 00391,Guayaquil,Minorista,2023-08-02,Visita comercial
+C00392,Cliente 00392,Guayaquil,Mayorista,2024-08-28,Punto de venta
+C00393,Cliente 00393,Guayaquil,Minorista,2025-05-21,Punto de venta
+C00394,Cliente 00394,Guayaquil,Minorista,2023-07-26,Punto de venta
+C00395,Cliente 00395,Quito ,Minorista,2022-10-12,Referido
+C00396,Cliente 00396,Guayaquil,Minorista,2025-10-21,Referido
+C00397,Cliente 00397,Quito,Minorista,2022-07-12,Visita comercial
+C00398,Cliente 00398, Quito,Minorista,2021-09-15,Referido
+C00399,Cliente 00399,Guayaquil,Minorista,,Referido
+C00400,Cliente 00400,Guayaquil,Mayorista,2025-11-10,Redes sociales
+C00401,Cliente 00401,Quito,Minorista,2021-11-30,Visita comercial
+C00402,Cliente 00402,Guayaquil,Minorista,2025-04-04,Punto de venta
+C00403,Cliente 00403,Guayaquil,Minorista,2025-03-04,Visita comercial
+C00404,Cliente 00404,Cuenca,Mayorista,2025-08-09,Visita comercial
+C00405,Cliente 00405,Guayaquil,Minorista,2023-05-20,Punto de venta
+C00406,Cliente 00406,Cuenca,Minorista,2022-08-26,Punto de venta
+C00407,Cliente 00407,Quito,Minorista,2023-10-12,Referido
+C00408,Cliente 00408,Cuenca,Minorista,2022-02-27,Redes sociales
+C00409,Cliente 00409,Guayaquil,Minorista,2025-03-24,Referido
+C00410,Cliente 00410,Guayaquil,Minorista,2024-06-10,Visita comercial
+C00411,Cliente 00411,Guayaquil,Minorista,2023-08-27,Redes sociales
+C00412,Cliente 00412,Quito,Minorista,2023-10-18,Referido
+C00413,Cliente 00413,Guayaquil,Minorista,2024-08-27,Redes sociales
+C00414,Cliente 00414,Cuenca,Mayorista,2023-10-30,Visita comercial
+C00415,Cliente 00415,Manta,Minorista,2025-03-19,Punto de venta
+C00416,Cliente 00416,Loja,Minorista,2025-08-02,Punto de venta
+C00417,Cliente 00417,Guayaquil,Minorista,2025-09-11,Visita comercial
+C00418,Cliente 00418,Guayaquil,Minorista,2024-04-02,Visita comercial
+C00419,Cliente 00419,Cuenca,Minorista,2024-10-15,Referido
+C00420,Cliente 00420,quito,Minorista,2022-11-24,Punto de venta
+C00421,Cliente 00421,Manta,Minorista,2021-09-13,Punto de venta
+C00422,Cliente 00422,Guayaquil,Minorista,2023-04-16,Punto de venta
+C00423,Cliente 00423,Quito,Mayorista,,Referido
+C00424,Cliente 00424,Quito,Mayorista,2022-02-13,Referido
+C00425,Cliente 00425,manta,Minorista,2023-12-05,Redes sociales
+C00426,Cliente 00426,Quito,Minorista,2022-05-18,Visita comercial
+C00427,Cliente 00427,QUITO,Minorista,2023-06-01,Punto de venta
+C00428,Cliente 00428,Quito,Minorista,,Visita comercial
+C00429,Cliente 00429,Quito,Minorista,,Referido
+C00430,Cliente 00430,Quito ,Minorista,2025-01-31,Redes sociales
+C00431,Cliente 00431,Cuenca,Minorista,2024-11-09,Redes sociales
+C00432,Cliente 00432,Quito,Minorista,2024-08-15,Redes sociales
+C00433,Cliente 00433,Manta,Mayorista,2022-07-26,Referido
+C00434,Cliente 00434,Manta,Minorista,2023-11-10,Punto de venta
+C00435,Cliente 00435,Quito,Minorista,2021-12-29,Punto de venta
+C00436,Cliente 00436,Quito,Minorista,2023-03-05,Punto de venta
+C00437,Cliente 00437,Guayaquil,Minorista,2023-10-02,Redes sociales
+C00438,Cliente 00438,Quito,Minorista,2024-06-18,Redes sociales
+C00439,Cliente 00439,Quito,Mayorista,2021-12-16,Redes sociales
+C00440,Cliente 00440,Loja,Minorista,2025-02-04,Referido
+C00441,Cliente 00441,Loja,Minorista,2023-07-19,Referido
+C00442,Cliente 00442,Cuenca,Minorista,2025-05-24,Redes sociales
+C00443,Cliente 00443,Quito,Minorista,2023-11-05,Visita comercial
+C00444,Cliente 00444,Cuenca ,Minorista,2023-12-07,Visita comercial
+C00445,Cliente 00445,Cuenca,Minorista,2024-07-27,Punto de venta
+C00446,Cliente 00446,Guayaquil,Mayorista,2025-02-15,Visita comercial
+C00447,Cliente 00447,Guayaquil,Minorista,2022-03-24,Redes sociales
+C00448,Cliente 00448,Quito,Minorista,2023-10-11,Redes sociales
+C00449,Cliente 00449,Quito,Minorista,2021-08-31,Visita comercial
+C00450,Cliente 00450,Guayaquil,Mayorista,2023-08-13,Punto de venta
+C00451,Cliente 00451,Quito,Minorista,2025-02-05,Visita comercial
+C00452,Cliente 00452,Quito,Minorista,2025-04-29,Punto de venta
+C00453,Cliente 00453,Manta,Minorista,2022-10-11,Punto de venta
+C00454,Cliente 00454,Loja,Minorista,2023-03-25,Referido
+C00455,Cliente 00455,Guayaquil,Minorista,2023-12-14,Visita comercial
+C00456,Cliente 00456,Manta,Minorista,2023-04-09,Referido
+C00457,Cliente 00457,Loja,Minorista,2022-04-25,Referido
+C00458,Cliente 00458,Quito,Minorista,2022-11-14,Referido
+C00459,Cliente 00459,Guayaquil,Minorista,2023-04-22,Punto de venta
+C00460,Cliente 00460,Guayaquil,Mayorista,2023-10-22,Referido
+C00461,Cliente 00461,Quito,Mayorista,2025-07-27,Punto de venta
+C00462,Cliente 00462,Cuenca,Minorista,2023-12-03,Visita comercial
+C00463,Cliente 00463,Guayaquil,Minorista,2023-03-26,Punto de venta
+C00464,Cliente 00464,Guayaquil ,Minorista,2024-06-05,Referido
+C00465,Cliente 00465,Quito,Mayorista,2024-12-02,Referido
+C00466,Cliente 00466,Quito,Minorista,2023-06-03,Redes sociales
+C00467,Cliente 00467,Manta,Minorista,2023-09-05,Visita comercial
+C00468,Cliente 00468,Quito,Minorista,2022-06-28,Punto de venta
+C00469,Cliente 00469,Quito,Mayorista,2025-04-28,Referido
+C00470,Cliente 00470,Quito,Minorista,2025-05-01,Redes sociales
+C00471,Cliente 00471,Guayaquil ,Minorista,2022-04-20,Redes sociales
+C00472,Cliente 00472,Guayaquil,Mayorista,2023-01-19,Redes sociales
+C00473,Cliente 00473,Guayaquil,Minorista,2022-09-23,Visita comercial
+C00474,Cliente 00474,Quito,Mayorista,2025-07-30,Visita comercial
+C00475,Cliente 00475,Quito,Minorista,2021-10-27,Visita comercial
+C00476,Cliente 00476,Manta,Minorista,2022-06-11,Referido
+C00477,Cliente 00477,Guayaquil,Mayorista,2022-11-30,Visita comercial
+C00478,Cliente 00478,Guayaquil,Minorista,,Punto de venta
+C00479,Cliente 00479,Cuenca,Minorista,2022-08-17,Redes sociales
+C00480,Cliente 00480,Cuenca,Minorista,2023-11-20,Redes sociales
+C00481,Cliente 00481,Quito,Minorista,2024-10-22,Referido
+C00482,Cliente 00482,Quito,Minorista,2025-03-01,Referido
+C00483,Cliente 00483,Guayaquil,Minorista,2021-12-20,Redes sociales
+C00484,Cliente 00484, Quito,Minorista,2022-02-22,Referido
+C00485,Cliente 00485,Manta,Minorista,2021-12-14,Referido
+C00486,Cliente 00486,Guayaquil,Minorista,2025-07-09,Referido
+C00487,Cliente 00487,Cuenca,Minorista,2024-05-23,Redes sociales
+C00488,Cliente 00488,Manta,Minorista,2023-11-12,Punto de venta
+C00489,Cliente 00489,Guayaquil,Minorista,2024-12-31,Referido
+C00490,Cliente 00490,Manta,Mayorista,2024-02-07,Redes sociales
+C00491,Cliente 00491,guayaquil,Minorista,,Visita comercial
+C00492,Cliente 00492,Manta,Minorista,2023-10-09,Referido
+C00493,Cliente 00493,Quito,Minorista,2024-08-13,Punto de venta
+C00494,Cliente 00494,Guayaquil,Mayorista,2021-09-10,Visita comercial
+C00495,Cliente 00495,Guayaquil,Minorista,2024-03-11,Redes sociales
+C00496,Cliente 00496,Quito,Minorista,2023-09-18,Referido
+C00497,Cliente 00497,Guayaquil,Minorista,2021-11-03,Visita comercial
+C00498,Cliente 00498,Manta,Minorista,2022-09-09,Punto de venta
+C00499,Cliente 00499,Guayaquil,Minorista,2023-07-02,Referido
+C00500,Cliente 00500,Quito,Mayorista,2023-01-14,Punto de venta
+C00501,Cliente 00501,Quito,Minorista,2022-10-22,Referido
+C00502,Cliente 00502,Quito,Minorista,2024-05-18,Punto de venta
+C00503,Cliente 00503,Quito,Minorista,2023-04-22,Referido
+C00504,Cliente 00504,Loja,Minorista,2023-09-19,Referido
+C00505,Cliente 00505,Guayaquil,Minorista,2025-01-12,Punto de venta
+C00506,Cliente 00506,Quito,Minorista,2021-12-11,Referido
+C00507,Cliente 00507,Guayaquil,Minorista,2023-02-10,Referido
+C00508,Cliente 00508,Quito,Minorista,2021-11-08,Punto de venta
+C00509,Cliente 00509,Quito,Mayorista,2025-08-06,Redes sociales
+C00510,Cliente 00510,Cuenca,Minorista,2022-05-08,Punto de venta
+C00511,Cliente 00511,Guayaquil,Minorista,2025-02-15,Redes sociales
+C00512,Cliente 00512,Loja,Minorista,2022-05-16,Punto de venta
+C00513,Cliente 00513,Guayaquil,Minorista,2022-12-15,Punto de venta
+C00514,Cliente 00514,Guayaquil,Minorista,2024-03-14,Redes sociales
+C00515,Cliente 00515,Cuenca,Mayorista,2025-03-06,Referido
+C00516,Cliente 00516,Manta,Minorista,2022-04-25,Visita comercial
+C00517,Cliente 00517,Cuenca,Mayorista,2022-06-20,Redes sociales
+C00518,Cliente 00518,Loja ,Mayorista,2025-05-25,Punto de venta
+C00519,Cliente 00519,Cuenca,Minorista,2022-12-12,Referido
+C00520,Cliente 00520,Manta,Minorista,2022-06-15,Visita comercial
+C00521,Cliente 00521,Quito,Minorista,2024-10-16,Referido
+C00522,Cliente 00522,Cuenca,Minorista,2021-12-07,Redes sociales
+C00523,Cliente 00523,Guayaquil,Mayorista,2025-05-02,Punto de venta
+C00524,Cliente 00524,Guayaquíl,Minorista,2025-05-16,Visita comercial
+C00525,Cliente 00525,Cuenca,Mayorista,2025-04-15,Redes sociales
+C00526,Cliente 00526,Loja,Minorista,2022-10-30,Punto de venta
+C00527,Cliente 00527,Loja,Minorista,2022-01-13,Punto de venta
+C00528,Cliente 00528,Quito,Minorista,2023-05-26,Visita comercial
+C00529,Cliente 00529,Cuenca,Minorista,2023-01-01,Punto de venta
+C00530,Cliente 00530,Cuenca,Minorista,2025-09-26,Redes sociales
+C00531,Cliente 00531,Quito,Minorista,2024-04-20,Punto de venta
+C00532,Cliente 00532,Quito,Minorista,2025-09-02,Visita comercial
+C00533,Cliente 00533,Quito,Mayorista,2024-10-28,Redes sociales
+C00534,Cliente 00534,Cuenca,Minorista,2024-08-31,Redes sociales
+C00535,Cliente 00535,Guayaquil,Minorista,2022-01-09,Referido
+C00536,Cliente 00536,Loja,Minorista,2021-11-02,Referido
+C00537,Cliente 00537,Guayaquil,Minorista,2021-09-27,Redes sociales
+C00538,Cliente 00538,Loja ,Mayorista,2024-02-19,Redes sociales
+C00539,Cliente 00539,Guayaquil,Minorista,2022-06-02,Visita comercial
+C00540,Cliente 00540, cuenca,Minorista,2025-11-13,Referido
+C00541,Cliente 00541,Quito,Minorista,2022-02-12,Visita comercial
+C00542,Cliente 00542,Guayaquil,Minorista,,Punto de venta
+C00543,Cliente 00543,Manta,Minorista,2024-06-17,Punto de venta
+C00544,Cliente 00544,Loja,Mayorista,2021-12-31,Referido
+C00545,Cliente 00545,Manta,Minorista,2021-10-16,Visita comercial
+C00546,Cliente 00546,Quito,Minorista,2023-04-09,Visita comercial
+C00547,Cliente 00547,Quito,Minorista,2023-01-08,Redes sociales
+C00548,Cliente 00548,Quito,Minorista,2022-12-01,Punto de venta
+C00549,Cliente 00549,quito,Mayorista,2023-11-07,Redes sociales
+C00550,Cliente 00550,Cuenca,Minorista,2022-02-07,Visita comercial
+C00551,Cliente 00551,Cuenca,Minorista,2022-02-07,Visita comercial
+C00552,Cliente 00552,Cuenca,Minorista,2024-07-30,Referido
+C00553,Cliente 00553,Manta,Minorista,2025-11-15,Punto de venta
+C00554,Cliente 00554,cuenca,Mayorista,2022-09-26,Redes sociales
+C00555,Cliente 00555,Manta,Minorista,,Redes sociales
+C00556,Cliente 00556,Quito,Minorista,2023-01-17,Referido
+C00557,Cliente 00557,Quito,Minorista,2023-01-03,Punto de venta
+C00558,Cliente 00558,Guayaquil,Minorista,2021-12-06,Referido
+C00559,Cliente 00559,Manta,Minorista,2023-05-23,Punto de venta
+C00560,Cliente 00560,Quito,Minorista,2023-09-19,Punto de venta
+C00561,Cliente 00561,Guayaquil,Minorista,2024-06-11,Redes sociales
+C00562,Cliente 00562,Cuenca ,Minorista,2022-03-25,Punto de venta
+C00563,Cliente 00563,Quito,Minorista,2022-05-12,Referido
+C00564,Cliente 00564,Guayaquil,Minorista,2023-06-06,Punto de venta
+C00565,Cliente 00565,Manta,Minorista,,Visita comercial
+C00566,Cliente 00566,Cuenca,Minorista,2022-03-01,Redes sociales
+C00567,Cliente 00567,Quito,Mayorista,2024-04-16,Visita comercial
+C00568,Cliente 00568,Manta,Minorista,2025-09-18,Visita comercial
+C00569,Cliente 00569,Quito,Minorista,2024-01-17,Visita comercial
+C00570,Cliente 00570,Manta,Minorista,2022-03-03,Referido
+C00571,Cliente 00571,Quito,Minorista,2025-11-16,Redes sociales
+C00572,Cliente 00572,Guayaquil,Minorista,2023-10-28,Referido
+C00573,Cliente 00573,Guayaquil,Minorista,2024-09-03,Referido
+C00574,Cliente 00574,Quito,Mayorista,2022-05-26,Punto de venta
+C00575,Cliente 00575,manta,Minorista,2024-01-26,Punto de venta
+C00576,Cliente 00576,Quito,Minorista,2021-11-14,Visita comercial
+C00577,Cliente 00577,Quito,Minorista,2024-04-11,Referido
+C00578,Cliente 00578,Quito,Minorista,2022-06-03,Redes sociales
+C00579,Cliente 00579,Cuenca,Minorista,2025-07-09,Punto de venta
+C00580,Cliente 00580,Manta,Mayorista,2021-10-10,Referido
+C00581,Cliente 00581,Loja,Minorista,2024-05-24,Punto de venta
+C00582,Cliente 00582,Quito,Minorista,2022-02-23,Visita comercial
+C00583,Cliente 00583,Guayaquil,Minorista,2024-07-18,Referido
+C00584,Cliente 00584,Quito,Minorista,2023-09-12,Punto de venta
+C00585,Cliente 00585,Guayaquil,Mayorista,2025-10-09,Redes sociales
+C00586,Cliente 00586,Loja,Minorista,2024-05-22,Punto de venta
+C00587,Cliente 00587,Cuenca,Minorista,2023-03-02,Visita comercial
+C00588,Cliente 00588,Guayaquil,Minorista,2021-12-01,Visita comercial
+C00589,Cliente 00589,Guayaquil,Minorista,2024-02-23,Visita comercial
+C00590,Cliente 00590,Manta,Minorista,2023-06-20,Visita comercial
+C00591,Cliente 00591,Guayaquil,Minorista,2021-10-07,Visita comercial
+C00592,Cliente 00592,Quito,Minorista,2024-01-30,Redes sociales
+C00593,Cliente 00593,Quito,Mayorista,2022-06-15,Redes sociales
+C00594,Cliente 00594,Quito,Minorista,2022-07-24,Punto de venta
+C00595,Cliente 00595,Quito,Minorista,2021-07-29,Referido
+C00596,Cliente 00596,Quito,Minorista,2023-03-02,Visita comercial
+C00597,Cliente 00597,Guayaquil,Minorista,2022-06-29,Punto de venta
+C00598,Cliente 00598,Guayaquil,Mayorista,2021-11-06,Visita comercial
+C00599,Cliente 00599,Quito,Minorista,2023-06-09,Punto de venta
+C00600,Cliente 00600,Guayaquil,Minorista,2022-07-02,Visita comercial
+C00601,Cliente 00601,Loja,Mayorista,2022-02-14,Redes sociales
+C00602,Cliente 00602,Cuenca,Minorista,2023-07-31,Punto de venta
+C00603,Cliente 00603,Guayaquil,Minorista,2021-10-24,Redes sociales
+C00604,Cliente 00604,Quito,Mayorista,2025-11-15,Redes sociales
+C00605,Cliente 00605,Manta,Minorista,2023-08-07,Punto de venta
+C00606,Cliente 00606,Quito,Minorista,2025-11-25,Visita comercial
+C00607,Cliente 00607,Quito,Mayorista,2025-05-25,Punto de venta
+C00608,Cliente 00608,MANTA,Mayorista,2025-10-29,Punto de venta
+C00609,Cliente 00609,Guayaquil,Minorista,2023-11-30,Punto de venta
+C00610,Cliente 00610,Cuenca,Minorista,2023-05-22,Referido
+C00611,Cliente 00611,Guayaquil ,Minorista,2024-09-08,Referido
+C00612,Cliente 00612,Cuenca,Mayorista,2021-11-21,Punto de venta
+C00613,Cliente 00613,Quito,Minorista,2025-03-20,Redes sociales
+C00614,Cliente 00614,Quito,Minorista,2022-12-14,Referido
+C00615,Cliente 00615,Quito,Minorista,2021-07-26,Visita comercial
+C00616,Cliente 00616,Quito,Mayorista,2022-07-30,Visita comercial
+C00617,Cliente 00617,Manta,Mayorista,2022-08-06,Referido
+C00618,Cliente 00618,Quito,Minorista,2021-08-06,Visita comercial
+C00619,Cliente 00619,Guayaquil,Minorista,2024-06-18,Visita comercial
+C00620,Cliente 00620,Cuenca,Mayorista,2021-12-14,Visita comercial
+C00621,Cliente 00621,Cuenca,Mayorista,2025-03-30,Punto de venta
+C00622,Cliente 00622,Guayaquil,Minorista,2023-07-10,Visita comercial
+C00623,Cliente 00623,Guayaquil,Minorista,2024-09-06,Visita comercial
+C00624,Cliente 00624,Loja,Minorista,2023-01-09,Referido
+C00625,Cliente 00625,Cuenca,Minorista,2022-02-11,Referido
+C00626,Cliente 00626,Manta,Minorista,2022-04-29,Punto de venta
+C00627,Cliente 00627,Manta,Minorista,2024-05-13,Punto de venta
+C00628,Cliente 00628,Cuenca,Minorista,2024-09-02,Referido
+C00629,Cliente 00629, Quito,Mayorista,2022-09-16,Referido
+C00630,Cliente 00630,Guayaquil,Minorista,2023-02-06,Referido
+C00631,Cliente 00631,QUITO,Minorista,2025-09-04,Visita comercial
+C00632,Cliente 00632,cuenca,Minorista,2025-04-07,Referido
+C00633,Cliente 00633,Loja,Minorista,2023-05-06,Visita comercial
+C00634,Cliente 00634,Guayaquil,Minorista,2022-08-04,Visita comercial
+C00635,Cliente 00635,Guayaquil,Minorista,2022-11-09,Redes sociales
+C00636,Cliente 00636,Quito,Minorista,2023-11-23,Visita comercial
+C00637,Cliente 00637,Loja,Minorista,2024-01-07,Visita comercial
+C00638,Cliente 00638,Quito,Mayorista,2022-05-05,Redes sociales
+C00639,Cliente 00639,Quito,Minorista,,Referido
+C00640,Cliente 00640,Quito,Mayorista,2023-09-15,Visita comercial
+C00641,Cliente 00641,Quito,Mayorista,2025-01-10,Visita comercial
+C00642,Cliente 00642,Guayaquil,Mayorista,2022-03-15,Visita comercial
+C00643,Cliente 00643,Guayaquil,Minorista,2023-04-29,Referido
+C00644,Cliente 00644,Quito,Minorista,2022-03-30,Punto de venta
+C00645,Cliente 00645,Quito,Minorista,2022-08-06,Punto de venta
+C00646,Cliente 00646,Quito,Minorista,2024-03-20,Referido
+C00647,Cliente 00647,Guayaquil,Minorista,2022-10-15,Referido
+C00648,Cliente 00648,Quito,Mayorista,2022-09-10,Punto de venta
+C00649,Cliente 00649,Cuenca,Minorista,2025-11-24,Redes sociales
+C00650,Cliente 00650,Quito,Mayorista,2022-04-16,Visita comercial
+C00651,Cliente 00651,Quito,Minorista,2022-05-13,Visita comercial
+C00652,Cliente 00652,Guayaquil,Minorista,2025-08-10,Referido
+C00653,Cliente 00653,Guayaquil,Minorista,2023-12-12,Redes sociales
+C00654,Cliente 00654,quito,Minorista,2021-09-21,Visita comercial
+C00655,Cliente 00655,Quito,Minorista,2023-05-25,Referido
+C00656,Cliente 00656,Manta,Minorista,2024-01-05,Referido
+C00657,Cliente 00657,Quito,Minorista,,Referido
+C00658,Cliente 00658,Guayaquil,Minorista,2023-12-09,Redes sociales
+C00659,Cliente 00659,Guayaquil,Minorista,2024-05-17,Punto de venta
+C00660,Cliente 00660,Quito,Mayorista,2022-08-19,Redes sociales
+C00661,Cliente 00661,Guayaquil,Minorista,2025-02-03,Visita comercial
+C00662,Cliente 00662,Cuenca,Minorista,2023-07-09,Visita comercial
+C00663,Cliente 00663,Manta,Minorista,2025-10-03,Punto de venta
+C00664,Cliente 00664,Quito,Minorista,2021-12-02,Redes sociales
+C00665,Cliente 00665,Quito,Minorista,2022-12-15,Visita comercial
+C00666,Cliente 00666,Quito,Minorista,2024-09-11,Referido
+C00667,Cliente 00667,Guayaquil,Mayorista,2025-06-15,Punto de venta
+C00668,Cliente 00668,Cuenca,Minorista,2022-07-04,Punto de venta
+C00669,Cliente 00669,Quito,Minorista,2025-10-30,Punto de venta
+C00670,Cliente 00670,Quito,Minorista,2022-05-20,Redes sociales
+C00671,Cliente 00671,Loja,Minorista,2023-05-11,Referido
+C00672,Cliente 00672,Quito,Minorista,2022-11-30,Referido
+C00673,Cliente 00673,guayaquil,Minorista,2023-05-24,Visita comercial
+C00674,Cliente 00674,Cuenca,Minorista,2025-06-27,Punto de venta
+C00675,Cliente 00675,Quito,Minorista,2024-09-29,Redes sociales
+C00676,Cliente 00676,Quito,Minorista,2025-01-09,Visita comercial
+C00677,Cliente 00677,Quito,Minorista,2022-08-25,Punto de venta
+C00678,Cliente 00678,Manta,Minorista,2025-09-07,Referido
+C00679,Cliente 00679,Quito,Minorista,2023-06-11,Visita comercial
+C00680,Cliente 00680,Quito,Minorista,2024-05-23,Referido
+C00681,Cliente 00681,Quito,Minorista,,Punto de venta
+C00682,Cliente 00682,Quito,Minorista,2024-06-09,Punto de venta
+C00683,Cliente 00683,guayaquil,Mayorista,2024-03-03,Redes sociales
+C00684,Cliente 00684,Quito,Minorista,2023-08-22,Punto de venta
+C00685,Cliente 00685,Guayaquil,Minorista,2024-05-16,Punto de venta
+C00686,Cliente 00686,Guayaquil,Minorista,2025-07-02,Punto de venta
+C00687,Cliente 00687,Manta,Mayorista,2023-03-30,Punto de venta
+C00688,Cliente 00688,Quito,Minorista,2023-10-10,Referido
+C00689,Cliente 00689,Manta,Minorista,2022-04-29,Punto de venta
+C00690,Cliente 00690,Guayaquil,Minorista,2023-02-03,Redes sociales
+C00691,Cliente 00691,Quito,Mayorista,2024-12-01,Punto de venta
+C00692,Cliente 00692,Cuenca,Minorista,2024-05-04,Visita comercial
+C00693,Cliente 00693,Manta,Mayorista,2022-06-17,Punto de venta
+C00694,Cliente 00694,Quito,Minorista,2023-12-05,Punto de venta
+C00695,Cliente 00695,Manta,Mayorista,2025-02-03,Referido
+C00696,Cliente 00696,Guayaquíl,Minorista,2022-01-29,Punto de venta
+C00697,Cliente 00697,Guayaquil,Minorista,2021-10-22,Referido
+C00698,Cliente 00698,Loja,Minorista,2023-04-04,Visita comercial
+C00699,Cliente 00699,Quito,Minorista,2024-05-30,Visita comercial
+C00700,Cliente 00700,Manta,Minorista,2022-11-28,Punto de venta
+C00701,Cliente 00701,Quito,Minorista,2025-02-17,Redes sociales
+C00702,Cliente 00702,Cuenca,Minorista,2025-03-30,Referido
+C00703,Cliente 00703,Guayaquíl,Minorista,2023-11-14,Redes sociales
+C00704,Cliente 00704,quito,Minorista,2023-03-13,Referido
+C00705,Cliente 00705,Guayaquil,Mayorista,2021-09-19,Referido
+C00706,Cliente 00706,Quito,Minorista,2025-02-18,Punto de venta
+C00707,Cliente 00707,Quito ,Minorista,2025-06-16,Punto de venta
+C00708,Cliente 00708,Quito,Minorista,2023-06-22,Punto de venta
+C00709,Cliente 00709,Quito,Mayorista,2023-10-19,Redes sociales
+C00710,Cliente 00710,Quito,Minorista,2024-11-01,Punto de venta
+C00711,Cliente 00711, Quito,Minorista,2024-07-31,Referido
+C00712,Cliente 00712,Cuenca,Mayorista,2022-02-16,Referido
+C00713,Cliente 00713,Cuenca,Mayorista,,Visita comercial
+C00714,Cliente 00714,Cuenca,Minorista,2025-08-02,Redes sociales
+C00715,Cliente 00715,Quito,Minorista,2024-10-28,Redes sociales
+C00716,Cliente 00716,Manta,Minorista,,Punto de venta
+C00717,Cliente 00717,Guayaquil,Minorista,2023-10-30,Referido
+C00718,Cliente 00718,Quito,Minorista,2022-09-03,Visita comercial
+C00719,Cliente 00719,Quito,Minorista,2024-06-06,Redes sociales
+C00720,Cliente 00720,Cuenca,Minorista,2022-08-05,Punto de venta
+C00721,Cliente 00721,Quito ,Minorista,2023-01-12,Referido
+C00722,Cliente 00722,Guayaquil,Minorista,2022-09-12,Visita comercial
+C00723,Cliente 00723,Loja,Minorista,2023-01-02,Referido
+C00724,Cliente 00724,Quito,Mayorista,2023-02-21,Referido
+C00725,Cliente 00725,Quito,Mayorista,2021-11-24,Referido
+C00726,Cliente 00726,Loja,Minorista,2024-09-05,Referido
+C00727,Cliente 00727,Guayaquil,Minorista,2023-06-20,Redes sociales
+C00728,Cliente 00728,Quito,Minorista,2025-09-11,Referido
+C00729,Cliente 00729,Manta,Minorista,2022-04-30,Referido
+C00730,Cliente 00730,Manta,Minorista,2024-06-19,Visita comercial
+C00731,Cliente 00731,Guayaquil,Mayorista,2022-04-27,Punto de venta
+C00732,Cliente 00732,Guayaquil,Mayorista,2023-12-07,Referido
+C00733,Cliente 00733,Quito,Mayorista,2023-09-08,Referido
+C00734,Cliente 00734,Quito,Mayorista,2023-07-02,Visita comercial
+C00735,Cliente 00735,Guayaquil ,Mayorista,2024-05-27,Redes sociales
+C00736,Cliente 00736,Quito,Minorista,2025-03-01,Punto de venta
+C00737,Cliente 00737,Cuenca,Mayorista,2022-12-03,Visita comercial
+C00738,Cliente 00738, Manta,Minorista,2025-04-04,Visita comercial
+C00739,Cliente 00739,Quito,Minorista,2022-05-06,Visita comercial
+C00740,Cliente 00740,Guayaquil,Minorista,2022-10-26,Redes sociales
+C00741,Cliente 00741,Quito,Minorista,2022-11-24,Punto de venta
+C00742,Cliente 00742,Manta,Minorista,,Referido
+C00743,Cliente 00743,Quito,Minorista,2022-01-20,Referido
+C00744,Cliente 00744,Guayaquil,Minorista,2023-04-08,Punto de venta
+C00745,Cliente 00745,Guayaquil,Minorista,2023-05-25,Punto de venta
+C00746,Cliente 00746,Guayaquil,Mayorista,2025-01-15,Referido
+C00747,Cliente 00747,Cuenca,Minorista,2023-08-31,Visita comercial
+C00748,Cliente 00748,Cuenca,Minorista,2025-10-08,Referido
+C00749,Cliente 00749,Guayaquil,Minorista,2024-10-11,Punto de venta
+C00750,Cliente 00750,Cuenca,Minorista,2024-08-13,Punto de venta
+C00751,Cliente 00751,Loja,Minorista,2024-10-31,Punto de venta
+C00752,Cliente 00752,Guayaquil,Mayorista,2022-03-30,Punto de venta
+C00753,Cliente 00753,Guayaquil,Minorista,2023-07-03,Referido
+C00754,Cliente 00754,Quito,Minorista,,Referido
+C00755,Cliente 00755,Cuenca,Minorista,2022-06-13,Visita comercial
+C00756,Cliente 00756,Guayaquil,Minorista,2022-01-21,Punto de venta
+C00757,Cliente 00757,Guayaquil,Mayorista,2022-02-17,Redes sociales
+C00758,Cliente 00758,Quito,Minorista,2024-12-28,Referido
+C00759,Cliente 00759,Manta ,Mayorista,2024-05-31,Visita comercial
+C00760,Cliente 00760,Guayaquil,Minorista,2022-10-08,Punto de venta
+C00761,Cliente 00761,Cuenca,Mayorista,,Punto de venta
+C00762,Cliente 00762,Quito,Minorista,2024-07-31,Punto de venta
+C00763,Cliente 00763,Loja,Mayorista,2025-02-10,Visita comercial
+C00764,Cliente 00764,Quito,Mayorista,2025-07-10,Punto de venta
+C00765,Cliente 00765, Quito,Minorista,2025-05-26,Punto de venta
+C00766,Cliente 00766,Manta,Mayorista,2022-04-30,Punto de venta
+C00767,Cliente 00767,Manta,Minorista,2024-11-26,Punto de venta
+C00768,Cliente 00768,Quito,Minorista,2023-04-04,Punto de venta
+C00769,Cliente 00769,Guayaquil,Mayorista,2023-04-20,Punto de venta
+C00770,Cliente 00770,Cuenca,Minorista,2024-05-15,Redes sociales
+C00771,Cliente 00771,Manta,Minorista,2024-03-04,Referido
+C00772,Cliente 00772,Quito,Minorista,2023-05-17,Referido
+C00773,Cliente 00773,Guayaquil,Minorista,2025-11-30,Punto de venta
+C00774,Cliente 00774,Cuenca,Mayorista,2022-04-20,Redes sociales
+C00775,Cliente 00775,Cuenca,Minorista,2021-12-17,Visita comercial
+C00776,Cliente 00776,Cuenca,Minorista,2021-08-30,Visita comercial
+C00777,Cliente 00777,Guayaquil,Minorista,2025-02-06,Punto de venta
+C00778,Cliente 00778,Quito,Minorista,2023-04-26,Punto de venta
+C00779,Cliente 00779,Manta,Mayorista,2023-06-14,Punto de venta
+C00780,Cliente 00780,Manta,Mayorista,2024-05-18,Referido
+C00781,Cliente 00781,Cuenca,Minorista,2023-06-11,Punto de venta
+C00782,Cliente 00782,Quito,Minorista,2024-01-19,Punto de venta
+C00783,Cliente 00783,Quito,Minorista,2021-10-16,Referido
+C00784,Cliente 00784,Cuenca,Minorista,2022-03-21,Visita comercial
+C00785,Cliente 00785,Quito ,Minorista,2025-08-14,Punto de venta
+C00786,Cliente 00786,Loja,Minorista,2023-07-06,Visita comercial
+C00787,Cliente 00787,Quito,Minorista,2022-04-08,Redes sociales
+C00788,Cliente 00788,Cuenca,Minorista,2023-02-26,Punto de venta
+C00789,Cliente 00789,Manta,Minorista,2023-01-01,Punto de venta
+C00790,Cliente 00790,Guayaquil,Minorista,2022-09-26,Referido
+C00791,Cliente 00791,Quito,Mayorista,2022-10-27,Punto de venta
+C00792,Cliente 00792,Guayaquil,Minorista,2024-09-23,Visita comercial
+C00793,Cliente 00793,Guayaquil,Minorista,2022-01-01,Punto de venta
+C00794,Cliente 00794,Guayaquil,Mayorista,2022-11-22,Visita comercial
+C00795,Cliente 00795,guayaquil,Mayorista,2023-08-02,Punto de venta
+C00796,Cliente 00796,Loja,Minorista,2023-11-26,Punto de venta
+C00797,Cliente 00797,Guayaquil,Minorista,2025-05-23,Visita comercial
+C00798,Cliente 00798,Quito,Minorista,2025-07-31,Referido
+C00799,Cliente 00799,Quito,Minorista,2022-11-02,Punto de venta
+C00800,Cliente 00800,Guayaquil,Minorista,2023-11-24,Visita comercial
+C00801,Cliente 00801,Quito,Minorista,2021-08-19,Visita comercial
+C00802,Cliente 00802,Quito,Minorista,2024-03-28,Referido
+C00803,Cliente 00803,Cuenca,Minorista,2022-03-16,Punto de venta
+C00804,Cliente 00804,Quito,Mayorista,2021-11-09,Redes sociales
+C00805,Cliente 00805,Loja,Minorista,2024-06-23,Referido
+C00806,Cliente 00806,Quito,Mayorista,2022-04-26,Punto de venta
+C00807,Cliente 00807,Quito,Mayorista,2023-08-17,Redes sociales
+C00808,Cliente 00808,Cuenca,Mayorista,2021-12-23,Referido
+C00809,Cliente 00809,Manta,Minorista,2024-10-20,Referido
+C00810,Cliente 00810, Quito,Mayorista,2024-11-19,Referido
+C00811,Cliente 00811,Quito,Minorista,2024-01-20,Referido
+C00812,Cliente 00812,Quito,Minorista,2025-03-13,Punto de venta
+C00813,Cliente 00813,Guayaquil,Mayorista,2023-06-13,Visita comercial
+C00814,Cliente 00814,Guayaquil,Minorista,2022-05-09,Punto de venta
+C00815,Cliente 00815,Quito,Minorista,2022-03-14,Visita comercial
+C00816,Cliente 00816,Quito,Minorista,2022-06-30,Referido
+C00817,Cliente 00817,Guayaquil,Mayorista,2022-05-31,Visita comercial
+C00818,Cliente 00818,Loja,Minorista,2022-12-14,Redes sociales
+C00819,Cliente 00819,Cuenca,Minorista,2022-06-22,Punto de venta
+C00820,Cliente 00820,Guayaquil,Mayorista,2024-02-15,Referido
+C00821,Cliente 00821,Quito,Minorista,2022-03-09,Visita comercial
+C00822,Cliente 00822,Quito,Minorista,2024-04-04,Referido
+C00823,Cliente 00823,Quito,Minorista,2022-12-31,Punto de venta
+C00824,Cliente 00824,Cuenca,Mayorista,2024-07-17,Referido
+C00825,Cliente 00825,Manta,Minorista,2023-10-13,Punto de venta
+C00826,Cliente 00826,Manta,Minorista,2025-07-02,Referido
+C00827,Cliente 00827,Loja,Minorista,2023-06-18,Visita comercial
+C00828,Cliente 00828,Loja,Mayorista,2022-10-30,Punto de venta
+C00829,Cliente 00829,Loja,Minorista,2024-02-12,Redes sociales
+C00830,Cliente 00830,Quito,Minorista,2024-06-03,Visita comercial
+C00831,Cliente 00831,Quito,Mayorista,2023-06-17,Punto de venta
+C00832,Cliente 00832,Quito ,Minorista,2023-12-27,Visita comercial
+C00833,Cliente 00833,Guayaquil,Minorista,2023-08-07,Referido
+C00834,Cliente 00834,Quito,Minorista,2022-11-16,Referido
+C00835,Cliente 00835, Manta,Mayorista,2022-11-28,Redes sociales
+C00836,Cliente 00836,Guayaquil,Minorista,2025-07-05,Punto de venta
+C00837,Cliente 00837,Guayaquil,Minorista,2024-06-29,Visita comercial
+C00838,Cliente 00838,Quito,Minorista,2021-12-14,Punto de venta
+C00839,Cliente 00839,Quito,Minorista,2025-10-01,Redes sociales
+C00840,Cliente 00840,Quito,Mayorista,,Punto de venta
+C00841,Cliente 00841,Manta,Minorista,2021-10-03,Punto de venta
+C00842,Cliente 00842,Guayaquil,Minorista,2024-09-21,Punto de venta
+C00843,Cliente 00843,Cuenca,Mayorista,2024-02-13,Redes sociales
+C00844,Cliente 00844,Quito,Minorista,2025-07-18,Referido
+C00845,Cliente 00845,Quito,Minorista,2023-09-05,Referido
+C00846,Cliente 00846,Guayaquil ,Minorista,2023-10-22,Punto de venta
+C00847,Cliente 00847,Cuenca,Minorista,2022-11-30,Referido
+C00848,Cliente 00848,Cuenca,Minorista,2022-12-11,Punto de venta
+C00849,Cliente 00849,Quito,Minorista,2024-03-29,Visita comercial
+C00850,Cliente 00850, Loja,Minorista,2025-02-28,Punto de venta
+C00851,Cliente 00851,Quito,Minorista,2025-06-09,Visita comercial
+C00852,Cliente 00852,Manta,Minorista,2024-11-29,Punto de venta
+C00853,Cliente 00853,Quito,Minorista,2024-03-16,Visita comercial
+C00854,Cliente 00854,Quito,Minorista,2023-09-23,Visita comercial
+C00855,Cliente 00855,Manta,Mayorista,2023-01-09,Punto de venta
+C00856,Cliente 00856,Quito,Minorista,2024-11-24,Punto de venta
+C00857,Cliente 00857,Guayaquil,Minorista,2022-12-06,Punto de venta
+C00858,Cliente 00858,Guayaquil,Minorista,2022-09-16,Punto de venta
+C00859,Cliente 00859,QUITO,Mayorista,2025-05-03,Referido
+C00860,Cliente 00860,Cuenca,Minorista,2024-02-13,Punto de venta
+C00861,Cliente 00861,Manta,Minorista,2023-02-01,Referido
+C00862,Cliente 00862,Manta,Minorista,2025-04-29,Redes sociales
+C00863,Cliente 00863,Quito,Minorista,2025-10-02,Referido
+C00864,Cliente 00864,Guayaquil,Minorista,,Visita comercial
+C00865,Cliente 00865,Quito,Minorista,2023-10-27,Redes sociales
+C00866,Cliente 00866,Quito,Mayorista,2023-08-27,Punto de venta
+C00867,Cliente 00867,Quito,Minorista,2024-08-10,Visita comercial
+C00868,Cliente 00868,Loja,Mayorista,2025-09-13,Punto de venta
+C00869,Cliente 00869,Manta,Mayorista,2023-12-09,Redes sociales
+C00870,Cliente 00870,Cuenca,Mayorista,2025-01-12,Visita comercial
+C00871,Cliente 00871,Guayaquil,Minorista,2024-02-22,Redes sociales
+C00872,Cliente 00872,Guayaquil,Minorista,2025-06-03,Visita comercial
+C00873,Cliente 00873,GUAYAQUIL,Minorista,2023-04-23,Visita comercial
+C00874,Cliente 00874,GUAYAQUIL,Minorista,2023-03-23,Punto de venta
+C00875,Cliente 00875,Guayaquil,Mayorista,2023-05-21,Visita comercial
+C00876,Cliente 00876,Quito,Minorista,2025-11-25,Visita comercial
+C00877,Cliente 00877,Quito ,Minorista,2024-03-19,Punto de venta
+C00878,Cliente 00878,loja,Minorista,2022-03-16,Visita comercial
+C00879,Cliente 00879,Guayaquil,Mayorista,2021-09-18,Punto de venta
+C00880,Cliente 00880,Loja,Minorista,2023-10-23,Punto de venta
+C00881,Cliente 00881,Quito,Minorista,2025-01-24,Visita comercial
+C00882,Cliente 00882,Guayaquil,Mayorista,2023-08-20,Redes sociales
+C00883,Cliente 00883,QUITO,Mayorista,2023-12-28,Visita comercial
+C00884,Cliente 00884,Quito,Minorista,2025-01-12,Redes sociales
+C00885,Cliente 00885,Quito,Mayorista,2023-10-19,Visita comercial
+C00886,Cliente 00886,Quito,Mayorista,2025-07-07,Punto de venta
+C00887,Cliente 00887,Manta,Minorista,2024-04-30,Visita comercial
+C00888,Cliente 00888,Quito,Minorista,2024-09-26,Punto de venta
+C00889,Cliente 00889,Guayaquil,Minorista,2024-12-16,Visita comercial
+C00890,Cliente 00890,Guayaquil,Minorista,2024-04-12,Visita comercial
+C00891,Cliente 00891,Guayaquil,Minorista,2021-10-03,Referido
+C00892,Cliente 00892,Guayaquil,Minorista,2023-05-29,Redes sociales
+C00893,Cliente 00893,Quito,Minorista,2022-02-26,Punto de venta
+C00894,Cliente 00894,Loja,Minorista,2023-10-09,Visita comercial
+C00895,Cliente 00895,Manta,Minorista,2022-03-01,Visita comercial
+C00896,Cliente 00896,Cuenca,Minorista,2023-10-07,Referido
+C00897,Cliente 00897,Guayaquil,Minorista,2023-01-16,Referido
+C00898,Cliente 00898,Quito,Minorista,2021-08-16,Punto de venta
+C00899,Cliente 00899,Loja,Minorista,2022-01-30,Punto de venta
+C00900,Cliente 00900,Quito,Minorista,2023-09-27,Punto de venta
+C00901,Cliente 00901,Quito,Minorista,2021-11-18,Visita comercial
+C00902,Cliente 00902,Quito,Mayorista,2025-04-14,Referido
+C00903,Cliente 00903,Cuenca,Minorista,2024-11-09,Punto de venta
+C00904,Cliente 00904,Guayaquil,Mayorista,2024-08-22,Referido
+C00905,Cliente 00905,Cuenca,Minorista,2022-04-16,Punto de venta
+C00906,Cliente 00906,Cuenca,Minorista,2025-01-08,Referido
+C00907,Cliente 00907,Quito,Mayorista,2024-04-25,Referido
+C00908,Cliente 00908,Loja,Mayorista,2023-03-31,Punto de venta
+C00909,Cliente 00909,GUAYAQUIL,Minorista,2021-07-15,Referido
+C00910,Cliente 00910,Guayaquil,Minorista,2023-11-08,Punto de venta
+C00911,Cliente 00911,Quito,Minorista,2025-01-08,Referido
+C00912,Cliente 00912,loja,Minorista,2021-09-06,Visita comercial
+C00913,Cliente 00913,Quito,Minorista,2021-10-07,Referido
+C00914,Cliente 00914,Quito,Mayorista,2023-03-19,Visita comercial
+C00915,Cliente 00915,Guayaquil,Minorista,2023-10-11,Redes sociales
+C00916,Cliente 00916,Quito,Minorista,2023-08-13,Visita comercial
+C00917,Cliente 00917,Quito,Minorista,,Redes sociales
+C00918,Cliente 00918,Guayaquil,Minorista,2022-08-27,Punto de venta
+C00919,Cliente 00919,Guayaquil,Minorista,2021-10-18,Referido
+C00920,Cliente 00920,Loja,Minorista,2021-09-02,Visita comercial
+C00921,Cliente 00921,Quito,Minorista,2021-12-20,Referido
+C00922,Cliente 00922,Cuenca,Minorista,2024-07-23,Punto de venta
+C00923,Cliente 00923,Guayaquil,Minorista,2024-12-23,Redes sociales
+C00924,Cliente 00924,Cuenca,Minorista,2023-06-11,Visita comercial
+C00925,Cliente 00925,Guayaquil,Mayorista,2021-11-15,Redes sociales
+C00926,Cliente 00926,Guayaquil,Minorista,2023-05-11,Redes sociales
+C00927,Cliente 00927,loja,Minorista,2025-11-08,Referido
+C00928,Cliente 00928,Quito,Minorista,2022-08-18,Visita comercial
+C00929,Cliente 00929,Quito,Minorista,2023-09-08,Punto de venta
+C00930,Cliente 00930,Cuenca,Minorista,2023-11-22,Visita comercial
+C00931,Cliente 00931,Manta,Minorista,2022-12-24,Visita comercial
+C00932,Cliente 00932,Quito,Minorista,2023-06-15,Visita comercial
+C00933,Cliente 00933,Guayaquil,Mayorista,2023-08-08,Redes sociales
+C00934,Cliente 00934,Manta,Minorista,2023-08-12,Referido
+C00935,Cliente 00935,Cuenca,Minorista,2024-09-05,Referido
+C00936,Cliente 00936,Loja,Minorista,2024-01-30,Referido
+C00937,Cliente 00937,Guayaquil,Mayorista,2021-10-08,Punto de venta
+C00938,Cliente 00938,Cuenca,Mayorista,2021-07-25,Referido
+C00939,Cliente 00939,Quito,Minorista,2023-05-03,Punto de venta
+C00940,Cliente 00940,Loja,Minorista,2025-07-06,Referido
+C00941,Cliente 00941,Quito,Minorista,2021-09-12,Visita comercial
+C00942,Cliente 00942,Cuenca,Mayorista,2021-11-05,Punto de venta
+C00943,Cliente 00943,Guayaquil,Minorista,2024-07-05,Punto de venta
+C00944,Cliente 00944,Guayaquil,Minorista,2023-07-06,Referido
+C00945,Cliente 00945,Cuenca,Minorista,2022-07-19,Punto de venta
+C00946,Cliente 00946,guayaquil,Minorista,2022-06-11,Redes sociales
+C00947,Cliente 00947,Manta,Mayorista,2024-06-13,Referido
+C00948,Cliente 00948,Guayaquil,Minorista,2023-10-31,Punto de venta
+C00949,Cliente 00949,Guayaquil,Minorista,2024-05-01,Punto de venta
+C00950,Cliente 00950,Quito,Minorista,2022-10-06,Referido
+C00951,Cliente 00951,Guayaquil,Minorista,2023-11-04,Redes sociales
+C00952,Cliente 00952,Guayaquil,Minorista,2025-04-21,Referido
+C00953,Cliente 00953,Quito,Minorista,2022-12-03,Visita comercial
+C00954,Cliente 00954,Quito,Mayorista,2023-04-10,Punto de venta
+C00955,Cliente 00955,Cuenca,Minorista,2022-04-02,Redes sociales
+C00956,Cliente 00956,Cuenca,Minorista,2024-05-02,Redes sociales
+C00957,Cliente 00957,Cuenca,Minorista,2021-09-05,Redes sociales
+C00958,Cliente 00958,Quito,Minorista,2022-08-17,Redes sociales
+C00959,Cliente 00959,Quito,Minorista,2024-08-28,Referido
+C00960,Cliente 00960,Quito,Minorista,2021-08-15,Punto de venta
+C00961,Cliente 00961,Cuenca,Minorista,2025-11-13,Redes sociales
+C00962,Cliente 00962,Manta,Minorista,2023-04-22,Punto de venta
+C00963,Cliente 00963,quito,Minorista,2023-04-13,Referido
+C00964,Cliente 00964,Cuenca,Minorista,2023-11-20,Referido
+C00965,Cliente 00965,Quito,Minorista,2024-05-02,Visita comercial
+C00966,Cliente 00966,Quito,Mayorista,2023-07-20,Referido
+C00967,Cliente 00967,Quito,Minorista,2025-05-29,Visita comercial
+C00968,Cliente 00968,Quito,Minorista,2025-10-01,Punto de venta
+C00969,Cliente 00969,Cuenca,Mayorista,2022-05-31,Punto de venta
+C00970,Cliente 00970,Manta,Minorista,2024-08-18,Referido
+C00971,Cliente 00971,Quito,Minorista,,Referido
+C00972,Cliente 00972,Guayaquil,Minorista,2025-11-24,Punto de venta
+C00973,Cliente 00973,Cuenca,Minorista,2022-08-24,Visita comercial
+C00974,Cliente 00974,Loja,Minorista,2022-10-30,Punto de venta
+C00975,Cliente 00975,Guayaquíl,Minorista,2024-08-30,Referido
+C00976,Cliente 00976,Quito,Minorista,2024-12-28,Visita comercial
+C00977,Cliente 00977,Guayaquil,Minorista,2022-02-05,Visita comercial
+C00978,Cliente 00978,Quito,Minorista,2023-12-20,Punto de venta
+C00979,Cliente 00979,Loja,Minorista,2023-01-19,Referido
+C00980,Cliente 00980,Guayaquil,Minorista,2024-03-19,Punto de venta
+C00981,Cliente 00981,Cuenca,Minorista,2023-12-22,Visita comercial
+C00982,Cliente 00982,Quito,Mayorista,,Visita comercial
+C00983,Cliente 00983,GUAYAQUIL,Minorista,2025-08-16,Punto de venta
+C00984,Cliente 00984,Manta,Minorista,2024-05-26,Visita comercial
+C00985,Cliente 00985,Guayaquil,Minorista,2024-07-06,Visita comercial
+C00986,Cliente 00986,Guayaquil,Minorista,2025-06-22,Redes sociales
+C00987,Cliente 00987,Loja,Minorista,2022-05-04,Punto de venta
+C00988,Cliente 00988, Manta,Minorista,2024-09-18,Referido
+C00989,Cliente 00989,Quito,Minorista,2024-12-01,Visita comercial
+C00990,Cliente 00990,Guayaquil,Minorista,2022-02-03,Punto de venta
+C00991,Cliente 00991,Guayaquil,Minorista,2025-05-25,Punto de venta
+C00992,Cliente 00992,Guayaquil,Minorista,2024-08-07,Punto de venta
+C00993,Cliente 00993,Quito,Minorista,2023-01-21,Punto de venta
+C00994,Cliente 00994,Quito,Minorista,2023-08-28,Punto de venta
+C00995,Cliente 00995,Manta,Minorista,2023-09-06,Referido
+C00996,Cliente 00996,Loja,Minorista,2025-07-24,Referido
+C00997,Cliente 00997,Manta,Minorista,2025-10-12,Punto de venta
+C00998,Cliente 00998,Loja,Minorista,2025-01-25,Punto de venta
+C00999,Cliente 00999,Cuenca,Minorista,2024-05-23,Punto de venta
+C01000,Cliente 01000,Cuenca,Minorista,2021-12-28,Redes sociales
+C01001,Cliente 01001,Cuenca,Mayorista,2025-07-17,Referido
+C01002,Cliente 01002,Guayaquil,Minorista,2022-02-14,Redes sociales
+C01003,Cliente 01003,Guayaquil,Minorista,2022-04-07,Redes sociales
+C01004,Cliente 01004,Quito,Minorista,2021-11-03,Referido
+C01005,Cliente 01005,Guayaquil,Mayorista,2025-09-08,Punto de venta
+C01006,Cliente 01006,Quito,Minorista,2023-09-12,Redes sociales
+C01007,Cliente 01007,Quito,Minorista,2022-07-27,Visita comercial
+C01008,Cliente 01008,Guayaquil,Mayorista,2021-11-21,Redes sociales
+C01009,Cliente 01009,Guayaquil,Minorista,2023-05-05,Redes sociales
+C01010,Cliente 01010,Quito,Mayorista,2024-09-14,Punto de venta
+C01011,Cliente 01011,Manta,Minorista,2025-11-22,Referido
+C01012,Cliente 01012,Manta,Minorista,2023-12-15,Redes sociales
+C01013,Cliente 01013,QUITO,Minorista,2024-03-12,Redes sociales
+C01014,Cliente 01014,Quito,Minorista,2025-03-13,Redes sociales
+C01015,Cliente 01015,Quito,Mayorista,2025-06-26,Visita comercial
+C01016,Cliente 01016,Cuenca,Minorista,2022-10-05,Punto de venta
+C01017,Cliente 01017,Manta ,Mayorista,2025-11-18,Punto de venta
+C01018,Cliente 01018,Quito,Minorista,2023-10-23,Redes sociales
+C01019,Cliente 01019,Cuenca,Minorista,2025-08-11,Redes sociales
+C01020,Cliente 01020,Quito,Mayorista,,Visita comercial
+C01021,Cliente 01021,Guayaquil,Minorista,2021-12-17,Redes sociales
+C01022,Cliente 01022,Loja,Mayorista,2025-05-30,Referido
+C01023,Cliente 01023,Quito,Minorista,2024-06-25,Punto de venta
+C01024,Cliente 01024,Quito,Minorista,2022-04-21,Visita comercial
+C01025,Cliente 01025,Guayaquil,Minorista,2025-06-15,Punto de venta
+C01026,Cliente 01026,Guayaquil,Minorista,2021-12-25,Referido
+C01027,Cliente 01027,Loja,Minorista,2024-07-10,Punto de venta
+C01028,Cliente 01028,Loja,Minorista,2022-06-08,Redes sociales
+C01029,Cliente 01029,Quito,Minorista,2021-11-04,Referido
+C01030,Cliente 01030,Quito,Minorista,2025-01-24,Referido
+C01031,Cliente 01031,Cuenca,Mayorista,2025-03-31,Punto de venta
+C01032,Cliente 01032,Quito,Minorista,2021-12-31,Redes sociales
+C01033,Cliente 01033,Manta,Minorista,2021-12-11,Visita comercial
+C01034,Cliente 01034,Cuenca,Mayorista,2024-03-24,Referido
+C01035,Cliente 01035,Quito,Minorista,2021-08-29,Referido
+C01036,Cliente 01036,Manta,Minorista,2024-10-20,Redes sociales
+C01037,Cliente 01037,Quito,Minorista,2025-07-19,Redes sociales
+C01038,Cliente 01038,Guayaquil,Minorista,2024-10-28,Visita comercial
+C01039,Cliente 01039,Guayaquil,Minorista,2022-07-19,Redes sociales
+C01040,Cliente 01040,Guayaquil,Minorista,2022-05-15,Punto de venta
+C01041,Cliente 01041,CUENCA,Minorista,2024-07-07,Punto de venta
+C01042,Cliente 01042,Cuenca,Minorista,2021-10-21,Visita comercial
+C01043,Cliente 01043,Loja,Minorista,2023-11-22,Referido
+C01044,Cliente 01044,Loja,Minorista,2023-07-03,Referido
+C01045,Cliente 01045,Guayaquil,Minorista,2024-10-18,Visita comercial
+C01046,Cliente 01046,Quito,Minorista,2022-06-03,Referido
+C01047,Cliente 01047,Cuenca,Mayorista,2024-11-15,Visita comercial
+C01048,Cliente 01048,Loja,Minorista,2024-08-06,Visita comercial
+C01049,Cliente 01049, Quito,Minorista,2022-07-31,Punto de venta
+C01050,Cliente 01050,Guayaquil,Minorista,2023-02-05,Referido
+C01051,Cliente 01051,Guayaquil,Minorista,2021-10-28,Punto de venta
+C01052,Cliente 01052,Quito,Minorista,2023-07-03,Visita comercial
+C01053,Cliente 01053,Cuenca,Minorista,2022-09-04,Redes sociales
+C01054,Cliente 01054,Quito,Mayorista,2022-01-12,Referido
+C01055,Cliente 01055,Cuenca,Minorista,2023-12-27,Punto de venta
+C01056,Cliente 01056,Manta,Mayorista,,Punto de venta
+C01057,Cliente 01057,Manta,Minorista,2021-11-29,Referido
+C01058,Cliente 01058,Guayaquil,Minorista,2022-05-07,Redes sociales
+C01059,Cliente 01059,Quito,Minorista,2021-11-24,Referido
+C01060,Cliente 01060,Cuenca,Minorista,2024-07-05,Redes sociales
+C01061,Cliente 01061,Manta,Mayorista,2023-01-06,Visita comercial
+C01062,Cliente 01062,Guayaquil,Mayorista,2021-11-05,Referido
+C01063,Cliente 01063,Manta,Mayorista,2022-05-17,Visita comercial
+C01064,Cliente 01064,Quito,Minorista,2025-10-23,Punto de venta
+C01065,Cliente 01065,Manta,Minorista,2022-08-28,Referido
+C01066,Cliente 01066,Quito,Minorista,2024-07-14,Redes sociales
+C01067,Cliente 01067,Quito,Mayorista,2023-08-03,Referido
+C01068,Cliente 01068,Guayaquil,Minorista,2022-05-01,Referido
+C01069,Cliente 01069,Quito,Minorista,2022-11-18,Visita comercial
+C01070,Cliente 01070,Quito,Minorista,2021-08-06,Punto de venta
+C01071,Cliente 01071,Quito,Minorista,2024-10-22,Punto de venta
+C01072,Cliente 01072,Guayaquil,Minorista,2023-01-01,Visita comercial
+C01073,Cliente 01073,Cuenca,Mayorista,2023-09-21,Punto de venta
+C01074,Cliente 01074,Quito,Mayorista,2022-03-16,Referido
+C01075,Cliente 01075,Cuenca,Mayorista,2025-02-22,Visita comercial
+C01076,Cliente 01076,Manta,Minorista,2022-06-29,Redes sociales
+C01077,Cliente 01077,quito,Minorista,,Visita comercial
+C01078,Cliente 01078,Quito,Minorista,2025-05-11,Visita comercial
+C01079,Cliente 01079,Manta,Minorista,2024-08-29,Punto de venta
+C01080,Cliente 01080,Manta,Minorista,2024-03-06,Referido
+C01081,Cliente 01081,Guayaquil,Minorista,2025-06-04,Punto de venta
+C01082,Cliente 01082,Manta,Minorista,2022-04-23,Punto de venta
+C01083,Cliente 01083,Quito,Minorista,2025-10-03,Punto de venta
+C01084,Cliente 01084,Guayaquil,Minorista,2023-12-22,Redes sociales
+C01085,Cliente 01085,Cuenca,Minorista,2023-05-01,Punto de venta
+C01086,Cliente 01086,Quito,Minorista,,Referido
+C01087,Cliente 01087,Cuenca,Mayorista,2024-10-18,Redes sociales
+C01088,Cliente 01088,Guayaquil,Minorista,2025-10-23,Redes sociales
+C01089,Cliente 01089,Cuenca,Mayorista,2024-07-23,Punto de venta
+C01090,Cliente 01090,Guayaquil,Minorista,2021-09-05,Visita comercial
+C01091,Cliente 01091,Quito,Minorista,2023-08-04,Redes sociales
+C01092,Cliente 01092,Quito,Minorista,,Punto de venta
+C01093,Cliente 01093,QUITO,Mayorista,2023-04-11,Referido
+C01094,Cliente 01094,Cuenca,Minorista,2024-12-02,Punto de venta
+C01095,Cliente 01095,Quito,Minorista,2024-08-19,Referido
+C01096,Cliente 01096,Quito,Minorista,2021-10-30,Visita comercial
+C01097,Cliente 01097,Quito,Minorista,2023-12-24,Redes sociales
+C01098,Cliente 01098,Quito,Minorista,2022-04-15,Referido
+C01099,Cliente 01099,Manta ,Minorista,2023-09-01,Visita comercial
+C01100,Cliente 01100,Guayaquil,Minorista,2023-03-21,Visita comercial
+C01101,Cliente 01101,Loja,Minorista,2025-01-26,Visita comercial
+C01102,Cliente 01102,Quito,Minorista,2025-05-04,Punto de venta
+C01103,Cliente 01103,Cuenca,Minorista,2023-07-23,Punto de venta
+C01104,Cliente 01104,Guayaquil,Mayorista,2023-11-21,Redes sociales
+C01105,Cliente 01105,GUAYAQUIL,Mayorista,2024-04-11,Visita comercial
+C01106,Cliente 01106,Manta,Minorista,2024-05-28,Redes sociales
+C01107,Cliente 01107,Loja ,Minorista,2024-04-26,Punto de venta
+C01108,Cliente 01108,Manta,Minorista,2024-12-18,Punto de venta
+C01109,Cliente 01109, Quito,Minorista,2025-11-02,Referido
+C01110,Cliente 01110,Quito,Minorista,2025-02-28,Visita comercial
+C01111,Cliente 01111,Cuenca,Minorista,2022-02-15,Punto de venta
+C01112,Cliente 01112,Quito,Mayorista,2023-08-16,Punto de venta
+C01113,Cliente 01113,Cuenca,Minorista,2023-07-23,Visita comercial
+C01114,Cliente 01114,Guayaquil,Mayorista,2023-10-07,Punto de venta
+C01115,Cliente 01115,Guayaquil,Minorista,2023-11-07,Visita comercial
+C01116,Cliente 01116,Manta,Minorista,2024-09-05,Visita comercial
+C01117,Cliente 01117,Cuenca,Minorista,2023-05-19,Punto de venta
+C01118,Cliente 01118,Quito,Minorista,2022-09-09,Redes sociales
+C01119,Cliente 01119,Quito,Minorista,2023-07-17,Referido
+C01120,Cliente 01120,Guayaquil,Minorista,2025-04-12,Punto de venta
+C01121,Cliente 01121,Guayaquil,Minorista,2022-11-25,Punto de venta
+C01122,Cliente 01122,Quito,Minorista,2021-08-17,Visita comercial
+C01123,Cliente 01123,Guayaquil,Minorista,2025-10-24,Redes sociales
+C01124,Cliente 01124,Cuenca,Minorista,2022-05-24,Punto de venta
+C01125,Cliente 01125,Manta,Mayorista,2024-03-05,Redes sociales
+C01126,Cliente 01126,Guayaquil,Minorista,2025-01-15,Punto de venta
+C01127,Cliente 01127,Guayaquil,Minorista,2022-09-27,Punto de venta
+C01128,Cliente 01128,Quito,Minorista,2023-01-10,Visita comercial
+C01129,Cliente 01129,Guayaquil,Minorista,2022-10-06,Visita comercial
+C01130,Cliente 01130,Quito,Mayorista,2022-03-11,Punto de venta
+C01131,Cliente 01131,Guayaquil,Minorista,2022-03-16,Punto de venta
+C01132,Cliente 01132,Cuenca ,Minorista,2022-05-09,Visita comercial
+C01133,Cliente 01133,Quito,Minorista,2023-07-17,Visita comercial
+C01134,Cliente 01134,Quito,Minorista,2023-11-11,Punto de venta
+C01135,Cliente 01135,Quito,Minorista,2021-08-09,Visita comercial
+C01136,Cliente 01136,Manta,Minorista,2025-03-29,Visita comercial
+C01137,Cliente 01137,Guayaquil,Minorista,2024-06-30,Punto de venta
+C01138,Cliente 01138,Quito,Minorista,2021-11-05,Punto de venta
+C01139,Cliente 01139,Manta,Minorista,2025-03-24,Punto de venta
+C01140,Cliente 01140,Guayaquil,Minorista,2021-09-01,Punto de venta
+C01141,Cliente 01141,Guayaquil,Mayorista,2023-12-28,Referido
+C01142,Cliente 01142,Loja,Minorista,2023-07-29,Punto de venta
+C01143,Cliente 01143,Quito,Minorista,2023-09-26,Referido
+C01144,Cliente 01144,Quito,Mayorista,2025-09-21,Referido
+C01145,Cliente 01145,Guayaquil,Minorista,2025-08-06,Punto de venta
+C01146,Cliente 01146,Quito,Minorista,2022-10-04,Punto de venta
+C01147,Cliente 01147,Cuenca,Minorista,2024-01-28,Punto de venta
+C01148,Cliente 01148,Quito,Mayorista,2025-09-26,Visita comercial
+C01149,Cliente 01149,Quito,Minorista,2024-09-23,Punto de venta
+C01150,Cliente 01150,Quito,Minorista,2025-06-04,Redes sociales
+C01151,Cliente 01151,Guayaquil,Minorista,2023-06-10,Punto de venta
+C01152,Cliente 01152,Quito,Minorista,2022-10-11,Punto de venta
+C01153,Cliente 01153, Quito,Minorista,2023-10-10,Referido
+C01154,Cliente 01154,Manta,Minorista,2025-02-11,Punto de venta
+C01155,Cliente 01155,Quito,Mayorista,2025-08-09,Redes sociales
+C01156,Cliente 01156,Quito,Minorista,2024-07-16,Punto de venta
+C01157,Cliente 01157,Quito,Minorista,2024-08-18,Punto de venta
+C01158,Cliente 01158,Quito,Minorista,2023-10-11,Punto de venta
+C01159,Cliente 01159,Quito,Mayorista,2022-12-08,Visita comercial
+C01160,Cliente 01160,Guayaquil,Minorista,2023-05-22,Visita comercial
+C01161,Cliente 01161, Quito,Minorista,2023-09-19,Punto de venta
+C01162,Cliente 01162,Manta,Mayorista,2025-02-08,Punto de venta
+C01163,Cliente 01163,Loja,Minorista,,Punto de venta
+C01164,Cliente 01164,Quito,Mayorista,2025-01-03,Visita comercial
+C01165,Cliente 01165,Quito,Minorista,2021-08-27,Referido
+C01166,Cliente 01166,Quito,Minorista,2024-11-07,Punto de venta
+C01167,Cliente 01167,Guayaquil,Mayorista,2023-10-04,Punto de venta
+C01168,Cliente 01168,Quito,Minorista,2025-11-28,Visita comercial
+C01169,Cliente 01169,Manta,Minorista,2023-08-08,Redes sociales
+C01170,Cliente 01170,Cuenca,Minorista,2023-08-19,Visita comercial
+C01171,Cliente 01171,Manta,Minorista,2022-02-03,Redes sociales
+C01172,Cliente 01172,Guayaquíl,Minorista,2025-01-26,Referido
+C01173,Cliente 01173,Loja,Minorista,2024-08-10,Visita comercial
+C01174,Cliente 01174,Quito,Minorista,2025-04-24,Visita comercial
+C01175,Cliente 01175,Guayaquil,Minorista,2021-12-10,Punto de venta
+C01176,Cliente 01176,Quito,Minorista,2022-06-18,Punto de venta
+C01177,Cliente 01177,Loja,Mayorista,2025-05-18,Punto de venta
+C01178,Cliente 01178,Guayaquil,Minorista,2021-09-20,Redes sociales
+C01179,Cliente 01179,Manta,Minorista,2023-10-06,Referido
+C01180,Cliente 01180,Quito,Minorista,2023-04-23,Referido
+C01181,Cliente 01181,Loja,Minorista,2025-08-26,Redes sociales
+C01182,Cliente 01182,Guayaquil,Minorista,2025-04-15,Referido
+C01183,Cliente 01183,Guayaquil,Minorista,2025-06-18,Punto de venta
+C01184,Cliente 01184,Loja,Minorista,2022-10-20,Punto de venta
+C01185,Cliente 01185,Guayaquil,Mayorista,2024-02-10,Punto de venta
+C01186,Cliente 01186,Guayaquil,Mayorista,2024-08-08,Referido
+C01187,Cliente 01187,Guayaquil,Minorista,2025-10-09,Redes sociales
+C01188,Cliente 01188,Quito,Mayorista,2021-07-26,Referido
+C01189,Cliente 01189,Quito,Mayorista,2025-10-25,Visita comercial
+C01190,Cliente 01190,Quito,Minorista,2023-02-03,Punto de venta
+C01191,Cliente 01191,Quito,Minorista,2022-02-05,Redes sociales
+C01192,Cliente 01192,Manta,Minorista,2024-03-25,Punto de venta
+C01193,Cliente 01193,Guayaquil,Minorista,2024-12-16,Visita comercial
+C01194,Cliente 01194,Quito,Minorista,2022-02-07,Punto de venta
+C01195,Cliente 01195,Guayaquil,Minorista,2021-09-18,Punto de venta
+C01196,Cliente 01196,Guayaquil,Minorista,2025-06-18,Redes sociales
+C01197,Cliente 01197,Guayaquil,Mayorista,2025-08-16,Punto de venta
+C01198,Cliente 01198,Loja ,Minorista,2022-03-22,Referido
+C01199,Cliente 01199,Loja,Minorista,2025-06-30,Punto de venta
+C01200,Cliente 01200,Guayaquil,Minorista,2025-07-09,Punto de venta
+C01201,Cliente 01201,QUITO,Minorista,2025-11-26,Punto de venta
+C01202,Cliente 01202,Guayaquil,Minorista,2022-06-26,Punto de venta
+C01203,Cliente 01203,Guayaquil,Mayorista,2024-01-27,Redes sociales
+C01204,Cliente 01204,Guayaquil,Mayorista,2025-11-21,Punto de venta
+C01205,Cliente 01205,Cuenca,Mayorista,2025-06-28,Punto de venta
+C01206,Cliente 01206,Guayaquil,Mayorista,2024-03-08,Visita comercial
+C01207,Cliente 01207,Quito,Mayorista,2022-05-26,Visita comercial
+C01208,Cliente 01208,Quito,Minorista,2021-11-26,Punto de venta
+C01209,Cliente 01209,Quito,Minorista,2022-09-02,Redes sociales
+C01210,Cliente 01210,Quito,Minorista,2021-10-27,Redes sociales
+C01211,Cliente 01211,Quito,Minorista,,Punto de venta
+C01212,Cliente 01212,Cuenca,Minorista,2021-11-11,Punto de venta
+C01213,Cliente 01213,Guayaquil,Minorista,2024-11-15,Referido
+C01214,Cliente 01214,Quito,Mayorista,2024-02-13,Referido
+C01215,Cliente 01215,Guayaquil,Minorista,2023-10-21,Redes sociales
+C01216,Cliente 01216,Cuenca,Mayorista,2025-01-30,Punto de venta
+C01217,Cliente 01217,Quito,Minorista,2023-05-03,Redes sociales
+C01218,Cliente 01218,Manta,Minorista,2023-04-20,Redes sociales
+C01219,Cliente 01219,Loja,Minorista,2022-06-11,Punto de venta
+C01220,Cliente 01220,Guayaquil,Minorista,2023-06-26,Punto de venta
+C01221,Cliente 01221,Cuenca,Minorista,2022-04-20,Punto de venta
+C01222,Cliente 01222,Quito,Minorista,2024-02-12,Visita comercial
+C01223,Cliente 01223,Loja,Mayorista,2025-11-26,Punto de venta
+C01224,Cliente 01224,Guayaquil,Minorista,2023-11-14,Redes sociales
+C01225,Cliente 01225,Loja,Minorista,2022-11-05,Visita comercial
+C01226,Cliente 01226,Guayaquil,Minorista,,Punto de venta
+C01227,Cliente 01227,Quito,Minorista,2025-02-16,Punto de venta
+C01228,Cliente 01228,Quito,Minorista,2023-08-08,Redes sociales
+C01229,Cliente 01229,Cuenca,Minorista,2022-08-19,Punto de venta
+C01230,Cliente 01230,Guayaquil,Minorista,2024-08-30,Referido
+C01231,Cliente 01231,Quito,Minorista,2022-05-10,Visita comercial
+C01232,Cliente 01232,Cuenca,Minorista,2025-11-26,Referido
+C01233,Cliente 01233,Manta,Minorista,2022-12-05,Referido
+C01234,Cliente 01234,Guayaquil,Minorista,2023-01-26,Punto de venta
+C01235,Cliente 01235,Guayaquil,Minorista,2024-09-20,Punto de venta
+C01236,Cliente 01236,Quito,Minorista,2021-08-03,Punto de venta
+C01237,Cliente 01237,Cuenca,Minorista,2022-06-04,Visita comercial
+C01238,Cliente 01238,Quito,Minorista,2022-02-01,Referido
+C01239,Cliente 01239,Manta,Minorista,2023-04-01,Visita comercial
+C01240,Cliente 01240,Quito,Minorista,2023-12-17,Punto de venta
+C01241,Cliente 01241,Guayaquil ,Minorista,2022-04-28,Referido
+C01242,Cliente 01242,Quito,Minorista,2023-01-16,Redes sociales
+C01243,Cliente 01243,Quito,Mayorista,2024-12-01,Punto de venta
+C01244,Cliente 01244,Cuenca,Minorista,2025-08-26,Punto de venta
+C01245,Cliente 01245,Guayaquil,Mayorista,2021-08-06,Referido
+C01246,Cliente 01246,Guayaquil,Minorista,2024-04-13,Referido
+C01247,Cliente 01247,Loja,Minorista,2021-08-25,Punto de venta
+C01248,Cliente 01248,Loja,Minorista,2023-10-25,Redes sociales
+C01249,Cliente 01249,Manta,Minorista,2025-05-22,Visita comercial
+C01250,Cliente 01250,Quito,Mayorista,2025-01-11,Punto de venta
+C01251,Cliente 01251,Guayaquil,Minorista,2022-07-22,Redes sociales
+C01252,Cliente 01252,manta,Minorista,2022-09-01,Redes sociales
+C01253,Cliente 01253,Quito,Minorista,2024-12-19,Visita comercial
+C01254,Cliente 01254,quito,Minorista,2025-02-15,Referido
+C01255,Cliente 01255,Manta,Minorista,2022-10-07,Referido
+C01256,Cliente 01256,Guayaquil,Mayorista,2021-07-19,Referido
+C01257,Cliente 01257,Guayaquil,Minorista,2023-06-26,Redes sociales
+C01258,Cliente 01258,LOJA,Mayorista,2024-04-01,Redes sociales
+C01259,Cliente 01259,Guayaquil,Minorista,2023-06-25,Punto de venta
+C01260,Cliente 01260,Guayaquil,Minorista,2025-08-18,Punto de venta
+C01261,Cliente 01261,Quito,Minorista,,Visita comercial
+C01262,Cliente 01262,Guayaquil,Mayorista,2024-12-26,Visita comercial
+C01263,Cliente 01263,Quito,Minorista,2021-08-16,Punto de venta
+C01264,Cliente 01264,Cuenca,Minorista,2025-04-10,Punto de venta
+C01265,Cliente 01265, Manta,Minorista,2024-11-04,Punto de venta
+C01266,Cliente 01266,Quito,Minorista,2023-04-11,Visita comercial
+C01267,Cliente 01267,Quito,Minorista,2024-02-13,Referido
+C01268,Cliente 01268,MANTA,Minorista,2025-02-22,Visita comercial
+C01269,Cliente 01269,Quito ,Minorista,2025-07-03,Punto de venta
+C01270,Cliente 01270,Guayaquil,Minorista,2023-12-13,Redes sociales
+C01271,Cliente 01271,Guayaquil,Minorista,2021-09-19,Redes sociales
+C01272,Cliente 01272,Cuenca,Mayorista,2024-03-30,Redes sociales
+C01273,Cliente 01273,Quito,Minorista,2024-07-07,Referido
+C01274,Cliente 01274,CUENCA,Mayorista,,Redes sociales
+C01275,Cliente 01275,Quito,Mayorista,2025-02-11,Visita comercial
+C01276,Cliente 01276,Guayaquil,Minorista,2022-06-02,Redes sociales
+C01277,Cliente 01277,Quito,Minorista,2025-06-08,Punto de venta
+C01278,Cliente 01278,Guayaquil,Minorista,2023-12-13,Punto de venta
+C01279,Cliente 01279,Guayaquil,Minorista,2022-12-12,Referido
+C01280,Cliente 01280,Quito,Minorista,2021-10-17,Punto de venta
+C01281,Cliente 01281,Quito,Minorista,,Punto de venta
+C01282,Cliente 01282,Quito,Minorista,2024-10-13,Visita comercial
+C01283,Cliente 01283,Quito,Minorista,2023-03-10,Visita comercial
+C01284,Cliente 01284,Quito,Mayorista,2025-03-20,Redes sociales
+C01285,Cliente 01285,LOJA,Minorista,2022-07-18,Referido
+C01286,Cliente 01286,Guayaquil,Minorista,2025-07-26,Visita comercial
+C01287,Cliente 01287,Manta,Mayorista,2025-08-29,Visita comercial
+C01288,Cliente 01288,Loja,Minorista,2021-12-24,Visita comercial
+C01289,Cliente 01289,QUITO,Minorista,2024-05-15,Redes sociales
+C01290,Cliente 01290,Cuenca,Mayorista,2025-08-26,Redes sociales
+C01291,Cliente 01291,MANTA,Minorista,2022-12-13,Visita comercial
+C01292,Cliente 01292,Guayaquil,Minorista,2021-10-31,Punto de venta
+C01293,Cliente 01293,Guayaquil,Minorista,2025-05-15,Referido
+C01294,Cliente 01294,Guayaquil,Mayorista,2023-08-12,Referido
+C01295,Cliente 01295,Quito,Minorista,2021-08-27,Referido
+C01296,Cliente 01296,Guayaquil ,Minorista,2025-03-20,Punto de venta
+C01297,Cliente 01297,Loja,Minorista,2024-07-05,Punto de venta
+C01298,Cliente 01298,Loja,Minorista,2021-11-04,Redes sociales
+C01299,Cliente 01299,Quito,Minorista,2022-09-01,Visita comercial
+C01300,Cliente 01300,Cuenca,Minorista,2021-08-13,Referido
+C01301,Cliente 01301,Quito,Mayorista,2025-09-19,Visita comercial
+C01302,Cliente 01302,Manta,Minorista,2021-08-23,Punto de venta
+C01303,Cliente 01303,Quito,Minorista,2025-01-08,Visita comercial
+C01304,Cliente 01304,Loja,Minorista,2023-10-11,Punto de venta
+C01305,Cliente 01305,Manta,Minorista,2024-02-02,Redes sociales
+C01306,Cliente 01306,Quito,Minorista,2025-02-02,Redes sociales
+C01307,Cliente 01307, Quito,Minorista,2025-06-15,Punto de venta
+C01308,Cliente 01308,Manta,Minorista,2022-02-03,Visita comercial
+C01309,Cliente 01309,Quito,Minorista,2021-08-12,Punto de venta
+C01310,Cliente 01310,Guayaquil,Minorista,2022-01-30,Visita comercial
+C01311,Cliente 01311,Manta,Minorista,2024-07-11,Punto de venta
+C01312,Cliente 01312,Guayaquil,Minorista,2024-01-10,Redes sociales
+C01313,Cliente 01313,Guayaquil ,Mayorista,2021-11-26,Visita comercial
+C01314,Cliente 01314,Guayaquil,Minorista,2022-07-24,Punto de venta
+C01315,Cliente 01315,Quito,Mayorista,2023-11-21,Visita comercial
+C01316,Cliente 01316,Loja,Mayorista,2024-09-25,Visita comercial
+C01317,Cliente 01317,Quito,Minorista,,Punto de venta
+C01318,Cliente 01318,Quito,Mayorista,2025-09-11,Redes sociales
+C01319,Cliente 01319,Quito,Minorista,2025-11-18,Punto de venta
+C01320,Cliente 01320,Loja,Minorista,2024-11-21,Redes sociales
+C01321,Cliente 01321,Quito,Minorista,2023-07-11,Redes sociales
+C01322,Cliente 01322,Manta,Minorista,2025-05-18,Referido
+C01323,Cliente 01323,Cuenca,Minorista,2024-09-21,Visita comercial
+C01324,Cliente 01324,Manta,Minorista,2023-10-24,Punto de venta
+C01325,Cliente 01325,Loja,Minorista,2023-06-25,Visita comercial
+C01326,Cliente 01326,Manta ,Mayorista,2025-03-07,Redes sociales
+C01327,Cliente 01327,Loja,Minorista,2023-12-23,Referido
+C01328,Cliente 01328,Quito,Minorista,2022-05-03,Referido
+C01329,Cliente 01329,Cuenca,Minorista,2025-11-30,Redes sociales
+C01330,Cliente 01330,Guayaquil,Minorista,2021-11-01,Punto de venta
+C01331,Cliente 01331,Guayaquil,Minorista,2024-07-31,Punto de venta
+C01332,Cliente 01332,Manta,Minorista,2024-05-29,Punto de venta
+C01333,Cliente 01333,Loja,Minorista,2024-02-07,Referido
+C01334,Cliente 01334,Cuenca,Minorista,2021-10-06,Redes sociales
+C01335,Cliente 01335,Guayaquil,Mayorista,2023-09-11,Visita comercial
+C01336,Cliente 01336,Guayaquil,Minorista,2025-06-11,Punto de venta
+C01337,Cliente 01337,Guayaquil,Minorista,2022-08-02,Referido
+C01338,Cliente 01338,Quito,Minorista,2024-07-25,Redes sociales
+C01339,Cliente 01339,Guayaquil,Mayorista,2025-04-19,Visita comercial
+C01340,Cliente 01340,Quito,Minorista,2025-09-15,Punto de venta
+C01341,Cliente 01341,Quito,Minorista,2023-10-18,Punto de venta
+C01342,Cliente 01342,Cuenca,Minorista,2022-11-29,Punto de venta
+C01343,Cliente 01343,Guayaquil,Minorista,2024-08-07,Visita comercial
+C01344,Cliente 01344, Loja,Minorista,2023-08-31,Punto de venta
+C01345,Cliente 01345,Guayaquil,Minorista,2024-04-13,Referido
+C01346,Cliente 01346,Quito,Minorista,2024-10-13,Referido
+C01347,Cliente 01347,quito,Minorista,2024-08-24,Referido
+C01348,Cliente 01348,Quito,Minorista,2022-08-07,Referido
+C01349,Cliente 01349,Loja,Minorista,2024-11-05,Redes sociales
+C01350,Cliente 01350,Quito,Mayorista,2023-11-28,Referido
+C01351,Cliente 01351,Guayaquil,Minorista,2025-08-12,Referido
+C01352,Cliente 01352,Loja,Minorista,2024-06-04,Punto de venta
+C01353,Cliente 01353,Loja,Minorista,2025-06-10,Punto de venta
+C01354,Cliente 01354,Quito,Mayorista,2025-10-28,Punto de venta
+C01355,Cliente 01355,Quito,Minorista,2025-11-22,Redes sociales
+C01356,Cliente 01356,Quito,Mayorista,2024-10-18,Visita comercial
+C01357,Cliente 01357,Quito,Minorista,2024-02-25,Punto de venta
+C01358,Cliente 01358,Quito ,Minorista,2022-01-20,Visita comercial
+C01359,Cliente 01359,Guayaquil,Minorista,2023-03-24,Referido
+C01360,Cliente 01360,Manta,Minorista,2023-08-14,Visita comercial
+C01361,Cliente 01361,Guayaquil,Mayorista,2024-12-14,Punto de venta
+C01362,Cliente 01362,Guayaquil,Mayorista,2024-02-12,Referido
+C01363,Cliente 01363,Quito,Minorista,2023-06-17,Punto de venta
+C01364,Cliente 01364,Manta,Mayorista,,Referido
+C01365,Cliente 01365,Guayaquil,Minorista,2024-09-02,Referido
+C01366,Cliente 01366, Manta,Minorista,2023-06-06,Referido
+C01367,Cliente 01367,Loja,Minorista,2021-09-10,Visita comercial
+C01368,Cliente 01368,Quito,Minorista,2022-10-12,Referido
+C01369,Cliente 01369,Quito,Mayorista,2025-05-22,Redes sociales
+C01370,Cliente 01370,Quito,Minorista,2022-01-21,Redes sociales
+C01371,Cliente 01371,Guayaquil,Minorista,2023-04-25,Visita comercial
+C01372,Cliente 01372,Loja,Minorista,2023-10-12,Punto de venta
+C01373,Cliente 01373,Quito,Minorista,2021-11-25,Referido
+C01374,Cliente 01374,Cuenca,Minorista,2022-04-06,Visita comercial
+C01375,Cliente 01375,Guayaquil,Minorista,2025-08-27,Visita comercial
+C01376,Cliente 01376,Quito,Minorista,2024-02-14,Redes sociales
+C01377,Cliente 01377,Quito,Minorista,2022-06-16,Referido
+C01378,Cliente 01378,Cuenca,Minorista,2022-04-12,Punto de venta
+C01379,Cliente 01379,Cuenca,Minorista,2023-05-27,Referido
+C01380,Cliente 01380,Guayaquil,Minorista,2024-09-14,Punto de venta
+C01381,Cliente 01381,Quito,Minorista,2024-09-25,Referido
+C01382,Cliente 01382,Cuenca,Mayorista,2022-05-23,Redes sociales
+C01383,Cliente 01383,Quito,Minorista,2024-09-18,Punto de venta
+C01384,Cliente 01384,Loja,Mayorista,,Referido
+C01385,Cliente 01385,Quito,Minorista,2022-07-12,Visita comercial
+C01386,Cliente 01386,Quito,Minorista,2021-08-25,Redes sociales
+C01387,Cliente 01387,Guayaquil,Minorista,2025-09-26,Punto de venta
+C01388,Cliente 01388,Guayaquil,Minorista,2023-10-28,Punto de venta
+C01389,Cliente 01389,Guayaquil,Mayorista,2024-12-08,Referido
+C01390,Cliente 01390,Guayaquil,Minorista,2022-12-09,Punto de venta
+C01391,Cliente 01391,Loja,Minorista,2022-11-05,Referido
+C01392,Cliente 01392,Guayaquil,Minorista,2022-07-10,Visita comercial
+C01393,Cliente 01393,Guayaquil,Minorista,2022-06-27,Punto de venta
+C01394,Cliente 01394,guayaquil,Minorista,2023-08-08,Redes sociales
+C01395,Cliente 01395,Quito,Minorista,2021-12-31,Redes sociales
+C01396,Cliente 01396,Guayaquil,Minorista,2025-03-23,Punto de venta
+C01397,Cliente 01397,Quito,Minorista,2023-10-10,Referido
+C01398,Cliente 01398,Guayaquil,Minorista,2025-07-18,Punto de venta
+C01399,Cliente 01399,Quito,Minorista,2023-09-26,Referido
+C01400,Cliente 01400,Loja,Minorista,2022-11-12,Visita comercial
+C01401,Cliente 01401,Guayaquíl,Minorista,2023-10-16,Referido
+C01402,Cliente 01402,Manta,Minorista,2022-03-18,Punto de venta
+C01403,Cliente 01403,Guayaquil,Minorista,2025-02-22,Redes sociales
+C01404,Cliente 01404,Quito,Minorista,2024-09-09,Visita comercial
+C01405,Cliente 01405,Manta,Minorista,2022-03-07,Punto de venta
+C01406,Cliente 01406,Guayaquil,Minorista,2024-02-01,Punto de venta
+C01407,Cliente 01407,Cuenca,Minorista,2023-11-22,Punto de venta
+C01408,Cliente 01408,Guayaquil,Minorista,2022-06-01,Redes sociales
+C01409,Cliente 01409,Guayaquil,Mayorista,2022-01-26,Referido
+C01410,Cliente 01410,Manta,Minorista,2024-11-12,Redes sociales
+C01411,Cliente 01411,Guayaquil,Minorista,2022-09-10,Punto de venta
+C01412,Cliente 01412,Quito,Minorista,2023-10-23,Punto de venta
+C01413,Cliente 01413,cuenca,Minorista,2022-08-15,Punto de venta
+C01414,Cliente 01414,Cuenca,Mayorista,2024-05-25,Referido
+C01415,Cliente 01415,Loja,Minorista,2021-10-01,Visita comercial
+C01416,Cliente 01416,Quito,Minorista,,Redes sociales
+C01417,Cliente 01417,Guayaquil,Mayorista,2023-12-07,Visita comercial
+C01418,Cliente 01418,manta,Minorista,2023-06-17,Visita comercial
+C01419,Cliente 01419,guayaquil,Minorista,2024-03-20,Redes sociales
+C01420,Cliente 01420,Cuenca,Minorista,2022-04-29,Punto de venta
+C01421,Cliente 01421,Guayaquil,Minorista,2023-06-21,Punto de venta
+C01422,Cliente 01422,Quito,Minorista,2024-11-06,Punto de venta
+C01423,Cliente 01423,Cuenca,Minorista,2022-12-30,Punto de venta
+C01424,Cliente 01424,Quito,Mayorista,2022-03-23,Punto de venta
+C01425,Cliente 01425,Quito,Mayorista,2025-04-01,Punto de venta
+C01426,Cliente 01426,Guayaquil,Minorista,2024-12-11,Visita comercial
+C01427,Cliente 01427,Cuenca,Minorista,2024-07-07,Redes sociales
+C01428,Cliente 01428,Manta,Minorista,2025-01-11,Visita comercial
+C01429,Cliente 01429,Quito ,Minorista,2024-12-12,Visita comercial
+C01430,Cliente 01430,Quito,Minorista,2024-10-21,Visita comercial
+C01431,Cliente 01431,Loja,Minorista,2023-10-08,Punto de venta
+C01432,Cliente 01432,Quito,Minorista,2021-08-15,Punto de venta
+C01433,Cliente 01433,Quito,Minorista,2024-02-25,Punto de venta
+C01434,Cliente 01434,quito,Minorista,2022-09-25,Punto de venta
+C01435,Cliente 01435,Guayaquil,Minorista,2024-12-03,Punto de venta
+C01436,Cliente 01436,Manta,Minorista,2023-08-03,Visita comercial
+C01437,Cliente 01437,Cuenca,Mayorista,2025-07-02,Punto de venta
+C01438,Cliente 01438,Cuenca,Minorista,2024-02-22,Punto de venta
+C01439,Cliente 01439,Quito,Mayorista,2023-12-12,Punto de venta
+C01440,Cliente 01440,Quito,Minorista,2025-07-24,Visita comercial
+C01441,Cliente 01441,Guayaquil,Mayorista,2023-08-14,Visita comercial
+C01442,Cliente 01442,Quito,Minorista,2023-03-07,Punto de venta
+C01443,Cliente 01443,Quito,Minorista,2023-03-01,Visita comercial
+C01444,Cliente 01444,Quito ,Mayorista,2025-05-15,Referido
+C01445,Cliente 01445,QUITO,Minorista,2024-11-06,Referido
+C01446,Cliente 01446,Guayaquil,Minorista,2022-04-02,Visita comercial
+C01447,Cliente 01447,Cuenca,Minorista,2023-09-10,Visita comercial
+C01448,Cliente 01448,Quito,Minorista,2023-03-01,Punto de venta
+C01449,Cliente 01449,Guayaquil,Minorista,2024-05-14,Punto de venta
+C01450,Cliente 01450,Cuenca,Minorista,2021-10-06,Punto de venta
+C01451,Cliente 01451,Cuenca,Mayorista,2024-08-30,Referido
+C01452,Cliente 01452,Manta,Minorista,2024-10-14,Referido
+C01453,Cliente 01453,Guayaquil,Minorista,2022-07-12,Referido
+C01454,Cliente 01454,Manta,Minorista,2022-03-13,Referido
+C01455,Cliente 01455,Quito,Mayorista,2024-04-14,Visita comercial
+C01456,Cliente 01456,Quito,Minorista,2022-08-30,Punto de venta
+C01457,Cliente 01457,Quito,Minorista,2025-08-29,Punto de venta
+C01458,Cliente 01458,Guayaquil,Minorista,2024-12-06,Redes sociales
+C01459,Cliente 01459,Guayaquil,Minorista,2025-09-20,Referido
+C01460,Cliente 01460,Quito,Mayorista,2023-11-17,Referido
+C01461,Cliente 01461,Cuenca,Minorista,2025-08-24,Visita comercial
+C01462,Cliente 01462,Quito,Minorista,2021-08-06,Referido
+C01463,Cliente 01463,Quito,Minorista,2022-10-21,Redes sociales
+C01464,Cliente 01464,Quito,Minorista,2021-07-18,Referido
+C01465,Cliente 01465,Guayaquil,Minorista,2024-07-03,Redes sociales
+C01466,Cliente 01466,Quito,Minorista,2023-10-10,Punto de venta
+C01467,Cliente 01467,Quito,Minorista,2022-10-18,Referido
+C01468,Cliente 01468,Quito,Minorista,2022-11-14,Visita comercial
+C01469,Cliente 01469,Cuenca,Minorista,2024-05-10,Visita comercial
+C01470,Cliente 01470,Loja,Minorista,2022-04-29,Visita comercial
+C01471,Cliente 01471,Guayaquil,Minorista,2023-10-16,Redes sociales
+C01472,Cliente 01472,Guayaquil,Minorista,2024-03-22,Punto de venta
+C01473,Cliente 01473,Manta,Minorista,2022-08-02,Punto de venta
+C01474,Cliente 01474,Loja,Minorista,2022-07-15,Redes sociales
+C01475,Cliente 01475,Guayaquil,Minorista,2023-02-01,Referido
+C01476,Cliente 01476,Manta,Minorista,2024-02-17,Visita comercial
+C01477,Cliente 01477,Manta,Minorista,2022-08-26,Referido
+C01478,Cliente 01478,Cuenca,Minorista,2023-03-13,Referido
+C01479,Cliente 01479,Guayaquil ,Minorista,2023-12-01,Punto de venta
+C01480,Cliente 01480,Quito,Minorista,2022-05-09,Redes sociales
+C01481,Cliente 01481,Quito,Minorista,,Referido
+C01482,Cliente 01482,Guayaquil,Minorista,2022-02-20,Referido
+C01483,Cliente 01483,Guayaquil,Minorista,2022-02-28,Visita comercial
+C01484,Cliente 01484,Guayaquil,Mayorista,2022-07-28,Punto de venta
+C01485,Cliente 01485,Guayaquil,Minorista,2022-10-16,Visita comercial
+C01486,Cliente 01486,Guayaquil,Mayorista,,Visita comercial
+C01487,Cliente 01487,Manta,Minorista,2025-09-30,Visita comercial
+C01488,Cliente 01488,Quito,Minorista,2022-11-20,Punto de venta
+C01489,Cliente 01489,Quito,Minorista,2025-01-22,Redes sociales
+C01490,Cliente 01490,Cuenca,Minorista,2025-06-27,Redes sociales
+C01491,Cliente 01491,Manta,Mayorista,2025-01-16,Referido
+C01492,Cliente 01492,Loja,Minorista,2025-03-06,Visita comercial
+C01493,Cliente 01493,Manta,Mayorista,2021-12-22,Punto de venta
+C01494,Cliente 01494,Manta,Minorista,2023-03-02,Visita comercial
+C01495,Cliente 01495,Quito,Mayorista,2024-10-20,Visita comercial
+C01496,Cliente 01496,Guayaquil,Mayorista,2024-01-22,Redes sociales
+C01497,Cliente 01497,Quito,Minorista,2021-07-24,Visita comercial
+C01498,Cliente 01498,Guayaquil,Minorista,2024-01-08,Visita comercial
+C01499,Cliente 01499,Loja,Minorista,2025-01-22,Punto de venta
+C01500,Cliente 01500,Quito,Minorista,2025-03-01,Redes sociales
+C01501,Cliente 01501,Guayaquil,Mayorista,2023-03-21,Referido
+C01502,Cliente 01502,Quito,Minorista,2022-07-28,Referido
+C01503,Cliente 01503,Quito,Minorista,2022-11-22,Punto de venta
+C01504,Cliente 01504,Quito,Minorista,2022-11-01,Visita comercial
+C01505,Cliente 01505, Quito,Minorista,2023-01-20,Visita comercial
+C01506,Cliente 01506,Loja,Mayorista,2022-11-09,Redes sociales
+C01507,Cliente 01507,Guayaquil,Minorista,2023-07-16,Redes sociales
+C01508,Cliente 01508,Manta,Minorista,2021-09-18,Punto de venta
+C01509,Cliente 01509,Cuenca,Mayorista,2022-09-28,Referido
+C01510,Cliente 01510,Quito,Minorista,,Visita comercial
+C01511,Cliente 01511,Quito,Minorista,2022-03-17,Redes sociales
+C01512,Cliente 01512,Manta,Minorista,2025-05-19,Redes sociales
+C01513,Cliente 01513,Quito,Minorista,2024-06-29,Visita comercial
+C01514,Cliente 01514,Manta,Minorista,2025-07-13,Redes sociales
+C01515,Cliente 01515,Quito,Mayorista,2023-12-30,Visita comercial
+C01516,Cliente 01516,Cuenca,Minorista,2022-01-06,Punto de venta
+C01517,Cliente 01517,Manta,Mayorista,2025-07-01,Punto de venta
+C01518,Cliente 01518,Quito,Mayorista,2023-07-17,Referido
+C01519,Cliente 01519,Quito,Mayorista,2024-07-14,Punto de venta
+C01520,Cliente 01520,Loja,Minorista,2023-03-17,Punto de venta
+C01521,Cliente 01521,Quito,Minorista,2023-09-13,Visita comercial
+C01522,Cliente 01522,Guayaquil,Minorista,,Referido
+C01523,Cliente 01523,Guayaquil,Minorista,2022-10-13,Redes sociales
+C01524,Cliente 01524,Quito,Minorista,2023-12-19,Visita comercial
+C01525,Cliente 01525,Cuenca,Minorista,2024-09-30,Referido
+C01526,Cliente 01526, cuenca,Minorista,2021-08-16,Referido
+C01527,Cliente 01527,Quito,Minorista,2022-02-09,Punto de venta
+C01528,Cliente 01528,Manta,Minorista,2025-03-23,Referido
+C01529,Cliente 01529,Quito,Minorista,2024-01-12,Punto de venta
+C01530,Cliente 01530,Quito,Minorista,2025-10-19,Referido
+C01531,Cliente 01531,Guayaquil,Mayorista,2024-03-08,Visita comercial
+C01532,Cliente 01532,Loja,Minorista,2024-05-25,Punto de venta
+C01533,Cliente 01533,Quito,Mayorista,2025-06-22,Visita comercial
+C01534,Cliente 01534,Quito,Mayorista,2024-06-05,Visita comercial
+C01535,Cliente 01535,Guayaquil,Minorista,2022-12-24,Referido
+C01536,Cliente 01536,Manta ,Minorista,2023-11-06,Punto de venta
+C01537,Cliente 01537,Quito,Minorista,2022-07-26,Referido
+C01538,Cliente 01538,Guayaquil,Minorista,2022-12-31,Visita comercial
+C01539,Cliente 01539,Cuenca,Minorista,2024-07-07,Referido
+C01540,Cliente 01540,Quito,Minorista,2022-03-10,Referido
+C01541,Cliente 01541,Quito,Mayorista,2024-06-24,Visita comercial
+C01542,Cliente 01542,Quito,Mayorista,2024-02-04,Redes sociales
+C01543,Cliente 01543,Guayaquil,Mayorista,2022-11-20,Visita comercial
+C01544,Cliente 01544,Guayaquil,Minorista,2021-09-24,Referido
+C01545,Cliente 01545,Manta,Minorista,2024-08-15,Redes sociales
+C01546,Cliente 01546,Guayaquil,Mayorista,2025-02-23,Punto de venta
+C01547,Cliente 01547,Cuenca,Minorista,2024-09-25,Referido
+C01548,Cliente 01548,Loja,Minorista,2023-05-19,Referido
+C01549,Cliente 01549,Guayaquil,Minorista,2024-05-25,Referido
+C01550,Cliente 01550,Guayaquil,Minorista,2023-05-09,Punto de venta
+C01551,Cliente 01551,Loja,Minorista,2023-02-08,Visita comercial
+C01552,Cliente 01552,Quito,Minorista,2022-12-20,Visita comercial
+C01553,Cliente 01553,Cuenca,Minorista,2022-06-17,Referido
+C01554,Cliente 01554,Cuenca,Minorista,2025-10-12,Visita comercial
+C01555,Cliente 01555,Quito,Minorista,2024-06-14,Visita comercial
+C01556,Cliente 01556,Guayaquil,Minorista,2022-04-20,Visita comercial
+C01557,Cliente 01557,Quito,Minorista,2025-04-29,Redes sociales
+C01558,Cliente 01558,Quito,Mayorista,2022-03-14,Redes sociales
+C01559,Cliente 01559,Guayaquil,Minorista,2024-02-19,Punto de venta
+C01560,Cliente 01560,QUITO,Minorista,2022-04-05,Punto de venta
+C01561,Cliente 01561,Cuenca,Minorista,2023-02-12,Referido
+C01562,Cliente 01562,Manta,Minorista,2024-06-02,Punto de venta
+C01563,Cliente 01563,Manta ,Mayorista,2025-11-29,Punto de venta
+C01564,Cliente 01564,Quito,Minorista,2025-11-18,Punto de venta
+C01565,Cliente 01565,Quito,Minorista,2025-06-16,Punto de venta
+C01566,Cliente 01566,Quito,Minorista,2022-07-26,Referido
+C01567,Cliente 01567,Quito,Minorista,2021-12-11,Referido
+C01568,Cliente 01568,Loja,Mayorista,2025-07-02,Referido
+C01569,Cliente 01569,Guayaquil,Mayorista,2025-07-31,Visita comercial
+C01570,Cliente 01570,Quito,Mayorista,2022-10-03,Referido
+C01571,Cliente 01571,Manta,Mayorista,2021-08-14,Visita comercial
+C01572,Cliente 01572,GUAYAQUIL,Minorista,2024-05-16,Visita comercial
+C01573,Cliente 01573,Quito,Mayorista,2021-11-13,Punto de venta
+C01574,Cliente 01574,quito,Minorista,2021-09-17,Punto de venta
+C01575,Cliente 01575,Guayaquil,Mayorista,2025-08-22,Redes sociales
+C01576,Cliente 01576,Cuenca,Minorista,2023-09-16,Referido
+C01577,Cliente 01577,Quito,Minorista,2022-01-10,Redes sociales
+C01578,Cliente 01578,Manta,Minorista,2024-05-27,Punto de venta
+C01579,Cliente 01579,Manta,Mayorista,2023-02-25,Punto de venta
+C01580,Cliente 01580,Manta,Minorista,2023-11-20,Redes sociales
+C01581,Cliente 01581,Quito,Minorista,2025-06-22,Redes sociales
+C01582,Cliente 01582,Quito,Minorista,2022-07-30,Referido
+C01583,Cliente 01583,Manta,Mayorista,2024-05-14,Punto de venta
+C01584,Cliente 01584,Quito,Minorista,2025-03-01,Punto de venta
+C01585,Cliente 01585,Guayaquil,Minorista,2023-05-24,Referido
+C01586,Cliente 01586,Cuenca,Minorista,2025-10-14,Referido
+C01587,Cliente 01587,Quito,Minorista,2023-07-02,Referido
+C01588,Cliente 01588,Cuenca,Minorista,2023-07-19,Referido
+C01589,Cliente 01589,Loja,Minorista,2025-05-29,Punto de venta
+C01590,Cliente 01590,Cuenca,Mayorista,2024-04-27,Punto de venta
+C01591,Cliente 01591,Guayaquil,Mayorista,2025-05-04,Referido
+C01592,Cliente 01592,Manta ,Mayorista,2024-12-30,Referido
+C01593,Cliente 01593,Guayaquil,Minorista,2024-08-27,Referido
+C01594,Cliente 01594,Cuenca,Minorista,2022-08-05,Visita comercial
+C01595,Cliente 01595,Manta,Minorista,2023-04-14,Redes sociales
+C01596,Cliente 01596,Cuenca,Mayorista,2025-04-28,Punto de venta
+C01597,Cliente 01597,Quito,Minorista,2024-03-26,Punto de venta
+C01598,Cliente 01598,Quito,Minorista,2022-10-06,Visita comercial
+C01599,Cliente 01599,Quito,Minorista,2022-12-20,Punto de venta
+C01600,Cliente 01600,Guayaquil,Minorista,2024-12-07,Punto de venta
+C01601,Cliente 01601,Guayaquíl,Minorista,2022-04-26,Referido
+C01602,Cliente 01602,Guayaquil,Minorista,2022-01-10,Redes sociales
+C01603,Cliente 01603,Guayaquil,Minorista,2024-11-20,Redes sociales
+C01604,Cliente 01604,Cuenca,Minorista,2022-10-19,Punto de venta
+C01605,Cliente 01605,Manta,Minorista,2024-11-20,Visita comercial
+C01606,Cliente 01606,Quito,Mayorista,2023-11-15,Visita comercial
+C01607,Cliente 01607,Cuenca,Minorista,2025-11-27,Redes sociales
+C01608,Cliente 01608,Cuenca,Minorista,2023-11-01,Visita comercial
+C01609,Cliente 01609,Guayaquil,Mayorista,2025-05-02,Referido
+C01610,Cliente 01610,Quito,Minorista,2025-04-05,Punto de venta
+C01611,Cliente 01611,Cuenca,Minorista,2022-06-19,Visita comercial
+C01612,Cliente 01612,Loja,Minorista,2025-11-24,Referido
+C01613,Cliente 01613,Cuenca,Mayorista,2024-10-20,Punto de venta
+C01614,Cliente 01614,Manta,Minorista,2022-01-02,Redes sociales
+C01615,Cliente 01615,Loja,Minorista,2021-07-24,Redes sociales
+C01616,Cliente 01616,Quito,Minorista,2022-09-22,Redes sociales
+C01617,Cliente 01617,Guayaquil,Minorista,2021-08-09,Visita comercial
+C01618,Cliente 01618,Guayaquil,Minorista,2023-02-07,Visita comercial
+C01619,Cliente 01619,Loja,Minorista,2025-11-25,Punto de venta
+C01620,Cliente 01620,Quito,Minorista,2023-08-20,Referido
+C01621,Cliente 01621,guayaquil,Mayorista,2021-08-22,Referido
+C01622,Cliente 01622,Manta,Minorista,2023-09-13,Visita comercial
+C01623,Cliente 01623,Quito,Minorista,2022-06-30,Punto de venta
+C01624,Cliente 01624,Cuenca,Mayorista,2025-04-14,Visita comercial
+C01625,Cliente 01625,Guayaquil,Minorista,2021-12-06,Punto de venta
+C01626,Cliente 01626,loja,Mayorista,2024-11-28,Referido
+C01627,Cliente 01627,Manta,Mayorista,2023-06-28,Redes sociales
+C01628,Cliente 01628,Quito,Mayorista,2021-08-14,Referido
+C01629,Cliente 01629,Cuenca,Minorista,2024-06-26,Visita comercial
+C01630,Cliente 01630,Quito,Minorista,2023-07-13,Redes sociales
+C01631,Cliente 01631,Guayaquil,Minorista,2024-11-30,Punto de venta
+C01632,Cliente 01632,Cuenca,Minorista,2024-03-29,Visita comercial
+C01633,Cliente 01633,Manta ,Minorista,2024-12-25,Referido
+C01634,Cliente 01634,Quito,Minorista,2023-07-21,Referido
+C01635,Cliente 01635,Quito,Mayorista,2021-07-27,Visita comercial
+C01636,Cliente 01636,Cuenca,Minorista,2022-02-09,Redes sociales
+C01637,Cliente 01637,Guayaquil,Minorista,2023-07-19,Visita comercial
+C01638,Cliente 01638,Guayaquil,Minorista,2023-04-11,Redes sociales
+C01639,Cliente 01639,Quito,Minorista,2025-01-05,Visita comercial
+C01640,Cliente 01640,Quito,Minorista,2023-05-04,Redes sociales
+C01641,Cliente 01641,manta,Minorista,2025-04-21,Referido
+C01642,Cliente 01642,Quito,Mayorista,2022-05-11,Referido
+C01643,Cliente 01643,Guayaquil,Minorista,2023-03-22,Referido
+C01644,Cliente 01644,Loja,Minorista,2024-11-06,Punto de venta
+C01645,Cliente 01645,Quito,Minorista,2022-01-29,Redes sociales
+C01646,Cliente 01646,Cuenca,Minorista,2022-12-11,Punto de venta
+C01647,Cliente 01647,Quito,Minorista,2024-10-29,Referido
+C01648,Cliente 01648, Manta,Minorista,2024-02-12,Referido
+C01649,Cliente 01649,Cuenca,Mayorista,2024-12-10,Visita comercial
+C01650,Cliente 01650,Manta,Minorista,2023-10-18,Referido
+C01651,Cliente 01651,Quito,Minorista,2025-04-19,Punto de venta
+C01652,Cliente 01652,Guayaquil,Minorista,2025-05-18,Punto de venta
+C01653,Cliente 01653,Cuenca,Minorista,2025-10-21,Redes sociales
+C01654,Cliente 01654,Quito,Mayorista,2022-01-26,Redes sociales
+C01655,Cliente 01655,Quito,Minorista,2024-02-15,Visita comercial
+C01656,Cliente 01656,Quito,Mayorista,2022-01-13,Visita comercial
+C01657,Cliente 01657,Loja,Minorista,2022-07-16,Punto de venta
+C01658,Cliente 01658,Cuenca,Minorista,2022-11-07,Visita comercial
+C01659,Cliente 01659,Guayaquil,Minorista,2024-05-13,Visita comercial
+C01660,Cliente 01660,Cuenca ,Minorista,2023-06-04,Punto de venta
+C01661,Cliente 01661,Guayaquil,Mayorista,2025-04-28,Punto de venta
+C01662,Cliente 01662,Guayaquil,Minorista,2022-11-04,Redes sociales
+C01663,Cliente 01663,Guayaquil,Mayorista,2024-03-28,Referido
+C01664,Cliente 01664,Guayaquil,Mayorista,2024-11-17,Punto de venta
+C01665,Cliente 01665,Quito ,Minorista,2025-10-30,Visita comercial
+C01666,Cliente 01666,Manta,Minorista,2022-08-11,Referido
+C01667,Cliente 01667,Manta,Minorista,2024-09-30,Referido
+C01668,Cliente 01668,Quito,Minorista,2021-11-27,Punto de venta
+C01669,Cliente 01669,Guayaquil,Mayorista,2023-12-01,Punto de venta
+C01670,Cliente 01670,Quito,Minorista,2023-05-08,Punto de venta
+C01671,Cliente 01671,Loja,Mayorista,2025-09-25,Visita comercial
+C01672,Cliente 01672,Manta,Minorista,2024-12-03,Redes sociales
+C01673,Cliente 01673,LOJA,Minorista,2025-08-06,Referido
+C01674,Cliente 01674,Quito,Minorista,2025-04-05,Punto de venta
+C01675,Cliente 01675,Quito,Minorista,2023-05-03,Visita comercial
+C01676,Cliente 01676,Quito,Mayorista,2024-09-30,Visita comercial
+C01677,Cliente 01677,Quito,Minorista,2021-09-01,Punto de venta
+C01678,Cliente 01678,Quito,Mayorista,2023-12-24,Referido
+C01679,Cliente 01679,Quito,Mayorista,2021-09-28,Punto de venta
+C01680,Cliente 01680,Loja,Mayorista,2024-09-15,Visita comercial
+C01681,Cliente 01681,Quito,Minorista,2025-10-08,Punto de venta
+C01682,Cliente 01682,Quito,Mayorista,2024-07-09,Visita comercial
+C01683,Cliente 01683,Manta,Minorista,2025-03-19,Visita comercial
+C01684,Cliente 01684,Guayaquil,Minorista,2022-07-24,Redes sociales
+C01685,Cliente 01685,Cuenca,Minorista,2025-11-21,Referido
+C01686,Cliente 01686,GUAYAQUIL,Minorista,2023-12-13,Redes sociales
+C01687,Cliente 01687,Manta,Minorista,2024-06-28,Visita comercial
+C01688,Cliente 01688,Guayaquil,Minorista,2024-11-28,Visita comercial
+C01689,Cliente 01689,Guayaquil,Minorista,2024-05-03,Punto de venta
+C01690,Cliente 01690,Cuenca,Mayorista,2022-12-04,Visita comercial
+C01691,Cliente 01691,Guayaquil,Minorista,2024-03-19,Punto de venta
+C01692,Cliente 01692,Quito,Minorista,2024-05-26,Punto de venta
+C01693,Cliente 01693,Guayaquil,Minorista,2025-04-16,Visita comercial
+C01694,Cliente 01694,Quito,Minorista,2023-08-24,Punto de venta
+C01695,Cliente 01695,Cuenca,Mayorista,2023-09-25,Referido
+C01696,Cliente 01696,Quito,Minorista,2023-09-28,Referido
+C01697,Cliente 01697,Quito,Minorista,2022-01-14,Visita comercial
+C01698,Cliente 01698,Quito,Mayorista,,Punto de venta
+C01699,Cliente 01699,Manta,Mayorista,2021-08-16,Redes sociales
+C01700,Cliente 01700,Quito,Minorista,2024-06-14,Redes sociales
+C01701,Cliente 01701,Cuenca,Minorista,2023-05-16,Punto de venta
+C01702,Cliente 01702,Manta ,Minorista,2025-04-30,Referido
+C01703,Cliente 01703,Quito,Minorista,2024-08-11,Punto de venta
+C01704,Cliente 01704,Cuenca,Mayorista,2022-02-26,Punto de venta
+C01705,Cliente 01705,Quito,Minorista,2021-12-22,Punto de venta
+C01706,Cliente 01706,quito,Mayorista,2023-02-20,Punto de venta
+C01707,Cliente 01707,Cuenca,Minorista,2025-07-27,Punto de venta
+C01708,Cliente 01708,Manta,Minorista,2021-09-30,Visita comercial
+C01709,Cliente 01709,Quito,Mayorista,2022-05-10,Punto de venta
+C01710,Cliente 01710,Guayaquil,Mayorista,2021-08-31,Punto de venta
+C01711,Cliente 01711,Quito,Mayorista,2023-05-07,Redes sociales
+C01712,Cliente 01712,Guayaquil,Mayorista,2025-11-14,Referido
+C01713,Cliente 01713,Guayaquil,Minorista,2024-07-12,Punto de venta
+C01714,Cliente 01714,Guayaquil ,Minorista,2023-09-12,Visita comercial
+C01715,Cliente 01715,GUAYAQUIL,Minorista,2022-03-03,Redes sociales
+C01716,Cliente 01716,Quito,Minorista,2023-02-03,Redes sociales
+C01717,Cliente 01717,Cuenca,Minorista,2023-11-01,Visita comercial
+C01718,Cliente 01718,Cuenca,Mayorista,2022-09-27,Punto de venta
+C01719,Cliente 01719,Cuenca,Minorista,2024-08-16,Visita comercial
+C01720,Cliente 01720,Quito,Minorista,2025-10-30,Punto de venta
+C01721,Cliente 01721,Guayaquil,Minorista,2022-06-09,Punto de venta
+C01722,Cliente 01722,Guayaquil,Minorista,2022-08-22,Referido
+C01723,Cliente 01723,Quito,Minorista,2022-02-01,Punto de venta
+C01724,Cliente 01724,Quito,Minorista,2024-09-18,Visita comercial
+C01725,Cliente 01725,Guayaquil,Minorista,2023-07-23,Punto de venta
+C01726,Cliente 01726,Cuenca,Minorista,2022-10-12,Punto de venta
+C01727,Cliente 01727,Quito,Mayorista,2022-06-30,Visita comercial
+C01728,Cliente 01728,Manta,Minorista,2021-11-04,Punto de venta
+C01729,Cliente 01729,Guayaquil,Minorista,2023-08-15,Redes sociales
+C01730,Cliente 01730,Cuenca,Minorista,2024-07-12,Redes sociales
+C01731,Cliente 01731,Guayaquil,Minorista,2022-07-26,Punto de venta
+C01732,Cliente 01732,Guayaquil,Minorista,2021-07-17,Redes sociales
+C01733,Cliente 01733,Guayaquil,Mayorista,2023-08-11,Redes sociales
+C01734,Cliente 01734,Loja,Minorista,2024-06-30,Referido
+C01735,Cliente 01735,GUAYAQUIL,Minorista,2023-01-17,Referido
+C01736,Cliente 01736,Guayaquil,Minorista,,Punto de venta
+C01737,Cliente 01737,Guayaquil,Mayorista,2022-03-18,Visita comercial
+C01738,Cliente 01738,Cuenca,Minorista,2024-10-20,Redes sociales
+C01739,Cliente 01739,Quito,Minorista,2025-04-23,Visita comercial
+C01740,Cliente 01740,Guayaquil,Mayorista,2024-11-27,Punto de venta
+C01741,Cliente 01741,Guayaquil,Minorista,,Redes sociales
+C01742,Cliente 01742,Loja,Minorista,2024-09-15,Referido
+C01743,Cliente 01743,Guayaquil,Minorista,2023-04-11,Referido
+C01744,Cliente 01744,Guayaquil,Minorista,2021-08-23,Referido
+C01745,Cliente 01745,Loja,Mayorista,2023-02-23,Punto de venta
+C01746,Cliente 01746,Guayaquil,Minorista,2024-08-13,Redes sociales
+C01747,Cliente 01747,Quito,Minorista,2024-05-15,Redes sociales
+C01748,Cliente 01748,Quito,Minorista,2025-11-15,Punto de venta
+C01749,Cliente 01749,Quito,Minorista,2025-11-26,Referido
+C01750,Cliente 01750,Quito,Mayorista,2022-08-07,Referido
+C01751,Cliente 01751,Guayaquil,Minorista,2021-07-30,Referido
+C01752,Cliente 01752,Cuenca,Mayorista,2022-09-26,Visita comercial
+C01753,Cliente 01753,Cuenca,Minorista,2025-05-16,Punto de venta
+C01754,Cliente 01754,Quito,Minorista,2025-02-05,Punto de venta
+C01755,Cliente 01755,Guayaquil,Minorista,2021-12-20,Punto de venta
+C01756,Cliente 01756,quito,Mayorista,2022-03-28,Punto de venta
+C01757,Cliente 01757,Loja,Minorista,2024-01-02,Referido
+C01758,Cliente 01758,Quito,Minorista,2024-06-05,Referido
+C01759,Cliente 01759,Guayaquil,Minorista,2025-11-02,Redes sociales
+C01760,Cliente 01760,Quito,Minorista,2024-11-04,Punto de venta
+C01761,Cliente 01761,Guayaquil,Minorista,2022-06-18,Punto de venta
+C01762,Cliente 01762,Guayaquil,Minorista,2021-09-12,Redes sociales
+C01763,Cliente 01763,Cuenca,Mayorista,2024-04-23,Punto de venta
+C01764,Cliente 01764,Quito,Minorista,2023-12-18,Punto de venta
+C01765,Cliente 01765,Manta,Minorista,2025-07-28,Punto de venta
+C01766,Cliente 01766,Guayaquil,Minorista,2024-01-22,Punto de venta
+C01767,Cliente 01767,Cuenca,Minorista,2023-09-24,Referido
+C01768,Cliente 01768,Manta,Minorista,2022-11-12,Referido
+C01769,Cliente 01769,Loja,Minorista,2021-11-30,Redes sociales
+C01770,Cliente 01770,Quito,Minorista,2025-05-17,Referido
+C01771,Cliente 01771,Quito,Minorista,2025-02-25,Punto de venta
+C01772,Cliente 01772,Quito,Mayorista,2022-04-01,Redes sociales
+C01773,Cliente 01773,Quito,Minorista,2024-08-14,Redes sociales
+C01774,Cliente 01774,Guayaquil,Minorista,2023-02-17,Referido
+C01775,Cliente 01775,Loja,Mayorista,2023-06-14,Redes sociales
+C01776,Cliente 01776,loja,Mayorista,2025-04-02,Redes sociales
+C01777,Cliente 01777,Guayaquil,Minorista,2025-03-23,Visita comercial
+C01778,Cliente 01778,Guayaquil,Minorista,2022-05-16,Punto de venta
+C01779,Cliente 01779,Manta,Minorista,2022-11-19,Referido
+C01780,Cliente 01780,Loja,Minorista,2025-02-18,Referido
+C01781,Cliente 01781,Quito,Minorista,2025-07-21,Visita comercial
+C01782,Cliente 01782,Guayaquil,Minorista,2021-11-18,Redes sociales
+C01783,Cliente 01783,Manta,Minorista,2025-03-09,Punto de venta
+C01784,Cliente 01784,Quito,Minorista,2023-09-05,Punto de venta
+C01785,Cliente 01785,Guayaquil ,Minorista,2024-02-14,Visita comercial
+C01786,Cliente 01786,Loja,Minorista,2021-11-12,Punto de venta
+C01787,Cliente 01787,Loja,Minorista,2024-07-07,Punto de venta
+C01788,Cliente 01788,Manta,Mayorista,,Referido
+C01789,Cliente 01789,Cuenca,Mayorista,2024-06-09,Visita comercial
+C01790,Cliente 01790,Quito,Minorista,2024-12-30,Referido
+C01791,Cliente 01791,Quito,Minorista,2025-09-05,Punto de venta
+C01792,Cliente 01792,Guayaquil,Minorista,2025-04-04,Referido
+C01793,Cliente 01793,Guayaquil,Minorista,2024-10-18,Redes sociales
+C01794,Cliente 01794,Guayaquil,Minorista,2025-11-01,Punto de venta
+C01795,Cliente 01795,Guayaquil,Minorista,2024-06-28,Punto de venta
+C01796,Cliente 01796,Guayaquil,Minorista,2024-06-24,Punto de venta
+C01797,Cliente 01797,Cuenca,Minorista,2023-11-29,Punto de venta
+C01798,Cliente 01798,Quito,Minorista,2024-11-26,Visita comercial
+C01799,Cliente 01799,Quito,Minorista,2021-11-06,Punto de venta
+C01800,Cliente 01800,Quito,Minorista,2023-10-02,Referido

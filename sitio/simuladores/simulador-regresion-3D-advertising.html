@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regresion Lineal Multiple 3D — Advertising (TV + Radio → Sales)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #ffffff; color: #1e293b; overflow: hidden; }
+
+        #scene { width: 100vw; height: 100vh; display: block; }
+
+        /* Top bar */
+        .topbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; padding: 12px 24px; z-index: 10; display: flex; align-items: center; gap: 20px; }
+        .topbar h1 { font-size: 1.1rem; font-weight: 700; color: #0f172a; white-space: nowrap; }
+        .topbar .subtitle { font-size: .78rem; color: #64748b; }
+
+        /* Controls panel */
+        .controls { position: fixed; top: 70px; right: 16px; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; width: 300px; z-index: 10; box-shadow: 0 4px 16px rgba(0,0,0,.06); max-height: calc(100vh - 90px); overflow-y: auto; }
+        .controls h3 { font-size: .7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #94a3b8; font-weight: 700; margin-bottom: 10px; }
+
+        .metric-row { display: flex; gap: 8px; margin-bottom: 8px; }
+        .metric-box { flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; text-align: center; position: relative; }
+        .metric-box .lbl { font-size: .6rem; text-transform: uppercase; letter-spacing: .8px; color: #94a3b8; }
+        .metric-box .val { font-size: 1rem; font-weight: 800; font-family: 'SF Mono', 'Fira Code', monospace; color: #0f172a; margin-top: 2px; }
+        .metric-box .val.good { color: #059669; }
+
+        /* Equation display */
+        .equation-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px; text-align: center; margin-bottom: 12px; }
+        .equation-box .eq { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .85rem; font-weight: 700; color: #1e40af; }
+
+        /* Toggles */
+        .toggle-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; padding: 6px 0; }
+        .toggle-row label { font-size: .78rem; color: #475569; cursor: pointer; flex: 1; }
+        .toggle-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: #2563eb; cursor: pointer; }
+
+        /* Slider */
+        .slider-group { margin-bottom: 10px; }
+        .slider-label { display: flex; justify-content: space-between; font-size: .75rem; color: #475569; margin-bottom: 4px; }
+        .slider-label span:last-child { font-weight: 700; font-family: 'SF Mono', monospace; color: #0f172a; }
+        input[type="range"] { width: 100%; height: 5px; -webkit-appearance: none; appearance: none; background: #e2e8f0; border-radius: 3px; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #2563eb; cursor: pointer; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+
+        .divider { height: 1px; background: #e2e8f0; margin: 12px 0; }
+
+        /* Tooltips */
+        .tip { position: relative; cursor: help; border-bottom: 1px dotted #94a3b8; }
+        .tip::after {
+            content: attr(data-tip);
+            position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+            background: #0f172a; color: #f1f5f9; font-size: .7rem; font-weight: 400;
+            padding: 8px 12px; border-radius: 8px; width: max-content; max-width: 240px;
+            line-height: 1.4; text-align: left; white-space: normal;
+            pointer-events: none; opacity: 0; transition: opacity .15s;
+            z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+            text-transform: none; letter-spacing: 0;
+        }
+        .tip::before {
+            content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+            border: 6px solid transparent; border-top-color: #0f172a;
+            pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 200;
+        }
+        .tip:hover::after, .tip:hover::before { opacity: 1; }
+
+        .help-icon {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 14px; height: 14px; border-radius: 50%; background: #e2e8f0; color: #64748b;
+            font-size: .55rem; font-weight: 800; cursor: help; line-height: 1; position: relative; vertical-align: middle; margin-left: 4px;
+        }
+        .help-icon::after {
+            content: attr(data-tip);
+            position: absolute; bottom: calc(100% + 8px); right: -8px; left: auto; transform: none;
+            background: #0f172a; color: #f1f5f9; font-size: .7rem; font-weight: 400;
+            padding: 8px 12px; border-radius: 8px; width: max-content; max-width: 220px;
+            line-height: 1.4; text-align: left; white-space: normal;
+            pointer-events: none; opacity: 0; transition: opacity .15s;
+            z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+        }
+        .help-icon:hover::after { opacity: 1; }
+
+        /* Instructions */
+        .instructions { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.9); backdrop-filter: blur(8px); border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 20px; font-size: .75rem; color: #64748b; z-index: 10; display: flex; gap: 16px; }
+        .instructions span { white-space: nowrap; }
+
+        /* Color legend */
+        .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+        .legend-item { display: flex; align-items: center; gap: 5px; font-size: .72rem; color: #475569; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <h1>Regresion Multiple 3D — <span class="tip" data-tip="Dataset clasico de publicidad con 200 observaciones. Contiene el gasto en TV, Radio y Periodico, y las ventas resultantes.">Advertising</span></h1>
+    <div class="subtitle">Sales = β₀ + β₁·TV + β₂·Radio &nbsp;→&nbsp; El plano que minimiza el error</div>
+</div>
+
+<canvas id="scene"></canvas>
+
+<div class="controls">
+    <h3>Modelo de regresion</h3>
+    <div class="equation-box">
+        <div class="eq" id="eqDisplay">Sales = 2.94 + 0.046·TV + 0.189·Radio</div>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-box">
+            <div class="lbl"><span class="tip" data-tip="Coeficiente de determinacion. Proporcion de la varianza de Sales explicada por TV y Radio juntos.">R²</span></div>
+            <div class="val good" id="valR2">—</div>
+        </div>
+        <div class="metric-box">
+            <div class="lbl"><span class="tip" data-tip="Raiz del error cuadratico medio. Error promedio de prediccion en las mismas unidades que Sales.">RMSE</span></div>
+            <div class="val" id="valRMSE">—</div>
+        </div>
+        <div class="metric-box">
+            <div class="lbl"><span class="tip" data-tip="Numero de observaciones del dataset Advertising.">n</span></div>
+            <div class="val" id="valN">200</div>
+        </div>
+    </div>
+
+    <div class="metric-row">
+        <div class="metric-box">
+            <div class="lbl"><span class="tip" data-tip="Intercepto: valor esperado de Sales cuando TV=0 y Radio=0.">β₀</span></div>
+            <div class="val" id="valB0">—</div>
+        </div>
+        <div class="metric-box">
+            <div class="lbl"><span class="tip" data-tip="Por cada unidad adicional de gasto en TV, las ventas aumentan β₁ unidades (manteniendo Radio constante).">β₁ (TV)</span></div>
+            <div class="val" id="valB1">—</div>
+        </div>
+        <div class="metric-box">
+            <div class="lbl"><span class="tip" data-tip="Por cada unidad adicional de gasto en Radio, las ventas aumentan β₂ unidades (manteniendo TV constante).">β₂ (Radio)</span></div>
+            <div class="val" id="valB2">—</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3>Visualizacion</h3>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#2563eb;"></div> Datos reales</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(37,99,235,.2);border:1px solid rgba(37,99,235,.4);"></div> <span class="tip" data-tip="El plano semitransparente representa la superficie de prediccion: para cualquier combinacion de TV y Radio, el plano indica las ventas estimadas.">Plano de regresion</span></div>
+    </div>
+
+    <div class="toggle-row">
+        <input type="checkbox" id="togPlane" checked>
+        <label for="togPlane">Mostrar <span class="tip" data-tip="El plano es la generalizacion de la linea de regresion a 2 predictores. En vez de una recta que minimiza error en 2D, es una superficie plana que minimiza error en 3D.">plano de regresion</span></label>
+    </div>
+    <div class="toggle-row">
+        <input type="checkbox" id="togResiduals">
+        <label for="togResiduals">Mostrar <span class="tip" data-tip="Lineas verticales entre cada punto y el plano. Su longitud es el error de prediccion (residual) para esa observacion.">residuales</span></label>
+    </div>
+    <div class="toggle-row">
+        <input type="checkbox" id="togAutoRotate" checked>
+        <label for="togAutoRotate">Rotar automaticamente</label>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="slider-group">
+        <div class="slider-label"><span>Tamano de puntos</span><span id="valPointSize">4</span></div>
+        <input type="range" id="sliderPointSize" min="2" max="10" step="0.5" value="4">
+    </div>
+    <div class="slider-group">
+        <div class="slider-label"><span><span class="tip" data-tip="Que tan transparente es el plano. Mas opaco resalta la superficie; mas transparente deja ver los puntos detras.">Opacidad del plano</span></span><span id="valOpacity">0.25</span></div>
+        <input type="range" id="sliderOpacity" min="0.05" max="0.6" step="0.01" value="0.25">
+    </div>
+
+    <div class="divider"></div>
+    <h3>Interpretacion</h3>
+    <div style="font-size:.73rem;color:#475569;line-height:1.55;">
+        <p style="margin-bottom:6px;">Cada <strong style="color:#2563eb;">esfera azul</strong> es una observacion real del dataset. El <strong style="color:#3b82f6;">plano</strong> es la superficie de prediccion calculada por OLS.</p>
+        <p style="margin-bottom:6px;">El plano minimiza la suma de las <strong>distancias verticales al cuadrado</strong> entre cada punto y la superficie — la misma logica que en 2D, pero extendida a un espacio tridimensional.</p>
+        <p>Activa los <strong>residuales</strong> para ver esas distancias. Los puntos por encima del plano tienen residual positivo (el modelo subestimo); los de abajo, residual negativo (el modelo sobreestimo).</p>
+    </div>
+</div>
+
+<div class="instructions">
+    <span>Arrastrar = rotar</span>
+    <span>Scroll = zoom</span>
+    <span>Clic derecho = mover</span>
+</div>
+
+<script>
+// ===== DATA =====
+const rawCSV = `112.36203565420875,32.10158230771439,14.296495456669758
+285.21429192297484,4.206998249752441,17.75430442425605
+219.59818254342153,8.081435704730689,16.163175776523133
+179.59754525911097,44.927709426353964,20.045360589411494
+46.80559213273096,30.321452982979498,10.865328633723287
+46.798356100860794,0.4598525808314824,4.265984248802269
+17.42508365045984,5.0735771433016055,9.46300180756038
+259.85284373248055,33.17508845540279,22.910650280850387
+180.33450352296265,0.25307919231093434,11.909079271507304
+212.42177333881364,8.040402570874933,15.962108680888166
+6.175348288740734,27.436689468329305,9.138659891950216
+290.9729556485983,34.59475988463466,25.31823182239883
+249.7327922401265,32.59806297513003,24.527783826097373
+63.701733203482846,11.21346547302799,10.80224874621613
+54.54749016213019,35.6089610673768,12.714777220356083
+55.02135295603014,11.862454374840004,7.687634391755216
+91.27267288786132,16.269984907963387,10.804719619135229
+157.42692948967135,37.32457025590121,14.310382423368043
+129.58350559263474,32.48164495236073,13.918518370195375
+87.36874205941257,42.4611705247089,19.659650451654787
+183.55586841671385,32.88064461501717,23.154173671126422
+41.84815819561255,28.415430166773582,11.385482728236326
+87.64339456056544,4.683738391404624,9.776918350926726
+109.90855298810752,18.385790152971676,13.563669339494755
+136.82099526511078,13.260118384086272,18.917027631002412
+235.55278841790408,12.199482168954178,20.28864389222749
+59.90213464750792,48.65052773762228,16.177137173517703
+154.27033152408347,19.65488623333802,13.954272751842971
+177.72437065861274,44.602327758855665,18.197343708621517
+13.935123815999317,31.556931299863145,10.749696791398788
+182.26345557043152,39.74056517708242,18.913024757730213
+51.15723710618746,25.131854655259605,8.81546259364104
+19.515477895583857,28.845194231317954,9.362617745371432
+284.66566117599996,24.625884690943195,20.311655067301054
+289.6896099223678,9.762149389902225,23.10791647127622
+242.51920443493833,36.12260576307526,25.11987538943886
+91.3841307520112,14.03861812204279,10.644662336694706
+29.30163420191516,1.215798321572692,8.813268720374257
+205.26990795364708,32.27361479535839,20.885133533279237
+132.0457481218804,8.855533970352447,9.944376895246167
+36.61147045343365,47.02292921764572,17.578970891938113
+148.55307303338105,47.696428850129365,22.379395024340596
+10.316556334565519,45.743219511022424,11.220390825399388
+272.79612062363464,18.50793501277222,20.586954146695888
+77.63399448000507,0.7728308264433714,6.419748884865543
+198.75668530619458,46.415928129386266,20.74475629324975
+93.51332282682328,21.409207415865716,15.143763942973893
+156.02040635334325,48.33274095218348,25.3527867020919
+164.01308380298389,48.18099885446264,18.672417336763992
+55.45633665765811,42.650472773368,15.724875685141118
+290.8753883293676,14.722444603479284,20.280692152237133
+232.53984700833436,19.254886430096263,18.34588375610276
+281.8496824692567,42.556833575842845,25.106918300787687
+268.44820512829466,15.846100257813884,19.105956311476827
+179.36999364332553,8.474637334304624,14.08834750956893
+276.562270506935,27.840063122917506,21.500744787042663
+26.54775061557585,46.80773870803905,14.442905615428812
+58.79485872574356,34.80148983374865,13.53852442243188
+13.56818667316142,28.50305850446825,9.165873707853015
+97.5990992289793,4.8588246885384265,7.373233178781739
+116.6031869068446,30.750361334958487,14.161844134990934
+81.40470953216877,49.50269250521316,19.428148276736053
+248.6212527455788,7.004200761826201,18.89168877604818
+107.02599800807678,25.916482618186837,12.450360014305838
+84.28035290621423,43.86865359639777,17.49291140619444
+162.80882494747453,37.03843088771022,20.682002838111607
+42.27726749242879,34.8507870497634,9.273779121555515
+240.6590942262119,35.12420419935546,24.343404933359437
+22.365193103931247,17.97455756098776,6.8450588637997924
+296.06608098015516,14.679592213224668,23.188125749195716
+231.67343078899722,40.46805777392568,21.36474242704325
+59.61470446025172,40.50566973395904,11.787465619189142
+1.6566351370807197,43.35361592900519,8.74810396563191
+244.63842853645025,45.66202762782356,25.68531142646277
+212.05720315428513,25.56711994304689,20.042585425215844
+218.7021504122962,25.07581473435998,18.483546732815185
+231.38110400578373,39.91475894833876,24.114057956957396
+22.21339552022711,32.49819653888826,8.124201386312606
+107.53971856328178,35.098343862885166,16.579193019408454
+34.760717857538914,39.789633471805054,11.075492708508715
+258.93102776267807,44.50026709087832,24.4667410245608
+186.98943804826737,16.89975784257679,16.824331805893863
+99.26940745579475,18.7791476319972,10.721195393104212
+19.067505085807092,4.69909699204345,5.045775356336066
+93.29469651469866,28.9140070498087,16.33208331283712
+97.55499660802411,1.7971136898371043,8.319720541386967
+218.88185350141922,23.27990090662301,20.523720417918522
+191.26724140656393,27.13223173537883,16.25350237611979
+266.16382277289796,14.32706260641422,21.526185222446355
+141.66447754858478,29.541663028450536,20.098497075909705
+35.87827378149051,1.5250124969524714,0.8796324539140121
+213.9734361668985,1.8674094374607209,13.391515672367882
+228.23551458506924,41.13002803298291,24.310913950639428
+168.38315927084886,18.009532070563143,15.031312939251414
+231.2901539863683,6.353025632594239,17.310657738260858
+148.13867890931724,26.112163002740218,15.027751234812223
+156.81984881459823,38.499677654930544,19.585312075290325
+128.2623055075649,10.791051374842159,11.54936591207225
+7.625738023228557,31.144523790950014,13.266309811487137
+32.367428097991336,4.2673732496884,7.314830097591217
+9.428755706020276,2.584086058430385,5.666346292260203
+190.92312337913413,26.5677315784074,17.85245937368899
+94.306794322898,27.031756080505325,12.702435242830255
+152.57120734941083,31.871495074910328,17.273607279476355
+272.2699421778279,36.30456668613308,25.650755579311564
+74.78766874466248,48.79260397312673,16.042944750464574
+123.11487691068892,25.815017415059767,16.145863304507145
+226.6653415629146,16.1478236470623,22.859551234210713
+68.63944964748674,39.759309738435185,17.41835373721047
+23.093972948637898,13.541612563103712,7.245551530363571
+86.92543587413041,21.948571035281805,15.04384132041693
+48.366386176201324,3.9228190671132976,6.067711867923835
+278.90929570277194,1.2675371707728755,14.395360904794579
+242.43611386932508,48.132420733896254,23.92809069133617
+190.02112695312704,41.79900602561029,17.371275181348814
+261.43817705631534,34.798710304684896,22.558945966341966
+241.10162306973433,20.447647220713495,19.814380227918274
+55.97101766581075,8.664716003542289,12.016505038948669
+267.76769954699336,7.8218521335543025,19.941977700301038
+161.8026725746952,12.512144908229766,13.527340977532043
+242.23204654921875,27.461333235306025,23.14593045954408
+268.82738997704797,35.72979613500312,19.803082592962927
+95.40104249155917,33.009868835886564,16.158656565459196
+33.01557735830303,13.996694847297142,10.160284986754577
+68.3805487625825,47.743264033159704,14.17458576361919
+128.1323365878769,36.89484583478843,19.812091216529605
+245.40442977674795,27.717702625570034,22.16779725662855
+258.21917497690305,30.58603731171761,21.712008516107385
+2.085639159357211,20.980003121389494,8.830678135606895
+153.22419077326973,12.386549475057873,18.874335881977167
+125.22330094463369,17.798633932563078,14.319460504360881
+66.63234314121908,37.892305523218454,15.756194758584368
+35.95961020010484,0.7196744314877934,5.369325959857304
+101.28455142108838,5.803632025345812,8.36401169863702
+282.87291117375577,2.3001321010876374,20.348679139451395
+96.96087960622657,2.0364401159485066,7.8296449410480875
+155.63718652300983,42.77302920055036,20.65669213997837
+210.90568766855336,35.18289296900118,20.11099840070235
+109.0888807137882,23.70869145436626,14.872267733662055
+291.5346248162882,4.891708032550074,19.570930385322537
+288.7341884826334,24.58079375584162,25.725106745163323
+75.53468874760925,23.673588539028284,11.388520177095137
+149.17455176771563,8.660093495500758,12.113935643228173
+90.2634929450309,21.692582461898652,10.8666194951334
+85.45214831324029,19.92523671986867,11.279915716010105
+11.06608420635984,30.792504902610823,11.078293302667628
+182.86930019396905,31.75468254338219,20.338969982695165
+150.80370696865845,2.265200488602226,10.121203972729836
+15.443625374996806,18.73063073132356,10.055873111265235
+83.59393927098343,31.29299578571182,17.237737988797424
+272.4797657899961,25.156812929004385,23.280408708026876
+71.86856720009173,42.824492059416116,20.091927122370265
+43.46846162736693,32.93468158094725,11.04747386394131
+146.8358280832689,8.146721354071484,10.326904935620602
+295.6951362331802,3.528437370021492,16.14115543091185
+72.61658145345012,32.12096391031578,16.711115773858285
+201.64066422176356,1.3255655270810907,15.00999514193075
+228.48588459861529,29.288779063673164,20.40398077860483
+71.2912631977199,47.01151207124788,17.595210670799876
+218.46490458355788,28.77370889379395,18.340364897396412
+110.33493981577597,19.408496310326097,18.299641945401778
+189.69174917807385,32.16441092211766,19.62082079301293
+190.0589132282684,22.912644524575832,17.661091352463156
+160.73240522242753,27.280839465796745,18.161047767596173
+27.08693101632249,47.07324043882626,15.334188794682392
+250.5907486767714,19.305131890038712,20.716737200287405
+96.23401949152075,48.05952819119571,16.49373835378925
+55.95555311995627,45.26753209780318,16.49731695015773
+12.232542466429175,9.789556739464821,10.5733699628323
+177.26788295647253,3.4680650437582727,15.848341035962031
+203.26930855268472,5.038900068871333,18.148706607221076
+4.976348678356846,0.9110912825774864,3.509805302223284
+153.6279174897843,4.72214803779642,10.302640041200798
+67.94873255938138,34.150338670817845,13.891330227195398
+193.55183712283497,3.559432423011449,14.692646430380186
+52.309928701497434,15.948781514688065,12.28558449216067
+207.28132143073978,42.24376554847273,18.797024424870287
+116.02060389016123,1.1635967867912933,13.358425959723265
+281.01899662102034,40.72342412944679,25.645552596823865
+41.256283243797974,14.092738738669997,7.524580816572861
+102.31990531507755,5.908241381082813,8.001440911124105
+34.042056372176724,34.836858268207536,9.686798590097105
+277.4080854835688,31.4471423389942,25.572684717992907
+263.2018060142943,43.873600676352645,25.659510722192685
+77.38248831454668,36.75355219019429,12.56832403674832
+197.99521381025372,40.17404651924243,18.82057991182886
+245.16666006036476,14.101728628565324,17.69435215747601
+166.5602434798387,8.871977188986142,16.788662342565196
+158.89517350680194,37.53073758204292,18.27897620382291
+72.55568727013551,40.3417369633632,12.064533947482342
+27.930830341769763,49.52525710003366,14.169758057470155
+269.16472738599805,20.630883845571326,20.975971955442525
+270.12541714899913,18.600904289639157,15.241840526553666
+189.93043718198038,38.82064803709984,20.749579109305806
+101.70893731461021,17.040177012650894,12.262919879235245
+104.76287238379827,46.537866280178235,19.683185491154703
+217.7867036610718,42.92063759215059,27.0
+269.1330779857731,21.44970136875092,23.397892084016227
+266.1259272795352,37.54355338957487,23.698362032412042
+233.96266375728715,37.727143704234116,20.27750901993429`;
+
+// Parse
+const data = rawCSV.trim().split('\n').map(line => {
+    const [tv, radio, sales] = line.split(',').map(Number);
+    return { tv, radio, sales };
+});
+
+// ===== OLS REGRESSION =====
+function computeOLS3D(data) {
+    const n = data.length;
+    let sx1 = 0, sx2 = 0, sy = 0, sx1x1 = 0, sx2x2 = 0, sx1x2 = 0, sx1y = 0, sx2y = 0;
+    for (const d of data) {
+        sx1 += d.tv; sx2 += d.radio; sy += d.sales;
+        sx1x1 += d.tv * d.tv; sx2x2 += d.radio * d.radio;
+        sx1x2 += d.tv * d.radio;
+        sx1y += d.tv * d.sales; sx2y += d.radio * d.sales;
+    }
+    // Normal equations: X'X * beta = X'y
+    // [n,    sx1,   sx2  ] [b0]   [sy  ]
+    // [sx1,  sx1x1, sx1x2] [b1] = [sx1y]
+    // [sx2,  sx1x2, sx2x2] [b2]   [sx2y]
+    const A = [
+        [n, sx1, sx2],
+        [sx1, sx1x1, sx1x2],
+        [sx2, sx1x2, sx2x2]
+    ];
+    const b = [sy, sx1y, sx2y];
+    // Solve 3x3 via Cramer's rule
+    function det3(m) {
+        return m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])
+             - m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])
+             + m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+    }
+    const D = det3(A);
+    function replaceCol(A, b, col) {
+        return A.map((row, i) => row.map((v, j) => j === col ? b[i] : v));
+    }
+    const b0 = det3(replaceCol(A, b, 0)) / D;
+    const b1 = det3(replaceCol(A, b, 1)) / D;
+    const b2 = det3(replaceCol(A, b, 2)) / D;
+
+    // Metrics
+    const yMean = sy / n;
+    let sse = 0, ssTot = 0;
+    for (const d of data) {
+        const yHat = b0 + b1 * d.tv + b2 * d.radio;
+        sse += (d.sales - yHat) ** 2;
+        ssTot += (d.sales - yMean) ** 2;
+    }
+    return { b0, b1, b2, r2: 1 - sse / ssTot, rmse: Math.sqrt(sse / n) };
+}
+
+const ols = computeOLS3D(data);
+
+// ===== THREE.JS SCENE =====
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0xffffff);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(1.8, 1.4, 1.8);
+camera.lookAt(0, 0, 0);
+
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+dirLight.position.set(5, 8, 5);
+scene.add(dirLight);
+
+// ===== ORBIT CONTROLS (inline, no import) =====
+let isDragging = false, isPanning = false;
+let prevMouse = { x: 0, y: 0 };
+let spherical = { theta: Math.PI / 4, phi: Math.PI / 3, radius: 3.2 };
+let panOffset = new THREE.Vector3(0, 0, 0);
+let autoRotate = true;
+
+function updateCamera() {
+    const r = spherical.radius;
+    camera.position.set(
+        r * Math.sin(spherical.phi) * Math.cos(spherical.theta) + panOffset.x,
+        r * Math.cos(spherical.phi) + panOffset.y,
+        r * Math.sin(spherical.phi) * Math.sin(spherical.theta) + panOffset.z
+    );
+    camera.lookAt(panOffset);
+}
+
+canvas.addEventListener('mousedown', e => {
+    if (e.button === 0) isDragging = true;
+    if (e.button === 2) isPanning = true;
+    prevMouse = { x: e.clientX, y: e.clientY };
+});
+canvas.addEventListener('mousemove', e => {
+    const dx = e.clientX - prevMouse.x;
+    const dy = e.clientY - prevMouse.y;
+    prevMouse = { x: e.clientX, y: e.clientY };
+    if (isDragging) {
+        spherical.theta -= dx * 0.005;
+        spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi + dy * 0.005));
+        updateCamera();
+    }
+    if (isPanning) {
+        const right = new THREE.Vector3().crossVectors(
+            new THREE.Vector3(0, 1, 0),
+            camera.position.clone().sub(panOffset).normalize()
+        ).normalize();
+        const up = new THREE.Vector3(0, 1, 0);
+        panOffset.add(right.multiplyScalar(-dx * 0.002));
+        panOffset.add(up.multiplyScalar(dy * 0.002));
+        updateCamera();
+    }
+});
+canvas.addEventListener('mouseup', () => { isDragging = false; isPanning = false; });
+canvas.addEventListener('mouseleave', () => { isDragging = false; isPanning = false; });
+canvas.addEventListener('wheel', e => {
+    spherical.radius = Math.max(1, Math.min(8, spherical.radius + e.deltaY * 0.002));
+    updateCamera();
+    e.preventDefault();
+}, { passive: false });
+canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+// ===== NORMALIZE DATA TO [0,1] =====
+const tvMin = 0, tvMax = 300, radioMin = 0, radioMax = 50, salesMin = 0, salesMax = 28;
+function norm(v, min, max) { return (v - min) / (max - min); }
+
+// ===== BUILD SCENE =====
+// Axes
+function makeAxis(from, to, color) {
+    const geo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...from), new THREE.Vector3(...to)]);
+    const mat = new THREE.LineBasicMaterial({ color });
+    return new THREE.Line(geo, mat);
+}
+scene.add(makeAxis([0,0,0],[1.1,0,0], 0x94a3b8)); // TV
+scene.add(makeAxis([0,0,0],[0,1.1,0], 0x94a3b8)); // Sales
+scene.add(makeAxis([0,0,0],[0,0,1.1], 0x94a3b8)); // Radio
+
+// Axis labels
+function makeLabel(text, position) {
+    const c = document.createElement('canvas');
+    c.width = 200; c.height = 50;
+    const ctx2 = c.getContext('2d');
+    ctx2.font = 'bold 28px Segoe UI, sans-serif';
+    ctx2.fillStyle = '#475569';
+    ctx2.textAlign = 'center';
+    ctx2.fillText(text, 100, 35);
+    const tex = new THREE.CanvasTexture(c);
+    const mat = new THREE.SpriteMaterial({ map: tex });
+    const sprite = new THREE.Sprite(mat);
+    sprite.position.set(...position);
+    sprite.scale.set(0.3, 0.075, 1);
+    return sprite;
+}
+scene.add(makeLabel('TV (gasto)', [0.55, -0.08, 0]));
+scene.add(makeLabel('Radio (gasto)', [0, -0.08, 0.55]));
+scene.add(makeLabel('Sales', [-0.08, 0.55, 0]));
+
+// Tick marks
+function makeTicks(axis) {
+    const group = new THREE.Group();
+    for (let i = 0; i <= 5; i++) {
+        const t = i / 5;
+        const c = document.createElement('canvas');
+        c.width = 100; c.height = 30;
+        const ctx2 = c.getContext('2d');
+        ctx2.font = '18px SF Mono, Fira Code, monospace';
+        ctx2.fillStyle = '#94a3b8';
+        ctx2.textAlign = 'center';
+        let val;
+        if (axis === 'x') { val = Math.round(tvMin + t * (tvMax - tvMin)); ctx2.fillText(val, 50, 22); }
+        else if (axis === 'z') { val = Math.round(radioMin + t * (radioMax - radioMin)); ctx2.fillText(val, 50, 22); }
+        else { val = Math.round(salesMin + t * (salesMax - salesMin)); ctx2.fillText(val, 50, 22); }
+        const tex = new THREE.CanvasTexture(c);
+        const mat = new THREE.SpriteMaterial({ map: tex });
+        const sprite = new THREE.Sprite(mat);
+        if (axis === 'x') sprite.position.set(t, -0.05, 0);
+        else if (axis === 'z') sprite.position.set(0, -0.05, t);
+        else sprite.position.set(-0.06, t, 0);
+        sprite.scale.set(0.12, 0.04, 1);
+        group.add(sprite);
+    }
+    return group;
+}
+scene.add(makeTicks('x'));
+scene.add(makeTicks('y'));
+scene.add(makeTicks('z'));
+
+// Grid floor
+const gridGeo = new THREE.BufferGeometry();
+const gridPts = [];
+for (let i = 0; i <= 10; i++) {
+    const t = i / 10;
+    gridPts.push(t, 0, 0, t, 0, 1);
+    gridPts.push(0, 0, t, 1, 0, t);
+}
+gridGeo.setAttribute('position', new THREE.Float32BufferAttribute(gridPts, 3));
+const gridMat = new THREE.LineBasicMaterial({ color: 0xe2e8f0 });
+scene.add(new THREE.LineSegments(gridGeo, gridMat));
+
+// Data points
+const pointGeo = new THREE.SphereGeometry(0.012, 12, 12);
+const pointMat = new THREE.MeshPhongMaterial({ color: 0x2563eb });
+const pointGroup = new THREE.Group();
+for (const d of data) {
+    const mesh = new THREE.Mesh(pointGeo, pointMat);
+    mesh.position.set(norm(d.tv, tvMin, tvMax), norm(d.sales, salesMin, salesMax), norm(d.radio, radioMin, radioMax));
+    pointGroup.add(mesh);
+}
+scene.add(pointGroup);
+
+// Regression plane
+let planeMesh;
+function buildPlane(opacity) {
+    if (planeMesh) scene.remove(planeMesh);
+    const geo = new THREE.PlaneGeometry(1, 1, 20, 20);
+    const pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+        const u = pos.getX(i) + 0.5; // 0..1 = TV normalized
+        const v = pos.getY(i) + 0.5; // 0..1 = Radio normalized
+        const tvVal = tvMin + u * (tvMax - tvMin);
+        const radioVal = radioMin + v * (radioMax - radioMin);
+        const salesPred = ols.b0 + ols.b1 * tvVal + ols.b2 * radioVal;
+        const yNorm = norm(salesPred, salesMin, salesMax);
+        pos.setXYZ(i, u, yNorm, v);
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
+    const mat = new THREE.MeshPhongMaterial({
+        color: 0x3b82f6, transparent: true, opacity: opacity,
+        side: THREE.DoubleSide, depthWrite: false
+    });
+    planeMesh = new THREE.Mesh(geo, mat);
+    scene.add(planeMesh);
+}
+buildPlane(0.25);
+
+// Residual lines
+let residualGroup = new THREE.Group();
+function buildResiduals() {
+    scene.remove(residualGroup);
+    residualGroup = new THREE.Group();
+    for (const d of data) {
+        const x = norm(d.tv, tvMin, tvMax);
+        const z = norm(d.radio, radioMin, radioMax);
+        const yActual = norm(d.sales, salesMin, salesMax);
+        const salesPred = ols.b0 + ols.b1 * d.tv + ols.b2 * d.radio;
+        const yPred = norm(salesPred, salesMin, salesMax);
+        const error = d.sales - salesPred;
+        const color = error > 0 ? 0xdc2626 : 0x059669;
+        const geo = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(x, yActual, z),
+            new THREE.Vector3(x, yPred, z)
+        ]);
+        const mat = new THREE.LineBasicMaterial({ color, opacity: 0.5, transparent: true });
+        residualGroup.add(new THREE.Line(geo, mat));
+    }
+    scene.add(residualGroup);
+}
+residualGroup.visible = false;
+
+// ===== UPDATE UI =====
+document.getElementById('valR2').textContent = ols.r2.toFixed(4);
+document.getElementById('valRMSE').textContent = ols.rmse.toFixed(3);
+document.getElementById('valN').textContent = data.length;
+document.getElementById('valB0').textContent = ols.b0.toFixed(3);
+document.getElementById('valB1').textContent = ols.b1.toFixed(4);
+document.getElementById('valB2').textContent = ols.b2.toFixed(4);
+document.getElementById('eqDisplay').textContent =
+    `Sales = ${ols.b0.toFixed(2)} + ${ols.b1.toFixed(4)}·TV + ${ols.b2.toFixed(4)}·Radio`;
+
+// ===== CONTROLS =====
+document.getElementById('togPlane').addEventListener('change', e => {
+    if (planeMesh) planeMesh.visible = e.target.checked;
+});
+document.getElementById('togResiduals').addEventListener('change', e => {
+    if (e.target.checked && residualGroup.children.length === 0) buildResiduals();
+    residualGroup.visible = e.target.checked;
+});
+document.getElementById('togAutoRotate').addEventListener('change', e => {
+    autoRotate = e.target.checked;
+});
+
+document.getElementById('sliderPointSize').addEventListener('input', e => {
+    const s = parseFloat(e.target.value);
+    document.getElementById('valPointSize').textContent = s;
+    const scale = s / 4;
+    pointGroup.children.forEach(m => m.scale.set(scale, scale, scale));
+});
+
+document.getElementById('sliderOpacity').addEventListener('input', e => {
+    const o = parseFloat(e.target.value);
+    document.getElementById('valOpacity').textContent = o.toFixed(2);
+    if (planeMesh) planeMesh.material.opacity = o;
+});
+
+// ===== ANIMATION LOOP =====
+updateCamera();
+
+function animate() {
+    requestAnimationFrame(animate);
+    if (autoRotate && !isDragging) {
+        spherical.theta += 0.002;
+        updateCamera();
+    }
+    renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>

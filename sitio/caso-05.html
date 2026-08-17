@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso 5 · Actividad Sísmica Ecuador — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Caso 5</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Caso 5 · Geofísica / Ecuador</div>
+<h1>Actividad Sísmica Ecuador</h1>
+<div class="meta">
+<span>Series de tiempo y geo</span><span>Reto: Formato no estándar y solicitud institucional</span>
+<span class="">Disponible para el proyecto</span>
+</div>
+<div class="caja ia"><div class="titulo">Semanas del curso que sostienen este caso</div><p>
+<a href="semana-03.html">Semana 3 · Estadística descriptiva aplicada al negocio</a> · <a href="semana-06.html">Semana 6 · Visualización de datos</a>
+</p></div>
+<div class="caja aviso"><div class="titulo">Ajuste obligatorio</div><p>El caso viene del seminario de Python, donde el entregable era una API en FastAPI más un tablero en Streamlit. Aquí el entregable es un cuaderno reproducible: la API se sustituye por una función documentada dentro del cuaderno y el tablero queda como opcional.</p></div>
+<h2>Caso 5 · Análisis y Monitoreo de la Actividad Sísmica en Ecuador</h2>
+<h3>Seminario Análisis Exploratorio de Datos</h3>
+<p><strong>Riesgo de complejidad:</strong> 🟡 Medio · <strong>Técnica principal:</strong> Series de tiempo + Geo · <strong>Dominio:</strong> Geofísica / Ecuador</p>
+<h3>🏢 Antecedentes</h3>
+<p>Ecuador está ubicado en el <strong>Cinturón de Fuego del Pacífico</strong> y registra una de las actividades sísmicas más intensas de América del Sur, con eventos históricos devastadores como el terremoto de Pedernales (2016, Mw 7.8). El <strong>Instituto Geofísico de la Escuela Politécnica Nacional (IG-EPN)</strong> mantiene el catálogo sísmico oficial con decenas de miles de eventos registrados.</p>
+<p>El archivo se distribuye en <strong>formato de texto científico</strong> con separadores variables y encabezados comentados con <code>#</code> — un estándar en geofísica que representa un reto real de ingestión de datos. Contiene columnas: <code>time_value</code>, <code>lat</code>, <code>lon</code>, <code>depth</code>, <code>magnitude</code>. Las autoridades de gestión de riesgos necesitan una herramienta de monitoreo visual e interactiva para explorar este catálogo.</p>
+<div class="caja"><p>⚠️ <strong>Acción requerida el primer día:</strong> el IG-EPN entrega el catálogo por correo electrónico en un plazo de 24–48 horas. Solicitar el período 2012–presente en <code>https://www.igepn.edu.ec/catalogos-sismicos/formulario-catalogos-sismicos</code> el <strong>primer día del seminario</strong>.</p></div>
+<h3>🎯 Objetivo</h3>
+<p>Construir un sistema interactivo de <strong>Monitor Sísmico</strong> que permita a analistas de gestión de riesgos explorar el catálogo histórico del IG-EPN, filtrar eventos por fecha, magnitud y profundidad, y visualizar los patrones temporales y geográficos de la actividad sísmica en el territorio ecuatoriano.</p>
+<h3>📚 Actividades para el estudiante</h3>
+<p><strong>Resultado de aprendizaje:</strong> el estudiante procesa datos científicos de formato no estándar, construye un sistema de clasificación geográfica sin geocodificación externa y desarrolla un dashboard de monitoreo con vistas vinculadas.</p>
+<h4>Fase 1 – Comprensión del dominio</h4>
+<p>Investigar la escala de magnitudes sísmicas, el sistema de clasificación por profundidad y la geografía sísmica del Ecuador. Comprender el rol del IG-EPN en el monitoreo nacional. Iniciar inmediatamente el trámite de solicitud del catálogo.</p>
+<h4>Fase 2 – Preparación y exploración de datos</h4>
+<p>Examinar la estructura del archivo recibido: separadores variables (espacios múltiples), encabezados con caracteres <code>#</code>. Cargar, parsear y documentar cada decisión de ingestión. Realizar las siguientes categorizaciones:</p>
+<table><thead><tr><th scope="col">Variable</th><th scope="col">Categorías</th></tr></thead><tbody>
+<tr><td>Magnitud</td><td>Ligero (3.5–4.9) · Moderado (5.0–5.9) · Fuerte (≥ 6.0)</td></tr>
+<tr><td>Profundidad</td><td>Superficial (&lt; 70 km) · Intermedio (70–300 km) · Profundo (&gt; 300 km)</td></tr>
+<tr><td>Región geográfica</td><td>Sur · Centro · Norte — asignada por latitud sin geocodificación</td></tr>
+</tbody></table>
+<p>Calcular la frecuencia mensual de sismos por categoría de magnitud.</p>
+<h4>Fase 3 – Análisis de patrones</h4>
+<p>Identificar los períodos de mayor actividad sísmica. Comparar la distribución de magnitudes y profundidades entre regiones. Analizar si existe tendencia en la frecuencia de eventos a lo largo de la serie histórica.</p>
+<h4>Fase 4 – Producto analítico</h4>
+<p><strong>Pipeline técnico:</strong></p>
+<ul>
+<li><code>pd.read_csv(file, sep='\s+', comment='#')</code> — parsear el formato no estándar</li>
+<li>Convertir <code>time_value</code> a datetime; extraer año, mes y categorías</li>
+<li>Asignar región: <code>pd.cut(df['lat'], bins=[-5, -2, 0, 2], labels=['Sur','Centro','Norte'])</code></li>
+<li>Guardar catálogo procesado en Parquet; usar <code>@st.cache_data</code> en Streamlit</li>
+</ul>
+<p><strong>API (FastAPI):</strong></p>
+<ul>
+<li><code>GET /sismos/query?start_date=2020-01-01&amp;end_date=2023-12-31&amp;min_magnitude=4.5</code> — eventos filtrados</li>
+<li><code>GET /sismos/stats?region=Centro</code> — estadísticas de la región (count, magnitud media, profundidad media)</li>
+</ul>
+<p><strong>Dashboard (Streamlit):</strong></p>
+<p>Todos los gráficos responden a los mismos filtros de fecha y magnitud simultáneamente:</p>
+<ol>
+<li>Mapa interactivo (<code>px.scatter_mapbox</code>) — tamaño y color representan magnitud; filtros de fecha y magnitud</li>
+<li>Gráfico de líneas de la frecuencia mensual por categoría de magnitud</li>
+<li>Histograma de distribución de magnitudes con líneas verticales en los umbrales de categoría</li>
+</ol>
+<h4>Fase 5 – Interpretación y comunicación</h4>
+<p>¿Qué zonas del Ecuador concentran la mayor actividad? ¿Existen períodos históricos con anomalías significativas? ¿Qué alertas tempranas podría emitir este sistema para la gestión de riesgos?</p>
+<h3>🗂️ Dataset y recursos</h3>
+<table><thead><tr><th scope="col">Recurso</th><th scope="col">Enlace</th></tr></thead><tbody>
+<tr><td><strong>Dataset principal</strong></td><td><a href="https://www.igepn.edu.ec/catalogos-sismicos/formulario-catalogos-sismicos">Catálogo Sísmico IG-EPN — solicitar período 2012–presente</a></td></tr>
+</tbody></table>
+<p><strong>Lecturas recomendadas:</strong></p>
+<ul>
+<li>Escala de Richter y Moment Magnitude: clasificación de sismos</li>
+<li>Lectura de archivos CSV con separadores no estándar y encabezados comentados</li>
+<li>Visualización geoespacial con Plotly: scatter_mapbox con datos de puntos</li>
+<li>Series de tiempo en Pandas: resampleo mensual y agregación por categoría</li>
+<li>Uso de <code>st.cache_data</code> en Streamlit para optimizar carga de datos</li>
+</ul>
+<h3>📋 Rúbrica de evaluación</h3>
+<table><thead><tr><th scope="col">Entregable</th><th scope="col">Semana</th><th scope="col">Peso</th><th scope="col">Criterios clave</th></tr></thead><tbody>
+<tr><td>Definición del problema</td><td>1</td><td>10 %</td><td>Claridad de la pregunta de negocio, historias de usuario, ficha del dataset</td></tr>
+<tr><td>Pipeline de datos</td><td>2</td><td>20 %</td><td>Reproducibilidad, manejo del reto específico, validaciones documentadas</td></tr>
+<tr><td>EDA + primer modelo</td><td>3</td><td>25 %</td><td>Profundidad del análisis, rigor estadístico, pertinencia del modelo y métricas</td></tr>
+<tr><td>Producto analítico completo</td><td>4</td><td>30 %</td><td>Comparación de ≥ 2 modelos, API y dashboard funcionales, documentación</td></tr>
+<tr><td>Defensa oral y trabajo en equipo</td><td>4</td><td>15 %</td><td>Dominio técnico, claridad, manejo de preguntas, colaboración</td></tr>
+</tbody></table>
+<div class="caja"><p><strong>Modalidad:</strong> grupos de 3 estudiantes · <strong>Entrega final:</strong> sesión final del seminario</p></div>
+<div class="nav-pie"><a href="casos.html"><span class="e">Índice</span><span class="t">Todos los casos</span></a><a class="sig" href="caso-06.html"><span class="e">Siguiente</span><span class="t">Caso 6</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Interactivo — Regresion Lineal (OLS) — 5 Pasos</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:#fff; color:#1e293b; }
+
+        /* ===== TOOLTIPS ===== */
+        .tip { position:relative; cursor:help; border-bottom:1px dotted #94a3b8; font-weight:500; }
+        .tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+            background:#0f172a; color:#f1f5f9; font-size:.72rem; font-weight:400; padding:8px 12px; border-radius:8px;
+            width:max-content; max-width:260px; line-height:1.45; text-align:left; white-space:normal;
+            pointer-events:none; opacity:0; transition:opacity .15s; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.15);
+            text-transform:none; letter-spacing:0; }
+        .tip::before { content:''; position:absolute; bottom:calc(100% + 2px); left:50%; transform:translateX(-50%);
+            border:6px solid transparent; border-top-color:#0f172a; pointer-events:none; opacity:0; transition:opacity .15s; z-index:100; }
+        .tip:hover::after, .tip:hover::before { opacity:1; }
+
+        .help-icon { display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%;
+            background:#e2e8f0; color:#64748b; font-size:.6rem; font-weight:800; cursor:help; position:absolute; top:5px; right:6px; }
+        .help-icon::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 8px); right:-8px; left:auto; transform:none;
+            background:#0f172a; color:#f1f5f9; font-size:.7rem; font-weight:400; padding:8px 12px; border-radius:8px;
+            width:max-content; max-width:240px; line-height:1.45; text-align:left; white-space:normal;
+            pointer-events:none; opacity:0; transition:opacity .15s; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.15); }
+        .help-icon:hover::after { opacity:1; }
+
+        [data-tip-btn] { position:relative; }
+        [data-tip-btn]::after { content:attr(data-tip-btn); position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+            background:#0f172a; color:#f1f5f9; font-size:.72rem; font-weight:400; padding:8px 12px; border-radius:8px;
+            width:max-content; max-width:240px; line-height:1.45; text-align:left; white-space:normal;
+            pointer-events:none; opacity:0; transition:opacity .15s; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.15); }
+        [data-tip-btn]::before { content:''; position:absolute; bottom:calc(100% + 2px); left:50%; transform:translateX(-50%);
+            border:6px solid transparent; border-top-color:#0f172a; pointer-events:none; opacity:0; transition:opacity .15s; z-index:100; }
+        [data-tip-btn]:hover::after, [data-tip-btn]:hover::before { opacity:1; }
+
+        /* ===== HEADER & STEPS ===== */
+        header { background:#f8fafc; border-bottom:1px solid #e2e8f0; padding:16px 24px; }
+        .hdr { max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+        header h1 { font-size:1.3rem; font-weight:700; color:#0f172a; white-space:nowrap; }
+        .step-bar { display:flex; align-items:center; gap:0; }
+        .si { display:flex; flex-direction:column; align-items:center; gap:3px; }
+        .sc { width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+            font-size:12px; font-weight:700; border:2px solid #cbd5e1; color:#94a3b8; background:#fff; transition:all .2s; }
+        .sc.cur { border-color:#2563eb; background:#2563eb; color:#fff; }
+        .sc.done { border-color:#059669; background:#059669; color:#fff; }
+        .sl { font-size:9px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:.4px; }
+        .scon { width:32px; height:2px; background:#e2e8f0; margin-bottom:16px; transition:background .2s; }
+        .scon.done { background:#059669; }
+
+        /* ===== LAYOUT ===== */
+        .container { display:grid; grid-template-columns:1fr 360px; height:calc(100vh - 72px); max-width:1400px; margin:0 auto; }
+        .main { padding:16px; display:flex; flex-direction:column; gap:8px; overflow:hidden; }
+        .cvw { flex:1; background:#fff; border-radius:12px; border:1px solid #e2e8f0; position:relative; overflow:hidden;
+            box-shadow:0 1px 3px rgba(0,0,0,.06); min-height:300px; }
+        canvas { display:block; width:100%; height:100%; cursor:crosshair; }
+        .toolbar { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+        .toolbar .sep { width:1px; height:26px; background:#e2e8f0; margin:0 2px; }
+        .info-bar { font-size:.7rem; color:#94a3b8; }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar { background:#f8fafc; border-left:1px solid #e2e8f0; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+        .sidebar h2 { font-size:1rem; font-weight:700; color:#0f172a; margin-bottom:8px; }
+        .pnl { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px; }
+        .pnl-t { font-size:.7rem; text-transform:uppercase; letter-spacing:1.2px; color:#94a3b8; font-weight:700; margin-bottom:8px; }
+
+        /* Messages */
+        .msg { background:#eff6ff; border-left:3px solid #3b82f6; padding:10px 12px; border-radius:0 8px 8px 0;
+            font-size:.8rem; color:#334155; line-height:1.5; margin-bottom:10px; }
+        .msg strong { color:#0f172a; }
+        .warn { background:#fffbeb; border-left:3px solid #f59e0b; padding:8px 12px; border-radius:0 8px 8px 0;
+            font-size:.78rem; color:#92400e; margin-bottom:10px; }
+
+        /* Buttons */
+        button { padding:8px 14px; border-radius:8px; border:1px solid #d1d5db; background:#fff; color:#374151;
+            font-size:.8rem; font-weight:600; cursor:pointer; transition:all .15s; display:flex; align-items:center; gap:5px; }
+        button:hover { background:#f1f5f9; border-color:#94a3b8; }
+        button.primary { background:#2563eb; border-color:#2563eb; color:#fff; }
+        button.primary:hover { background:#1d4ed8; }
+        button.danger { background:#dc2626; border-color:#dc2626; color:#fff; }
+        button.danger:hover { background:#b91c1c; }
+        button.success { background:#059669; border-color:#059669; color:#fff; }
+        button.success:hover { background:#047857; }
+        button.warning { background:#d97706; border-color:#d97706; color:#fff; }
+        button.warning:hover { background:#b45309; }
+        button.active { box-shadow:0 0 0 2px #3b82f6; background:#eff6ff; border-color:#3b82f6; color:#1d4ed8; }
+        .btn-row { display:flex; gap:6px; margin-top:8px; }
+
+        /* Metrics */
+        .mg { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+        .mc { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px; text-align:center; position:relative; }
+        .mc.hl { border-color:#93c5fd; background:#eff6ff; }
+        .mc.w { grid-column:span 2; }
+        .mc .lb { font-size:.62rem; text-transform:uppercase; letter-spacing:.8px; color:#94a3b8; }
+        .mc .vl { font-size:1.1rem; font-weight:800; margin-top:2px; font-family:'SF Mono','Fira Code',monospace; color:#0f172a; }
+        .vl.good { color:#059669; }
+        .vl.bad { color:#dc2626; }
+        .vl.warn { color:#d97706; }
+
+        /* Sliders */
+        .sg { margin-bottom:10px; }
+        .sgl { display:flex; justify-content:space-between; font-size:.8rem; margin-bottom:4px; color:#475569; }
+        .sgl span:last-child { font-weight:700; color:#0f172a; font-family:'SF Mono',monospace; background:#2563eb; color:#fff; padding:1px 6px; border-radius:4px; font-size:.72rem; }
+        input[type="range"] { width:100%; height:6px; -webkit-appearance:none; appearance:none; background:#e2e8f0; border-radius:3px; outline:none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+            background:#2563eb; cursor:pointer; border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.2); }
+
+        /* Error bars */
+        .ebar-w { background:#e2e8f0; border-radius:4px; height:12px; overflow:hidden; margin-top:3px; }
+        .ebar { height:100%; border-radius:4px; transition:width .3s; }
+        .ebar.man { background:linear-gradient(90deg,#f59e0b,#f97316); }
+        .ebar.ols { background:linear-gradient(90deg,#10b981,#059669); }
+
+        /* Table */
+        .tbl { width:100%; font-size:.68rem; border-collapse:collapse; }
+        .tbl th { color:#94a3b8; text-transform:uppercase; letter-spacing:.8px; font-size:.58rem; padding:5px 3px; text-align:center;
+            border-bottom:1px solid #e2e8f0; position:relative; cursor:help; }
+        .tbl th[data-tip]::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
+            background:#0f172a; color:#f1f5f9; font-size:.68rem; font-weight:400; padding:6px 10px; border-radius:6px;
+            width:max-content; max-width:200px; line-height:1.4; text-align:left; white-space:normal; pointer-events:none;
+            opacity:0; transition:opacity .15s; z-index:100; text-transform:none; letter-spacing:0; }
+        .tbl th[data-tip]::before { content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%);
+            border:5px solid transparent; border-top-color:#0f172a; pointer-events:none; opacity:0; transition:opacity .15s; z-index:100; }
+        .tbl th[data-tip]:hover::after, .tbl th[data-tip]:hover::before { opacity:1; }
+        .tbl td { padding:3px; text-align:center; color:#475569; font-family:'SF Mono',monospace; font-size:.68rem; border-bottom:1px solid #f1f5f9; }
+        .ts { max-height:150px; overflow-y:auto; }
+
+        /* OLS Derivation */
+        .deriv { font-size:.78rem; line-height:1.6; color:#334155; }
+        .deriv .formula { background:#f1f5f9; border-radius:6px; padding:6px 10px; margin:6px 0; font-family:'SF Mono',monospace;
+            font-size:.72rem; color:#0f172a; border-left:3px solid #2563eb; }
+        .deriv .val { font-weight:700; color:#2563eb; }
+        .deriv .arrow { color:#059669; font-weight:700; }
+
+        /* Summary */
+        .summary { background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:12px; margin-bottom:10px; }
+        .summary h3 { font-size:.85rem; font-weight:700; color:#065f46; margin-bottom:6px; }
+        .summary p { font-size:.78rem; color:#166534; margin-bottom:3px; }
+
+        /* Histogram */
+        .hist-wrap { height:80px; position:relative; margin-top:6px; }
+
+        /* Concept */
+        .concept { background:#f8fafc; border-left:3px solid #2563eb; border-radius:0 6px 6px 0; padding:8px 10px; margin-bottom:6px; }
+        .concept .ct { font-size:.75rem; font-weight:700; color:#0f172a; margin-bottom:1px; }
+        .concept .cd { font-size:.7rem; color:#475569; line-height:1.3; }
+
+        @media (max-width:900px) { .container { grid-template-columns:1fr; height:auto; } .cvw { min-height:350px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="hdr">
+        <h1>Simulador de Regresion Lineal — OLS</h1>
+        <div class="step-bar" id="stepBar">
+            <div class="si"><div class="sc cur">1</div><div class="sl">Ejes</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">2</div><div class="sl">Datos</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">3</div><div class="sl">Manual</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">4</div><div class="sl">Compara</div></div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="main">
+        <div class="toolbar" id="toolbar"></div>
+        <div class="cvw"><canvas id="canvas"></canvas></div>
+        <div class="info-bar" id="infoBar"></div>
+    </div>
+    <aside class="sidebar" id="sidebar"></aside>
+</div>
+
+<script>
+/* ================================================================
+   GLOBAL STATE
+   ================================================================ */
+const S = {
+    step: 1,
+    points: [],
+    manualSlope: 1,
+    manualIntercept: 0,
+    ols: null,          // {slope, intercept}
+    olsDone: false,
+    showSquares: false,
+    showResiduals: false,
+    dragIdx: -1,
+    dragging: false,
+    animating: false,
+    animT: 0,
+    animFrom: null,     // {slope, intercept}
+};
+
+const XMIN=0, XMAX=20, YMIN=-5, YMAX=25;
+const PAD = {top:30, right:30, bottom:50, left:55};
+const PR = 7;
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+/* ================================================================
+   DPR & COORDINATE TRANSFORMS
+   ================================================================ */
+function dpr() { return window.devicePixelRatio||1; }
+function cssW() { return canvas.width/dpr(); }
+function cssH() { return canvas.height/dpr(); }
+function plotW() { return cssW()-PAD.left-PAD.right; }
+function plotH() { return cssH()-PAD.top-PAD.bottom; }
+
+function d2c(dx,dy) {
+    return { x: PAD.left+((dx-XMIN)/(XMAX-XMIN))*plotW(), y: PAD.top+((YMAX-dy)/(YMAX-YMIN))*plotH() };
+}
+function c2d(cx,cy) {
+    return { x: XMIN+((cx-PAD.left)/plotW())*(XMAX-XMIN), y: YMAX-((cy-PAD.top)/plotH())*(YMAX-YMIN) };
+}
+
+function resizeCanvas() {
+    const w=canvas.parentElement;
+    canvas.width=w.clientWidth*dpr();
+    canvas.height=w.clientHeight*dpr();
+    canvas.style.width=w.clientWidth+'px';
+    canvas.style.height=w.clientHeight+'px';
+    ctx.setTransform(dpr(),0,0,dpr(),0,0);
+}
+
+/* ================================================================
+   OLS MATH
+   ================================================================ */
+function computeOLS(pts) {
+    if(pts.length<2) return null;
+    const n=pts.length;
+    let sx=0,sy=0,sxy=0,sx2=0;
+    for(const p of pts){ sx+=p.x; sy+=p.y; sxy+=p.x*p.y; sx2+=p.x*p.x; }
+    const d=n*sx2-sx*sx;
+    if(Math.abs(d)<1e-12) return null;
+    const slope=(n*sxy-sx*sy)/d;
+    const intercept=(sy-slope*sx)/n;
+    return {slope, intercept};
+}
+
+function computeMetrics(pts, m, b) {
+    if(!pts.length) return {sse:0,rmse:0,mae:0,r2:0};
+    const n=pts.length;
+    let sse=0,sae=0,yMean=0;
+    for(const p of pts) yMean+=p.y;
+    yMean/=n;
+    let ssTot=0;
+    for(const p of pts){
+        const yh=m*p.x+b;
+        const e=p.y-yh;
+        sse+=e*e; sae+=Math.abs(e); ssTot+=(p.y-yMean)**2;
+    }
+    return { sse, rmse:Math.sqrt(sse/n), mae:sae/n, r2:ssTot>0?1-sse/ssTot:0 };
+}
+
+function olsIntermediates(pts) {
+    const n=pts.length;
+    let sx=0,sy=0,sxy=0,sx2=0;
+    for(const p of pts){ sx+=p.x; sy+=p.y; sxy+=p.x*p.y; sx2+=p.x*p.x; }
+    const xBar=sx/n, yBar=sy/n;
+    let ssxx=0, ssxy=0;
+    for(const p of pts){ ssxx+=(p.x-xBar)**2; ssxy+=(p.x-xBar)*(p.y-yBar); }
+    const b1=ssxy/ssxx;
+    const b0=yBar-b1*xBar;
+    return {n, sx, sy, sxy, sx2, xBar, yBar, ssxx, ssxy, b1, b0};
+}
+
+/* ================================================================
+   DRAWING
+   ================================================================ */
+function draw() {
+    resizeCanvas();
+    const W=cssW(), H=cssH();
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    drawGrid(); drawAxes();
+
+    if(S.step>=1) drawAxisLabels();
+
+    const pts=S.points;
+    const showManualLine = S.step>=3;
+    const showOlsLine = S.step>=4 && S.olsDone && S.ols;
+    const showCompare = S.step===4;
+
+    // Current active line params
+    let curM=S.manualSlope, curB=S.manualIntercept;
+
+    // Squares
+    if(S.showSquares && pts.length>0 && showManualLine) {
+        if(showCompare && S.ols) {
+            for(const p of pts) drawSquare(p, S.ols.slope, S.ols.intercept, 'rgba(5,150,105,.08)', 'rgba(5,150,105,.3)');
+        }
+        for(const p of pts) drawSquare(p, curM, curB,
+            showCompare?'rgba(217,119,6,.08)':'rgba(37,99,235,.08)',
+            showCompare?'rgba(217,119,6,.35)':'rgba(37,99,235,.3)');
+    }
+
+    // Residuals
+    if(S.showResiduals && pts.length>0 && showManualLine) {
+        if(showCompare && S.ols) drawResLines(S.ols.slope, S.ols.intercept, '#059669', 0.4);
+        drawResLines(curM, curB, showCompare?'#d97706':'#2563eb', showCompare?0.5:0.6);
+    }
+
+    // Lines
+    if(showManualLine && pts.length>=1) {
+        if(S.animating) {
+            const t=S.animT;
+            const am=S.animFrom.slope+(S.ols.slope-S.animFrom.slope)*t;
+            const ab=S.animFrom.intercept+(S.ols.intercept-S.animFrom.intercept)*t;
+            drawLine(am, ab, '#059669', 3, []);
+        } else {
+            if(showCompare) {
+                drawLine(curM, curB, '#d97706', 2, [8,4]);
+                if(S.ols) drawLine(S.ols.slope, S.ols.intercept, '#059669', 3, []);
+            } else if(showOlsLine) {
+                drawLine(curM, curB, '#d97706', 2, [8,4]);
+                drawLine(S.ols.slope, S.ols.intercept, '#059669', 3, []);
+            } else {
+                drawLine(curM, curB, '#2563eb', 3, []);
+            }
+        }
+    }
+
+    // Points
+    if(S.step>=2) {
+        for(let i=0;i<pts.length;i++) drawPoint(pts[i]);
+    }
+
+    // Legend
+    if(S.step>=3 && pts.length>=1) {
+        const items=[];
+        if(S.step===3) items.push(['#2563eb','Tu linea manual']);
+        if(S.step>=4) { items.push(['#d97706','Manual']); items.push(['#059669','OLS (optimo)']); }
+        drawLegend(items);
+    }
+
+    // Step 1: overlay axis explanation
+    if(S.step===1 && pts.length===0) {
+        drawAxisExplanation();
+    }
+}
+
+function drawGrid() {
+    ctx.strokeStyle='#f1f5f9'; ctx.lineWidth=1;
+    for(let x=XMIN;x<=XMAX;x++){if(x===0)continue; const p=d2c(x,0);
+        ctx.beginPath();ctx.moveTo(p.x,PAD.top);ctx.lineTo(p.x,cssH()-PAD.bottom);ctx.stroke();}
+    for(let y=YMIN;y<=YMAX;y++){if(y===0)continue; const p=d2c(0,y);
+        ctx.beginPath();ctx.moveTo(PAD.left,p.y);ctx.lineTo(cssW()-PAD.right,p.y);ctx.stroke();}
+}
+
+function drawAxes() {
+    ctx.strokeStyle='#94a3b8'; ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(PAD.left,cssH()-PAD.bottom);ctx.lineTo(cssW()-PAD.right,cssH()-PAD.bottom);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(PAD.left,PAD.top);ctx.lineTo(PAD.left,cssH()-PAD.bottom);ctx.stroke();
+    // Ticks
+    ctx.fillStyle='#64748b'; ctx.font='11px "SF Mono",monospace'; ctx.textAlign='center'; ctx.textBaseline='top';
+    for(let x=XMIN;x<=XMAX;x+=2){ const p=d2c(x,YMIN);
+        ctx.beginPath();ctx.moveTo(p.x,cssH()-PAD.bottom);ctx.lineTo(p.x,cssH()-PAD.bottom+4);ctx.strokeStyle='#94a3b8';ctx.stroke();
+        ctx.fillText(x,p.x,cssH()-PAD.bottom+7);}
+    ctx.textAlign='right'; ctx.textBaseline='middle';
+    for(let y=YMIN;y<=YMAX;y+=5){ const p=d2c(XMIN,y);
+        ctx.beginPath();ctx.moveTo(PAD.left-4,p.y);ctx.lineTo(PAD.left,p.y);ctx.strokeStyle='#94a3b8';ctx.stroke();
+        ctx.fillText(y,PAD.left-7,p.y);}
+}
+
+function drawAxisLabels() {
+    ctx.fillStyle='#475569'; ctx.font='bold 12px "Segoe UI",sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='top';
+    ctx.fillText('X  (variable independiente)', cssW()/2, cssH()-12);
+    ctx.save();
+    ctx.translate(13,(PAD.top+cssH()-PAD.bottom)/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText('Y  (variable dependiente)',0,0);
+    ctx.restore();
+}
+
+function drawAxisExplanation() {
+    // Highlight X axis
+    const cx=cssW()/2, boty=cssH()-PAD.bottom-20;
+    ctx.fillStyle='rgba(37,99,235,0.08)';
+    ctx.fillRect(PAD.left,cssH()-PAD.bottom-3,plotW(),6);
+    // Highlight Y axis
+    ctx.fillRect(PAD.left-3,PAD.top,6,plotH());
+
+    // X label
+    ctx.fillStyle='#2563eb'; ctx.font='bold 13px "Segoe UI",sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='bottom';
+    ctx.fillText('Eje X: Variable Independiente (predictor)',cx,boty);
+    ctx.font='12px "Segoe UI",sans-serif'; ctx.fillStyle='#64748b';
+    ctx.fillText('Ejemplo: Gasto en publicidad, Horas de estudio, Superficie (m²)...',cx,boty+16);
+
+    // Y label
+    const midY=(PAD.top+cssH()-PAD.bottom)/2;
+    ctx.save();
+    ctx.translate(PAD.left+30,midY);
+    ctx.fillStyle='#2563eb'; ctx.font='bold 13px "Segoe UI",sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('Eje Y:',0,-12);
+    ctx.fillText('Variable',0,4);
+    ctx.fillText('Dependiente',0,20);
+    ctx.font='11px "Segoe UI",sans-serif'; ctx.fillStyle='#64748b';
+    ctx.fillText('(respuesta)',0,36);
+    ctx.restore();
+
+    // Center message
+    ctx.fillStyle='#94a3b8'; ctx.font='14px "Segoe UI",sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('Cada punto sera una observacion (x, y)',cx,midY-10);
+    ctx.fillText('La regresion busca la linea que mejor los conecte',cx,midY+14);
+}
+
+function drawLine(m,b,color,width,dash) {
+    const x1=XMIN,y1=m*x1+b, x2=XMAX,y2=m*x2+b;
+    const p1=d2c(x1,y1), p2=d2c(x2,y2);
+    ctx.save();
+    ctx.strokeStyle=color; ctx.lineWidth=width; ctx.setLineDash(dash);
+    ctx.beginPath(); ctx.rect(PAD.left,PAD.top,plotW(),plotH()); ctx.clip();
+    ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+    ctx.restore();
+}
+
+function drawResLines(m,b,color,alpha) {
+    ctx.save(); ctx.strokeStyle=color; ctx.globalAlpha=alpha; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+    for(const p of S.points){ const yh=m*p.x+b; const cp=d2c(p.x,p.y); const ch=d2c(p.x,yh);
+        ctx.beginPath();ctx.moveTo(cp.x,cp.y);ctx.lineTo(ch.x,ch.y);ctx.stroke(); }
+    ctx.restore();
+}
+
+function drawSquare(p,m,b,fill,stroke) {
+    const yh=m*p.x+b; const ae=Math.abs(p.y-yh); if(ae<0.05) return;
+    const cp=d2c(p.x,p.y); const ch=d2c(p.x,yh);
+    const sz=Math.abs(cp.y-ch.y); const ty=Math.min(cp.y,ch.y);
+    ctx.save(); ctx.fillStyle=fill; ctx.strokeStyle=stroke; ctx.lineWidth=1;
+    ctx.fillRect(cp.x,ty,sz,sz); ctx.strokeRect(cp.x,ty,sz,sz); ctx.restore();
+}
+
+function drawPoint(p) {
+    const cp=d2c(p.x,p.y);
+    ctx.save(); ctx.shadowColor='rgba(37,99,235,.25)'; ctx.shadowBlur=6;
+    ctx.fillStyle='#2563eb'; ctx.beginPath(); ctx.arc(cp.x,cp.y,PR,0,Math.PI*2); ctx.fill(); ctx.restore();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(cp.x,cp.y,PR,0,Math.PI*2); ctx.stroke();
+}
+
+function drawLegend(items) {
+    const x=cssW()-PAD.right-10; let y=PAD.top+14;
+    const lh=items.length*18+8;
+    ctx.save(); ctx.fillStyle='rgba(255,255,255,.9)'; ctx.strokeStyle='#e2e8f0'; ctx.lineWidth=1;
+    ctx.fillRect(x-105,y-10,114,lh); ctx.strokeRect(x-105,y-10,114,lh); ctx.restore();
+    ctx.font='11px "Segoe UI",sans-serif'; ctx.textAlign='right';
+    for(const [c,l] of items){
+        ctx.fillStyle=c; ctx.fillRect(x-70,y-1,18,3);
+        ctx.fillStyle='#475569'; ctx.fillText(l,x,y+4);
+        y+=18;
+    }
+}
+
+/* ================================================================
+   ANIMATION: Manual → OLS
+   ================================================================ */
+function animateToOLS() {
+    S.animating=true;
+    S.animT=0;
+    S.animFrom={slope:S.manualSlope, intercept:S.manualIntercept};
+    function tick() {
+        S.animT+=0.025;
+        if(S.animT>=1) { S.animT=1; S.animating=false; draw(); return; }
+        draw();
+        requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+/* ================================================================
+   TOOLBAR & INFO BAR
+   ================================================================ */
+function updateToolbar() {
+    const tb=document.getElementById('toolbar');
+    if(S.step<2) { tb.innerHTML=''; return; }
+
+    let h='';
+    h+=`<button class="success" id="btnRandom" data-tip-btn="Genera entre 15 y 25 puntos con una relacion lineal mas ruido aleatorio.">Datos aleatorios</button>`;
+    if(S.step>=2) h+=`<button class="warning" id="btnOutlier" data-tip-btn="Agrega un punto atipico (outlier) en posicion aleatoria.">+ Outlier</button>`;
+    h+=`<button class="danger" id="btnClear" data-tip-btn="Elimina todos los puntos.">Limpiar</button>`;
+
+    if(S.step>=3) {
+        h+=`<div class="sep"></div>`;
+        h+=`<button id="btnSq" class="${S.showSquares?'active':''}" data-tip-btn="Muestra cuadrados cuya area es el error² de cada punto. OLS minimiza la suma de estas areas.">Cuadrados</button>`;
+        h+=`<button id="btnRes" class="${S.showResiduals?'active':''}" data-tip-btn="Muestra lineas verticales (residuales) entre cada punto y la linea.">Residuales</button>`;
+    }
+
+    tb.innerHTML=h;
+    bindToolbar();
+
+    const ib=document.getElementById('infoBar');
+    ib.textContent = S.step>=2 ? 'Clic = agregar punto  |  Arrastrar = mover punto  |  Clic derecho = eliminar' : '';
+}
+
+function bindToolbar() {
+    const br=document.getElementById('btnRandom');
+    if(br) br.onclick=()=>{ genRandom(); draw(); updateSidebar(); };
+    const bo=document.getElementById('btnOutlier');
+    if(bo) bo.onclick=()=>{ S.points.push({x:1+Math.random()*18,y:YMIN+1+Math.random()*(YMAX-YMIN-2)}); draw(); updateSidebar(); };
+    const bc=document.getElementById('btnClear');
+    if(bc) bc.onclick=()=>{ S.points=[]; S.ols=null; S.olsDone=false; draw(); updateSidebar(); };
+    const bs=document.getElementById('btnSq');
+    if(bs) bs.onclick=()=>{ S.showSquares=!S.showSquares; bs.classList.toggle('active',S.showSquares); draw(); };
+    const brs=document.getElementById('btnRes');
+    if(brs) brs.onclick=()=>{ S.showResiduals=!S.showResiduals; brs.classList.toggle('active',S.showResiduals); draw(); };
+}
+
+function genRandom() {
+    S.points=[];S.ols=null;S.olsDone=false;
+    const m=0.3+Math.random()*1.2, b=1+Math.random()*5, n=15+Math.floor(Math.random()*11);
+    for(let i=0;i<n;i++){
+        const x=1+Math.random()*17;
+        const y=Math.max(YMIN+.5,Math.min(YMAX-.5, m*x+b+(Math.random()-.5)*6));
+        S.points.push({x,y});
+    }
+}
+
+/* ================================================================
+   SIDEBAR (rebuilt per step)
+   ================================================================ */
+function updateSidebar() {
+    const sb=document.getElementById('sidebar');
+    const pts=S.points;
+    let h='';
+
+    if(S.step===1) {
+        h=`
+        <h2>Paso 1: ¿Que hay en cada eje?</h2>
+        <div class="msg">Antes de hacer regresion, debemos entender <strong>que representan los ejes</strong>.
+        El eje X es la <span class="tip" data-tip="La variable que usamos para predecir. Tambien llamada feature, predictor o variable explicativa.">variable independiente</span>
+        y el eje Y es la <span class="tip" data-tip="La variable que queremos predecir. Tambien llamada target, respuesta o variable objetivo.">variable dependiente</span>.</div>
+
+        <div class="pnl">
+            <div class="pnl-t">Ejemplo</div>
+            <p style="font-size:.8rem;color:#475569;line-height:1.5;">
+                Si queremos predecir <strong>ventas</strong> a partir del <strong>gasto en publicidad</strong>:<br>
+                X = Gasto en publicidad (lo que controlamos)<br>
+                Y = Ventas (lo que queremos predecir)
+            </p>
+        </div>
+
+        <div class="concept" style="border-left-color:#2563eb;">
+            <div class="ct">Regresion Lineal</div>
+            <div class="cd">Busca la mejor recta y = mx + b que relacione X con Y. La "mejor" es la que minimiza la distancia a todos los puntos.</div>
+        </div>
+
+        <div class="concept" style="border-left-color:#059669;">
+            <div class="ct">Ecuacion: y = mx + b</div>
+            <div class="cd"><strong>m</strong> = pendiente (cuanto cambia Y por cada unidad de X)<br>
+            <strong>b</strong> = intercepto (valor de Y cuando X = 0)</div>
+        </div>
+
+        <button class="primary" onclick="goStep(2)" style="width:100%;margin-top:8px;">Siguiente: Colocar Datos →</button>
+        `;
+    }
+    else if(S.step===2) {
+        h=`
+        <h2>Paso 2: Coloca las Observaciones</h2>
+        <div class="msg">Haz <strong>clic en el grafico</strong> para agregar puntos, o usa el boton "Datos aleatorios".
+        Cada punto es una observacion (x, y). Necesitas al menos <strong>3 puntos</strong> para continuar.</div>
+
+        <div class="pnl">
+            <div class="pnl-t">Datos</div>
+            <div class="mc w"><div class="lb">Puntos Colocados</div><div class="vl" style="color:${pts.length>=3?'#059669':'#d97706'}">${pts.length}</div></div>
+            ${pts.length<3 ? '<div style="font-size:.75rem;color:#d97706;text-align:center;margin-top:4px;">Necesitas al menos 3 puntos</div>' : ''}
+        </div>
+
+        ${pts.length>0 ? buildTable(S.manualSlope,S.manualIntercept,false) : ''}
+
+        <div class="btn-row">
+            <button onclick="goStep(1)">← Atras</button>
+            <button class="primary" onclick="goStep(3)" ${pts.length<3?'disabled style="opacity:.5;cursor:not-allowed;"':''}>Siguiente: Tu Linea →</button>
+        </div>
+        `;
+    }
+    else if(S.step===3) {
+        const m=computeMetrics(pts,S.manualSlope,S.manualIntercept);
+        h=`
+        <h2>Paso 3: Traza Tu Linea</h2>
+        <div class="msg">Usa los sliders para proponer <strong>tu propia linea</strong>. El objetivo: encontrar la
+        <span class="tip" data-tip="La pendiente (m) y el intercepto (b) que producen el menor error posible.">combinacion de m y b</span>
+        que minimice el error. Luego compararas con la solucion matematica.</div>
+
+        <div class="pnl">
+            <div class="pnl-t"><span class="tip" data-tip="Mueve los sliders para cambiar la posicion de la linea. Intenta que pase lo mas cerca posible de todos los puntos.">Ajuste Manual</span></div>
+            <div class="sg">
+                <div class="sgl"><span class="tip" data-tip="La pendiente indica cuanto cambia Y por cada unidad que aumenta X. Si m=2, por cada +1 en X, Y sube 2.">Pendiente (m)</span><span id="valM">${S.manualSlope.toFixed(2)}</span></div>
+                <input type="range" id="slM" min="-5" max="5" step="0.01" value="${S.manualSlope}">
+            </div>
+            <div class="sg">
+                <div class="sgl"><span class="tip" data-tip="El intercepto es el valor de Y cuando X=0. Es donde la linea cruza el eje vertical.">Intercepto (b)</span><span id="valB">${S.manualIntercept.toFixed(2)}</span></div>
+                <input type="range" id="slB" min="-10" max="20" step="0.01" value="${S.manualIntercept}">
+            </div>
+        </div>
+
+        <div class="pnl">
+            <div class="pnl-t"><span class="tip" data-tip="Estas metricas miden que tan bien tu linea se ajusta a los datos.">Metricas de Tu Linea</span></div>
+            <div class="mc w"><div class="lb">Ecuacion</div><div class="vl" id="mEq" style="font-size:.85rem">y = ${S.manualSlope.toFixed(2)}x + ${S.manualIntercept.toFixed(2)}</div></div>
+            <div class="mg" style="margin-top:6px;">
+                <div class="mc hl"><span class="help-icon" data-tip="Sum of Squared Errors. Suma de (yi - ŷi)². Es lo que OLS minimiza.">?</span><div class="lb">SSE</div><div class="vl" id="mSSE">${m.sse.toFixed(2)}</div></div>
+                <div class="mc hl"><span class="help-icon" data-tip="Root Mean Squared Error. Raiz del promedio de errores². En las mismas unidades que Y.">?</span><div class="lb">RMSE</div><div class="vl" id="mRMSE">${m.rmse.toFixed(3)}</div></div>
+                <div class="mc"><span class="help-icon" data-tip="Mean Absolute Error. Promedio de |yi - ŷi|. Mas robusto que RMSE ante outliers.">?</span><div class="lb">MAE</div><div class="vl" id="mMAE">${m.mae.toFixed(3)}</div></div>
+                <div class="mc"><span class="help-icon" data-tip="Coeficiente de determinacion. Proporcion de variabilidad de Y explicada por el modelo. 1=perfecto, 0=nada.">?</span><div class="lb">R²</div><div class="vl ${m.r2>.8?'good':m.r2>.5?'warn':'bad'}" id="mR2">${m.r2.toFixed(4)}</div></div>
+            </div>
+        </div>
+
+        ${buildTable(S.manualSlope,S.manualIntercept,true)}
+
+        <div class="btn-row">
+            <button onclick="goStep(2)">← Atras</button>
+            <button class="success" onclick="goStep(4)">Calcular OLS y Comparar →</button>
+        </div>
+        `;
+    }
+    else if(S.step===4) {
+        if(!S.olsDone) { S.ols=computeOLS(pts); S.olsDone=true; animateToOLS(); }
+        const manM=computeMetrics(pts,S.manualSlope,S.manualIntercept);
+        const olsM=computeMetrics(pts,S.ols.slope,S.ols.intercept);
+        const pctMore=olsM.sse>0?((manM.sse-olsM.sse)/olsM.sse*100):0;
+        const slopeDiff=Math.abs(S.manualSlope-S.ols.slope);
+        const interDiff=Math.abs(S.manualIntercept-S.ols.intercept);
+        const maxSSE=Math.max(manM.sse,olsM.sse,0.01);
+
+        h=`
+        <h2>Paso 4: Comparacion con OLS</h2>
+        <div class="msg">El algoritmo <span class="tip" data-tip="Ordinary Least Squares: encuentra m y b que minimizan la suma de errores al cuadrado. Es la mejor recta posible.">OLS</span>
+        calculo la linea optima automaticamente. Aqui ves que tan cerca estuvo <strong>tu linea manual</strong> de la <strong>solucion optima</strong>.</div>
+
+        <div class="summary">
+            <h3>${pctMore<=1?'Excelente! Tu linea es casi optima!':pctMore<=10?'Muy bien! Cerca del optimo.':pctMore<=30?'Buen intento, pero OLS es mejor.':'OLS gana por bastante. Practica mas!'}</h3>
+            <p><strong>Tu SSE:</strong> ${manM.sse.toFixed(2)} → <strong>SSE OLS:</strong> ${olsM.sse.toFixed(2)}</p>
+            <p>Tu SSE es <strong style="color:${pctMore<=5?'#059669':'#d97706'}">${pctMore.toFixed(1)}%</strong> mayor que el optimo</p>
+        </div>
+
+        <div class="pnl">
+            <div class="pnl-t">Parametros: Tu vs OLS</div>
+            <div class="mg">
+                <div class="mc"><div class="lb">Tu Pendiente</div><div class="vl">${S.manualSlope.toFixed(4)}</div></div>
+                <div class="mc"><div class="lb">OLS Pendiente</div><div class="vl good">${S.ols.slope.toFixed(4)}</div></div>
+                <div class="mc"><div class="lb">Tu Intercepto</div><div class="vl">${S.manualIntercept.toFixed(4)}</div></div>
+                <div class="mc"><div class="lb">OLS Intercepto</div><div class="vl good">${S.ols.intercept.toFixed(4)}</div></div>
+            </div>
+            <div class="mg" style="margin-top:6px;">
+                <div class="mc"><div class="lb">Error Pendiente</div><div class="vl ${slopeDiff<.1?'good':slopeDiff<.5?'warn':'bad'}">${slopeDiff.toFixed(4)}</div></div>
+                <div class="mc"><div class="lb">Error Intercepto</div><div class="vl ${interDiff<1?'good':interDiff<3?'warn':'bad'}">${interDiff.toFixed(4)}</div></div>
+            </div>
+        </div>
+
+        <div class="pnl">
+            <div class="pnl-t">SSE: Manual vs OLS</div>
+            <div class="mg">
+                <div class="mc hl"><span class="help-icon" data-tip="Tu error total con los sliders.">?</span><div class="lb">SSE Manual</div><div class="vl bad">${manM.sse.toFixed(2)}</div></div>
+                <div class="mc hl"><span class="help-icon" data-tip="El minimo error posible.">?</span><div class="lb">SSE OLS</div><div class="vl good">${olsM.sse.toFixed(2)}</div></div>
+            </div>
+            <div style="margin-top:8px;">
+                <div style="display:flex;align-items:center;gap:6px;font-size:.7rem;">
+                    <span style="color:#d97706;width:48px;">Manual</span>
+                    <div class="ebar-w" style="flex:1"><div class="ebar man" style="width:${(manM.sse/maxSSE*100)}%"></div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;font-size:.7rem;margin-top:3px;">
+                    <span style="color:#059669;width:48px;">OLS</span>
+                    <div class="ebar-w" style="flex:1"><div class="ebar ols" style="width:${(olsM.sse/maxSSE*100)}%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pnl">
+            <div class="pnl-t">Todas las Metricas</div>
+            <table class="tbl" style="margin-top:4px;">
+                <tr><th></th><th style="color:#d97706;">Manual</th><th style="color:#059669;">OLS</th><th>Ganador</th></tr>
+                <tr><td>SSE</td><td>${manM.sse.toFixed(2)}</td><td style="font-weight:700;color:#059669;">${olsM.sse.toFixed(2)}</td><td>${manM.sse<=olsM.sse*1.001?'🟰':'🟢 OLS'}</td></tr>
+                <tr><td>RMSE</td><td>${manM.rmse.toFixed(3)}</td><td style="font-weight:700;color:#059669;">${olsM.rmse.toFixed(3)}</td><td>${manM.rmse<=olsM.rmse*1.001?'🟰':'🟢 OLS'}</td></tr>
+                <tr><td>MAE</td><td>${manM.mae.toFixed(3)}</td><td>${olsM.mae.toFixed(3)}</td><td>${manM.mae<=olsM.mae*1.001?'🟰':'🟢 OLS'}</td></tr>
+                <tr><td>R²</td><td>${manM.r2.toFixed(4)}</td><td style="font-weight:700;color:#059669;">${olsM.r2.toFixed(4)}</td><td>${manM.r2>=olsM.r2*.999?'🟰':'🟢 OLS'}</td></tr>
+            </table>
+        </div>
+
+        ${buildResidualHistogram(pts)}
+
+        ${buildTable(S.ols.slope,S.ols.intercept,true)}
+
+        <div class="btn-row">
+            <button onclick="goStep(3)">← Atras</button>
+            <button onclick="resetAll()">Reiniciar</button>
+            <button class="primary" onclick="newRound()">Nuevos Datos</button>
+        </div>
+        `;
+    }
+
+    sb.innerHTML=h;
+    bindSidebar();
+}
+
+function buildTable(m,b,showError) {
+    const pts=S.points;
+    if(!pts.length) return '';
+    let h=`<div class="pnl"><div class="pnl-t"><span class="tip" data-tip="Cada fila muestra un punto, su prediccion y el error.">Tabla de Datos</span> (${pts.length})</div><div class="ts"><table class="tbl">
+    <thead><tr><th data-tip="Numero del punto">#</th><th data-tip="Valor en el eje X (predictor)">X</th><th data-tip="Valor real en el eje Y (respuesta)">Y</th>`;
+    if(showError) h+=`<th data-tip="Valor predicho por la linea: ŷ = mx + b">ŷ</th><th data-tip="Residual = Y - ŷ. Positivo = punto arriba de la linea.">Error</th><th data-tip="Error al cuadrado. SSE es la suma de esta columna.">Error²</th>`;
+    h+=`</tr></thead><tbody>`;
+    for(let i=0;i<pts.length;i++){
+        const yh=m*pts[i].x+b;
+        const e=pts[i].y-yh;
+        const ec=Math.abs(e)>3?'#dc2626':Math.abs(e)>1.5?'#d97706':'#059669';
+        h+=`<tr><td>${i+1}</td><td>${pts[i].x.toFixed(1)}</td><td>${pts[i].y.toFixed(1)}</td>`;
+        if(showError) h+=`<td>${yh.toFixed(2)}</td><td style="color:${ec};font-weight:600;">${e.toFixed(2)}</td><td>${(e*e).toFixed(2)}</td>`;
+        h+=`</tr>`;
+    }
+    h+=`</tbody></table></div></div>`;
+    return h;
+}
+
+function buildResidualHistogram(pts) {
+    if(!S.ols || pts.length<3) return '';
+    const residuals=pts.map(p=>p.y-(S.ols.slope*p.x+S.ols.intercept));
+    const minR=Math.min(...residuals), maxR=Math.max(...residuals);
+    const range=maxR-minR||1;
+    const nBins=8;
+    const bins=new Array(nBins).fill(0);
+    for(const r of residuals){
+        let idx=Math.floor((r-minR)/range*nBins);
+        if(idx>=nBins) idx=nBins-1;
+        bins[idx]++;
+    }
+    const maxBin=Math.max(...bins);
+
+    let bars='';
+    for(let i=0;i<nBins;i++){
+        const pct=maxBin>0?(bins[i]/maxBin*100):0;
+        const center=minR+(i+0.5)/nBins*range;
+        const color=Math.abs(center)<range*.25?'#059669':Math.abs(center)<range*.5?'#d97706':'#dc2626';
+        bars+=`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;">
+            <div style="width:80%;height:${pct*.6}px;background:${color};border-radius:2px 2px 0 0;min-height:${bins[i]>0?2:0}px;"></div>
+            <div style="font-size:.55rem;color:#94a3b8;">${center.toFixed(1)}</div>
+        </div>`;
+    }
+
+    return `<div class="pnl">
+        <div class="pnl-t"><span class="tip" data-tip="Distribucion de los residuales del modelo OLS. Si los residuales se centran en 0 y son simetricos, el modelo es adecuado.">Histograma de Residuales (OLS)</span></div>
+        <div style="display:flex;align-items:flex-end;height:60px;gap:2px;border-bottom:1px solid #e2e8f0;padding-bottom:2px;">${bars}</div>
+        <div style="font-size:.65rem;color:#64748b;text-align:center;margin-top:4px;">Residual (Y - ŷ)</div>
+    </div>`;
+}
+
+/* ================================================================
+   SLIDER BINDINGS
+   ================================================================ */
+function bindSidebar() {
+    const sm=document.getElementById('slM');
+    if(sm) sm.addEventListener('input',function(){
+        S.manualSlope=parseFloat(this.value);
+        document.getElementById('valM').textContent=S.manualSlope.toFixed(2);
+        draw();
+        updateMetricsLive();
+    });
+    const sb=document.getElementById('slB');
+    if(sb) sb.addEventListener('input',function(){
+        S.manualIntercept=parseFloat(this.value);
+        document.getElementById('valB').textContent=S.manualIntercept.toFixed(2);
+        draw();
+        updateMetricsLive();
+    });
+}
+
+function updateMetricsLive() {
+    const m=computeMetrics(S.points,S.manualSlope,S.manualIntercept);
+    const eq=document.getElementById('mEq');
+    if(eq) eq.textContent=`y = ${S.manualSlope.toFixed(2)}x + ${S.manualIntercept.toFixed(2)}`;
+    const sse=document.getElementById('mSSE');
+    if(sse) sse.textContent=m.sse.toFixed(2);
+    const rmse=document.getElementById('mRMSE');
+    if(rmse) rmse.textContent=m.rmse.toFixed(3);
+    const mae=document.getElementById('mMAE');
+    if(mae) mae.textContent=m.mae.toFixed(3);
+    const r2=document.getElementById('mR2');
+    if(r2){ r2.textContent=m.r2.toFixed(4); r2.className='vl '+(m.r2>.8?'good':m.r2>.5?'warn':'bad'); }
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+function goStep(n) {
+    if(n===3 && S.points.length<3) return;
+    if(n===4) {
+        S.ols=computeOLS(S.points);
+        S.olsDone=true;
+        S.showResiduals=true;
+    }
+    if(n<4) { S.olsDone=false; S.ols=null; }
+    S.step=n;
+    updateProgress(); updateToolbar(); updateSidebar(); draw();
+    if(n===4) animateToOLS();
+}
+
+function resetAll() {
+    S.step=1; S.points=[]; S.manualSlope=1; S.manualIntercept=0;
+    S.ols=null; S.olsDone=false; S.showSquares=false; S.showResiduals=false;
+    updateProgress(); updateToolbar(); updateSidebar(); draw();
+}
+
+function newRound() {
+    S.step=2; S.ols=null; S.olsDone=false; S.manualSlope=1; S.manualIntercept=0;
+    S.showSquares=false; S.showResiduals=false;
+    genRandom();
+    updateProgress(); updateToolbar(); updateSidebar(); draw();
+}
+
+function updateProgress() {
+    const circles=document.querySelectorAll('.sc');
+    const conns=document.querySelectorAll('.scon');
+    circles.forEach((c,i)=>{ c.classList.remove('cur','done');
+        if(i+1===S.step) c.classList.add('cur');
+        else if(i+1<S.step) c.classList.add('done');
+    });
+    conns.forEach((c,i)=>{ c.classList.remove('done');
+        if(i+1<S.step) c.classList.add('done');
+    });
+}
+
+/* ================================================================
+   MOUSE INTERACTIONS
+   ================================================================ */
+function getMouse(e) {
+    const r=canvas.getBoundingClientRect();
+    const cx=e.clientX-r.left, cy=e.clientY-r.top;
+    return {cx,cy,...c2d(cx,cy)};
+}
+
+function findPt(cx,cy) {
+    for(let i=S.points.length-1;i>=0;i--){
+        const cp=d2c(S.points[i].x,S.points[i].y);
+        if(Math.hypot(cx-cp.x,cy-cp.y)<=PR+5) return i;
+    }
+    return -1;
+}
+
+canvas.addEventListener('mousedown',e=>{
+    if(S.step<2) return;
+    e.preventDefault();
+    const {cx,cy,x,y}=getMouse(e);
+    const idx=findPt(cx,cy);
+    if(e.button===2){ if(idx>=0){S.points.splice(idx,1);draw();updateSidebar();} return; }
+    if(idx>=0){ S.dragIdx=idx; S.dragging=true; canvas.style.cursor='grabbing'; }
+    else if(x>=XMIN&&x<=XMAX&&y>=YMIN&&y<=YMAX){ S.points.push({x,y}); draw(); updateSidebar(); }
+});
+
+canvas.addEventListener('mousemove',e=>{
+    if(S.step<2) return;
+    const {cx,cy,x,y}=getMouse(e);
+    if(S.dragging&&S.dragIdx>=0){
+        S.points[S.dragIdx]={x:Math.max(XMIN,Math.min(XMAX,x)),y:Math.max(YMIN,Math.min(YMAX,y))};
+        draw();
+    } else { canvas.style.cursor=findPt(cx,cy)>=0?'grab':'crosshair'; }
+});
+
+canvas.addEventListener('mouseup',()=>{ S.dragging=false; S.dragIdx=-1; canvas.style.cursor='crosshair'; });
+canvas.addEventListener('mouseleave',()=>{ S.dragging=false; S.dragIdx=-1; });
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+
+/* ================================================================
+   INIT
+   ================================================================ */
+window.addEventListener('resize',()=>{draw();});
+updateProgress(); updateToolbar(); updateSidebar(); draw();
+</script>
+</body>
+</html>

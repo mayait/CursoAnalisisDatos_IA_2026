@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso 10 · Tendencias Stack Overflow — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Caso 10</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Caso 10 · Comunidad tech</div>
+<h1>Tendencias Stack Overflow</h1>
+<div class="meta">
+<span>Series de tiempo y tags</span><span>Reto: Relación muchos a muchos y resampleo</span>
+<span class="">Disponible para el proyecto</span>
+</div>
+<div class="caja ia"><div class="titulo">Semanas del curso que sostienen este caso</div><p>
+<a href="semana-03.html">Semana 3 · Estadística descriptiva aplicada al negocio</a> · <a href="semana-09.html">Semana 9 · Comparación, variabilidad y causalidad</a>
+</p></div>
+<div class="caja aviso"><div class="titulo">Ajuste obligatorio</div><p>El caso viene del seminario de Python, donde el entregable era una API en FastAPI más un tablero en Streamlit. Aquí el entregable es un cuaderno reproducible: la API se sustituye por una función documentada dentro del cuaderno y el tablero queda como opcional.</p></div>
+<h2>Caso 10 · Análisis del Ecosistema de Stack Overflow: Tendencias Tecnológicas</h2>
+<h3>Seminario Análisis Exploratorio de Datos</h3>
+<p><strong>Riesgo de complejidad:</strong> 🟡 Medio · <strong>Técnica principal:</strong> Series de tiempo + Análisis de tags · <strong>Dominio:</strong> Comunidad Tech</p>
+<h3>🏢 Antecedentes</h3>
+<p><strong>Stack Overflow</strong> es la comunidad de programación más grande del mundo, con más de 58 millones de preguntas publicadas. El dataset público <strong>stacksample</strong> contiene una muestra representativa del 10 %:</p>
+<ul>
+<li><code>Questions.csv</code> — ~3,600,000 preguntas con título, fecha, puntuación y tags</li>
+<li><code>Tags.csv</code> — ~12,000,000 registros de etiquetas tecnológicas asociadas a cada pregunta</li>
+</ul>
+<p>La relación entre ambas tablas es <strong>muchos-a-muchos</strong>: una pregunta puede tener varios tags (ej. <code>python</code>, <code>pandas</code>, <code>dataframe</code>) y un tag aparece en miles de preguntas. Al hacer el merge sin filtrado previo, el DataFrame resultante tiene hasta ~12 millones de filas — demasiado para trabajar cómodamente. La estrategia de filtrado antes del join es obligatoria.</p>
+<p>Los datos de Stack Overflow son el <strong>termómetro real de adopción tecnológica</strong> en la industria del software. Los picos de preguntas sobre una tecnología indican creciente adopción; el declive sostenido señala obsolescencia.</p>
+<h3>🎯 Objetivo</h3>
+<p>Construir un dashboard de <strong>"Pulso Tecnológico"</strong> que permita analizar la popularidad y evolución de las tecnologías en la comunidad de desarrollo de software, comparar el crecimiento o declive de lenguajes y frameworks a lo largo del tiempo, e identificar cuáles son las preguntas mejor valoradas de cada tecnología.</p>
+<h3>📚 Actividades para el estudiante</h3>
+<p><strong>Resultado de aprendizaje:</strong> el estudiante diseña una estrategia de manejo de grandes volúmenes con relaciones muchos-a-muchos, construye series temporales por categoría de texto y desarrolla un producto de inteligencia tecnológica orientado a decisiones de formación.</p>
+<h4>Fase 1 – Comprensión del dominio</h4>
+<p>Investigar el rol de Stack Overflow como indicador de adopción tecnológica en la industria. Identificar qué tecnologías son actualmente más relevantes para el mercado laboral de software en Ecuador y América Latina. Formular hipótesis sobre tendencias esperadas: ¿Python vs. Java? ¿React vs. Angular? ¿Machine Learning vs. tecnologías tradicionales?</p>
+<h4>Fase 2 – Preparación y exploración de datos</h4>
+<p><strong>El reto de la relación muchos-a-muchos:</strong></p>
+<ol>
+<li>Documentar cuántas filas tiene <code>Questions.csv</code> y cuántas tiene <code>Tags.csv</code></li>
+<li>Explicar por qué hacer el merge directamente produce ~12 millones de filas</li>
+<li>Diseñar la estrategia de filtrado: filtrar preguntas desde 2015 <strong>antes</strong> del join — <code>questions[questions['CreationDate'].dt.year &gt;= 2015]</code></li>
+<li>Documentar cuántas filas tiene el DataFrame final tras el filtrado y el join</li>
+</ol>
+<p>Luego:</p>
+<ul>
+<li>Limpiar y normalizar los tags: <code>str.lower().str.strip()</code></li>
+<li>Construir la tabla de popularidad mensual por tag: número de preguntas por tag por mes</li>
+<li>Calcular el crecimiento porcentual anual de cada tag (año más reciente vs. año anterior)</li>
+<li>Identificar las 5 preguntas con mayor Score para cada tag de interés</li>
+</ul>
+<h4>Fase 3 – Análisis de tendencias</h4>
+<ul>
+<li>Identificar las 20 tecnologías más discutidas en el período 2015–2024</li>
+<li>Detectar las de mayor crecimiento y las de mayor declive</li>
+<li>Comparar la trayectoria temporal de tecnologías equivalentes (lenguajes de programación, frameworks web, bases de datos)</li>
+<li>¿Coincide el ranking real con las hipótesis formuladas en la Fase 1?</li>
+</ul>
+<h4>Fase 4 – Producto analítico</h4>
+<p><strong>Pipeline técnico:</strong></p>
+<ul>
+<li>Convertir <code>CreationDate</code> a datetime antes del filtrado</li>
+<li>Filtrar por año ≥ 2015 antes del merge para reducir el volumen</li>
+<li>Construir popularidad mensual: <code>groupby('Tag').resample('M')['Id'].count()</code></li>
+<li>Calcular crecimiento porcentual anual por tag</li>
+</ul>
+<p><strong>API (FastAPI):</strong></p>
+<ul>
+<li><code>GET /tags/top?n=20</code> — ranking de las 20 tecnologías más discutidas en el período</li>
+<li><code>GET /tags/{tag}/timeseries</code> — serie temporal mensual de preguntas de una tecnología específica</li>
+</ul>
+<p><strong>Dashboard (Streamlit):</strong></p>
+<ol>
+<li>Gráfico de barras del <strong>Top 20 de tecnologías</strong> más discutidas en el período seleccionado</li>
+<li>Gráfico de líneas interactivo con <strong>selectbox múltiple</strong> para comparar la popularidad de varias tecnologías (Python, JavaScript, Java, etc.) en el mismo eje temporal</li>
+<li>Tabla de las <strong>preguntas con mayor puntuación</strong> de la tecnología seleccionada, con enlace directo a Stack Overflow</li>
+</ol>
+<h4>Fase 5 – Interpretación y comunicación</h4>
+<p>¿Qué tecnologías están en auge y cuáles en declive según la comunidad? ¿Coincide con las hipótesis iniciales? ¿Qué implicaciones tiene esto para el <strong>diseño curricular de una carrera de software</strong>? Formular tres recomendaciones concretas de actualización curricular basadas en los datos.</p>
+<h3>🗂️ Dataset y recursos</h3>
+<table><thead><tr><th scope="col">Recurso</th><th scope="col">Enlace</th></tr></thead><tbody>
+<tr><td><strong>Dataset principal</strong></td><td><a href="https://www.kaggle.com/datasets/stackoverflow/stacksample">Stacksample — 10% of Stack Overflow Q&amp;A / Kaggle</a></td></tr>
+<tr><td>Archivos requeridos</td><td><code>Questions.csv</code> y <code>Tags.csv</code></td></tr>
+</tbody></table>
+<p><strong>Lecturas recomendadas:</strong></p>
+<ul>
+<li>Relaciones muchos-a-muchos en bases de datos: diagnóstico y tratamiento en Pandas</li>
+<li>Series de tiempo con <code>resample()</code> y <code>groupby()</code> en Pandas</li>
+<li>Análisis de tendencias: crecimiento porcentual y comparación de series</li>
+<li>Visualización de múltiples series temporales con Plotly (multiline chart con selectbox)</li>
+<li>Estrategias de filtrado previo al join en datasets de gran volumen</li>
+</ul>
+<h3>📋 Rúbrica de evaluación</h3>
+<table><thead><tr><th scope="col">Entregable</th><th scope="col">Semana</th><th scope="col">Peso</th><th scope="col">Criterios clave</th></tr></thead><tbody>
+<tr><td>Definición del problema</td><td>1</td><td>10 %</td><td>Claridad de la pregunta de negocio, historias de usuario, ficha del dataset</td></tr>
+<tr><td>Pipeline de datos</td><td>2</td><td>20 %</td><td>Reproducibilidad, manejo del reto específico, validaciones documentadas</td></tr>
+<tr><td>EDA + primer modelo</td><td>3</td><td>25 %</td><td>Profundidad del análisis, rigor estadístico, pertinencia del modelo y métricas</td></tr>
+<tr><td>Producto analítico completo</td><td>4</td><td>30 %</td><td>Comparación de ≥ 2 modelos, API y dashboard funcionales, documentación</td></tr>
+<tr><td>Defensa oral y trabajo en equipo</td><td>4</td><td>15 %</td><td>Dominio técnico, claridad, manejo de preguntas, colaboración</td></tr>
+</tbody></table>
+<div class="caja"><p><strong>Modalidad:</strong> grupos de 3 estudiantes · <strong>Entrega final:</strong> sesión final del seminario</p></div>
+<div class="nav-pie"><a href="casos.html"><span class="e">Índice</span><span class="t">Todos los casos</span></a><a class="sig" href="caso-01.html"><span class="e">Siguiente</span><span class="t">Caso 1</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Train/Test Split - Modelos Predictivos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.6; }
+
+        /* ===== TOOLTIP SYSTEM ===== */
+        .tip { position: relative; cursor: help; border-bottom: 1px dotted #94a3b8; font-weight: 500; }
+        .tip::after {
+            content: attr(data-tip);
+            position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+            background: #0f172a; color: #f1f5f9; font-size: 0.72rem; font-weight: 400;
+            padding: 8px 12px; border-radius: 8px; width: max-content; max-width: 260px;
+            line-height: 1.45; text-align: left; white-space: normal;
+            pointer-events: none; opacity: 0; transition: opacity .15s;
+            z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+            text-transform: none; letter-spacing: 0;
+        }
+        .tip::before {
+            content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+            border: 6px solid transparent; border-top-color: #0f172a;
+            pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 100;
+        }
+        .tip:hover::after, .tip:hover::before { opacity: 1; }
+
+        /* ===== HEADER ===== */
+        header { background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 20px 24px; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+        header h1 { font-size: 1.4rem; font-weight: 700; color: #0f172a; white-space: nowrap; }
+
+        /* ===== STEP PROGRESS ===== */
+        .step-progress { display: flex; align-items: center; gap: 0; }
+        .step-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .step-circle {
+            width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700; border: 2px solid #cbd5e1; color: #94a3b8; background: white; transition: all .2s;
+        }
+        .step-circle.current { border-color: #2563eb; background: #2563eb; color: white; }
+        .step-circle.completed { border-color: #059669; background: #059669; color: white; }
+        .step-label { font-size: 10px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+        .step-connector { width: 36px; height: 2px; background: #e2e8f0; margin-bottom: 18px; transition: background .2s; }
+        .step-connector.completed { background: #059669; }
+
+        /* ===== LAYOUT ===== */
+        .container { display: grid; grid-template-columns: 1fr 340px; height: calc(100vh - 80px); max-width: 1400px; margin: 0 auto; }
+        .canvas-area { padding: 16px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+        .canvas-wrap { flex: 1; background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; position: relative; overflow: hidden; min-height: 300px; }
+        canvas { display: block; width: 100%; height: 100%; }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar { background: #f8fafc; border-left: 1px solid #e2e8f0; overflow-y: auto; padding: 16px; }
+        .sidebar h2 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+
+        .panel { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+        .panel-title { font-size: .7rem; text-transform: uppercase; letter-spacing: 1.2px; color: #94a3b8; font-weight: 700; margin-bottom: 10px; }
+
+        /* Message box */
+        .msg { background: #eff6ff; border-left: 3px solid #3b82f6; padding: 12px; border-radius: 0 8px 8px 0; font-size: .82rem; color: #334155; line-height: 1.55; margin-bottom: 12px; }
+        .msg strong { color: #0f172a; }
+
+        /* Warning box */
+        .warn { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: .78rem; color: #92400e; margin-bottom: 12px; }
+
+        /* Metrics */
+        .metric { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; text-align: center; margin-bottom: 8px; }
+        .metric .lab { font-size: .65rem; text-transform: uppercase; letter-spacing: .8px; color: #94a3b8; font-weight: 600; }
+        .metric .val { font-size: 1.15rem; font-weight: 800; margin-top: 2px; font-family: 'SF Mono', 'Fira Code', monospace; color: #0f172a; }
+        .val.blue { color: #2563eb; }
+        .val.red { color: #dc2626; }
+        .val.green { color: #059669; }
+        .val.orange { color: #d97706; }
+
+        /* Status */
+        .status { padding: 10px; border-radius: 8px; text-align: center; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+        .status.good { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+        .status.bad { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .status.meh { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
+        /* Sliders */
+        .slider-row { margin-bottom: 12px; }
+        .slider-head { display: flex; justify-content: space-between; font-size: .8rem; margin-bottom: 6px; color: #475569; }
+        .slider-head .sv { font-weight: 700; color: #0f172a; background: #2563eb; color: #fff; padding: 1px 8px; border-radius: 4px; font-size: .75rem; }
+        input[type="range"] { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: #e2e8f0; border-radius: 3px; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #2563eb; cursor: pointer; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+
+        /* Buttons */
+        button { padding: 10px 16px; border-radius: 8px; border: 1px solid #d1d5db; background: #fff; color: #374151; font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .15s; }
+        button:hover { background: #f1f5f9; border-color: #94a3b8; }
+        button.primary { background: #2563eb; border-color: #2563eb; color: #fff; flex: 1; }
+        button.primary:hover { background: #1d4ed8; }
+        button.success { background: #059669; border-color: #059669; color: #fff; }
+        button.success:hover { background: #047857; }
+        .btn-row { display: flex; gap: 8px; margin-top: 8px; }
+
+        /* Summary card */
+        .summary { background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+        .summary h3 { font-size: .9rem; font-weight: 700; color: #065f46; margin-bottom: 8px; }
+        .summary p { font-size: .8rem; color: #166534; margin-bottom: 4px; }
+        .summary strong { color: #064e3b; }
+
+        /* Concept boxes */
+        .concept { background: #f8fafc; border-left: 3px solid #2563eb; border-radius: 0 6px 6px 0; padding: 10px 12px; margin-bottom: 8px; }
+        .concept .ct { font-size: .78rem; font-weight: 700; color: #0f172a; margin-bottom: 2px; }
+        .concept .cd { font-size: .72rem; color: #475569; line-height: 1.4; }
+
+        footer { text-align: center; padding: 12px; font-size: .7rem; color: #94a3b8; border-top: 1px solid #e2e8f0; }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; height: auto; }
+            .canvas-wrap { min-height: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Simulador Train / Test Split</h1>
+            <div class="step-progress">
+                <div class="step-item"><div class="step-circle current" data-step="1">1</div><div class="step-label">Observa</div></div>
+                <div class="step-connector"></div>
+                <div class="step-item"><div class="step-circle" data-step="2">2</div><div class="step-label">Divide</div></div>
+                <div class="step-connector"></div>
+                <div class="step-item"><div class="step-circle" data-step="3">3</div><div class="step-label">Entrena</div></div>
+                <div class="step-connector"></div>
+                <div class="step-item"><div class="step-circle" data-step="4">4</div><div class="step-label">Evalua</div></div>
+                <div class="step-connector"></div>
+                <div class="step-item"><div class="step-circle" data-step="5">5</div><div class="step-label">Curva U</div></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="canvas-area">
+            <div class="canvas-wrap">
+                <canvas id="mainCanvas"></canvas>
+            </div>
+        </div>
+        <aside class="sidebar" id="sidebar"></aside>
+    </div>
+
+    <footer>Simulador educativo — Modelos Predictivos — Train/Test Split y Sesgo-Varianza</footer>
+
+<script>
+/* ================================================================
+   STATE
+   ================================================================ */
+const S = {
+    step: 1,
+    data: [],            // {x, y}
+    trainIdx: new Set(),
+    ratio: 70,           // percent for train
+    degree: 3,
+    coeff: [],           // polynomial coefficients (on normalized x)
+    xNormMin: 0,
+    xNormRange: 1,
+    trainMSE: 0,
+    testMSE: 0,
+    // For step 5: pre-computed errors for degrees 1..12
+    allErrors: [],       // [{degree, trainRMSE, testRMSE}]
+};
+
+const NUM_POINTS = 80;
+const MAX_DEGREE = 12;
+
+const canvas = document.getElementById('mainCanvas');
+const ctx = canvas.getContext('2d');
+
+/* ================================================================
+   CANVAS SIZING (DPR-aware)
+   ================================================================ */
+function dpr() { return window.devicePixelRatio || 1; }
+function cssW() { return canvas.width / dpr(); }
+function cssH() { return canvas.height / dpr(); }
+
+function resizeCanvas() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width * dpr();
+    canvas.height = rect.height * dpr();
+    ctx.setTransform(dpr(), 0, 0, dpr(), 0, 0);
+}
+
+/* ================================================================
+   DATA GENERATION
+   ================================================================ */
+function generateData() {
+    S.data = [];
+    // True function: y = 0.5 + 1.2x - 0.3x^2 + 0.08x^3 + noise
+    for (let i = 0; i < NUM_POINTS; i++) {
+        const x = -3 + Math.random() * 6;
+        const clean = 0.5 + 1.2*x - 0.3*x*x + 0.08*x*x*x;
+        const noise = (Math.random() - 0.5) * 1.6;
+        S.data.push({ x, y: clean + noise });
+    }
+    S.data.sort((a,b) => a.x - b.x);
+    splitData();
+}
+
+function splitData() {
+    S.trainIdx.clear();
+    const n = S.data.length;
+    const trainCount = Math.round(n * S.ratio / 100);
+    // Shuffle indices
+    const idx = Array.from({length: n}, (_,i) => i);
+    for (let i = n-1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i+1));
+        [idx[i], idx[j]] = [idx[j], idx[i]];
+    }
+    for (let i = 0; i < trainCount; i++) S.trainIdx.add(idx[i]);
+}
+
+/* ================================================================
+   POLYNOMIAL FITTING  (Normalized x, least-squares via normal eq.)
+   ================================================================ */
+function fitPoly(degree, dataIndices) {
+    const pts = dataIndices ? S.data.filter((_,i) => dataIndices.has(i)) : S.data;
+    if (pts.length <= degree) return null;
+
+    const xs = pts.map(p => p.x);
+    const xMin = Math.min(...xs);
+    const xMax = Math.max(...xs);
+    const xRange = (xMax - xMin) || 1;
+
+    // Normalize to [-1, 1]
+    const xn = xs.map(x => 2*(x - xMin)/xRange - 1);
+    const ys = pts.map(p => p.y);
+
+    const m = degree + 1;
+
+    // Build X^T X and X^T y  (normal equations)
+    const XTX = Array.from({length: m}, () => new Float64Array(m));
+    const XTy = new Float64Array(m);
+
+    for (let k = 0; k < xn.length; k++) {
+        const row = new Float64Array(m);
+        for (let j = 0; j < m; j++) row[j] = Math.pow(xn[k], j);
+        for (let i = 0; i < m; i++) {
+            for (let j = 0; j < m; j++) XTX[i][j] += row[i] * row[j];
+            XTy[i] += row[i] * ys[k];
+        }
+    }
+
+    // Solve via Gauss-Jordan with partial pivoting
+    const A = XTX.map((r,i) => [...r, XTy[i]]);  // augmented
+    for (let col = 0; col < m; col++) {
+        let best = col;
+        for (let r = col+1; r < m; r++) if (Math.abs(A[r][col]) > Math.abs(A[best][col])) best = r;
+        [A[col], A[best]] = [A[best], A[col]];
+        if (Math.abs(A[col][col]) < 1e-12) continue;
+        for (let r = col+1; r < m; r++) {
+            const f = A[r][col] / A[col][col];
+            for (let j = col; j <= m; j++) A[r][j] -= f * A[col][j];
+        }
+    }
+    const c = new Float64Array(m);
+    for (let i = m-1; i >= 0; i--) {
+        c[i] = A[i][m];
+        for (let j = i+1; j < m; j++) c[i] -= A[i][j] * c[j];
+        c[i] /= A[i][i];
+    }
+
+    return { coeff: Array.from(c), xMin, xRange };
+}
+
+function evalPoly(model, x) {
+    const xn = 2*(x - model.xMin)/model.xRange - 1;
+    let r = 0;
+    for (let i = 0; i < model.coeff.length; i++) r += model.coeff[i] * Math.pow(xn, i);
+    return r;
+}
+
+function computeRMSE(model, indices) {
+    let sse = 0, n = 0;
+    S.data.forEach((d,i) => {
+        if (!indices.has(i)) return;
+        const e = d.y - evalPoly(model, d.x);
+        sse += e*e;
+        n++;
+    });
+    return n > 0 ? Math.sqrt(sse / n) : 0;
+}
+
+function fitCurrent() {
+    const model = fitPoly(S.degree, S.trainIdx);
+    if (!model) return;
+    S.coeff = model.coeff;
+    S.xNormMin = model.xMin;
+    S.xNormRange = model.xRange;
+
+    const trainSet = S.trainIdx;
+    const testSet = new Set();
+    S.data.forEach((_,i) => { if (!trainSet.has(i)) testSet.add(i); });
+
+    S.trainMSE = computeRMSE(model, trainSet);
+    S.testMSE = computeRMSE(model, testSet);
+}
+
+function computeAllErrors() {
+    S.allErrors = [];
+    const testSet = new Set();
+    S.data.forEach((_,i) => { if (!S.trainIdx.has(i)) testSet.add(i); });
+
+    for (let d = 1; d <= MAX_DEGREE; d++) {
+        const model = fitPoly(d, S.trainIdx);
+        if (!model) { S.allErrors.push({degree:d, trainRMSE:99, testRMSE:99}); continue; }
+        S.allErrors.push({
+            degree: d,
+            trainRMSE: computeRMSE(model, S.trainIdx),
+            testRMSE: computeRMSE(model, testSet)
+        });
+    }
+}
+
+/* ================================================================
+   COORDINATE HELPERS
+   ================================================================ */
+const PAD = { top: 30, right: 30, bottom: 50, left: 60 };
+
+function getDataBounds() {
+    const xs = S.data.map(d => d.x);
+    const ys = S.data.map(d => d.y);
+    const xMin = Math.min(...xs) - 0.5;
+    const xMax = Math.max(...xs) + 0.5;
+    let yMin = Math.min(...ys) - 0.5;
+    let yMax = Math.max(...ys) + 0.5;
+    // Expand for curve
+    if (S.coeff.length > 0 && S.step >= 3) {
+        const model = {coeff: S.coeff, xMin: S.xNormMin, xRange: S.xNormRange};
+        for (let i = 0; i <= 100; i++) {
+            const x = xMin + (i/100)*(xMax - xMin);
+            const y = evalPoly(model, x);
+            if (isFinite(y)) { yMin = Math.min(yMin, y - 0.3); yMax = Math.max(yMax, y + 0.3); }
+        }
+    }
+    return {xMin, xMax, yMin, yMax};
+}
+
+function plotW() { return cssW() - PAD.left - PAD.right; }
+function plotH() { return cssH() - PAD.top - PAD.bottom; }
+
+function d2c(x, y, b) {
+    const px = PAD.left + ((x - b.xMin) / (b.xMax - b.xMin)) * plotW();
+    const py = PAD.top + (1 - (y - b.yMin) / (b.yMax - b.yMin)) * plotH();
+    return {px, py};
+}
+
+/* ================================================================
+   DRAWING FUNCTIONS
+   ================================================================ */
+function drawBackground(b) {
+    const w = cssW(), h = cssH();
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+
+    // Grid
+    ctx.strokeStyle = '#f1f5f9';
+    ctx.lineWidth = 1;
+
+    // X grid lines
+    const xStep = niceStep(b.xMax - b.xMin, 8);
+    for (let x = Math.ceil(b.xMin/xStep)*xStep; x <= b.xMax; x += xStep) {
+        const {px} = d2c(x, 0, b);
+        ctx.beginPath(); ctx.moveTo(px, PAD.top); ctx.lineTo(px, PAD.top + plotH()); ctx.stroke();
+    }
+    // Y grid lines
+    const yStep = niceStep(b.yMax - b.yMin, 6);
+    for (let y = Math.ceil(b.yMin/yStep)*yStep; y <= b.yMax; y += yStep) {
+        const {py} = d2c(0, y, b);
+        ctx.beginPath(); ctx.moveTo(PAD.left, py); ctx.lineTo(PAD.left + plotW(), py); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1.5;
+    // x-axis
+    if (b.yMin <= 0 && b.yMax >= 0) {
+        const {py} = d2c(0, 0, b);
+        ctx.beginPath(); ctx.moveTo(PAD.left, py); ctx.lineTo(PAD.left+plotW(), py); ctx.stroke();
+    }
+    // y-axis
+    if (b.xMin <= 0 && b.xMax >= 0) {
+        const {px} = d2c(0, 0, b);
+        ctx.beginPath(); ctx.moveTo(px, PAD.top); ctx.lineTo(px, PAD.top+plotH()); ctx.stroke();
+    }
+
+    // Tick labels
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '11px system-ui';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    for (let x = Math.ceil(b.xMin/xStep)*xStep; x <= b.xMax; x += xStep) {
+        const {px} = d2c(x, 0, b);
+        ctx.fillText(x.toFixed(1), px, PAD.top + plotH() + 8);
+    }
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    for (let y = Math.ceil(b.yMin/yStep)*yStep; y <= b.yMax; y += yStep) {
+        const {py} = d2c(0, y, b);
+        ctx.fillText(y.toFixed(1), PAD.left - 8, py);
+    }
+
+    // Axis labels
+    ctx.fillStyle = '#64748b';
+    ctx.font = 'bold 12px system-ui';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText('X', PAD.left + plotW()/2, PAD.top + plotH() + 30);
+    ctx.save();
+    ctx.translate(16, PAD.top + plotH()/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText('Y', 0, 0);
+    ctx.restore();
+
+    // Border
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(PAD.left, PAD.top, plotW(), plotH());
+}
+
+function niceStep(range, maxTicks) {
+    const rough = range / maxTicks;
+    const mag = Math.pow(10, Math.floor(Math.log10(rough)));
+    const res = rough / mag;
+    if (res <= 1) return mag;
+    if (res <= 2) return 2*mag;
+    if (res <= 5) return 5*mag;
+    return 10*mag;
+}
+
+function drawPoints(b) {
+    S.data.forEach((d, i) => {
+        const {px, py} = d2c(d.x, d.y, b);
+        const isTrain = S.trainIdx.has(i);
+
+        if (S.step === 1) {
+            ctx.fillStyle = '#94a3b8';
+            ctx.strokeStyle = '#64748b';
+        } else if (isTrain) {
+            ctx.fillStyle = '#3b82f6';
+            ctx.strokeStyle = '#1d4ed8';
+        } else {
+            ctx.fillStyle = '#ef4444';
+            ctx.strokeStyle = '#b91c1c';
+        }
+
+        ctx.beginPath();
+        ctx.arc(px, py, 5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // Test points get an X marker in step 2+
+        if (!isTrain && S.step >= 2) {
+            ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(px-2.5, py-2.5); ctx.lineTo(px+2.5, py+2.5); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(px+2.5, py-2.5); ctx.lineTo(px-2.5, py+2.5); ctx.stroke();
+        }
+    });
+}
+
+function drawCurve(b) {
+    if (S.coeff.length === 0) return;
+    const model = {coeff: S.coeff, xMin: S.xNormMin, xRange: S.xNormRange};
+
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    let started = false;
+    for (let i = 0; i <= 200; i++) {
+        const x = b.xMin + (i/200)*(b.xMax - b.xMin);
+        const y = evalPoly(model, x);
+        if (!isFinite(y)) continue;
+        // Clamp to visible area
+        const cy = Math.max(b.yMin - 1, Math.min(b.yMax + 1, y));
+        const {px, py} = d2c(x, cy, b);
+        if (!started) { ctx.moveTo(px, py); started = true; }
+        else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+}
+
+function drawResiduals(b, showTrain, showTest) {
+    if (S.coeff.length === 0) return;
+    const model = {coeff: S.coeff, xMin: S.xNormMin, xRange: S.xNormRange};
+
+    S.data.forEach((d, i) => {
+        const isTrain = S.trainIdx.has(i);
+        if (isTrain && !showTrain) return;
+        if (!isTrain && !showTest) return;
+
+        const yPred = evalPoly(model, d.x);
+        if (!isFinite(yPred)) return;
+
+        const {px: px1, py: py1} = d2c(d.x, d.y, b);
+        const {px: px2, py: py2} = d2c(d.x, yPred, b);
+
+        ctx.strokeStyle = isTrain ? 'rgba(37,99,235,0.35)' : 'rgba(239,68,68,0.45)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3,3]);
+        ctx.beginPath(); ctx.moveTo(px1, py1); ctx.lineTo(px2, py2); ctx.stroke();
+        ctx.setLineDash([]);
+    });
+}
+
+function drawLegend(b, items) {
+    const x = PAD.left + 10;
+    let y = PAD.top + 10;
+    ctx.font = '12px system-ui';
+    items.forEach(([color, label]) => {
+        ctx.fillStyle = color;
+        ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#475569';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(label, x + 12, y);
+        y += 20;
+    });
+}
+
+/* ===== U-CURVE (Step 5) ===== */
+function drawUCurve() {
+    const w = cssW(), h = cssH();
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, w, h);
+
+    if (S.allErrors.length === 0) return;
+
+    const pad = {top: 40, right: 40, bottom: 55, left: 65};
+    const pw = w - pad.left - pad.right;
+    const ph = h - pad.top - pad.bottom;
+
+    // Bounds
+    const maxErr = Math.max(...S.allErrors.map(e => Math.max(e.trainRMSE, e.testRMSE))) * 1.1;
+    const minErr = 0;
+    const degrees = S.allErrors.map(e => e.degree);
+
+    function ex(d) { return pad.left + ((d-1)/(MAX_DEGREE-1)) * pw; }
+    function ey(e) { return pad.top + (1 - (e - minErr)/(maxErr - minErr)) * ph; }
+
+    // Grid
+    ctx.strokeStyle = '#f1f5f9';
+    ctx.lineWidth = 1;
+    for (let d = 1; d <= MAX_DEGREE; d++) {
+        ctx.beginPath(); ctx.moveTo(ex(d), pad.top); ctx.lineTo(ex(d), pad.top+ph); ctx.stroke();
+    }
+    const yStep = niceStep(maxErr, 6);
+    for (let v = 0; v <= maxErr; v += yStep) {
+        ctx.beginPath(); ctx.moveTo(pad.left, ey(v)); ctx.lineTo(pad.left+pw, ey(v)); ctx.stroke();
+    }
+
+    // Border
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.strokeRect(pad.left, pad.top, pw, ph);
+
+    // Find optimal
+    let optIdx = 0;
+    S.allErrors.forEach((e,i) => { if (e.testRMSE < S.allErrors[optIdx].testRMSE) optIdx = i; });
+
+    // Sweet spot band
+    const optD = S.allErrors[optIdx].degree;
+    const bandL = ex(Math.max(1, optD - 0.5));
+    const bandR = ex(Math.min(MAX_DEGREE, optD + 0.5));
+    ctx.fillStyle = 'rgba(5,150,105,0.08)';
+    ctx.fillRect(bandL, pad.top, bandR - bandL, ph);
+
+    // Draw train line
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    S.allErrors.forEach((e,i) => {
+        const x = ex(e.degree), y = ey(e.trainRMSE);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    // Dots
+    S.allErrors.forEach(e => {
+        ctx.fillStyle = '#2563eb';
+        ctx.beginPath(); ctx.arc(ex(e.degree), ey(e.trainRMSE), 4, 0, Math.PI*2); ctx.fill();
+    });
+
+    // Draw test line
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    S.allErrors.forEach((e,i) => {
+        const x = ex(e.degree), y = ey(e.testRMSE);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    // Dots
+    S.allErrors.forEach(e => {
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath(); ctx.arc(ex(e.degree), ey(e.testRMSE), 4, 0, Math.PI*2); ctx.fill();
+    });
+
+    // Optimal star
+    const optX = ex(optD);
+    const optY = ey(S.allErrors[optIdx].testRMSE);
+    ctx.fillStyle = '#059669';
+    ctx.beginPath(); ctx.arc(optX, optY, 8, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 11px system-ui';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('★', optX, optY);
+
+    // X ticks
+    ctx.fillStyle = '#64748b';
+    ctx.font = '11px system-ui';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (let d = 1; d <= MAX_DEGREE; d++) {
+        ctx.fillText(d, ex(d), pad.top + ph + 8);
+    }
+    // Y ticks
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (let v = 0; v <= maxErr; v += yStep) {
+        ctx.fillText(v.toFixed(2), pad.left - 8, ey(v));
+    }
+
+    // Axis labels
+    ctx.fillStyle = '#475569';
+    ctx.font = 'bold 12px system-ui';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText('Grado del Polinomio', pad.left + pw/2, pad.top + ph + 30);
+    ctx.save();
+    ctx.translate(16, pad.top + ph/2);
+    ctx.rotate(-Math.PI/2);
+    ctx.fillText('RMSE', 0, 0);
+    ctx.restore();
+
+    // Legend
+    ctx.font = '12px system-ui';
+    ctx.textAlign = 'left';
+    const lx = pad.left + pw - 130, ly = pad.top + 12;
+    ctx.fillStyle = '#2563eb';
+    ctx.fillRect(lx, ly-5, 14, 3);
+    ctx.fillStyle = '#334155';
+    ctx.fillText('Error Train', lx + 20, ly);
+    ctx.fillStyle = '#dc2626';
+    ctx.fillRect(lx, ly+15, 14, 3);
+    ctx.fillStyle = '#334155';
+    ctx.fillText('Error Test', lx + 20, ly + 20);
+
+    // Title
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 14px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText('Curva Sesgo-Varianza (U-Curve)', w/2, 16);
+
+    // Underfitting / Overfitting labels
+    ctx.font = '11px system-ui';
+    ctx.fillStyle = '#d97706';
+    ctx.textAlign = 'left';
+    ctx.fillText('← Underfitting', pad.left + 5, pad.top + ph + 42);
+    ctx.fillStyle = '#dc2626';
+    ctx.textAlign = 'right';
+    ctx.fillText('Overfitting →', pad.left + pw - 5, pad.top + ph + 42);
+    ctx.fillStyle = '#059669';
+    ctx.textAlign = 'center';
+    ctx.fillText('Optimo', optX, pad.top + ph + 42);
+}
+
+/* ================================================================
+   RENDER (dispatches by step)
+   ================================================================ */
+function render() {
+    resizeCanvas();
+    if (S.step === 5) {
+        drawUCurve();
+        return;
+    }
+
+    const b = getDataBounds();
+    drawBackground(b);
+
+    if (S.step >= 3) {
+        drawCurve(b);
+        if (S.step === 3) drawResiduals(b, true, false);
+        if (S.step === 4) drawResiduals(b, true, true);
+    }
+
+    drawPoints(b);
+
+    // Legend
+    if (S.step === 1) {
+        drawLegend(b, [['#94a3b8', 'Todos los datos']]);
+    } else if (S.step === 2) {
+        drawLegend(b, [['#3b82f6', 'Entrenamiento'], ['#ef4444', 'Prueba']]);
+    } else {
+        drawLegend(b, [['#3b82f6', 'Train'], ['#ef4444', 'Test'], ['#059669', `Polinomio grado ${S.degree}`]]);
+    }
+
+    // Title on canvas
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 14px system-ui';
+    ctx.textAlign = 'center';
+    const titles = ['', 'Paso 1: Observa los Datos', 'Paso 2: Train / Test Split', 'Paso 3: Ajuste del Modelo', 'Paso 4: Evaluacion en Test'];
+    ctx.fillText(titles[S.step], cssW()/2, 16);
+}
+
+/* ================================================================
+   SIDEBAR (rebuilt on each state change)
+   ================================================================ */
+function updateSidebar() {
+    const sb = document.getElementById('sidebar');
+    const trainN = S.trainIdx.size;
+    const testN = S.data.length - trainN;
+    let h = '';
+
+    if (S.step === 1) {
+        h = `
+        <h2>Paso 1: Observa los Datos</h2>
+        <div class="msg">Estos son tus datos. Hay <strong>${S.data.length} observaciones</strong> generadas a partir de una funcion
+        cubica con ruido aleatorio. Aun no sabemos que modelo usar ni como evaluarlo.</div>
+        <div class="panel">
+            <div class="panel-title">Informacion</div>
+            <div class="metric"><div class="lab">Total de Puntos</div><div class="val">${S.data.length}</div></div>
+            <div class="metric"><div class="lab">Rango X</div><div class="val">-3.0 a 3.0</div></div>
+        </div>
+        <div class="concept" style="border-left-color:#3b82f6;">
+            <div class="ct">¿Por que dividir los datos?</div>
+            <div class="cd">Si evaluamos un modelo con los mismos datos que uso para aprender, no sabremos si realmente aprendio patrones o solo memorizo.</div>
+        </div>
+        <button class="primary" onclick="goStep(2)" style="width:100%">Siguiente: Dividir Datos →</button>
+        `;
+    }
+    else if (S.step === 2) {
+        h = `
+        <h2>Paso 2: Divide los Datos</h2>
+        <div class="msg">Los puntos <strong style="color:#2563eb">AZULES</strong> son de
+        <span class="tip" data-tip="Son los datos que el modelo usara para aprender los patrones. El algoritmo 've' estos puntos.">entrenamiento</span>.
+        Los <strong style="color:#dc2626">ROJOS</strong> son de
+        <span class="tip" data-tip="Son datos que el modelo NUNCA ve durante el entrenamiento. Sirven para verificar si generaliza bien.">prueba</span>.
+        El modelo NUNCA ve los datos rojos durante el entrenamiento.</div>
+
+        <div class="panel">
+            <div class="panel-title"><span class="tip" data-tip="La proporcion de datos que usas para entrenar vs. probar. Un 70/30 es lo mas comun en la practica.">Ratio Train/Test</span></div>
+            <div class="slider-row">
+                <div class="slider-head"><span>% Entrenamiento</span><span class="sv" id="ratioVal">${S.ratio}%</span></div>
+                <input type="range" min="50" max="90" value="${S.ratio}" id="ratioSlider">
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Distribucion</div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Datos que el modelo usara para calcular sus parametros.">Entrenamiento</span></div><div class="val blue">${trainN} puntos</div></div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Datos reservados para medir la calidad real del modelo.">Prueba</span></div><div class="val red">${testN} puntos</div></div>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="reshuffle()">Nuevo Split</button>
+            <button class="primary" onclick="goStep(3)">Siguiente →</button>
+        </div>
+        `;
+    }
+    else if (S.step === 3) {
+        h = `
+        <h2>Paso 3: Entrena el Modelo</h2>
+        <div class="msg">El modelo se ajusta <strong>SOLO</strong> con los datos azules. Mueve el slider para cambiar la
+        <span class="tip" data-tip="Mayor grado = curva mas flexible. Grado 1 es una recta, grado 2 una parabola, etc.">complejidad</span>
+        del polinomio y observa como cambia el ajuste.</div>
+
+        <div class="panel">
+            <div class="panel-title"><span class="tip" data-tip="La potencia maxima del polinomio. Un grado mayor permite capturar patrones mas complejos pero tambien memorizar ruido.">Grado del Polinomio</span></div>
+            <div class="slider-row">
+                <div class="slider-head"><span>Grado</span><span class="sv" id="degreeVal">${S.degree}</span></div>
+                <input type="range" min="1" max="${MAX_DEGREE}" value="${S.degree}" id="degreeSlider">
+            </div>
+        </div>
+
+        ${S.degree >= 10 ? '<div class="warn">⚠️ Un modelo tan complejo con pocos datos puede memorizar el ruido en vez de aprender patrones reales.</div>' : ''}
+
+        <div class="panel">
+            <div class="panel-title">Error de Entrenamiento</div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Mean Squared Error: promedio de las diferencias al cuadrado entre valores reales y predichos.">MSE</span></div><div class="val">${S.trainMSE.toFixed(4)}</div></div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Raiz del MSE. Esta en las mismas unidades que Y, mas facil de interpretar.">RMSE</span></div><div class="val">${Math.sqrt(S.trainMSE).toFixed(4)}</div></div>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(2)">← Atras</button>
+            <button class="primary" onclick="goStep(4)">Evaluar en Test →</button>
+        </div>
+        `;
+    }
+    else if (S.step === 4) {
+        const gap = S.testMSE - S.trainMSE;
+        const ratio = S.testMSE / (S.trainMSE || 0.001);
+        let statusCls = 'good', statusTxt = 'Buen Ajuste';
+        if (ratio > 2.0) { statusCls = 'bad'; statusTxt = 'Overfitting'; }
+        else if (ratio > 1.5) { statusCls = 'meh'; statusTxt = 'Overfitting Leve'; }
+        if (S.trainMSE > 0.8 && S.testMSE > 0.8) { statusCls = 'meh'; statusTxt = 'Underfitting'; }
+
+        h = `
+        <h2>Paso 4: Evalua en Test</h2>
+        <div class="msg">Ahora evaluamos con los datos <strong style="color:#dc2626">ROJOS</strong> que el modelo nunca vio.
+        Si el error de prueba es mucho mayor que el de entrenamiento, el modelo <span class="tip" data-tip="El modelo memorizo detalles especificos del conjunto de entrenamiento (incluido el ruido) en vez de aprender el patron general.">memorizo</span> en vez de aprender.</div>
+
+        <div class="status ${statusCls}">${statusTxt}</div>
+
+        <div class="panel">
+            <div class="panel-title"><span class="tip" data-tip="La potencia maxima del polinomio. Cambiar esto reajusta el modelo.">Grado del Polinomio</span></div>
+            <div class="slider-row">
+                <div class="slider-head"><span>Grado</span><span class="sv" id="degreeVal">${S.degree}</span></div>
+                <input type="range" min="1" max="${MAX_DEGREE}" value="${S.degree}" id="degreeSlider">
+            </div>
+        </div>
+
+        ${S.degree >= 10 ? '<div class="warn">⚠️ Modelo muy complejo — observa como el error de test se dispara.</div>' : ''}
+
+        <div class="panel">
+            <div class="panel-title">Comparacion de Errores</div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Error del modelo en los datos que uso para aprender.">RMSE Train</span></div><div class="val blue">${Math.sqrt(S.trainMSE).toFixed(4)}</div></div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Error del modelo en datos nuevos que nunca vio. Este es el error real.">RMSE Test</span></div><div class="val ${statusCls === 'good' ? 'green' : statusCls === 'meh' ? 'orange' : 'red'}">${Math.sqrt(S.testMSE).toFixed(4)}</div></div>
+            <div class="metric"><div class="lab"><span class="tip" data-tip="Diferencia entre RMSE test y RMSE train. Valores altos indican overfitting.">Brecha</span></div><div class="val">${(Math.sqrt(S.testMSE) - Math.sqrt(S.trainMSE)).toFixed(4)}</div></div>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(3)">← Atras</button>
+            <button class="success" onclick="goStep(5)">Ver Curva U →</button>
+        </div>
+        `;
+    }
+    else if (S.step === 5) {
+        const opt = S.allErrors.reduce((best, e) => e.testRMSE < best.testRMSE ? e : best, S.allErrors[0]);
+
+        h = `
+        <h2>Paso 5: La Curva en U</h2>
+        <div class="msg">Esta es la <span class="tip" data-tip="La forma en U clasica muestra como el error de test primero baja (mejor modelo) pero luego sube (overfitting).">curva de sesgo-varianza</span>.
+        A la izquierda hay <span class="tip" data-tip="El modelo es demasiado simple y no captura los patrones.">underfitting</span>,
+        a la derecha <span class="tip" data-tip="El modelo memoriza ruido y pierde generalizacion.">overfitting</span>.</div>
+
+        <div class="summary">
+            <h3>Resumen de Resultados</h3>
+            <p><strong>Grado Optimo:</strong> ${opt.degree}</p>
+            <p><strong>RMSE Minimo (Test):</strong> ${opt.testRMSE.toFixed(4)}</p>
+            <p><strong>Conclusion:</strong> Con estos ${S.data.length} datos y un split ${S.ratio}/${100-S.ratio},
+            un polinomio de grado ${opt.degree} ofrece el mejor balance entre sesgo y varianza.</p>
+        </div>
+
+        <div class="panel">
+            <div class="panel-title">Todos los Grados</div>
+            <div style="max-height:180px;overflow-y:auto;font-size:.75rem;">
+                <table style="width:100%;border-collapse:collapse;">
+                    <tr style="color:#94a3b8;font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;">
+                        <th style="padding:4px;text-align:center;">Grado</th>
+                        <th style="padding:4px;text-align:center;">Train</th>
+                        <th style="padding:4px;text-align:center;">Test</th>
+                    </tr>
+                    ${S.allErrors.map(e => `
+                        <tr style="border-top:1px solid #f1f5f9;${e.degree === opt.degree ? 'background:#f0fdf4;font-weight:700;' : ''}">
+                            <td style="padding:3px 4px;text-align:center;">${e.degree}${e.degree === opt.degree ? ' ★' : ''}</td>
+                            <td style="padding:3px 4px;text-align:center;color:#2563eb;">${e.trainRMSE.toFixed(4)}</td>
+                            <td style="padding:3px 4px;text-align:center;color:#dc2626;">${e.testRMSE.toFixed(4)}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            </div>
+        </div>
+
+        <div class="concept" style="border-left-color:#d97706;">
+            <div class="ct">Underfitting (Sesgo Alto)</div>
+            <div class="cd">Modelo demasiado simple. Ambos errores altos. No captura el patron.</div>
+        </div>
+        <div class="concept" style="border-left-color:#059669;">
+            <div class="ct">Punto Optimo</div>
+            <div class="cd">Balance perfecto entre complejidad y generalizacion.</div>
+        </div>
+        <div class="concept" style="border-left-color:#dc2626;">
+            <div class="ct">Overfitting (Varianza Alta)</div>
+            <div class="cd">Modelo memoriza el ruido. Error train baja pero error test sube.</div>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(4)">← Atras</button>
+            <button onclick="resetAll()">Reiniciar</button>
+            <button class="primary" onclick="newData()">Nuevos Datos</button>
+        </div>
+        `;
+    }
+
+    sb.innerHTML = h;
+    bindSliders();
+}
+
+/* ================================================================
+   SLIDER BINDINGS (re-bind after sidebar rebuild)
+   ================================================================ */
+function bindSliders() {
+    const rs = document.getElementById('ratioSlider');
+    if (rs) {
+        rs.addEventListener('input', function() {
+            S.ratio = parseInt(this.value);
+            const rv = document.getElementById('ratioVal');
+            if (rv) rv.textContent = S.ratio + '%';
+            splitData();
+            fitCurrent();
+            render();
+            // Update counts without full sidebar rebuild
+            updateSidebar();
+        });
+    }
+
+    const ds = document.getElementById('degreeSlider');
+    if (ds) {
+        ds.addEventListener('input', function() {
+            S.degree = parseInt(this.value);
+            fitCurrent();
+            render();
+            updateSidebar();
+        });
+    }
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+function goStep(n) {
+    if (n === 3 && S.step < 3) {
+        fitCurrent();
+    }
+    if (n === 5) {
+        computeAllErrors();
+    }
+    S.step = n;
+    updateProgress();
+    updateSidebar();
+    render();
+}
+
+function reshuffle() {
+    splitData();
+    fitCurrent();
+    render();
+    updateSidebar();
+}
+
+function resetAll() {
+    S.step = 1;
+    S.degree = 3;
+    S.ratio = 70;
+    S.coeff = [];
+    S.allErrors = [];
+    generateData();
+    fitCurrent();
+    updateProgress();
+    updateSidebar();
+    render();
+}
+
+function newData() {
+    generateData();
+    computeAllErrors();
+    render();
+    updateSidebar();
+}
+
+function updateProgress() {
+    document.querySelectorAll('.step-circle').forEach((c, i) => {
+        c.classList.remove('current', 'completed');
+        if (i+1 === S.step) c.classList.add('current');
+        else if (i+1 < S.step) c.classList.add('completed');
+    });
+    document.querySelectorAll('.step-connector').forEach((c, i) => {
+        c.classList.remove('completed');
+        if (i+1 < S.step) c.classList.add('completed');
+    });
+}
+
+/* ================================================================
+   INIT
+   ================================================================ */
+window.addEventListener('resize', render);
+generateData();
+fitCurrent();
+updateProgress();
+updateSidebar();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+producto_id,nombre,categoria,subcategoria,costo_unitario,precio_lista
+P0001,Gaseosas A,Bebidas,Gaseosas,0.56,1.12
+P0002,Gaseosas B,Bebidas,Gaseosas,0.52,1.04
+P0003,Gaseosas C,Bebidas,Gaseosas,0.55,1.1
+P0004,Gaseosas D,Bebidas,Gaseosas,0.47,0.95
+P0005,Gaseosas E,Bebidas,Gaseosas,0.63,1.25
+P0006,Gaseosas F,Bebidas,Gaseosas,0.62,1.24
+P0007,Aguas A,Bebidas,Aguas,0.3,0.76
+P0008,Aguas B,Bebidas,Aguas,0.35,0.89
+P0009,Aguas C,Bebidas,Aguas,0.32,0.81
+P0010,Aguas D,Bebidas,Aguas,0.26,0.65
+P0011,Aguas E,Bebidas,Aguas,0.32,0.79
+P0012,Aguas F,Bebidas,Aguas,0.25,0.63
+P0013,Aguas G,Bebidas,Aguas,0.34,0.86
+P0014,Aguas H,Bebidas,Aguas,0.3,0.74
+P0015,Jugos A,Bebidas,Jugos,0.62,1.38
+P0016,Jugos B,Bebidas,Jugos,0.84,1.85
+P0017,Jugos C,Bebidas,Jugos,0.68,1.51
+P0018,Jugos D,Bebidas,Jugos,0.65,1.44
+P0019,Arroz A,Abarrotes,Arroz,0.85,1.37
+P0020,Arroz B,Abarrotes,Arroz,0.98,1.57
+P0021,Arroz C,Abarrotes,Arroz,0.95,1.53
+P0022,Arroz D,Abarrotes,Arroz,0.96,1.55
+P0023,Arroz E,Abarrotes,Arroz,0.96,1.55
+P0024,Arroz F,Abarrotes,Arroz,1.21,1.95
+P0025,Arroz G,Abarrotes,Arroz,0.84,1.36
+P0026,Aceites A,Abarrotes,Aceites,1.57,2.52
+P0027,Aceites B,Abarrotes,Aceites,1.98,3.19
+P0028,Aceites C,Abarrotes,Aceites,2.13,3.42
+P0029,Aceites D,Abarrotes,Aceites,1.77,2.85
+P0030,Aceites E,Abarrotes,Aceites,1.56,2.51
+P0031,Aceites F,Abarrotes,Aceites,1.56,2.52
+P0032,Enlatados A,Abarrotes,Enlatados,1.21,2.15
+P0033,Enlatados B,Abarrotes,Enlatados,1.23,2.18
+P0034,Enlatados C,Abarrotes,Enlatados,1.2,2.12
+P0035,Enlatados D,Abarrotes,Enlatados,0.98,1.74
+P0036,Enlatados E,Abarrotes,Enlatados,1.14,2.02
+P0037,Detergentes A,Limpieza,Detergentes,2.28,3.93
+P0038,Detergentes B,Limpieza,Detergentes,2.51,4.33
+P0039,Detergentes C,Limpieza,Detergentes,2.28,3.94
+P0040,Detergentes D,Limpieza,Detergentes,2.44,4.21
+P0041,Detergentes E,Limpieza,Detergentes,2.22,3.84
+P0042,Detergentes F,Limpieza,Detergentes,2.3,3.98
+P0043,Detergentes G,Limpieza,Detergentes,2.42,4.18
+P0044,Detergentes H,Limpieza,Detergentes,1.69,2.91
+P0045,Desinfectantes A,Limpieza,Desinfectantes,1.52,2.8
+P0046,Desinfectantes B,Limpieza,Desinfectantes,1.48,2.73
+P0047,Desinfectantes C,Limpieza,Desinfectantes,1.44,2.65
+P0048,Desinfectantes D,Limpieza,Desinfectantes,1.53,2.82
+P0049,Desinfectantes E,Limpieza,Desinfectantes,1.98,3.66
+P0050,Higiene bucal A,Cuidado personal,Higiene bucal,1.62,3.0
+P0051,Higiene bucal B,Cuidado personal,Higiene bucal,1.02,1.9
+P0052,Higiene bucal C,Cuidado personal,Higiene bucal,1.32,2.46
+P0053,Higiene bucal D,Cuidado personal,Higiene bucal,1.44,2.67
+P0054,Higiene bucal E,Cuidado personal,Higiene bucal,1.53,2.84
+P0055,Higiene bucal F,Cuidado personal,Higiene bucal,1.56,2.9
+P0056,Shampoo A,Cuidado personal,Shampoo,3.16,5.86
+P0057,Shampoo B,Cuidado personal,Shampoo,2.64,4.91
+P0058,Shampoo C,Cuidado personal,Shampoo,2.59,4.82
+P0059,Shampoo D,Cuidado personal,Shampoo,3.18,5.91
+P0060,Shampoo E,Cuidado personal,Shampoo,2.71,5.04
+P0061,Shampoo F,Cuidado personal,Shampoo,2.23,4.14
+P0062,Shampoo G,Cuidado personal,Shampoo,2.29,4.26
+P0063,Galletas A,Snacks,Galletas,0.49,1.03
+P0064,Galletas B,Snacks,Galletas,0.46,0.97
+P0065,Galletas C,Snacks,Galletas,0.5,1.05
+P0066,Galletas D,Snacks,Galletas,0.42,0.89
+P0067,Galletas E,Snacks,Galletas,0.46,0.97
+P0068,Galletas F,Snacks,Galletas,0.5,1.05
+P0069,Galletas G,Snacks,Galletas,0.43,0.9
+P0070,Galletas H,Snacks,Galletas,0.48,1.02
+P0071,Frituras A,Snacks,Frituras,0.54,1.12
+P0072,Frituras B,Snacks,Frituras,0.57,1.18
+P0073,Frituras C,Snacks,Frituras,0.56,1.17
+P0074,Frituras D,Snacks,Frituras,0.49,1.01

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso 2 · Sistema Bancario Ecuatoriano — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Caso 2</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Caso 2 · Finanzas / Ecuador</div>
+<h1>Sistema Bancario Ecuatoriano</h1>
+<div class="meta">
+<span>EDA y rankings</span><span>Reto: Excel oficial multinivel y melt</span>
+<span class="">Disponible para el proyecto</span>
+</div>
+<div class="caja ia"><div class="titulo">Semanas del curso que sostienen este caso</div><p>
+<a href="semana-02.html">Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato</a> · <a href="semana-05.html">Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar</a> · <a href="semana-06.html">Semana 6 · Visualización de datos</a>
+</p></div>
+<div class="caja aviso"><div class="titulo">Ajuste obligatorio</div><p>El caso viene del seminario de Python, donde el entregable era una API en FastAPI más un tablero en Streamlit. Aquí el entregable es un cuaderno reproducible: la API se sustituye por una función documentada dentro del cuaderno y el tablero queda como opcional.</p></div>
+<h2>Caso 2 · Análisis Comparativo del Sistema Bancario Ecuatoriano</h2>
+<h3>Seminario Análisis Exploratorio de Datos</h3>
+<p><strong>Riesgo de complejidad:</strong> 🟡 Medio · <strong>Técnica principal:</strong> EDA + Rankings · <strong>Dominio:</strong> Finanzas / Ecuador</p>
+<h3>🏢 Antecedentes</h3>
+<p>La Superintendencia de Bancos del Ecuador publica mensualmente un boletín estadístico con la situación financiera de los <strong>24 bancos privados</strong> del país. Estos archivos Excel tienen un formato institucional complejo: encabezados multinivel, celdas fusionadas y los indicadores organizados con los bancos en las columnas en lugar de las filas — el opuesto del formato analítico estándar.</p>
+<p>Los nombres de las entidades bancarias pueden variar entre hojas (<code>"PICHINCHA"</code>, <code>"BP PICHINCHA"</code>) lo que exige estandarización antes de hacer joins. Un analista financiero o del Banco Central necesita una herramienta que transforme esos datos oficiales en un sistema de comparación interactivo de uso inmediato.</p>
+<h3>🎯 Objetivo</h3>
+<p>Transformar el boletín estadístico oficial de la Superintendencia de Bancos en un sistema de inteligencia financiera que permita <strong>comparar, rankear y analizar</strong> el desempeño de las 24 instituciones por sus principales indicadores: tamaño (activos), rentabilidad (ROE), calidad de cartera (tasa de morosidad) y solvencia.</p>
+<h3>📚 Actividades para el estudiante</h3>
+<p><strong>Resultado de aprendizaje:</strong> el estudiante transforma datos públicos de formato no estándar en un sistema analítico de inteligencia bancaria, aplicando técnicas de reestructuración de datos.</p>
+<h4>Fase 1 – Comprensión del dominio</h4>
+<p>Investigar los cuatro indicadores financieros clave del sector bancario ecuatoriano: activos totales, ROE, tasa de morosidad e índice de solvencia. Explorar el portal de la Superintendencia de Bancos e identificar el boletín estadístico más reciente. Formular hipótesis sobre cuáles instituciones lideran en cada indicador.</p>
+<h4>Fase 2 – Preparación y exploración de datos</h4>
+<p>Descargar el boletín y examinar su estructura. Identificar los desafíos de las hojas BALANCE, COMPOS CART e INDICADORES: encabezados multinivel, celdas fusionadas, bancos en columnas. Transformar cada hoja de <strong>formato ancho a formato largo</strong> (una fila por banco). Estandarizar los nombres de las instituciones para asegurar joins correctos entre hojas. Construir la tabla maestra consolidada con todos los KPIs por banco. Calcular el índice de solvencia como indicador adicional derivado.</p>
+<h4>Fase 3 – Análisis comparativo</h4>
+<p>Calcular estadísticas descriptivas del sistema en su conjunto. Identificar outliers y analizar su significado regulatorio. Comparar el desempeño relativo de cada banco respecto al promedio del sistema. Generar rankings ordenados por cada KPI.</p>
+<h4>Fase 4 – Producto analítico</h4>
+<p><strong>Pipeline técnico:</strong></p>
+<ul>
+<li>Navegar a <code>https://estadisticas.superbancos.gob.ec</code> y descargar el boletín más reciente</li>
+<li>Leer cada hoja con parámetros para manejar encabezados multinivel (<code>skiprows</code>, <code>header</code>)</li>
+<li>Aplicar <code>pandas.melt</code> para transformar de "bancos en columnas" a formato tidy</li>
+<li>Estandarizar nombres con <code>str.strip().str.upper()</code> antes de los joins</li>
+<li>Exportar la tabla maestra limpia a formato Parquet para el dashboard</li>
+</ul>
+<p><strong>API (FastAPI):</strong></p>
+<ul>
+<li><code>GET /financials/bank?name=Pichincha</code> — todos los KPIs de un banco específico</li>
+<li><code>GET /financials/rank?kpi=assets</code> — ranking de los 24 bancos por indicador seleccionado</li>
+</ul>
+<p><strong>Dashboard (Streamlit):</strong></p>
+<ol>
+<li>Tabla comparativa interactiva y ordenable por cualquier KPI con todos los bancos simultáneos</li>
+<li>Gráfico de barras horizontales del top 10 por el KPI seleccionado</li>
+<li>Tarjeta de perfil del banco elegido con sus indicadores vs. el promedio del sistema</li>
+</ol>
+<h4>Fase 5 – Interpretación y comunicación</h4>
+<p>¿Qué banco lidera en rentabilidad y cuál en solidez patrimonial? ¿Existen instituciones con señales de riesgo en su cartera? ¿Qué implicaciones tendría esto para un regulador financiero o para un depositante común?</p>
+<h3>🗂️ Dataset y recursos</h3>
+<table><thead><tr><th scope="col">Recurso</th><th scope="col">Enlace</th></tr></thead><tbody>
+<tr><td><strong>Dataset principal</strong></td><td><a href="https://estadisticas.superbancos.gob.ec">Portal de Estadísticas — Superintendencia de Bancos Ecuador</a></td></tr>
+</tbody></table>
+<p><strong>Lecturas recomendadas:</strong></p>
+<ul>
+<li>Indicadores financieros del sector bancario: activos, ROE, morosidad, solvencia</li>
+<li>Lectura avanzada de archivos Excel con múltiples hojas y encabezados complejos</li>
+<li>Reestructuración de datos: transformación de formato ancho a formato largo (melt)</li>
+<li>Estandarización y limpieza de nombres para joins entre tablas</li>
+</ul>
+<h3>📋 Rúbrica de evaluación</h3>
+<table><thead><tr><th scope="col">Entregable</th><th scope="col">Semana</th><th scope="col">Peso</th><th scope="col">Criterios clave</th></tr></thead><tbody>
+<tr><td>Definición del problema</td><td>1</td><td>10 %</td><td>Claridad de la pregunta de negocio, historias de usuario, ficha del dataset</td></tr>
+<tr><td>Pipeline de datos</td><td>2</td><td>20 %</td><td>Reproducibilidad, manejo del reto específico, validaciones documentadas</td></tr>
+<tr><td>EDA + primer modelo</td><td>3</td><td>25 %</td><td>Profundidad del análisis, rigor estadístico, pertinencia del modelo y métricas</td></tr>
+<tr><td>Producto analítico completo</td><td>4</td><td>30 %</td><td>Comparación de ≥ 2 modelos, API y dashboard funcionales, documentación</td></tr>
+<tr><td>Defensa oral y trabajo en equipo</td><td>4</td><td>15 %</td><td>Dominio técnico, claridad, manejo de preguntas, colaboración</td></tr>
+</tbody></table>
+<div class="caja"><p><strong>Modalidad:</strong> grupos de 3 estudiantes · <strong>Entrega final:</strong> sesión final del seminario</p></div>
+<div class="nav-pie"><a href="casos.html"><span class="e">Índice</span><span class="t">Todos los casos</span></a><a class="sig" href="caso-03.html"><span class="e">Siguiente</span><span class="t">Caso 3</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>

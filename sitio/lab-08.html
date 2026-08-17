@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratorio 08 · Segmentar, nombrar y accionar — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Lab 08</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Laboratorio 08 · Corte de medio semestre</div>
+<h1>Segmentar, nombrar y accionar</h1>
+<p class="bajada">qcut y groupby para el puntaje RFM+P. Nombrar los segmentos y escribir el mensaje comercial de cada uno. KMeans con RobustScaler como contraste: la máquina encuentra los segmentos que el grupo definió a mano.</p>
+<div class="meta">
+<span>07-oct-2026</span>
+<span>90 minutos</span>
+<span>47 celdas · 22 de código</span>
+<span><a href="semana-08.html">Semana 8</a></span>
+</div>
+<p><a class="boton" href="labs/lab_08.ipynb">Descargar el cuaderno</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_08.ipynb">Abrir en Colab</a> <a class="boton sec" href="datos.html">Ver los datos</a></p>
+<h2>Qué vas a poder hacer al terminar</h2><ul>
+<li>Calcular recencia, frecuencia, monto y margen por cliente.</li>
+<li>Construir un puntaje RFM+P con <code>qcut</code> y traducirlo a segmentos con nombre.</li>
+<li>Evaluar si un segmento cumple los tres requisitos: accionable, medible y estable.</li>
+<li>Contrastar la segmentación por reglas con la que encuentra un algoritmo de agrupamiento.</li>
+</ul>
+<h2>Pasos</h2><ol class="pasos">
+<li>Calcular RFM+P por cliente sobre la base del curso, resolviendo antes las devoluciones y los clientes sin identificar.</li>
+<li>Segmentar por quintiles, nombrar cada segmento y escribir su mensaje comercial en una frase.</li>
+<li>Correr KMeans sobre las mismas variables escaladas y comparar los grupos con los que definiste a mano.</li>
+</ol>
+<h2>Ejercicios</h2>
+<div class="sesion lab"><div class="cab"><span class="etiqueta inf">Guiado · se resuelve en clase</span></div><h3>🌶️ Ejercicio 1 — Guiado</h3><p>Añade una columna tipo_cliente y ciudad a la tabla RFM (vienen de clientes.csv) y contesta tres</p></div>
+<div class="sesion lab"><div class="cab"><span class="etiqueta avi">Desafío · queda para casa</span></div><h3>🔥 Desafío</h3><p>Ponle precio al segmento En riesgo. Son 276 clientes que valen 376 901,79 acumulados. Estima:</p></div>
+<div class="sesion lab"><div class="cab"><span class="etiqueta ok">Reto · quince minutos en clase</span></div><h3>🎯 Reto en clase (15 min)</h3><p>En equipos, y contra reloj. Cambia una regla de la función segmentar —el umbral de antigüedad</p></div>
+<div class="caja trampa"><div class="titulo">⚠️ La trampa que este laboratorio desarma</div><p>Nombrar los segmentos con letras o números. Si el segmento se llama Cluster 3, nadie en comercial va a hacer nada con él.</p></div>
+<h2>Entregable</h2><div class="caja entrega"><div class="titulo">Se sube al cierre del taller</div><p>PROYECTO DE MEDIO SEMESTRE: análisis RFM+P con recomendación comercial por segmento. Se entrega durante el receso. DataCamp: Unsupervised Learning in Python.</p></div>
+<div class="caja ia"><div class="titulo">Uso del asistente en este laboratorio</div><p>El cuaderno debe incluir el prompt final que usaste con el asistente. No se permite pegar código sin entenderlo: en la defensa se pregunta por qué se eligió ese número de segmentos y hay que responder sin leer.</p></div>
+<h2>Cómo se califica</h2>
+<table><thead><tr><th scope="col">Criterio</th><th scope="col">Qué se mira</th><th scope="col" class="num">Peso</th></tr></thead><tbody>
+<tr><td><strong>Pregunta y unidad de análisis</strong></td><td>La pregunta de negocio está escrita, la unidad de análisis es explícita y la comparación existe.</td><td class="num">20 %</td></tr>
+<tr><td><strong>Corrección técnica</strong></td><td>El cuaderno corre completo, los números se reproducen y las decisiones de datos están justificadas.</td><td class="num">30 %</td></tr>
+<tr><td><strong>Línea base y contraste</strong></td><td>Hay una alternativa declarada contra la cual se mide el resultado. Sin línea base, este criterio es cero.</td><td class="num">20 %</td></tr>
+<tr><td><strong>Traducción a decisión</strong></td><td>El resultado está expresado en unidades de negocio y dice qué hacer el lunes.</td><td class="num">20 %</td></tr>
+<tr><td><strong>Bitácora de IA</strong></td><td>Consta el prompt final y qué se verificó de la respuesta del asistente.</td><td class="num">10 %</td></tr>
+</tbody></table>
+<div class="nav-pie"><a href="lab-07.html"><span class="e">Laboratorio anterior</span><span class="t">Lab 07 · Construcción del tablero del proye</span></a><a class="sig" href="lab-09.html"><span class="e">Siguiente</span><span class="t">Lab 09 · Pruebas estadísticas y diseño expe</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>

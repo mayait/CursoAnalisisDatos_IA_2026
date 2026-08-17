@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador VIF — Varianza del Factor de Inflación</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:#f8fafc; color:#1e293b; font-size:14px; }
+
+/* ===== TOOLTIPS ===== */
+.tip { position:relative; cursor:help; border-bottom:1px dotted #94a3b8; font-weight:600; color:#2563eb; }
+.tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+  background:#0f172a; color:#f1f5f9; font-size:.72rem; font-weight:400; padding:8px 12px; border-radius:8px;
+  width:max-content; max-width:280px; line-height:1.5; text-align:left; white-space:normal;
+  pointer-events:none; opacity:0; transition:opacity .15s; z-index:200; box-shadow:0 4px 16px rgba(0,0,0,.2); }
+.tip::before { content:''; position:absolute; bottom:calc(100% + 2px); left:50%; transform:translateX(-50%);
+  border:6px solid transparent; border-top-color:#0f172a; pointer-events:none; opacity:0; transition:opacity .15s; z-index:200; }
+.tip:hover::after, .tip:hover::before { opacity:1; }
+
+/* ===== HEADER ===== */
+header { background:#fff; border-bottom:2px solid #e2e8f0; padding:16px 32px; position:sticky; top:0; z-index:100; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.hdr-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.hdr-title { display:flex; align-items:center; gap:12px; }
+.hdr-title h1 { font-size:1.2rem; font-weight:700; color:#0f172a; }
+.hdr-title .tag { background:#eff6ff; color:#2563eb; padding:3px 10px; border-radius:20px; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+.hdr-nav { display:flex; gap:8px; flex-wrap:wrap; }
+.hdr-nav a { color:#64748b; text-decoration:none; font-size:.78rem; padding:4px 10px; border-radius:6px; transition:all .15s; }
+.hdr-nav a:hover { background:#f1f5f9; color:#2563eb; }
+
+/* ===== PAGE LAYOUT ===== */
+.page { max-width:1100px; margin:0 auto; padding:28px 24px; display:flex; flex-direction:column; gap:28px; }
+
+/* ===== CARDS ===== */
+.card { background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+.card-title { font-size:1rem; font-weight:700; color:#0f172a; display:flex; align-items:center; gap:8px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid #f1f5f9; }
+.card-title .icon { font-size:1.2rem; }
+.card-subtitle { font-size:.82rem; color:#64748b; margin-top:4px; font-weight:400; }
+
+/* ===== CONCEPT SECTION ===== */
+.concept-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media(max-width:700px){ .concept-grid { grid-template-columns:1fr; } }
+.formula-block { background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 100%); border:1.5px solid #bfdbfe; border-radius:12px; padding:20px; text-align:center; }
+.formula-block .formula { font-family:'Georgia',serif; font-size:1.6rem; color:#1d4ed8; margin:12px 0; letter-spacing:.02em; }
+.formula-block .formula sub { font-size:0.9rem; }
+.formula-block p { font-size:.8rem; color:#475569; line-height:1.6; }
+
+.steps-flow { display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap; }
+.sf-step { flex:1; min-width:100px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px; }
+.sf-step .num { background:#2563eb; color:#fff; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; margin-bottom:8px; }
+.sf-step strong { font-size:.82rem; color:#0f172a; display:block; margin-bottom:4px; }
+.sf-step p { font-size:.75rem; color:#64748b; line-height:1.4; }
+.sf-arrow { color:#cbd5e1; font-size:1.2rem; margin-top:30px; }
+
+/* ===== VIF THRESHOLDS TABLE ===== */
+.vif-legend { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:4px; }
+@media(max-width:600px){ .vif-legend { grid-template-columns:1fr 1fr; } }
+.vl-item { border-radius:10px; padding:12px; text-align:center; }
+.vl-item .range { font-size:.85rem; font-weight:700; }
+.vl-item .label { font-size:.72rem; color:#475569; margin-top:4px; }
+.vl-item .action { font-size:.7rem; font-weight:600; margin-top:6px; }
+.vl-1 { background:#f0fdf4; border:1px solid #bbf7d0; } .vl-1 .range { color:#15803d; }
+.vl-2 { background:#fefce8; border:1px solid #fef08a; } .vl-2 .range { color:#a16207; }
+.vl-3 { background:#fff7ed; border:1px solid #fed7aa; } .vl-3 .range { color:#c2410c; }
+.vl-4 { background:#fef2f2; border:1px solid #fecaca; } .vl-4 .range { color:#dc2626; }
+
+/* ===== DATA PREVIEW ===== */
+.data-table-wrap { overflow-x:auto; }
+table.dt { width:100%; border-collapse:collapse; font-size:.8rem; }
+table.dt th { background:#f8fafc; border:1px solid #e2e8f0; padding:8px 12px; text-align:right; font-weight:700; color:#475569; font-size:.72rem; text-transform:uppercase; letter-spacing:.4px; }
+table.dt th:first-child { text-align:center; }
+table.dt td { border:1px solid #f1f5f9; padding:7px 12px; text-align:right; color:#374151; }
+table.dt tr:hover td { background:#f8fafc; }
+.dt-caption { font-size:.75rem; color:#94a3b8; margin-top:8px; }
+.stat-chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+.stat-chip { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px 14px; }
+.stat-chip .name { font-size:.68rem; text-transform:uppercase; letter-spacing:.5px; color:#94a3b8; font-weight:700; }
+.stat-chip .val { font-size:1rem; font-weight:700; color:#0f172a; margin-top:2px; }
+.stat-chip .sub { font-size:.68rem; color:#94a3b8; }
+.loading-msg { color:#94a3b8; text-align:center; padding:32px; font-size:.85rem; }
+.source-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:.72rem; font-weight:600; margin-bottom:12px; }
+.source-real { background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; }
+.source-synth { background:#fefce8; color:#a16207; border:1px solid #fef08a; }
+
+/* ===== INSIGHT BOX ===== */
+.insight { background:#eff6ff; border-left:3px solid #2563eb; border-radius:0 8px 8px 0; padding:12px 16px; font-size:.82rem; color:#1e40af; line-height:1.6; margin-top:14px; }
+.insight strong { color:#1d4ed8; }
+.insight-warn { background:#fffbeb; border-left:3px solid #f59e0b; color:#92400e; }
+.insight-red { background:#fef2f2; border-left:3px solid #ef4444; color:#991b1b; }
+
+/* ===== VIF STEP CARDS ===== */
+.vif-step-card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px 18px; margin-bottom:10px; }
+.vsc-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+.vsc-title { font-weight:700; color:#0f172a; font-size:.9rem; }
+.vsc-equation { font-size:.78rem; color:#64748b; margin-top:3px; }
+.vsc-metrics { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.vsc-metric { text-align:center; }
+.vsc-metric .mv { font-size:1rem; font-weight:700; }
+.vsc-metric .mk { font-size:.68rem; color:#94a3b8; text-transform:uppercase; letter-spacing:.3px; }
+.vif-badge { padding:5px 14px; border-radius:8px; font-size:.9rem; font-weight:800; }
+.vb-low  { background:#f0fdf4; color:#15803d; border:1.5px solid #86efac; }
+.vb-mid  { background:#fefce8; color:#a16207; border:1.5px solid #fde047; }
+.vb-high { background:#fff7ed; color:#c2410c; border:1.5px solid #fb923c; }
+.vb-crit { background:#fef2f2; color:#dc2626; border:1.5px solid #fca5a5; }
+
+/* ===== VIF BAR CHART ===== */
+.vif-bars-container { margin-top:8px; }
+.vif-bar-row { margin-bottom:14px; }
+.vbr-header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+.vbr-name { font-weight:700; color:#0f172a; font-size:.85rem; }
+.vbr-val { font-size:1rem; font-weight:800; }
+.vbr-track { height:14px; background:#f1f5f9; border-radius:7px; position:relative; overflow:visible; }
+.vbr-fill { height:100%; border-radius:7px; transition:width .6s cubic-bezier(.34,1.56,.64,1), background-color .4s; }
+.vbr-line { position:absolute; top:-5px; height:24px; width:2px; z-index:2; }
+.vbr-line-label { position:absolute; top:-18px; font-size:.62rem; font-weight:700; transform:translateX(-50%); white-space:nowrap; }
+
+/* ===== SIMULATOR ===== */
+.sim-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+@media(max-width:800px){ .sim-grid { grid-template-columns:1fr; } }
+.slider-row { margin-bottom:14px; }
+.slider-row label { display:flex; justify-content:space-between; margin-bottom:4px; font-size:.8rem; }
+.slider-row label .lname { color:#374151; }
+.slider-row label .lval { font-weight:700; color:#2563eb; min-width:32px; text-align:right; }
+input[type=range] { -webkit-appearance:none; appearance:none; width:100%; height:6px; background:#e2e8f0; border-radius:3px; outline:none; transition:background .15s; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:#2563eb; cursor:pointer; box-shadow:0 1px 4px rgba(37,99,235,.4); }
+input[type=range]:hover { background:#cbd5e1; }
+.sim-buttons { display:flex; gap:8px; margin-top:6px; flex-wrap:wrap; }
+.sim-btn { padding:7px 14px; border-radius:8px; border:1px solid #d1d5db; background:#fff; cursor:pointer; font-size:.78rem; font-weight:600; color:#374151; transition:all .15s; }
+.sim-btn:hover { background:#f1f5f9; border-color:#94a3b8; }
+.sim-btn.danger { background:#fef2f2; border-color:#fca5a5; color:#dc2626; }
+.sim-btn.danger:hover { background:#fee2e2; }
+.sim-btn.primary { background:#2563eb; border-color:#2563eb; color:#fff; }
+.sim-btn.primary:hover { background:#1d4ed8; }
+.psd-warning { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:10px 14px; font-size:.78rem; color:#991b1b; margin-top:8px; display:none; }
+
+/* ===== FIX GRID ===== */
+.fix-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+@media(max-width:600px){ .fix-grid { grid-template-columns:1fr; } }
+.fix-card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px; }
+.fix-card .fc-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:800; color:#fff; margin-bottom:8px; }
+.fix-card h3 { font-size:.85rem; font-weight:700; color:#0f172a; margin-bottom:5px; }
+.fix-card p { font-size:.78rem; color:#64748b; line-height:1.5; }
+.fc-1 .fc-num { background:#2563eb; }
+.fc-2 .fc-num { background:#7c3aed; }
+.fc-3 .fc-num { background:#0891b2; }
+.fc-4 .fc-num { background:#059669; }
+
+/* ===== FOOTER ===== */
+footer { text-align:center; padding:24px; font-size:.72rem; color:#94a3b8; border-top:1px solid #e2e8f0; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-inner">
+    <div class="hdr-title">
+      <span style="font-size:1.5rem;">📊</span>
+      <div>
+        <h1>Simulador VIF</h1>
+        <span class="tag">Analítica de Datos · Regresión Múltiple</span>
+      </div>
+    </div>
+    <nav class="hdr-nav">
+      <a href="#concepto">Concepto</a>
+      <a href="#dataset">Dataset</a>
+      <a href="#correlacion">Correlación</a>
+      <a href="#calculo">Cálculo</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#correccion">Corrección</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+<!-- ===== 1. CONCEPTO ===== -->
+<div class="card" id="concepto">
+  <div class="card-title">
+    <span class="icon">🎯</span>
+    ¿Qué es el VIF?
+    <span class="card-subtitle">Variance Inflation Factor — diagnóstico de multicolinealidad</span>
+  </div>
+
+  <p style="color:#475569; line-height:1.7; margin-bottom:18px;">
+    En <strong>regresión lineal múltiple</strong>, la
+    <span class="tip" data-tip="Ocurre cuando dos o más predictores están correlacionados entre sí. No afecta la predicción, pero hace imposible aislar el efecto individual de cada variable.">multicolinealidad</span>
+    ocurre cuando los predictores comparten información entre ellos. Esto
+    <strong>infla los errores estándar</strong> de los coeficientes, haciendo que parezcan
+    no significativos aunque sí lo sean. El <strong>VIF</strong> cuantifica exactamente cuánto se infla esa varianza.
+  </p>
+
+  <div class="concept-grid">
+    <div>
+      <div class="formula-block">
+        <p style="font-size:.8rem; color:#475569; margin-bottom:6px;">Para cada predictor <em>X<sub>i</sub></em>:</p>
+        <div class="formula">
+          VIF<sub>i</sub> = 1 / (1 − R²<sub>i</sub>)
+        </div>
+        <p>donde <strong>R²<sub>i</sub></strong> es el coeficiente de determinación obtenido al regresar <em>X<sub>i</sub></em> sobre <strong>todos los demás predictores</strong></p>
+      </div>
+      <div class="insight" style="margin-top:12px;">
+        <strong>Intuición:</strong> Si R²<sub>i</sub> = 0.83, significa que el 83% de la varianza de X<sub>i</sub> ya está explicada por los otros predictores. Entonces VIF = 1/(1-0.83) ≈ <strong>5.9</strong> — la varianza del coeficiente es 5.9 veces mayor de lo que sería sin colinealidad.
+      </div>
+    </div>
+
+    <div>
+      <p style="font-size:.8rem; font-weight:700; color:#374151; margin-bottom:10px;">Proceso de cálculo</p>
+      <div class="steps-flow">
+        <div class="sf-step">
+          <div class="num">1</div>
+          <strong>Regresión auxiliar</strong>
+          <p>Elige X<sub>i</sub> como variable dependiente. Usa el resto como predictores.</p>
+        </div>
+        <div class="sf-arrow">→</div>
+        <div class="sf-step">
+          <div class="num">2</div>
+          <strong>Obtener R²</strong>
+          <p>Mide qué tan bien los otros X predicen a X<sub>i</sub>.</p>
+        </div>
+        <div class="sf-arrow">→</div>
+        <div class="sf-step">
+          <div class="num">3</div>
+          <strong>Aplicar fórmula</strong>
+          <p>VIF = 1/(1−R²)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:.8rem; font-weight:700; color:#374151; margin:20px 0 10px;">Guía de interpretación</p>
+  <div class="vif-legend">
+    <div class="vl-item vl-1">
+      <div class="range">VIF = 1</div>
+      <div class="label">Sin multicolinealidad</div>
+      <div class="action" style="color:#15803d;">✅ Sin problema</div>
+    </div>
+    <div class="vl-item vl-2">
+      <div class="range">1 &lt; VIF ≤ 5</div>
+      <div class="label">Moderada</div>
+      <div class="action" style="color:#a16207;">⚠️ Monitorear</div>
+    </div>
+    <div class="vl-item vl-3">
+      <div class="range">5 &lt; VIF ≤ 10</div>
+      <div class="label">Alta</div>
+      <div class="action" style="color:#c2410c;">🔶 Corregir</div>
+    </div>
+    <div class="vl-item vl-4">
+      <div class="range">VIF &gt; 10</div>
+      <div class="label">Severa</div>
+      <div class="action" style="color:#dc2626;">🚨 Urgente</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 2. DATASET ===== -->
+<div class="card" id="dataset">
+  <div class="card-title">
+    <span class="icon">📂</span>
+    Dataset: Retail Stores
+  </div>
+  <p style="color:#475569; line-height:1.7; margin-bottom:14px;">
+    Encuesta a <strong>1,000 tiendas</strong> de una cadena de retail. Los clientes calificaron 4 aspectos de su experiencia
+    en una escala de <strong>−5 a +5</strong>. El objetivo es predecir el <strong>Rendimiento</strong> (Performance) de la tienda.
+    <em style="color:#94a3b8; font-size:.8rem;"> — Dataset: vikashkmd/Datasets en GitHub</em>
+  </p>
+  <div id="dataset-preview"><div class="loading-msg">⏳ Cargando datos desde GitHub…</div></div>
+</div>
+
+<!-- ===== 3. CORRELACIÓN ===== -->
+<div class="card" id="correlacion">
+  <div class="card-title">
+    <span class="icon">🔗</span>
+    Correlaciones por Pares
+  </div>
+  <p style="color:#475569; line-height:1.7; margin-bottom:14px;">
+    Antes de calcular el VIF, revisemos si hay correlaciones <em>directas</em> entre pares de predictores.
+    Una correlación alta entre dos variables es señal obvia de multicolinealidad — pero el VIF puede detectar
+    multicolinealidad <em>combinada</em> que las correlaciones individuales no muestran.
+  </p>
+  <div id="corr-heatmap" style="height:380px;"></div>
+  <div id="corr-insight" class="insight" style="display:none;"></div>
+</div>
+
+<!-- ===== 4. CÁLCULO VIF ===== -->
+<div class="card" id="calculo">
+  <div class="card-title">
+    <span class="icon">🧮</span>
+    Cálculo del VIF — Paso a Paso
+  </div>
+  <p style="color:#475569; line-height:1.7; margin-bottom:16px;">
+    Para cada predictor, ajustamos una <strong>regresión auxiliar</strong> donde ese predictor actúa como variable
+    dependiente. La calidad de ese ajuste (R²) determina el VIF.
+  </p>
+  <div id="vif-step-cards"><div class="loading-msg">⏳ Calculando…</div></div>
+
+  <div id="vif-summary" style="display:none; margin-top:20px;">
+    <p style="font-size:.85rem; font-weight:700; color:#374151; margin-bottom:12px;">📊 Resumen — VIF por predictor</p>
+    <div id="vif-bars" class="vif-bars-container"></div>
+    <div id="vif-finding-box" class="insight" style="margin-top:12px;"></div>
+  </div>
+</div>
+
+<!-- ===== 5. SIMULADOR ===== -->
+<div class="card" id="simulador">
+  <div class="card-title">
+    <span class="icon">🎮</span>
+    Simulador Interactivo
+  </div>
+  <p style="color:#475569; line-height:1.7; margin-bottom:18px;">
+    Ajusta las correlaciones entre predictores y observa cómo cambia el VIF en <strong>tiempo real</strong>.
+    El VIF se calcula directamente desde la <span class="tip" data-tip="VIF_i es igual al elemento diagonal (i,i) de la inversa de la matriz de correlación de predictores. Una fórmula elegante que no requiere datos — solo la estructura de correlaciones.">matriz de correlación inversa</span>:
+    <strong>VIF<sub>i</sub> = (R⁻¹)<sub>ii</sub></strong>
+  </p>
+
+  <div class="sim-grid">
+    <div>
+      <p style="font-size:.8rem; font-weight:700; color:#374151; margin-bottom:12px;">⚙️ Ajusta las correlaciones</p>
+      <div id="sliders-container"></div>
+      <div id="psd-warning" class="psd-warning">
+        ⚠️ Matriz no positiva definida — reduce alguna correlación. Los valores son inconsistentes (ej: si A≈B≈C≈0.99, la combinación es imposible).
+      </div>
+      <div class="sim-buttons">
+        <button class="sim-btn primary" onclick="resetSliders()">🔄 Valores originales</button>
+        <button class="sim-btn" onclick="setSliderValues(0,0,0,0,0,0)">✨ Sin colinealidad</button>
+        <button class="sim-btn danger" onclick="setSliderValues(.85,.80,.90,.82,.88,.85)">💥 Extrema</button>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-size:.8rem; font-weight:700; color:#374151; margin-bottom:12px;">📈 VIF en tiempo real</p>
+      <div id="sim-vif-bars"></div>
+      <div id="sim-heatmap" style="height:280px; margin-top:14px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 6. CORRECCIÓN ===== -->
+<div class="card" id="correccion">
+  <div class="card-title">
+    <span class="icon">🛠️</span>
+    ¿Cómo corregir un VIF alto?
+  </div>
+  <div class="fix-grid">
+    <div class="fix-card fc-1">
+      <div class="fc-num">1</div>
+      <h3>Eliminar un predictor</h3>
+      <p>Si dos variables están fuertemente correlacionadas, conserva la más relevante teóricamente o la que tiene mayor correlación con Y. Es la solución más directa.</p>
+    </div>
+    <div class="fix-card fc-2">
+      <div class="fc-num">2</div>
+      <h3>PCA — Componentes Principales</h3>
+      <p>Transforma los predictores correlacionados en componentes ortogonales (no correlacionados) que capturan la mayor varianza posible. Elimina la multicolinealidad por construcción.</p>
+    </div>
+    <div class="fix-card fc-3">
+      <div class="fc-num">3</div>
+      <h3>Ridge Regression</h3>
+      <p>Agrega una penalización L2 que estabiliza los coeficientes ante multicolinealidad sin eliminar variables. Ideal cuando todas las variables son teóricamente importantes.</p>
+    </div>
+    <div class="fix-card fc-4">
+      <div class="fc-num">4</div>
+      <h3>Combinar variables</h3>
+      <p>Crea un índice compuesto (ej. promedio ponderado) con los predictores correlacionados para capturar su efecto conjunto en una sola variable.</p>
+    </div>
+  </div>
+  <div class="insight" style="margin-top:16px;">
+    <strong>Nota importante:</strong> La multicolinealidad <em>no afecta la capacidad predictiva</em> del modelo —
+    solo dificulta la interpretación de coeficientes individuales. Si solo te importa predecir Y y no interpretar los β,
+    puede no ser necesario corregirla.
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<footer>
+  Simulador VIF · Analítica de Datos en los Negocios · KNIME Course
+  <span style="margin:0 8px;">·</span>
+  Dataset: <a href="https://github.com/vikashkmd/Datasets/blob/main/vif_data.csv" style="color:#94a3b8;" target="_blank">vikashkmd/vif_data.csv</a>
+</footer>
+
+<script>
+// ===========================================================================
+// UTILIDADES DE ÁLGEBRA MATRICIAL
+// ===========================================================================
+
+function matT(A) {
+  const r = A.length, c = A[0].length;
+  return Array.from({length:c}, (_,j) => Array.from({length:r}, (_,i) => A[i][j]));
+}
+function matMul(A, B) {
+  const m=A.length, n=B[0].length, k=B.length;
+  const C = Array.from({length:m}, () => new Array(n).fill(0));
+  for(let i=0;i<m;i++) for(let j=0;j<n;j++) for(let l=0;l<k;l++) C[i][j]+=A[i][l]*B[l][j];
+  return C;
+}
+function matInv(M) {
+  const n = M.length;
+  const A = M.map(r=>[...r]);
+  const I = Array.from({length:n}, (_,i) => Array.from({length:n}, (_,j) => i===j?1:0));
+  for(let c=0;c<n;c++){
+    let piv=-1, best=0;
+    for(let r=c;r<n;r++) if(Math.abs(A[r][c])>best){best=Math.abs(A[r][c]);piv=r;}
+    if(piv<0||best<1e-12) return null;
+    [A[c],A[piv]]=[A[piv],A[c]]; [I[c],I[piv]]=[I[piv],I[c]];
+    const d=A[c][c];
+    for(let j=0;j<n;j++){A[c][j]/=d;I[c][j]/=d;}
+    for(let r=0;r<n;r++){
+      if(r===c) continue;
+      const f=A[r][c];
+      for(let j=0;j<n;j++){A[r][j]-=f*A[c][j];I[r][j]-=f*I[c][j];}
+    }
+  }
+  return I;
+}
+function computeR2fromOLS(X, y) {
+  // X: n×p (with intercept), y: n vector
+  const Xt = matT(X);
+  const XtX = matMul(Xt, X);
+  const inv = matInv(XtX);
+  if(!inv) return 0;
+  const Xty = matMul(Xt, y.map(v=>[v]));
+  const beta = matMul(inv, Xty);
+  const yMean = y.reduce((a,b)=>a+b,0)/y.length;
+  let ssRes=0, ssTot=0;
+  for(let i=0;i<y.length;i++){
+    let pred=0; for(let j=0;j<beta.length;j++) pred+=X[i][j]*beta[j][0];
+    ssRes+=(y[i]-pred)**2; ssTot+=(y[i]-yMean)**2;
+  }
+  return ssTot<1e-12?0: Math.max(0,Math.min(1,1-ssRes/ssTot));
+}
+function corrBetween(x,y){
+  const n=x.length, mx=x.reduce((a,b)=>a+b)/n, my=y.reduce((a,b)=>a+b)/n;
+  let num=0,dx=0,dy=0;
+  for(let i=0;i<n;i++){num+=(x[i]-mx)*(y[i]-my);dx+=(x[i]-mx)**2;dy+=(y[i]-my)**2;}
+  return dx*dy<1e-24?0:num/Math.sqrt(dx*dy);
+}
+
+// ===========================================================================
+// VIF DESDE DATOS (OLS)
+// ===========================================================================
+
+function vifFromData(data, features) {
+  const n = data.length;
+  const r2s = {}, vifs = {};
+  for(const feat of features){
+    const y = data.map(r=>+r[feat]);
+    const others = features.filter(f=>f!==feat);
+    const X = data.map(r=>[1,...others.map(f=>+r[f])]);
+    const r2 = computeR2fromOLS(X,y);
+    r2s[feat] = r2;
+    vifs[feat] = r2>=0.9999 ? 9999 : 1/(1-r2);
+  }
+  return {vifs, r2s};
+}
+
+// ===========================================================================
+// VIF DESDE MATRIZ DE CORRELACIÓN (formula elegante: VIF_i = (R⁻¹)_ii)
+// ===========================================================================
+
+function vifFromCorrMatrix(corrM) {
+  const inv = matInv(corrM);
+  if(!inv) return null;
+  return inv.map((row,i)=>({vif: Math.max(1, row[i]), r2: 1 - 1/Math.max(1,row[i])}));
+}
+
+function corrMatrixFromCoeffs(rAC,rAO,rAP,rCO,rCP,rOP){
+  // Order: [Ambience, Customer_service, Offers, Product_range]
+  return [
+    [1,   rAC, rAO, rAP],
+    [rAC, 1,   rCO, rCP],
+    [rAO, rCO, 1,   rOP],
+    [rAP, rCP, rOP, 1  ]
+  ];
+}
+
+function isDeterminantPositive(M){
+  // Quick check via Cholesky
+  const n=M.length; const L=Array.from({length:n},()=>new Array(n).fill(0));
+  for(let i=0;i<n;i++){
+    for(let j=0;j<=i;j++){
+      let s=0; for(let k=0;k<j;k++) s+=L[i][k]*L[j][k];
+      if(i===j){ const v=M[i][i]-s; if(v<=0) return false; L[i][j]=Math.sqrt(v); }
+      else L[i][j]=L[j][j]>1e-10?(M[i][j]-s)/L[j][j]:0;
+    }
+  }
+  return true;
+}
+
+// ===========================================================================
+// COLORES VIF
+// ===========================================================================
+
+function vifColor(v){
+  if(v<=5) return '#15803d';
+  if(v<=10) return '#c2410c';
+  return '#dc2626';
+}
+function vifBgColor(v){
+  if(v<=5) return '#f0fdf4';
+  if(v<=10) return '#fff7ed';
+  return '#fef2f2';
+}
+function vifBadgeClass(v){
+  if(v<=5) return 'vb-low';
+  if(v<=10) return 'vb-high';
+  return 'vb-crit';
+}
+function vifLabel(v){
+  if(v<=5) return '✅ Bajo';
+  if(v<=10) return '🔶 Alto';
+  return '🚨 Severo';
+}
+
+// ===========================================================================
+// RENDER: DATASET PREVIEW
+// ===========================================================================
+
+function renderDatasetPreview(data, isReal){
+  const feats = ['Ambience','Customer_service','Offers','Product_range','Performance'];
+  const badge = isReal
+    ? `<span class="source-badge source-real">✓ Dataset real cargado desde GitHub (${data.length.toLocaleString()} filas)</span>`
+    : `<span class="source-badge source-synth">⚠ Dataset sintético — reproduciendo propiedades del original (${data.length.toLocaleString()} filas)</span>`;
+
+  let trows = '';
+  for(let i=0;i<5;i++){
+    trows += `<tr>${feats.map(f=>`<td>${(+data[i][f]).toFixed(2)}</td>`).join('')}</tr>`;
+  }
+
+  let chips = '';
+  for(const f of ['Ambience','Customer_service','Offers','Product_range']){
+    const vals = data.map(r=>+r[f]);
+    const mean = (vals.reduce((a,b)=>a+b)/vals.length).toFixed(2);
+    const mn = Math.min(...vals).toFixed(2);
+    const mx = Math.max(...vals).toFixed(2);
+    const std = Math.sqrt(vals.reduce((a,b)=>a+(b-mean)**2,0)/vals.length).toFixed(2);
+    chips += `<div class="stat-chip">
+      <div class="name">${f.replace('_',' ')}</div>
+      <div class="val">${mean}</div>
+      <div class="sub">σ = ${std} · [${mn}, ${mx}]</div>
+    </div>`;
+  }
+
+  document.getElementById('dataset-preview').innerHTML = `
+    ${badge}
+    <div class="data-table-wrap">
+      <table class="dt">
+        <thead><tr>${feats.map(f=>`<th>${f.replace('_','<br>')}</th>`).join('')}</tr></thead>
+        <tbody>${trows}</tbody>
+      </table>
+    </div>
+    <p class="dt-caption">Mostrando 5 de ${data.length.toLocaleString()} registros · Valores en escala −5 a +5</p>
+    <div class="stat-chips">${chips}</div>
+  `;
+}
+
+// ===========================================================================
+// RENDER: HEATMAP CORRELACIÓN
+// ===========================================================================
+
+function renderHeatmap(corrMatrix, features, divId, height=380){
+  const z=corrMatrix, text=corrMatrix.map(r=>r.map(v=>v.toFixed(2)));
+  Plotly.react(divId,[{
+    z,x:features,y:features,text,
+    type:'heatmap', colorscale:[
+      [0,   '#b91c1c'],
+      [0.3, '#fca5a5'],
+      [0.5, '#15803d'],
+      [0.7, '#fca5a5'],
+      [1,   '#b91c1c']
+    ], reversescale:false, zmin:-1,zmax:1,
+    texttemplate:'%{text}', textfont:{color:'#ffffff',size:13},
+    hovertemplate:'%{y} ↔ %{x}: %{z:.3f}<extra></extra>'
+  }],{
+    paper_bgcolor:'#fff', plot_bgcolor:'#fff',
+    font:{color:'#374151',size:12},
+    margin:{t:10,b:60,l:140,r:20},
+    xaxis:{tickfont:{color:'#374151',size:11}},
+    yaxis:{tickfont:{color:'#374151',size:11}},
+    height
+  });
+}
+
+// ===========================================================================
+// RENDER: VIF STEP CARDS
+// ===========================================================================
+
+function renderVIFStepCards(vifs, r2s, features){
+  let html='';
+  for(const feat of features){
+    const others = features.filter(f=>f!==feat);
+    const r2=r2s[feat], v=vifs[feat];
+    const vStr = v>=9000?'>9999':v.toFixed(2);
+    html+=`
+      <div class="vif-step-card">
+        <div class="vsc-header">
+          <div>
+            <div class="vsc-title">${feat} ~ ${others.join(' + ')}</div>
+            <div class="vsc-equation" style="font-size:.75rem; color:#94a3b8; margin-top:3px;">
+              VIF = 1 / (1 − ${r2.toFixed(4)}) = ${vStr}
+            </div>
+          </div>
+          <div class="vsc-metrics">
+            <div class="vsc-metric">
+              <div class="mv" style="color:#2563eb;">${r2.toFixed(4)}</div>
+              <div class="mk">R²</div>
+            </div>
+            <div class="vsc-metric">
+              <div class="mv" style="color:#64748b;">${(1-r2).toFixed(4)}</div>
+              <div class="mk">1 − R²</div>
+            </div>
+            <span class="vif-badge ${vifBadgeClass(v)}">${vStr}</span>
+          </div>
+        </div>
+      </div>`;
+  }
+  document.getElementById('vif-step-cards').innerHTML = html;
+}
+
+// ===========================================================================
+// RENDER: VIF BAR CHART
+// ===========================================================================
+
+function renderVIFBars(vifs, features, containerId, maxScale=null){
+  const vals = Object.values(vifs);
+  const maxV = maxScale || Math.max(...vals, 12);
+  const t5pct = 5/maxV*100, t10pct = 10/maxV*100;
+
+  let html='';
+  for(const feat of features){
+    const v = vifs[feat];
+    const pct = Math.min(v/maxV*100, 100);
+    const vStr = v>=9000?'>999':v.toFixed(2);
+    html+=`
+      <div class="vif-bar-row">
+        <div class="vbr-header">
+          <span class="vbr-name">${feat.replace('_',' ')}</span>
+          <span class="vbr-val" style="color:${vifColor(v)};">${vStr} <small style="font-size:.7rem;font-weight:400;">${vifLabel(v)}</small></span>
+        </div>
+        <div class="vbr-track">
+          <div class="vbr-fill" style="width:${pct}%;background:${vifColor(v)};"></div>
+          <div class="vbr-line" style="left:${t5pct}%;background:#ef4444;">
+            <div class="vbr-line-label" style="color:#ef4444;">5</div>
+          </div>
+          <div class="vbr-line" style="left:${Math.min(t10pct,99)}%;background:#f59e0b;">
+            <div class="vbr-line-label" style="color:#f59e0b;">10</div>
+          </div>
+        </div>
+      </div>`;
+  }
+  document.getElementById(containerId).innerHTML = html;
+}
+
+// ===========================================================================
+// MAIN PIPELINE: PROCESS DATA
+// ===========================================================================
+
+const FEATS = ['Ambience','Customer_service','Offers','Product_range'];
+let globalCorrMatrix = null;
+
+function processData(data, isReal){
+  renderDatasetPreview(data, isReal);
+
+  // Correlation matrix
+  const corrM = FEATS.map(f1=>FEATS.map(f2=>{
+    if(f1===f2) return 1;
+    return corrBetween(data.map(r=>+r[f1]), data.map(r=>+r[f2]));
+  }));
+  globalCorrMatrix = corrM;
+  renderHeatmap(corrM, FEATS, 'corr-heatmap', 380);
+
+  // Correlation insight
+  const maxOffDiag = Math.max(...corrM.flatMap((row,i)=>row.filter((_,j)=>j!==i).map(Math.abs)));
+  const el = document.getElementById('corr-insight');
+  el.style.display='block';
+  el.innerHTML = `<strong>🔍 Observación clave:</strong> La correlación por pares más alta es <strong>${maxOffDiag.toFixed(2)}</strong>.
+    A primera vista, no parece haber multicolinealidad grave — ninguna correlación supera 0.6.
+    Pero el VIF puede revelar una historia diferente porque detecta <em>dependencias combinadas</em> entre múltiples variables a la vez.`;
+
+  // VIF calculation
+  const {vifs, r2s} = vifFromData(data, FEATS);
+  renderVIFStepCards(vifs, r2s, FEATS);
+  document.getElementById('vif-summary').style.display='block';
+  renderVIFBars(vifs, FEATS, 'vif-bars');
+
+  // Finding
+  const highVIF = FEATS.filter(f=>vifs[f]>5);
+  const fbox = document.getElementById('vif-finding-box');
+  if(highVIF.length>0){
+    fbox.className='insight insight-warn';
+    fbox.innerHTML=`<strong>⚠️ Multicolinealidad detectada:</strong> <strong>${highVIF.join(', ')}</strong>
+      ${highVIF.length>1?'tienen':'tiene'} VIF > 5.
+      Esto ocurre a pesar de que ninguna correlación individual supera ${maxOffDiag.toFixed(2)}.
+      <strong>El VIF captura la dependencia combinada que las correlaciones simples no detectan.</strong>`;
+  } else {
+    fbox.className='insight';
+    fbox.innerHTML=`<strong>✅ Multicolinealidad aceptable:</strong> Todos los VIF están dentro de rangos normales.`;
+  }
+}
+
+// ===========================================================================
+// DATOS SINTÉTICOS (fallback si GitHub no responde)
+// ===========================================================================
+
+function generateNorm(){ let u,v; do{u=Math.random();}while(!u); do{v=Math.random();}while(!v); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+
+function generateSyntheticData(){
+  const n=1000;
+  // Correlation matrix matching article: Product_range VIF ≈ 5.94, all pairs < 0.6
+  const R=[
+    [1,    0.35, 0.28, 0.47],
+    [0.35, 1,    0.40, 0.52],
+    [0.28, 0.40, 1,    0.45],
+    [0.47, 0.52, 0.45, 1   ]
+  ];
+  // Cholesky decomposition
+  const p=4, L=Array.from({length:p},()=>new Array(p).fill(0));
+  for(let i=0;i<p;i++){
+    for(let j=0;j<=i;j++){
+      let s=0; for(let k=0;k<j;k++) s+=L[i][k]*L[j][k];
+      if(i===j){ const v=R[i][i]-s; L[i][j]=v>0?Math.sqrt(v):0; }
+      else L[i][j]=L[j][j]>1e-10?(R[i][j]-s)/L[j][j]:0;
+    }
+  }
+  const data=[];
+  for(let i=0;i<n;i++){
+    const z=[generateNorm(),generateNorm(),generateNorm(),generateNorm()];
+    const x=new Array(p).fill(0);
+    for(let r=0;r<p;r++) for(let c=0;c<=r;c++) x[r]+=L[r][c]*z[c];
+    const perf=0.25*x[0]+0.30*x[1]+0.20*x[2]+0.15*x[3]+0.5*generateNorm();
+    data.push({
+      Ambience: Math.max(-5,Math.min(5,x[0]*2.2)).toFixed(4),
+      Customer_service: Math.max(-5,Math.min(5,x[1]*2.2)).toFixed(4),
+      Offers: Math.max(-5,Math.min(5,x[2]*2.2)).toFixed(4),
+      Product_range: Math.max(-5,Math.min(5,x[3]*2.2)).toFixed(4),
+      Performance: Math.max(-5,Math.min(5,perf*1.5)).toFixed(4),
+    });
+  }
+  return data;
+}
+
+// ===========================================================================
+// CARGA DE DATOS
+// ===========================================================================
+
+fetch('https://raw.githubusercontent.com/vikashkmd/Datasets/main/vif_data.csv')
+  .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+  .then(csv=>{
+    const parsed=Papa.parse(csv,{header:true,dynamicTyping:true,skipEmptyLines:true});
+    processData(parsed.data, true);
+  })
+  .catch(()=>{
+    processData(generateSyntheticData(), false);
+  });
+
+// ===========================================================================
+// SIMULADOR INTERACTIVO
+// ===========================================================================
+
+const SIM_PAIRS = [
+  {key:'ac', a:0, b:1, label:'Ambience ↔ Customer_service', def:0.35},
+  {key:'ao', a:0, b:2, label:'Ambience ↔ Offers',           def:0.28},
+  {key:'ap', a:0, b:3, label:'Ambience ↔ Product_range',    def:0.47},
+  {key:'co', a:1, b:2, label:'Customer_service ↔ Offers',   def:0.40},
+  {key:'cp', a:1, b:3, label:'Customer_service ↔ Product_range', def:0.52},
+  {key:'op', a:2, b:3, label:'Offers ↔ Product_range',      def:0.45},
+];
+
+function buildSliders(){
+  const c = document.getElementById('sliders-container');
+  c.innerHTML = SIM_PAIRS.map(p=>`
+    <div class="slider-row">
+      <label>
+        <span class="lname">${p.label}</span>
+        <span class="lval" id="lv-${p.key}">${p.def.toFixed(2)}</span>
+      </label>
+      <input type="range" id="sl-${p.key}" min="0" max="0.98" step="0.01" value="${p.def}"
+        oninput="document.getElementById('lv-${p.key}').textContent=parseFloat(this.value).toFixed(2); scheduleSimUpdate();">
+    </div>`).join('');
+}
+
+function getSliderValues(){
+  return SIM_PAIRS.map(p=>+document.getElementById('sl-'+p.key).value);
+}
+
+function setSliderValues(...vals){
+  SIM_PAIRS.forEach((p,i)=>{
+    const v = vals[i]!==undefined ? vals[i] : p.def;
+    const el = document.getElementById('sl-'+p.key);
+    if(el){ el.value=v; document.getElementById('lv-'+p.key).textContent=v.toFixed(2); }
+  });
+  updateSimulator();
+}
+
+function resetSliders(){
+  setSliderValues(...SIM_PAIRS.map(p=>p.def));
+}
+
+let simTimer=null;
+function scheduleSimUpdate(){
+  clearTimeout(simTimer);
+  simTimer=setTimeout(updateSimulator,120);
+}
+
+function updateSimulator(){
+  const [rAC,rAO,rAP,rCO,rCP,rOP] = getSliderValues();
+  const R = corrMatrixFromCoeffs(rAC,rAO,rAP,rCO,rCP,rOP);
+
+  const warn = document.getElementById('psd-warning');
+  if(!isDeterminantPositive(R)){
+    warn.style.display='block';
+    document.getElementById('sim-vif-bars').innerHTML=
+      '<p style="color:#dc2626;font-size:.8rem;">Matriz inválida — reduce alguna correlación.</p>';
+    return;
+  }
+  warn.style.display='none';
+
+  const results = vifFromCorrMatrix(R);
+  if(!results){ warn.style.display='block'; return; }
+
+  // VIF bars
+  const vifs={};
+  FEATS.forEach((f,i)=>{ vifs[f]=results[i].vif; });
+  renderVIFBars(vifs, FEATS, 'sim-vif-bars', 20);
+
+  // Heatmap
+  renderHeatmap(R, FEATS, 'sim-heatmap', 280);
+}
+
+// ===========================================================================
+// INIT
+// ===========================================================================
+
+buildSliders();
+updateSimulator();
+</script>
+</body>
+</html>

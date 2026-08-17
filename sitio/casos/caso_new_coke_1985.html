@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Coke 1985 · La decisión perfecta que salió terriblemente mal</title>
+<meta name="description" content="Caso de apertura del Seminario de Análisis Exploratorio de Datos. Coca-Cola, 1985: 191.000 pruebas de sabor, datos impecables, conclusión inválida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   PALETA USFQ — cambia estas cuatro líneas si tu manual de marca
+   especifica otro tono exacto de rojo institucional.
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --rojo:      #C8102E;   /* rojo USFQ, acento principal */
+  --rojo-osc:  #8A0B1F;   /* rojo profundo, titulares */
+  --rojo-suave:#FDF2F3;   /* fondo de bloques destacados */
+  --tinta:     #1C1C1C;   /* texto principal */
+  --gris:      #5E5E5E;   /* texto secundario */
+  --gris-cl:   #8A8A8A;   /* metadatos */
+  --linea:     #E6E6E6;
+  --crema:     #FAF8F6;
+  --blanco:    #FFFFFF;
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --max: 720px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--blanco); color:var(--tinta);
+  font-family:var(--serif); font-size:19px; line-height:1.72;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+
+/* ── Barra de progreso ── */
+#progreso{position:fixed;top:0;left:0;height:3px;background:var(--rojo);width:0;z-index:999;transition:width .1s linear}
+
+/* ── Contenedores ── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.ancho{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ── Portada ── */
+header.hero{padding:88px 0 56px;border-bottom:1px solid var(--linea)}
+.kicker{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rojo);margin-bottom:22px}
+h1{font-size:clamp(2.1rem,5.6vw,3.3rem);line-height:1.1;font-weight:700;letter-spacing:-.022em;margin-bottom:22px}
+.bajada{font-size:1.24rem;color:var(--gris);line-height:1.6;margin-bottom:32px}
+.credito{font-family:var(--sans);font-size:.8rem;color:var(--gris-cl);line-height:1.65;padding-top:22px;border-top:1px solid var(--linea)}
+.credito strong{color:var(--gris);font-weight:600}
+
+/* ── Tipografía de secciones ── */
+section{padding:56px 0}
+.num{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.14em;color:var(--rojo);text-transform:uppercase;margin-bottom:12px;display:block}
+h2{font-size:clamp(1.6rem,3.6vw,2.1rem);line-height:1.2;font-weight:700;letter-spacing:-.018em;margin-bottom:24px}
+h3{font-family:var(--sans);font-size:1.06rem;font-weight:600;line-height:1.4;margin:38px 0 14px;letter-spacing:-.01em}
+p{margin-bottom:22px}
+p.lead{font-size:1.14rem;color:var(--gris)}
+strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--rojo);text-decoration:none;border-bottom:1px solid rgba(200,16,46,.28);transition:border-color .15s}
+a:hover{border-bottom-color:var(--rojo)}
+ul,ol{margin:0 0 22px;padding-left:24px}
+li{margin-bottom:10px}
+li::marker{color:var(--rojo)}
+hr.sep{border:0;border-top:1px solid var(--linea);margin:0}
+
+/* ── Elementos editoriales ── */
+blockquote{
+  margin:34px 0;padding:4px 0 4px 26px;border-left:3px solid var(--rojo);
+  font-size:1.16rem;line-height:1.62;font-style:italic;color:var(--tinta);
+}
+blockquote cite{display:block;margin-top:14px;font-family:var(--sans);font-size:.8rem;font-style:normal;color:var(--gris-cl);letter-spacing:.01em}
+
+.dato{
+  margin:38px 0;padding:30px 32px;background:var(--crema);
+  border:1px solid var(--linea);border-radius:3px;
+}
+.dato .dato-num{font-family:var(--sans);font-size:2.5rem;font-weight:700;color:var(--rojo);line-height:1;letter-spacing:-.03em}
+.dato .dato-txt{font-family:var(--sans);font-size:.92rem;color:var(--gris);margin-top:10px;line-height:1.55}
+
+.nota{
+  margin:32px 0;padding:20px 24px;background:var(--rojo-suave);
+  border-left:3px solid var(--rojo);font-family:var(--sans);font-size:.92rem;line-height:1.62;color:var(--tinta);
+}
+.nota strong{color:var(--rojo-osc)}
+.nota p{margin-bottom:12px}
+.nota p:last-child{margin-bottom:0}
+
+.contexto{
+  margin:32px 0;padding:24px 26px;border:1px dashed var(--linea);border-radius:3px;
+  font-family:var(--sans);font-size:.92rem;line-height:1.68;color:var(--gris);background:var(--blanco);
+}
+.contexto .etq{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rojo);margin-bottom:10px}
+.contexto p{margin-bottom:12px}
+.contexto p:last-child{margin-bottom:0}
+
+/* ── Figuras ── */
+figure{margin:46px 0}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-family:var(--sans);font-size:.8rem;color:var(--gris-cl);line-height:1.6;margin-top:14px;padding-top:12px;border-top:1px solid var(--linea)}
+figcaption b{color:var(--gris);font-weight:600}
+
+/* ── Video ── */
+.video{margin:40px 0}
+.video-marco{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:var(--crema);border:1px solid var(--linea);border-radius:3px}
+.video-marco iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.video-pie{font-family:var(--sans);font-size:.8rem;color:var(--gris-cl);margin-top:12px;line-height:1.6}
+
+/* ── Tabla ── */
+table{width:100%;border-collapse:collapse;margin:34px 0;font-family:var(--sans);font-size:.9rem}
+th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--tinta);font-weight:600;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+td{padding:11px 12px;border-bottom:1px solid var(--linea)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+th.n{text-align:right}
+tr:last-child td{border-bottom:1px solid var(--tinta)}
+
+/* ── Diálogo de la rueda de prensa ── */
+.dialogo{margin:34px 0;border-top:1px solid var(--linea)}
+.turno{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--linea);align-items:start}
+.turno .quien{font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gris-cl);padding-top:5px}
+.turno .que{font-size:1.02rem;line-height:1.6}
+.turno.clave{background:var(--rojo-suave);margin:0 -18px;padding:16px 18px}
+.turno.clave .quien{color:var(--rojo)}
+.turno.clave .que{font-weight:600}
+
+/* ── Bloque bloqueado ── */
+.candado{
+  margin:56px 0;border:2px solid var(--linea);border-radius:4px;
+  background:var(--crema);padding:44px 32px;text-align:center;font-family:var(--sans);
+}
+.candado .icono{font-size:2rem;line-height:1;margin-bottom:18px;color:var(--gris-cl)}
+.candado h3{font-family:var(--sans);font-size:1.24rem;font-weight:700;margin:0 0 12px;color:var(--tinta)}
+.candado p{font-size:.94rem;color:var(--gris);max-width:460px;margin:0 auto 22px;line-height:1.62}
+#cuenta{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:1.5rem;font-weight:700;color:var(--rojo);letter-spacing:-.01em;margin-bottom:8px}
+#cuenta-etq{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-cl)}
+.btn{
+  display:inline-block;font-family:var(--sans);font-size:.92rem;font-weight:600;
+  padding:13px 30px;border-radius:3px;border:0;cursor:pointer;
+  background:var(--rojo);color:#fff;transition:background .15s;
+}
+.btn:hover{background:var(--rojo-osc)}
+.btn:disabled{background:#D8D8D8;color:#fff;cursor:not-allowed}
+#revelado{display:none}
+#revelado.abierto{display:block;animation:aparece .5s ease}
+@keyframes aparece{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ── Preguntas ── */
+.pregunta{
+  margin:0 0 8px;border:1px solid var(--linea);border-radius:3px;overflow:hidden;background:var(--blanco);
+}
+.pregunta summary{
+  cursor:pointer;list-style:none;padding:20px 24px;font-family:var(--sans);font-size:1rem;
+  font-weight:600;line-height:1.5;display:flex;gap:16px;align-items:baseline;transition:background .15s;
+}
+.pregunta summary:hover{background:var(--crema)}
+.pregunta summary::-webkit-details-marker{display:none}
+.pregunta summary .pnum{color:var(--rojo);font-size:.8rem;font-weight:700;letter-spacing:.06em;flex-shrink:0;padding-top:2px}
+.pregunta[open] summary{border-bottom:1px solid var(--linea);background:var(--crema)}
+.pregunta .cuerpo{padding:22px 24px 24px 64px;font-family:var(--sans);font-size:.93rem;line-height:1.68;color:var(--gris)}
+.pregunta .cuerpo p{margin-bottom:14px}
+.pregunta .cuerpo p:last-child{margin-bottom:0}
+.pregunta .cuerpo strong{color:var(--tinta)}
+.pregunta .cuerpo ul{padding-left:20px;margin-bottom:14px}
+
+.fase{
+  font-family:var(--sans);display:flex;gap:14px;align-items:baseline;
+  margin:0 0 4px;padding:16px 20px;border-left:3px solid var(--rojo);background:var(--crema);
+}
+.fase .t{font-size:.74rem;font-weight:700;color:var(--rojo);letter-spacing:.06em;flex-shrink:0;width:60px;font-variant-numeric:tabular-nums}
+.fase .d{font-size:.92rem;line-height:1.6}
+.fase .d b{font-weight:600;color:var(--tinta)}
+
+/* ── Rúbrica ── */
+.rubrica{font-family:var(--sans);font-size:.88rem;margin:28px 0}
+.rubrica th{font-size:.72rem}
+.rubrica td:first-child{font-weight:600;color:var(--tinta)}
+
+/* ── Fuentes ── */
+.fuentes{font-family:var(--sans);font-size:.88rem;line-height:1.68;color:var(--gris)}
+.fuentes li{margin-bottom:12px}
+.fuentes .tipo{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rojo);margin-right:8px}
+
+/* ── Pie ── */
+footer{padding:52px 0 72px;border-top:1px solid var(--linea);margin-top:56px;font-family:var(--sans);font-size:.82rem;color:var(--gris-cl);line-height:1.7}
+footer strong{color:var(--gris);font-weight:600}
+
+/* ── Fotografías ── */
+figure img{width:100%;height:auto;display:block;border-radius:3px;background:var(--crema)}
+figure.foto-ancha img{max-height:440px;object-fit:cover;object-position:center}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch}
+.par img{height:100%;object-fit:cover;aspect-ratio:1/1}
+.foto-nota{font-family:var(--sans);font-size:.74rem;color:var(--gris-cl);letter-spacing:.03em;margin-top:6px}
+figure.objeto{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+figure.objeto img{width:auto;max-width:190px;max-height:340px;border:1px solid var(--linea);padding:18px;background:var(--blanco)}
+figure.objeto figcaption{flex:1;min-width:240px;border-top:0;padding-top:0;margin-top:0}
+
+/* ── Muro de titulares ── */
+.titulares{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:34px 0}
+.titular{border:1px solid var(--linea);border-top:3px solid var(--tinta);padding:18px 20px;background:var(--blanco)}
+.titular .th{font-family:var(--serif);font-size:1.06rem;font-weight:700;line-height:1.28;color:var(--tinta);margin-bottom:10px}
+.titular .tm{font-family:var(--sans);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gris-cl)}
+.titular.rojo{border-top-color:var(--rojo)}
+.titular.rojo .th{color:var(--rojo-osc)}
+
+/* ── Quiz ── */
+.quiz{margin:34px 0;font-family:var(--sans)}
+.q{border:1px solid var(--linea);border-radius:3px;padding:22px 24px;margin-bottom:12px;background:var(--blanco);transition:border-color .2s}
+.q.bien{border-color:#1E9E5A;background:#F4FBF7}
+.q.mal{border-color:var(--rojo);background:var(--rojo-suave)}
+.qt{font-size:1rem;font-weight:600;line-height:1.5;margin-bottom:16px;display:flex;gap:14px;align-items:baseline;color:var(--tinta)}
+.qn{color:var(--rojo);font-size:.78rem;font-weight:700;letter-spacing:.06em;flex-shrink:0}
+.opt{display:flex;gap:11px;align-items:flex-start;padding:9px 12px;border-radius:3px;cursor:pointer;font-size:.93rem;line-height:1.55;color:var(--gris);transition:background .12s}
+.opt:hover{background:var(--crema)}
+.opt input{margin-top:5px;accent-color:var(--rojo);flex-shrink:0;cursor:pointer}
+.q .marca{font-size:.82rem;font-weight:600;margin-top:12px;padding-top:12px;border-top:1px solid var(--linea);display:none}
+.q.bien .marca,.q.mal .marca{display:block}
+.q.bien .marca{color:#1E7F49}
+.q.mal .marca{color:var(--rojo-osc)}
+.quiz-pie{margin-top:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+#quiz-res{font-size:.93rem;font-weight:600;line-height:1.5}
+#quiz-res.ok{color:#1E7F49}
+#quiz-res.no{color:var(--rojo-osc)}
+
+/* ── Asignación ── */
+#asignacion{display:none;margin-top:40px;padding-top:34px;border-top:2px solid var(--rojo)}
+#asignacion.abierto{display:block;animation:aparece .5s ease}
+.campo{font-family:var(--sans);display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0}
+.campo input{font-family:var(--sans);font-size:.95rem;padding:12px 15px;border:1px solid var(--linea);border-radius:3px;min-width:280px;flex:1;color:var(--tinta);background:var(--blanco)}
+.campo input:focus{outline:0;border-color:var(--rojo)}
+#tarjeta{display:none;margin-top:26px}
+#tarjeta.abierto{display:block;animation:aparece .45s ease}
+.tarjeta-caja{border:2px solid var(--rojo);border-radius:4px;overflow:hidden;background:var(--blanco)}
+.tarjeta-cab{background:var(--rojo);color:#fff;padding:20px 26px;font-family:var(--sans);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.tarjeta-cab .grupo{font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.tarjeta-cab .grupo small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;opacity:.85;margin-bottom:6px;letter-spacing:.14em}
+.tarjeta-cab .quien{text-align:right;font-size:.86rem;line-height:1.5}
+.tarjeta-cab .quien b{display:block;font-size:1.02rem;font-weight:600}
+.tarjeta-cuerpo{padding:26px}
+.tarjeta-cuerpo .etq{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--rojo);margin-bottom:10px}
+.tarjeta-cuerpo .preg{font-family:var(--serif);font-size:1.24rem;font-weight:700;line-height:1.4;color:var(--tinta);margin-bottom:20px}
+.tarjeta-cuerpo .guia{font-family:var(--sans);font-size:.92rem;line-height:1.68;color:var(--gris);border-top:1px solid var(--linea);padding-top:18px}
+.tarjeta-cuerpo .guia p{margin-bottom:13px}
+.tarjeta-cuerpo .guia p:last-child{margin-bottom:0}
+.tarjeta-cuerpo .guia strong{color:var(--tinta)}
+.tarjeta-cuerpo .guia ul{padding-left:20px;margin-bottom:13px}
+.tarjeta-pie{background:var(--crema);border-top:1px solid var(--linea);padding:16px 26px;font-family:var(--sans);font-size:.78rem;color:var(--gris-cl);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+/* ── Fondos alternos ── */
+.franja{background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+
+@media (max-width:640px){
+  body{font-size:17.5px}
+  section{padding:44px 0}
+  header.hero{padding:56px 0 40px}
+  .turno{grid-template-columns:1fr;gap:6px}
+  .pregunta .cuerpo{padding-left:24px}
+  .dato{padding:24px 22px}
+}
+@media print{
+  #progreso,.candado{display:none}
+  #revelado{display:block!important}
+  body{font-size:11pt}
+  .video{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="progreso"></div>
+
+<!-- ══════════════ PORTADA ══════════════ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Seminario de Análisis Exploratorio de Datos · Sesión 1</div>
+    <h1>La decisión más cara jamás tomada con datos correctos</h1>
+    <p class="bajada">Coca-Cola gastó cuatro millones de dólares y dos años en la investigación de mercado más grande de la historia. Los datos eran impecables. La conclusión estuvo tan equivocada que casi destruye la marca más valiosa del planeta.</p>
+    <div class="credito">
+      <strong>Caso de discusión.</strong> Adaptación en español para el Seminario de EDA, basada en <em>Introducing New Coke</em>, de Susan Fournier, Harvard Business School, caso 9-500-067 (1999, rev. 2001). Todas las cifras, citas y fechas provienen del caso original y de sus fuentes primarias.<br>
+      <strong>Cómo usar este documento.</strong> Léelo completo antes de la sesión. El desenlace está bloqueado hasta después de la clase: <em>tienes que decidir sin saber cómo terminó</em>.
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ 0 · CONTEXTO ══════════════ -->
+<section>
+  <div class="wrap">
+    <span class="num">Antes de empezar</span>
+    <h2>Un mundo sin pantallas</h2>
+
+    <p class="lead">Si naciste después del 2000, necesitas entender una cosa antes de que este caso tenga sentido: en 1985 no existía forma de que una empresa supiera qué pensabas de ella.</p>
+
+    <p>No había redes sociales. No había reseñas. No había una sección de comentarios donde miles de personas dijeran, en tiempo real, que odiaban algo. Si una marca quería saber qué sentías, tenía que salir a la calle, detenerte, y preguntarte. Literalmente. Con una tablilla y un lápiz.</p>
+
+    <p>Eso significaba dos cosas. La primera: los datos de consumidor eran caros, lentos y escasos, y por eso la empresa que los tenía se sentía intocable. La segunda, más importante para nosotros: <strong>cuando la empresa se equivocaba, no había señal de alarma temprana.</strong> El error se descubría cuando ya estaba en las estanterías de todo un país.</p>
+
+    <div class="contexto">
+      <span class="etq">Traducción generacional</span>
+      <p>Para entender qué era Coca-Cola en Estados Unidos en 1985, no pienses en una gaseosa. Piensa en algo que forma parte de tu identidad sin que lo hayas decidido conscientemente.</p>
+      <p>Coca-Cola había inventado la imagen moderna de Papá Noel en 1931 —el gordo de rojo que conoces es literalmente un anuncio de Coca-Cola dibujado por Haddon Sundblom—. Había acompañado a los soldados estadounidenses en la Segunda Guerra Mundial por orden expresa del presidente de la compañía: <em>«que cada hombre en uniforme reciba una botella de Coca-Cola por cinco centavos, esté donde esté y le cueste lo que le cueste a la empresa»</em>. Norman Rockwell, el pintor que definió la estética de «lo estadounidense», pintaba sus anuncios.</p>
+      <p>La analogía menos mala: imagina que mañana Spotify anuncia que elimina el Wrapped para siempre y lo reemplaza por algo objetivamente mejor. O que WhatsApp borra los estados. Técnicamente superior, quizá. Pero algo tuyo desapareció sin que te preguntaran.</p>
+    </div>
+
+    <figure>
+      <div class="par">
+        <img src="img/1931-santa-sundblom.jpeg" alt="Expositor de cartón de Coca-Cola con el Papá Noel pintado por Haddon Sundblom, hacia 1931">
+        <img src="img/coca-cola-iconografia.jpeg" alt="Collage de publicidad histórica de Coca-Cola, presentada como icono de la cultura de consumo">
+      </div>
+      <figcaption><b>Cincuenta años construyendo significado.</b> A la izquierda, el Papá Noel de Haddon Sundblom, 1931: antes de estos anuncios el santo se dibujaba de verde, azul o amarillo, y a veces era un duende flaco. Después de ellos quedó fijado para siempre como un hombre gordo, alegre y vestido de <em>rojo Coca-Cola</em>. A la derecha, medio siglo de iconografía de marca.<br><b>Esto es lo que estaba en juego en 1985,</b> y nada de esto se puede probar en un vaso sin etiqueta.</figcaption>
+    </figure>
+
+    <p>Guarda esa sensación. Es exactamente la variable que Coca-Cola nunca midió.</p>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 1 · LA GUERRA DE LAS COLAS ══════════════ -->
+<section>
+  <div class="wrap">
+    <span class="num">Capítulo 1</span>
+    <h2>El sorbo que empezó todo</h2>
+
+    <p>1975. Texas. Pepsi está siendo aplastada: Coca-Cola tiene el 35% del mercado, la marca local Dr. Pepper el 25%, y Pepsi apenas un 6%. Larry Smith, el ejecutivo de Pepsi a cargo de la región, resume la situación con una frase que sus jefes no quieren oír:</p>
+
+    <blockquote>
+      «Lo de la imagen está muy bien. Pero nos están vendiendo ocho a uno. Necesitamos una campaña que mueva la aguja.»
+      <cite>Larry Smith, ejecutivo de Pepsi en Texas</cite>
+    </blockquote>
+
+    <p>Smith tenía una convicción: Pepsi sabía mejor que Coca-Cola. Su chiste interno era que <em>«si pones Coca-Cola en una botella de Pepsi te mueres de hambre, pero si pones Pepsi en una botella de Coca-Cola te haces rico. La gente la toma por la marca, nada más»</em>.</p>
+
+    <p>Así que Bob Stanford, director creativo de la cadena de tiendas 7-Eleven, diseñó un experimento de una simplicidad brutal. Salió a la calle. Le dio a la gente dos vasos sin etiqueta. Les preguntó cuál sabía mejor. Y lo filmó todo con cámara oculta.</p>
+
+    <p><strong>Resultado: 52% eligió Pepsi, 48% eligió Coca-Cola.</strong> Con eso nació el <em>Pepsi Challenge</em>, y con eso Pepsi ganó el derecho legal a declararse superior en sabor a su rival centenario.</p>
+
+    <div class="dato">
+      <div class="dato-num">6% → 14%</div>
+      <div class="dato-txt">Participación de Pepsi en el mercado de refrescos de Dallas–Fort Worth antes y después de la campaña local del Pepsi Challenge. La campaña se extendió a todo Estados Unidos y duró ocho años.</div>
+    </div>
+
+    <div class="video">
+      <div class="video-marco">
+        <iframe src="https://www.youtube-nocookie.com/embed/v7lw_vhxtNc" title="Pepsi Taste Test commercial, 1983" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p class="video-pie"><b>Comercial del Pepsi Challenge (1983).</b> Fíjate en el mecanismo exacto: un sorbo, dos vasos sin marca, una pregunta binaria. Todo el conflicto de este caso vive dentro de ese formato de 30 segundos. <a href="https://www.youtube.com/watch?v=v7lw_vhxtNc" target="_blank" rel="noopener">Ver en YouTube</a></p>
+    </div>
+
+    <h3>La reacción que nadie esperaba</h3>
+
+    <p>Coca-Cola hizo lo lógico: acusó a Pepsi de publicidad engañosa y corrió a hacer sus propias pruebas de sabor. Y aquí ocurre el primer momento incómodo de esta historia.</p>
+
+    <p>Los datos de Coca-Cola confirmaron lo que Pepsi ya sabía. Pepsi sabía mejor. <strong>Incluso para los fanáticos de Coca-Cola.</strong> Como explicó Donald Keough, presidente de la compañía, nunca habían probado su propia bebida contra la competencia: <em>«no estaba permitido»</em>. Cien años protegiendo una fórmula secreta y jamás la habían contrastado con nadie.</p>
+
+    <p>Cuando Coca-Cola intentó filmar sus propios comerciales de degustación en Houston, el dato no cooperó: ganaba, sí, pero por un margen ridículo de 4%. No servía para un anuncio. Entonces hicieron algo revelador: <strong>repitieron las pruebas con las marcas a la vista</strong>, y ahí sí ganaron cómodamente. Con la etiqueta puesta, la gente elegía Coca-Cola.</p>
+
+    <div class="nota">
+      <p><strong>Anota esto, porque es el corazón del caso.</strong> Ya a mediados de los setenta, casi una década antes del lanzamiento, Coca-Cola tenía en sus manos la prueba de que el resultado cambiaba según si la marca era visible o no. Es decir: ya sabían, con datos propios, que <em>la marca era una variable del experimento</em>.</p>
+      <p>Diez años después construirían la decisión más grande de su historia sobre pruebas que eliminaban deliberadamente esa variable.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 2 · EL PROBLEMA REAL ══════════════ -->
+<section class="franja">
+  <div class="wrap">
+    <span class="num">Capítulo 2</span>
+    <h2>Los números que asustaron a Atlanta</h2>
+
+    <p>Para 1984 el panorama era el siguiente, y conviene mirarlo con calma porque es el punto de partida de todo análisis en este caso.</p>
+
+    <figure>
+      <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico de líneas: participación de mercado de Coca-Cola y Pepsi entre 1970 y 1984">
+        <!-- ejes -->
+        <line x1="64" y1="278" x2="648" y2="278" stroke="#1C1C1C" stroke-width="1.2"/>
+        <line x1="64" y1="34"  x2="64"  y2="278" stroke="#E6E6E6" stroke-width="1"/>
+        <!-- guías horizontales -->
+        <g stroke="#E6E6E6" stroke-width="1">
+          <line x1="64" y1="34"  x2="648" y2="34"/>
+          <line x1="64" y1="95"  x2="648" y2="95"/>
+          <line x1="64" y1="156" x2="648" y2="156"/>
+          <line x1="64" y1="217" x2="648" y2="217"/>
+        </g>
+        <g font-family="Inter, sans-serif" font-size="11" fill="#8A8A8A">
+          <text x="52" y="38"  text-anchor="end">30%</text>
+          <text x="52" y="99"  text-anchor="end">25%</text>
+          <text x="52" y="160" text-anchor="end">20%</text>
+          <text x="52" y="221" text-anchor="end">15%</text>
+          <text x="52" y="282" text-anchor="end">10%</text>
+        </g>
+        <!-- eje x: 1970=110, 1975=250, 1979=418, 1984=600 -->
+        <g font-family="Inter, sans-serif" font-size="12" fill="#5E5E5E">
+          <text x="110" y="300" text-anchor="middle">1970</text>
+          <text x="250" y="300" text-anchor="middle">1975</text>
+          <text x="418" y="300" text-anchor="middle">1979</text>
+          <text x="600" y="300" text-anchor="middle">1984</text>
+        </g>
+        <!-- COKE: 28.4→striped 1970 y=54.5 ; 26.2 y=81.4 ; 23.9 y=109.4 ; 21.7 y=136.3 -->
+        <polyline points="110,53.5 250,80.4 418,108.4 600,135.3" fill="none" stroke="#C8102E" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        <g fill="#C8102E">
+          <circle cx="110" cy="53.5" r="5"/><circle cx="250" cy="80.4" r="5"/>
+          <circle cx="418" cy="108.4" r="5"/><circle cx="600" cy="135.3" r="5"/>
+        </g>
+        <!-- PEPSI: 17.0 ; 17.4 ; 17.9 ; 18.8 -->
+        <polyline points="110,192.6 250,187.7 418,181.6 600,170.6" fill="none" stroke="#1C1C1C" stroke-width="2.4" stroke-dasharray="7 5" stroke-linejoin="round" stroke-linecap="round"/>
+        <g fill="#1C1C1C">
+          <circle cx="110" cy="192.6" r="4.5"/><circle cx="250" cy="187.7" r="4.5"/>
+          <circle cx="418" cy="181.6" r="4.5"/><circle cx="600" cy="170.6" r="4.5"/>
+        </g>
+        <!-- etiquetas de serie -->
+        <g font-family="Inter, sans-serif" font-size="13" font-weight="600">
+          <text x="120" y="44" fill="#C8102E">Coca-Cola</text>
+          <text x="120" y="212" fill="#1C1C1C">Pepsi</text>
+        </g>
+        <!-- valores extremos -->
+        <g font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#C8102E">
+          <text x="612" y="132">21,7%</text>
+        </g>
+        <g font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1C1C1C">
+          <text x="612" y="176">18,8%</text>
+        </g>
+        <!-- brecha -->
+        <line x1="600" y1="141" x2="600" y2="166" stroke="#8A8A8A" stroke-width="1" stroke-dasharray="2 3"/>
+      </svg>
+      <figcaption><b>Figura 1 · La brecha que se cerraba.</b> Participación en las ventas de la industria de refrescos, Estados Unidos. Entre 1970 y 1984 Coca-Cola perdió 6,7 puntos y Pepsi ganó 1,8. La ventaja de Coca-Cola pasó de ser abrumadora a ser de 2,9 puntos. <b>Cada punto porcentual equivalía a 250 millones de dólares en ventas.</b> Fuente: caso HBS 9-500-067, Anexo 4, a partir de Robert Hartley, <em>Marketing Mistakes</em>.</figcaption>
+    </figure>
+
+    <p>Había un segundo dato, todavía más inquietante para Atlanta. En 1972, el 18% de los consumidores de refrescos tomaba <em>exclusivamente</em> Coca-Cola y solo el 4% tomaba exclusivamente Pepsi. Para 1982 esas cifras eran 12% y 11%. La lealtad exclusiva de Coca-Cola se había desplomado; la de Pepsi casi se había triplicado.</p>
+
+    <h3>Descartando culpables</h3>
+
+    <p>En 1984 la dirección de Coca-Cola hizo algo que, hay que reconocerlo, es buen trabajo analítico: fue eliminando explicaciones una por una.</p>
+
+    <ul>
+      <li><strong>¿Publicidad?</strong> No. Coca-Cola gastaba 100 millones de dólares al año más que Pepsi.</li>
+      <li><strong>¿Creatividad?</strong> No. La campaña «Coke Is It» funcionaba bien desde 1982.</li>
+      <li><strong>¿Distribución?</strong> No. Coca-Cola tenía el doble de máquinas expendedoras, dominaba el canal de restaurantes y tenía más espacio en góndola.</li>
+      <li><strong>¿Precio?</strong> No. Eran competitivos.</li>
+    </ul>
+
+    <p>Por eliminación, quedaba una sola respuesta posible. Roy Stout, director de investigación de consumidores de la compañía, lo dijo así: <em>«Miras el Pepsi Challenge y tienes que empezar a preguntarte por el sabor»</em>.</p>
+
+    <div class="nota">
+      <p><strong>Primera trampa lógica, y es sutil.</strong> Descartar cuatro hipótesis no confirma la quinta. Solo la deja como la última en pie <em>entre las que se les ocurrió considerar</em>.</p>
+      <p>Nunca aparece en la lista una quinta hipótesis: que el problema no fuera el producto sino el <em>significado</em> del producto para una generación que envejecía mientras Pepsi capturaba a la siguiente. Pepsi no vendía sabor: llevaba veinte años vendiendo «la generación Pepsi». En 1983 fichó a Michael Jackson en la cumbre de su fama con el eslogan «la elección de una nueva generación».</p>
+    </div>
+
+    <p>Los químicos de la división técnica recibieron una instrucción de una sola línea: <strong>desarrollen un sabor que le gane a Pepsi</strong>. Y añadieron una frase que hoy leemos con escalofrío: <em>«Después ya veremos qué hacemos con él»</em>.</p>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 3 · PROJECT KANSAS ══════════════ -->
+<section>
+  <div class="wrap">
+    <span class="num">Capítulo 3</span>
+    <h2>Proyecto Kansas: el estudio más grande jamás hecho</h2>
+
+    <p>El proyecto era tan secreto que a Sergio Zyman, su responsable, lo trasladaron a una oficina en el piso 25 sin secretaria y sin asistente. Duró dos años. Se ejecutó en varias oleadas, y cada una vale la pena mirarla por separado, porque cada una produjo un dato correcto.</p>
+
+    <h3>Oleada 1 (1982) · ¿Aceptarían un cambio?</h3>
+
+    <p>Dos mil entrevistas en diez ciudades grandes. Se les mostraban guiones gráficos y anuncios simulados. A un grupo se le decía que Coca-Cola había añadido un ingrediente nuevo y sabía más suave; a otro se le decía lo mismo pero de Pepsi. Diseño experimental con grupo de control, para eliminar el sesgo de marca. Metodológicamente, impecable.</p>
+
+    <p>Las preguntas fueron: <em>«¿Probaría el nuevo producto?» «¿Cambiaría de marca inmediatamente?» «¿Se molestaría?»</em></p>
+
+    <p>El resultado: se estimó que <strong>entre el 10% y el 12% de los consumidores de Coca-Cola se molestarían</strong> por el cambio, y que la mitad de ellos lo superaría con el tiempo. Además —y esto se leyó como una gran noticia— los consumidores exclusivos de Pepsi también mostraron interés en probar la nueva Coca-Cola.</p>
+
+    <h3>Oleada 2 · Los grupos focales</h3>
+
+    <p>Aquí el resultado fue mixto y, sobre todo, ruidoso. Hubo entusiasmo, pero también un rechazo intenso concentrado en un grupo muy específico: los consumidores más leales. Zyman lo describió así:</p>
+
+    <blockquote>
+      «Era como decir que ibas a hacer la bandera más bonita. Decían que Anheuser-Busch podía cambiar la Budweiser, pero que de ninguna manera la compañía Coca-Cola debía intentar mejorar la Coca-Cola.»
+      <cite>Sergio Zyman, responsable del Proyecto Kansas</cite>
+    </blockquote>
+
+    <p>La decisión que se tomó con esa señal está descrita en el caso original con una precisión demoledora: <strong>«la minoría vocal fue descartada por los efectos sociales habituales en los grupos focales»</strong>. Es decir: se concluyó que esas personas exageraban porque estaban en grupo, y se siguió adelante.</p>
+
+    <h3>Oleada 3 (1984) · Las pruebas ciegas</h3>
+
+    <p>Los químicos lo lograron. Crearon una fórmula más dulce, más «suave», menos gaseosa, con más azúcar. Se probó a ciegas con entre 30.000 y 40.000 personas. Ganó por márgenes claros.</p>
+
+    <h3>Oleada 4 (1985) · La prueba definitiva</h3>
+
+    <p>Y entonces vino la escala que convirtió esta investigación en leyenda.</p>
+
+    <div class="dato">
+      <div class="dato-num">191.000</div>
+      <div class="dato-txt">personas en 13 ciudades de Estados Unidos compararon a ciegas una de cuatro formulaciones nuevas contra Pepsi o contra la Coca-Cola original. Dos años de trabajo. Más de 4 millones de dólares. Internamente lo llamaban «la prueba de sabor más grande de la historia».</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Medición</th><th class="n">Resultado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Prefieren la nueva fórmula sobre la Coca-Cola original (prueba ciega)</td><td class="n">55%</td></tr>
+        <tr><td>Ventaja de la nueva fórmula sobre Pepsi (prueba ciega)</td><td class="n">6 a 8 pts</td></tr>
+        <tr><td>Prefieren la nueva fórmula, en lata de Coca-Cola, lado a lado</td><td class="n">61% vs. 39%</td></tr>
+        <tr><td>Consumidores que se molestarían por el cambio (estimado, 1982)</td><td class="n">10–12%</td></tr>
+        <tr><td>Ganancia de participación proyectada</td><td class="n">+1 punto</td></tr>
+        <tr><td>Valor de ese punto en ventas minoristas</td><td class="n">250 M USD</td></tr>
+      </tbody>
+    </table>
+
+    <p>Léelo otra vez. <strong>Ninguno de esos números es falso.</strong> Nadie manipuló nada. El muestreo era enorme, el diseño experimental era correcto, el control del sesgo de marca era deliberado y técnicamente sofisticado. Si te entregaran esta tabla hoy, en una reunión, con esa n, dirías que el hallazgo es sólido.</p>
+
+    <p>Lo es. El problema es otro.</p>
+
+    <figure>
+      <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama comparativo entre lo que la prueba de sabor medía y lo que la decisión de negocio requería">
+        <!-- columna izquierda -->
+        <rect x="16" y="24" width="300" height="252" rx="4" fill="#FAF8F6" stroke="#E6E6E6"/>
+        <text x="40" y="56" font-family="Inter,sans-serif" font-size="11" font-weight="700" letter-spacing="1.4" fill="#8A8A8A">LO QUE SE MIDIÓ</text>
+        <text x="40" y="88" font-family="Source Serif 4,Georgia,serif" font-size="19" font-weight="700" fill="#1C1C1C">Un sorbo, sin marca</text>
+        <g font-family="Inter,sans-serif" font-size="12.5" fill="#5E5E5E">
+          <text x="40" y="122">· Cantidad: 30 ml</text>
+          <text x="40" y="146">· Contexto: mesa en un centro comercial</text>
+          <text x="40" y="170">· Información visible: ninguna</text>
+          <text x="40" y="194">· Alternativa: A o B</text>
+          <text x="40" y="218">· Costo de elegir mal: cero</text>
+          <text x="40" y="242">· Pregunta: ¿cuál sabe mejor?</text>
+        </g>
+        <!-- flecha -->
+        <g stroke="#C8102E" stroke-width="2" fill="none">
+          <line x1="326" y1="150" x2="352" y2="150"/>
+          <polyline points="345,144 353,150 345,156"/>
+        </g>
+        <text x="339" y="136" font-family="Inter,sans-serif" font-size="20" fill="#C8102E" text-anchor="middle">≠</text>
+        <!-- columna derecha -->
+        <rect x="364" y="24" width="300" height="252" rx="4" fill="#FDF2F3" stroke="#C8102E" stroke-width="1.5"/>
+        <text x="388" y="56" font-family="Inter,sans-serif" font-size="11" font-weight="700" letter-spacing="1.4" fill="#C8102E">LO QUE SE DECIDIÓ</text>
+        <text x="388" y="88" font-family="Source Serif 4,Georgia,serif" font-size="19" font-weight="700" fill="#1C1C1C">Retirar Coca-Cola</text>
+        <g font-family="Inter,sans-serif" font-size="12.5" fill="#5E5E5E">
+          <text x="388" y="122">· Cantidad: 350 ml, todos los días</text>
+          <text x="388" y="146">· Contexto: tu casa, tu vida, tu país</text>
+          <text x="388" y="170">· Información visible: todo</text>
+          <text x="388" y="194">· Alternativa: A, o nunca más A</text>
+          <text x="388" y="218">· Costo de elegir mal: identidad</text>
+          <text x="388" y="242">· Pregunta: ¿qué vas a hacer?</text>
+        </g>
+      </svg>
+      <figcaption><b>Figura 2 · La distancia entre el dato y la decisión.</b> El estudio respondía con enorme precisión una pregunta que no era la pregunta de negocio. Ningún tamaño de muestra corrige eso.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 4 · LA DECISIÓN ══════════════ -->
+<section class="franja">
+  <div class="wrap">
+    <span class="num">Capítulo 4</span>
+    <h2>Abril de 1985: la decisión</h2>
+
+    <p>Con esa investigación sobre la mesa, tres hombres —Roberto Goizueta, presidente del consejo; Donald Keough, presidente de la compañía; y Brian Dyson, presidente de la división norteamericana— tomaron por unanimidad la decisión de cambiar el sabor de Coca-Cola.</p>
+
+    <p>Pero tomaron una segunda decisión, y esa segunda es la que realmente importa: <strong>retirarían la fórmula original del mercado.</strong> Una sola Coca-Cola. La nueva. La vieja desaparecería.</p>
+
+    <h3>Por qué no vendieron las dos</h3>
+
+    <p>La opción de dos productos se discutió y se descartó, y las razones son perfectamente racionales desde el punto de vista operativo:</p>
+
+    <ul>
+      <li>Los embotelladores se opondrían a la complejidad de producir un segundo artículo.</li>
+      <li>Los distribuidores se opondrían a tener que almacenar ambos con espacio limitado.</li>
+      <li>Existía un riesgo de imagen: si McDonald's elegía la nueva mientras la vieja seguía disponible, la marca quedaba dañada.</li>
+    </ul>
+
+    <p>Charles Millard, presidente de la embotelladora de Nueva York, resumió el razonamiento con una frase que conviene subrayar: <em>«El mejor producto tenía que llevar el nombre de Coca-Cola. Una conclusión justa, a la que se llegó emocionalmente»</em>.</p>
+
+    <div class="nota">
+      <p><strong>Fíjate en la asimetría.</strong> Toda la investigación de dos años y cuatro millones de dólares se dedicó a responder <em>¿qué sabor prefieren?</em>. La decisión de <em>retirar el producto original</em> —que es la que causó el desastre— se tomó sin un solo estudio, apoyada en consideraciones de canal y en una intuición sobre la marca.</p>
+      <p>Es decir: se investigó exhaustivamente la parte fácil y se improvisó la parte difícil.</p>
+    </div>
+
+    <p>Sobre el riesgo, la posición interna fue explícita. Coca-Cola USA predijo que cualquier reacción negativa se disiparía a mediados de mayo. Y sobre los consumidores más leales, el razonamiento registrado en el caso es el siguiente: <strong>terminarían cediendo, porque no tenían adónde ir.</strong></p>
+
+    <figure class="foto-ancha">
+      <img src="img/1985-valla-great-new-taste.webp" alt="Valla publicitaria de 1985 con una lata de New Coke y el texto GREAT NEW TASTE! BETTER THAN EVER.">
+      <figcaption><b>«Gran sabor nuevo. Mejor que nunca.»</b> La campaña salió a la calle en mayo de 1985 con la confianza intacta. Fíjate en el mensaje: no dice «probamos algo distinto», dice <em>mejor</em>. Ese es el tono de una organización que confundió un hallazgo estadístico con una certeza sobre el comportamiento humano. Fotografía de archivo, Getty Images.</figcaption>
+    </figure>
+
+    <div class="video">
+      <div class="video-marco">
+        <iframe src="https://www.youtube-nocookie.com/embed/hQkCaGqFc0w" title="Comercial de New Coke con Bill Cosby, 1985" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p class="video-pie"><b>Comercial de lanzamiento de New Coke (1985).</b> La campaña se apoyó en Bill Cosby, entonces el rostro televisivo más popular de Estados Unidos. Existe una ironía documentada en el caso: durante meses Cosby había protagonizado anuncios diciendo que la gracia de Coca-Cola era ser <em>menos</em> dulce. La nueva fórmula era más dulce. <a href="https://www.youtube.com/watch?v=hQkCaGqFc0w" target="_blank" rel="noopener">Ver en YouTube</a></p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 5 · LA RUEDA DE PRENSA ══════════════ -->
+<section>
+  <div class="wrap">
+    <span class="num">Capítulo 5</span>
+    <h2>23 de abril de 1985, Lincoln Center</h2>
+
+    <p>Doscientos periodistas en la sala. Cientos más conectados por satélite. Goizueta abre así:</p>
+
+    <blockquote>
+      «Lo mejor se ha hecho todavía mejor. Algunos llamarán a esto el movimiento de marketing más audaz en la historia de los bienes de consumo. Nosotros simplemente lo llamamos el movimiento más seguro jamás hecho, porque el nuevo sabor de Coca-Cola fue moldeado por el gusto del consumidor.»
+      <cite>Roberto Goizueta, presidente del consejo de The Coca-Cola Company</cite>
+    </blockquote>
+
+    <p>Keough refuerza: <em>«Para los expertos en investigación de mercado, para nuestros embotelladores y para el comercio minorista, estos números representan una superioridad abrumadora. No tenemos ninguna duda de que esto será un éxito. La pregunta es: ¿cuán grande será el éxito?»</em></p>
+
+    <p>Y entonces empiezan las preguntas. Lo que sigue es una transcripción abreviada de lo que ocurrió durante la hora siguiente. Léela como analista, no como espectador.</p>
+
+    <div class="dialogo">
+      <div class="turno">
+        <div class="quien">Periodista</div>
+        <div class="que">¿Cuál es la diferencia entre la nueva y la vieja?</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Goizueta</div>
+        <div class="que">Cuando uno describe un sabor, es un asunto que se deja mejor a los poetas y a los redactores publicitarios.</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Periodista</div>
+        <div class="que">Dígalo con sus propias palabras.</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Goizueta</div>
+        <div class="que">Yo diría que es más suave, eh, más redondo, y aun así, eh, más audaz… tiene un sabor más armonioso. <em>(risas del público)</em></div>
+      </div>
+      <div class="turno">
+        <div class="quien">Periodista</div>
+        <div class="que">¿Hasta qué punto están lanzando este producto para responder al Pepsi Challenge?</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Goizueta</div>
+        <div class="que">Ay, por Dios, no. ¿El Pepsi Challenge? ¿Cuándo ocurrió eso?</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Periodista</div>
+        <div class="que">Hay quienes dicen que si no está roto, no lo arregles.</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Goizueta</div>
+        <div class="que">Creo que un axioma igual de importante es que el cliente siempre tiene la razón. Cuando pusimos la nueva fórmula en una lata de Coca-Cola y la comparamos lado a lado con la fórmula vieja, el nuevo producto fue elegido por los consumidores 61% contra 39%.</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Periodista</div>
+        <div class="que">¿Consideraron alguna vez comercializar las dos?</div>
+      </div>
+      <div class="turno">
+        <div class="quien">Keough</div>
+        <div class="que">No, básicamente.</div>
+      </div>
+      <div class="turno clave">
+        <div class="quien">Periodista</div>
+        <div class="que">Usted dice que el 39% de la gente en pruebas con marca visible prefirió la Coca-Cola vieja, y el 45% en las pruebas ciegas. ¿Qué les dice su investigación sobre <em>qué piensan hacer</em> cuando se les prive de la Coca-Cola que prefieren?</div>
+      </div>
+      <div class="turno clave">
+        <div class="quien">Keough</div>
+        <div class="que">Bueno, el 39% de la gente votó por McGovern.</div>
+      </div>
+    </div>
+
+    <div class="nota">
+      <p><strong>Esa es la pregunta del caso.</strong> Un periodista, sin acceso a los datos, sin equipo de investigación, sin dos años de estudio, formuló en una sola frase la pregunta que cuatro millones de dólares no habían respondido.</p>
+      <p>No preguntó <em>qué prefieren</em>. Preguntó <em>qué van a hacer</em>. Y la respuesta fue un chiste sobre las elecciones presidenciales de 1972.</p>
+    </div>
+
+    <p>No fue evasión deliberada. Fue que no había respuesta. Nadie la había buscado.</p>
+
+    <h3>Cómo tituló la prensa al día siguiente</h3>
+
+    <p>Estos son titulares reales, recogidos en el caso original. Léelos como lo que son: la primera medición del resultado, disponible veinticuatro horas después de la decisión, y en un formato que la empresa no sabía procesar.</p>
+
+    <div class="titulares">
+      <div class="titular"><div class="th">«Coca-Cola está cambiando su fórmula secreta»</div><div class="tm">24 de abril de 1985</div></div>
+      <div class="titular rojo"><div class="th">«¿Una nueva Coca-Cola? Los dioses deben estar locos»</div><div class="tm">24 de abril de 1985</div></div>
+      <div class="titular rojo"><div class="th">«Cocafílicos infelices enfrentan el día C»</div><div class="tm">The Atlanta Journal · 25 de abril</div></div>
+      <div class="titular"><div class="th">«La nueva Coca-Cola, cosa irreal: una prueba informal encuentra que la mejor pausa es con la vieja»</div><div class="tm">The Atlanta Constitution · 25 de abril, portada</div></div>
+      <div class="titular rojo"><div class="th">«Coca-Cola: el sabor que angustia»</div><div class="tm">The Washington Post · 7 de junio</div></div>
+      <div class="titular rojo"><div class="th">«La nueva Coca-Cola debería enlatarse… y dejarse ahí»</div><div class="tm">Prensa local, mayo–julio</div></div>
+    </div>
+
+    <div class="nota">
+      <p><strong>El detalle que más duele.</strong> Los periodistas del <em>Atlanta Constitution</em> —el diario de la ciudad natal de la empresa— consiguieron una caja del producto nuevo e hicieron <strong>su propia prueba de sabor</strong>. Ganó la fórmula original de forma contundente y lo publicaron en portada. <em>«Creo que metieron Pepsi ahí adentro con una etiqueta de Coca-Cola»</em>, decía el texto.</p>
+      <p>Un periódico local replicó el experimento en dos días, con presupuesto cero, y obtuvo el resultado contrario a un estudio de cuatro millones de dólares. No porque midieran mejor: porque midieron <em>en otro contexto</em>. Ese es el punto.</p>
+    </div>
+
+    <div class="video">
+      <p class="video-pie" style="margin-top:0"><b>Material de archivo.</b> CBS Evening News cubrió el lanzamiento el mismo 23 de abril de 1985, con el reportaje del corresponsal James McManus. <a href="https://www.cbsnews.com/video/1985-coca-cola-launches-new-coke/" target="_blank" rel="noopener">Ver el reportaje original en el archivo de CBS News</a>.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 6 · LA PAUSA ══════════════ -->
+<section class="franja">
+  <div class="wrap">
+    <span class="num">Capítulo 6</span>
+    <h2>Aquí se detiene el caso</h2>
+
+    <p class="lead">Estamos en abril de 1985. La decisión está tomada, el producto está en la calle y tú no sabes qué va a pasar después. Ese es exactamente el lugar donde vive un analista real.</p>
+
+    <p>Antes de discutir esto en clase, necesitas una herramienta. Es la misma que vamos a usar durante las cuatro semanas del seminario, así que vale la pena presentarla bien.</p>
+
+    <h3>La escalera analítica</h3>
+
+    <p>Cualquier análisis de datos, sin importar la industria ni la herramienta, responde a una de cuatro preguntas. Están ordenadas: <strong>no puedes subir un peldaño sin haber pisado el anterior.</strong></p>
+
+    <figure>
+      <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la escalera analítica: descriptivo, diagnóstico, predictivo y prescriptivo">
+        <!-- peldaño 1 -->
+        <rect x="20" y="300" width="300" height="76" rx="3" fill="#FDF2F3" stroke="#C8102E" stroke-width="1.5"/>
+        <text x="40" y="326" font-family="Inter,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.3" fill="#C8102E">PELDAÑO 1 · DESCRIPTIVO</text>
+        <text x="40" y="350" font-family="Source Serif 4,Georgia,serif" font-size="18" font-weight="700" fill="#1C1C1C">¿Qué pasó?</text>
+        <text x="40" y="368" font-family="Inter,sans-serif" font-size="12" fill="#5E5E5E">Contar bien. Medir bien. Definir bien.</text>
+
+        <!-- peldaño 2 -->
+        <rect x="110" y="212" width="300" height="76" rx="3" fill="#FDF2F3" stroke="#C8102E" stroke-width="1.5"/>
+        <text x="130" y="238" font-family="Inter,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.3" fill="#C8102E">PELDAÑO 2 · DIAGNÓSTICO</text>
+        <text x="130" y="262" font-family="Source Serif 4,Georgia,serif" font-size="18" font-weight="700" fill="#1C1C1C">¿Por qué pasó?</text>
+        <text x="130" y="280" font-family="Inter,sans-serif" font-size="12" fill="#5E5E5E">Buscar el mecanismo, no la correlación.</text>
+
+        <!-- peldaño 3 -->
+        <rect x="200" y="124" width="300" height="76" rx="3" fill="#FAF8F6" stroke="#E6E6E6" stroke-width="1.5"/>
+        <text x="220" y="150" font-family="Inter,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.3" fill="#8A8A8A">PELDAÑO 3 · PREDICTIVO</text>
+        <text x="220" y="174" font-family="Source Serif 4,Georgia,serif" font-size="18" font-weight="700" fill="#1C1C1C">¿Qué va a pasar?</text>
+        <text x="220" y="192" font-family="Inter,sans-serif" font-size="12" fill="#5E5E5E">Estimar comportamiento futuro.</text>
+
+        <!-- peldaño 4 -->
+        <rect x="290" y="36" width="300" height="76" rx="3" fill="#FAF8F6" stroke="#E6E6E6" stroke-width="1.5"/>
+        <text x="310" y="62" font-family="Inter,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.3" fill="#8A8A8A">PELDAÑO 4 · PRESCRIPTIVO</text>
+        <text x="310" y="86" font-family="Source Serif 4,Georgia,serif" font-size="18" font-weight="700" fill="#1C1C1C">¿Qué deberíamos hacer?</text>
+        <text x="310" y="104" font-family="Inter,sans-serif" font-size="12" fill="#5E5E5E">Recomendar una acción.</text>
+
+        <!-- el salto: del peldaño 1 directo al peldaño 4, esquivando 2 y 3 -->
+        <path d="M 336 338 C 580 340, 640 316, 640 228 C 640 158, 622 128, 600 118"
+              fill="none" stroke="#C8102E" stroke-width="2" stroke-dasharray="7 5"/>
+        <polyline points="607,110 599,118 609,125" fill="none" stroke="#C8102E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <text x="352" y="368" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" letter-spacing=".6" fill="#C8102E">el salto de Coca-Cola</text>
+        <!-- marcas de omisión sobre los peldaños 2 y 3 -->
+        <g stroke="#C8102E" stroke-width="2" stroke-linecap="round" opacity=".55">
+          <line x1="432" y1="240" x2="452" y2="260"/><line x1="452" y1="240" x2="432" y2="260"/>
+          <line x1="522" y1="152" x2="542" y2="172"/><line x1="542" y1="152" x2="522" y2="172"/>
+        </g>
+      </svg>
+      <figcaption><b>Figura 3 · La escalera analítica.</b> En rojo, los dos peldaños donde vive la mayor parte del valor de una organización — y que casi nadie hace bien. La línea punteada es la trayectoria real de Coca-Cola: del peldaño 1 directo al 4, saltándose las dos preguntas marcadas con una cruz. <b>La advertencia del seminario:</b> todo el mundo quiere construir el modelo predictivo; casi nadie quiere pelear con la definición de la variable.</figcaption>
+    </figure>
+
+    <p>Coca-Cola tenía un peldaño 1 excelente: 191.000 observaciones, diseño experimental cuidado, control de sesgo deliberado. Sabían con enorme precisión <em>qué había pasado</em> en una mesa de degustación.</p>
+
+    <p>Con eso saltaron directamente al peldaño 4 y emitieron una prescripción irreversible: <strong>retirar del mercado el producto más vendido del mundo.</strong></p>
+
+    <div class="nota">
+      <p><strong>Tu trabajo antes de la clase.</strong> Reconstruye los dos peldaños que faltan.</p>
+      <p>El <em>diagnóstico</em>: ¿por qué una persona compra Coca-Cola? No qué sabor prefiere. Por qué la compra. Son preguntas distintas y el caso te da pistas suficientes para responderla.</p>
+      <p>El <em>predictivo</em>: dado ese mecanismo, ¿qué va a hacer esa persona cuando llegue al supermercado y su producto no esté? Esa es, palabra por palabra, la pregunta del periodista.</p>
+    </div>
+
+    <h3>Cinco pistas que Coca-Cola tenía y no usó</h3>
+
+    <p>Todas estas aparecen en el caso, todas eran conocidas dentro de la empresa antes de abril de 1985:</p>
+
+    <ol>
+      <li>Sus propias pruebas de los años setenta mostraron que <strong>el resultado cambiaba si la marca era visible</strong>. Con marca visible ganaba Coca-Cola; a ciegas, no.</li>
+      <li>El estudio de 1982 estimó que <strong>entre el 10% y el 12% se molestaría</strong>, y que la mitad de ellos <em>no lo superaría</em>. Sobre una base de decenas de millones de consumidores, eso no es un margen: es un ejército.</li>
+      <li>Los grupos focales mostraron rechazo <strong>concentrado precisamente en los consumidores más leales</strong> —los que más volumen aportan— y esa señal se descartó por «efectos sociales».</li>
+      <li>La pregunta de las pruebas fue siempre <em>«¿cuál prefiere?»</em>, nunca <em>«¿qué haría usted si la otra desapareciera?»</em>.</li>
+      <li>Pepsi llevaba veinte años ganando con una campaña de <strong>identidad generacional</strong>, no de sabor. El diagnóstico apuntaba al significado, no a la fórmula.</li>
+    </ol>
+
+    <p>Ninguna de estas cinco cosas requiere datos adicionales. Requieren una pregunta distinta.</p>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 7 · QUIZ Y ASIGNACIÓN ══════════════ -->
+<section id="acceso">
+  <div class="wrap">
+    <span class="num">Capítulo 7 · Trabajo en casa</span>
+    <h2>Cuatro preguntas y tu desafío</h2>
+
+    <p class="lead">Responde las cuatro. Con tres correctas se abre tu asignación para la clase. Con las cuatro, mejor: significa que entendiste el caso y no solo la anécdota.</p>
+
+    <p>No busques en Google. Todo lo que necesitas está en los capítulos que acabas de leer. Puedes reintentar las veces que quieras, pero si fallas es señal de que conviene volver a los capítulos 1, 3 y 6 antes de seguir.</p>
+
+    <div class="quiz" id="quiz">
+
+      <div class="q" data-ok="c">
+        <p class="qt"><span class="qn">01</span><span>¿Cuál fue el problema central de la investigación de Coca-Cola?</span></p>
+        <label class="opt"><input type="radio" name="q1" value="a"><span>La muestra de 191.000 personas era estadísticamente insuficiente.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="b"><span>Los datos fueron manipulados para justificar una decisión ya tomada.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="c"><span>Midió preferencia de sabor en un sorbo, no el comportamiento de compra ante el retiro del producto original.</span></label>
+        <label class="opt"><input type="radio" name="q1" value="d"><span>Usaron un método estadístico inadecuado para comparar dos proporciones.</span></label>
+        <p class="marca"></p>
+      </div>
+
+      <div class="q" data-ok="b">
+        <p class="qt"><span class="qn">02</span><span>El estudio de 1982 estimó que entre el 10% y el 12% de los consumidores se molestaría. ¿Por qué esa cifra era mucho más grave de lo que aparentaba?</span></p>
+        <label class="opt"><input type="radio" name="q2" value="a"><span>Porque el estudio se hizo solo en una ciudad y no era representativo.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="b"><span>Porque ese porcentaje se concentraba en los consumidores más leales, que aportan una parte desproporcionada del volumen, y de ellos la mitad no lo superaría nunca.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="c"><span>Porque el margen de error del estudio era superior al 12%.</span></label>
+        <label class="opt"><input type="radio" name="q2" value="d"><span>Porque la cifra real, corregida después, resultó ser del 50%.</span></label>
+        <p class="marca"></p>
+      </div>
+
+      <div class="q" data-ok="b">
+        <p class="qt"><span class="qn">03</span><span>¿Qué evidencia tenía Coca-Cola desde los años setenta que contradecía el diseño de sus pruebas ciegas?</span></p>
+        <label class="opt"><input type="radio" name="q3" value="a"><span>Que Pepsi vendía más en supermercados según A.C. Nielsen.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="b"><span>Que el resultado de la prueba cambiaba según si la marca era visible o no.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="c"><span>Que la fórmula original tenía menos azúcar que la de Pepsi.</span></label>
+        <label class="opt"><input type="radio" name="q3" value="d"><span>Que los consumidores jóvenes preferían sistemáticamente Pepsi.</span></label>
+        <p class="marca"></p>
+      </div>
+
+      <div class="q" data-ok="b">
+        <p class="qt"><span class="qn">04</span><span>Según la escalera analítica, ¿qué peldaños se saltó Coca-Cola al tomar la decisión?</span></p>
+        <label class="opt"><input type="radio" name="q4" value="a"><span>El descriptivo y el diagnóstico.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="b"><span>El diagnóstico y el predictivo.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="c"><span>El predictivo y el prescriptivo.</span></label>
+        <label class="opt"><input type="radio" name="q4" value="d"><span>Ninguno: recorrió los cuatro en orden.</span></label>
+        <p class="marca"></p>
+      </div>
+
+      <div class="quiz-pie">
+        <button class="btn" id="btn-quiz">Comprobar respuestas</button>
+        <div id="quiz-res"></div>
+      </div>
+    </div>
+
+    <!-- ── Asignación aleatoria ── -->
+    <div id="asignacion">
+      <h3 style="margin-top:0">Tu pregunta para la discusión</h3>
+
+      <p>De las siete preguntas del caso te toca <strong>una sola</strong>, asignada al azar. Llegas a clase habiéndola preparado a fondo: esa es tu responsabilidad ante el grupo. En la sesión trabajarás con los compañeros a quienes les salió la misma letra.</p>
+
+      <div class="nota">
+        <p><strong>La asignación se hace una sola vez y no se guarda en ninguna parte.</strong> Si cierras esta página, se pierde. Por eso el requisito es sencillo y no negociable: <strong>toma una captura de pantalla de la tarjeta</strong> y llévala a clase. Sin captura, no tienes grupo.</p>
+      </div>
+
+      <div class="campo">
+        <input type="text" id="nombre" placeholder="Escribe aquí tu nombre y apellido" autocomplete="name" maxlength="60">
+        <button class="btn" id="btn-asignar">Asignar mi pregunta</button>
+      </div>
+
+      <div id="tarjeta"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 8 · BLOQUE BLOQUEADO ══════════════ -->
+<section id="desenlace">
+  <div class="wrap">
+    <span class="num">Capítulo 8</span>
+    <h2>Lo que pasó después</h2>
+
+    <div class="candado" id="candado">
+      <div class="icono">◍</div>
+      <h3>Esta sección está cerrada</h3>
+      <p>El desenlace del caso se abre después de la sesión del lunes 17 de agosto de 2026. Hasta entonces, tu análisis tiene que sostenerse solo. Así es como se toman las decisiones reales.</p>
+      <div id="cuenta">—</div>
+      <div id="cuenta-etq">para la apertura · hora de Ecuador</div>
+      <p style="margin-top:26px"><button class="btn" id="btn-abrir" disabled>Abrir el desenlace</button></p>
+    </div>
+
+    <div id="revelado">
+      <p class="lead">Duró setenta y nueve días.</p>
+
+      <p>En las primeras cuatro horas tras el anuncio, la compañía recibió 650 llamadas. En veinticuatro horas, el 81% de los adultos estadounidenses ya sabía del cambio. A los cinco días las llamadas diarias superaban el millar, que era el techo que Coca-Cola había previsto. A mediados de mayo llegaban <strong>5.000 llamadas al día</strong>. Hubo que instalar 83 líneas telefónicas nuevas y contratar personal. Para junio eran <strong>8.000 diarias</strong>. Entre abril y julio llegaron cerca de <strong>40.000 cartas</strong>.</p>
+
+      <p>Un periodista de televisión compró 110 cajas de Coca-Cola original —979 dólares— y consideró vender acciones de su esposa para comprar más. Una mujer en Michigan gastó 700 dólares y puso un anuncio clasificado pidiendo cartas de otros afectados; recibió cien en tres días. En Seattle se formó un grupo llamado <em>Old Coke Drinkers of America</em>, que preparó una demanda colectiva, vendió camisetas y llegó a las 200 emisoras de radio. Su líder, Gay Mullins, lo explicó así: <em>«No es broma. Me siento herido. Traicionado. Como si se hubiera violado una confianza sagrada»</em>.</p>
+
+      <figure class="foto-ancha">
+        <img src="img/1985-protesta-old-coke-drinkers.webp" alt="Miembro de la asociación Old Coke Drinkers of America rodeada de cajas, botellas y latas de Coca-Cola original, haciendo el gesto de pulgar abajo">
+        <figcaption><b>Old Coke Drinkers of America, 1985.</b> Las camisetas del fondo llevan una botella de New Coke tachada; costaban seis dólares y se pedían por teléfono. Detrás, el acaparamiento: hubo personas que gastaron cientos de dólares comprando la fórmula original antes de que desapareciera de las estanterías.<br><b>Traduce esta foto a lenguaje de datos:</b> cada caja apilada es una unidad vendida. En el sistema de la empresa, este señor o señora aparecía como un cliente <em>excelente</em> —volumen récord— justo en el momento en que declaraba la guerra. Los envíos a embotelladores subieron 8%. El indicador decía «éxito». Fotografía de archivo, Getty Images.</figcaption>
+      </figure>
+
+      <p>Llegaron 557 peticiones firmadas exigiendo el regreso de la fórmula original. Un psicólogo contratado para monitorear las líneas telefónicas reportó que <strong>quienes llamaban se comportaban como si hubiera muerto un familiar</strong>. Los periódicos locales hicieron sus propias pruebas de sabor y las publicaron en portada. Fidel Castro ordenó a Radio Habana declarar que la muerte de la Coca-Cola original era síntoma de la decadencia estadounidense.</p>
+
+      <figure>
+        <svg viewBox="0 0 700 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico de la escalada de llamadas diarias a Coca-Cola entre el 23 de abril y el 11 de julio de 1985">
+          <g stroke="#E6E6E6" stroke-width="1">
+            <line x1="70" y1="78"  x2="666" y2="78"/>
+            <line x1="70" y1="142" x2="666" y2="142"/>
+            <line x1="70" y1="206" x2="666" y2="206"/>
+          </g>
+          <line x1="70" y1="270" x2="666" y2="270" stroke="#1C1C1C" stroke-width="1.2"/>
+          <g font-family="Inter,sans-serif" font-size="11" fill="#8A8A8A" text-anchor="end">
+            <text x="60" y="82">15.000</text><text x="60" y="146">10.000</text>
+            <text x="60" y="210">5.000</text><text x="60" y="274">0</text>
+          </g>
+          <!-- área -->
+          <path d="M 70,261.7 L 106.7,257.2 L 231.5,206.1 L 378.3,167.8 L 642.5,116.7 L 649.9,40 L 649.9,270 L 70,270 Z"
+                fill="#C8102E" opacity=".08"/>
+          <polyline points="70,261.7 106.7,257.2 231.5,206.1 378.3,167.8 642.5,116.7 649.9,40"
+                    fill="none" stroke="#C8102E" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+          <g fill="#C8102E">
+            <circle cx="70" cy="261.7" r="4.5"/><circle cx="106.7" cy="257.2" r="4.5"/>
+            <circle cx="231.5" cy="206.1" r="4.5"/><circle cx="378.3" cy="167.8" r="4.5"/>
+            <circle cx="642.5" cy="116.7" r="4.5"/><circle cx="649.9" cy="40" r="6"/>
+          </g>
+          <!-- anotaciones -->
+          <g font-family="Inter,sans-serif" font-size="11.5" fill="#5E5E5E">
+            <text x="80" y="252">650 en las primeras 4 horas</text>
+            <text x="241" y="228">5.000 al día · se instalan 83 líneas telefónicas nuevas</text>
+            <text x="388" y="190">8.000 al día</text>
+          </g>
+          <g font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#C8102E" text-anchor="end">
+            <text x="636" y="34">18.000 llamadas el 11 de julio</text>
+          </g>
+          <!-- eje x -->
+          <g font-family="Inter,sans-serif" font-size="11.5" fill="#5E5E5E">
+            <text x="70" y="292" text-anchor="start">23 abr</text>
+            <text x="231" y="292" text-anchor="middle">15 may</text>
+            <text x="378" y="292" text-anchor="middle">3 jun</text>
+            <text x="666" y="292" text-anchor="end">11 jul</text>
+          </g>
+          <text x="70" y="322" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#8A8A8A">Llamadas diarias recibidas por Coca-Cola · 79 días</text>
+        </svg>
+        <figcaption><b>Figura 4 · La señal que no cabía en el sistema.</b> La curva es una serie temporal perfectamente legible, con una tendencia inequívoca y una aceleración final. Pero llegaba por teléfono y por correo, no por el panel de ventas, así que la organización la clasificó como <em>«evidencia anecdótica»</em>. Datos reconstruidos a partir del caso HBS 9-500-067.</figcaption>
+      </figure>
+
+      <h3>Y sin embargo, los datos seguían diciendo que todo iba bien</h3>
+
+      <p>Esta es la parte que más incomoda, y la que más importa para el seminario. Durante semanas, mientras el país se incendiaba, <strong>los indicadores internos eran positivos</strong>:</p>
+
+      <ul>
+        <li>Para principios de junio, 150 millones de personas habían probado el nuevo producto.</li>
+        <li>La nueva fórmula seguía ganándole a Pepsi en pruebas ciegas.</li>
+        <li>Seguía prefiriéndose sobre la original por 2 o 3 puntos.</li>
+        <li>El 75% de quienes la probaron dijeron que la comprarían otra vez.</li>
+        <li>Los envíos a embotelladores subieron 8%, el nivel más alto en cinco años.</li>
+        <li>La calificación general de marca de Coca-Cola había superado a la de Pepsi.</li>
+      </ul>
+
+      <p>Los analistas de Wall Street predecían el éxito. La posición oficial ante la prensa fue que solo el 1% de quienes no gustaban de la reformulación estaba cambiando de marca, y que la mayoría de las quejas venían de consumidores mayores «que de todos modos no toman mucha azúcar». Las historias de la línea telefónica y del correo se trataron con cautela porque —cita textual del caso— <em>«la práctica de marketing corporativa no se apoyaba tradicionalmente en evidencia anecdótica como esa»</em>.</p>
+
+      <div class="nota">
+        <p><strong>Ahí está el segundo fracaso, y es distinto del primero.</strong> El primero fue diseñar mal la pregunta. El segundo fue <em>tener la respuesta correcta enfrente y clasificarla como ruido</em>.</p>
+        <p>Cuarenta mil cartas y 8.000 llamadas diarias no son «evidencia anecdótica». Son un conjunto de datos no estructurados con una señal clarísima. Simplemente no venían en el formato que la organización sabía leer.</p>
+      </div>
+
+      <p>A mediados de junio las encuestas internas se dieron vuelta de golpe: Pepsi empezó a ganarle a la nueva Coca-Cola <strong>en pruebas donde las marcas eran visibles</strong>. Para principios de julio, solo el 30% de los encuestados decía que le gustaba el nuevo producto.</p>
+
+      <h3>11 de julio de 1985</h3>
+
+      <p>Los ejecutivos subieron a un escenario en Atlanta a pedir disculpas públicamente. La ABC interrumpió la telenovela <em>General Hospital</em> para dar la noticia.</p>
+
+      <blockquote>
+        «Hoy tenemos dos mensajes que dar al consumidor estadounidense. Primero, a quienes están bebiendo Coca-Cola con su gran sabor nuevo, gracias. Pero hay un segundo grupo de consumidores al que queremos hablarle hoy, y nuestro mensaje para ellos es simple. <strong>Los hemos escuchado.</strong>»
+        <cite>Roberto Goizueta, 11 de julio de 1985</cite>
+      </blockquote>
+
+      <p>La fórmula original volvía, rebautizada <strong>Coca-Cola Classic</strong>. Un senador declaró en el pleno del Senado que era «un momento muy significativo en la historia de América». Ese día se registraron 18.000 llamadas. Las acciones de Coca-Cola llegaron a su nivel más alto en doce años.</p>
+
+      <figure>
+        <img src="img/1985-titular-old-coke-is-back.jpeg" alt="Recorte de periódico de julio de 1985 con el titular The old Coke is back">
+        <figcaption><b>«La vieja Coca-Cola ha vuelto.»</b> La noticia abrió los informativos de la noche y ocupó la portada de prácticamente todos los diarios importantes del país. En el texto aparece la frase con la que un vocero de la empresa resumió el desenlace: <em>«Everyone wins»</em> — todos ganan. Setenta y nueve días antes, la misma compañía había llamado a esta decisión «el movimiento más seguro jamás hecho».</figcaption>
+      </figure>
+
+      <figure class="objeto">
+        <img src="img/1985-new-coke-vs-classic.jpeg" alt="Las dos latas enfrentadas: New Coke y Coca-Cola Classic con la mención de fórmula original" style="max-width:300px;padding:0;border:0">
+        <figcaption style="border-top:0;padding-top:0"><b>Las dos latas.</b> A la izquierda, el producto que ganó 191.000 pruebas de sabor. A la derecha, el que ganó el mercado.<br><br>Esa distancia —entre <em>ganar la prueba</em> y <em>ganar el mercado</em>— es todo el contenido de esta sesión. Si te llevas una sola imagen del caso, que sea esta.</figcaption>
+      </figure>
+
+      <h3>El veredicto del mercado</h3>
+
+      <figure>
+        <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico de barras: participación de mercado de Coca-Cola Classic frente a New Coke entre 1985 y 1990">
+          <line x1="60" y1="256" x2="656" y2="256" stroke="#1C1C1C" stroke-width="1.2"/>
+          <g stroke="#E6E6E6" stroke-width="1">
+            <line x1="60" y1="36"  x2="656" y2="36"/>
+            <line x1="60" y1="91"  x2="656" y2="91"/>
+            <line x1="60" y1="146" x2="656" y2="146"/>
+            <line x1="60" y1="201" x2="656" y2="201"/>
+          </g>
+          <g font-family="Inter,sans-serif" font-size="11" fill="#8A8A8A" text-anchor="end">
+            <text x="50" y="40">20%</text><text x="50" y="95">15%</text>
+            <text x="50" y="150">10%</text><text x="50" y="205">5%</text>
+            <text x="50" y="260">0</text>
+          </g>
+          <!-- escala: 1% = 11px ; base y=256 -->
+          <!-- 1985 -->
+          <g><rect x="86"  y="192.2" width="34" height="63.8"  fill="#C8102E"/><rect x="122" y="97.6"  width="34" height="158.4" fill="#1C1C1C" opacity=".82"/></g>
+          <!-- 1986 -->
+          <g><rect x="186" y="45.9"  width="34" height="210.1" fill="#C8102E"/><rect x="222" y="229.6" width="34" height="26.4"  fill="#1C1C1C" opacity=".82"/></g>
+          <!-- 1987 -->
+          <g><rect x="286" y="38.2"  width="34" height="217.8" fill="#C8102E"/><rect x="322" y="237.3" width="34" height="18.7"  fill="#1C1C1C" opacity=".82"/></g>
+          <!-- 1988 -->
+          <g><rect x="386" y="37.1"  width="34" height="218.9" fill="#C8102E"/><rect x="422" y="241.7" width="34" height="14.3"  fill="#1C1C1C" opacity=".82"/></g>
+          <!-- 1989 -->
+          <g><rect x="486" y="41.5"  width="34" height="214.5" fill="#C8102E"/><rect x="522" y="246.1" width="34" height="9.9"   fill="#1C1C1C" opacity=".82"/></g>
+          <!-- 1990 -->
+          <g><rect x="586" y="42.6"  width="34" height="213.4" fill="#C8102E"/><rect x="622" y="248.3" width="34" height="7.7"   fill="#1C1C1C" opacity=".82"/></g>
+          <g font-family="Inter,sans-serif" font-size="12" fill="#5E5E5E" text-anchor="middle">
+            <text x="121" y="276">1985</text><text x="221" y="276">1986</text><text x="321" y="276">1987</text>
+            <text x="421" y="276">1988</text><text x="521" y="276">1989</text><text x="621" y="276">1990</text>
+          </g>
+          <!-- leyenda -->
+          <g font-family="Inter,sans-serif" font-size="12.5" font-weight="600">
+            <rect x="60" y="296" width="13" height="13" fill="#C8102E"/>
+            <text x="80" y="307" fill="#1C1C1C">Coca-Cola Classic (fórmula original)</text>
+            <rect x="356" y="296" width="13" height="13" fill="#1C1C1C" opacity=".82"/>
+            <text x="376" y="307" fill="#1C1C1C">New Coke</text>
+          </g>
+        </svg>
+        <figcaption><b>Figura 5 · El mercado decide.</b> Participación en el mercado total de refrescos. En 1985 New Coke tenía 14,4% y Classic apenas 5,8% (la original solo estuvo disponible medio año). Un año después la relación se invirtió por completo: 19,1% contra 2,4%. Para 1990 New Coke era 0,7%. Fuente: caso HBS 9-500-067, Anexo 15.</figcaption>
+      </figure>
+
+      <p>Nota metodológica que vale una clase entera: el propio caso advierte que las cifras de 1985 varían mucho según el analista, porque el cambio ocurrió a mitad de año. Thomas Oliver reporta 7,1% para Classic y 14,1% para New Coke, y comenta que si uno mira las notas al pie de los analistas, <em>«prácticamente podría invertir esos números»</em>. <strong>El mismo año, la misma industria, dos cifras incompatibles y ambas defendibles.</strong> Esto es el peldaño 1 y por eso insistimos tanto en él.</p>
+
+      <h3>La confesión</h3>
+
+      <p>Al cerrar la rueda de prensa del regreso, Donald Keough dijo lo siguiente. Es el mejor resumen del caso que existe, y lo escribió el propio responsable del error:</p>
+
+      <blockquote>
+        «¿Qué demonios nos llevó a la decisión de traer de vuelta el sabor clásico que tan tranquilamente abandonamos en abril de 1985? El hecho simple es que todo el tiempo, el dinero y la destreza volcados en la investigación de consumidores sobre la nueva Coca-Cola <strong>no pudieron medir ni revelar el apego emocional profundo y perdurable</strong> que tantas personas sentían por la Coca-Cola original… la pasión por la Coca-Cola original —y esa es la palabra: pasión—. Algo que nos tomó por sorpresa. Es un maravilloso misterio estadounidense y no se puede medir, igual que no se puede medir el amor, el orgullo o el patriotismo. Este es el giro de esta historia que complacerá a todo humanista y probablemente tendrá a los profesores de Harvard rompiéndose la cabeza durante años.»
+        <cite>Donald Keough, presidente de The Coca-Cola Company, 11 de julio de 1985</cite>
+      </blockquote>
+
+      <div class="nota">
+        <p><strong>Y aquí es donde tenemos que discrepar respetuosamente de Keough.</strong> Esta es tu tarea intelectual del día.</p>
+        <p>Keough dice que el apego emocional <em>no se puede medir</em>. Es una frase hermosa y es falsa. Sí se puede medir. Se mide con otra pregunta, con otra unidad de análisis y con otro diseño: pruebas de privación en lugar de pruebas de preferencia, comportamiento de recompra en lugar de opinión declarada, análisis de la cola de consumidores de alto volumen en lugar del promedio.</p>
+        <p>La investigación no falló porque el fenómeno fuera inmedible. Falló porque <strong>midieron una cosa medible y fácil en lugar de la cosa medible y difícil</strong>. Esa sustitución es la causa número uno de análisis fracasados, y la vas a ver una y otra vez durante este seminario.</p>
+      </div>
+
+      <p>Un epílogo honesto: la marca no solo sobrevivió, salió fortalecida. El índice de imagen de Coca-Cola pasó de 89 en abril a 120 en diciembre de 1985 (con Pepsi como base 100). La acción abrió el año en 61,85 dólares y lo cerró en 84,50. Por eso circula la teoría de que todo fue un plan maestro. Keough la desmintió con una frase que también deberías guardar:</p>
+
+      <blockquote>
+        «Algunos críticos dirán que Coca-Cola cometió un error de marketing. Algunos cínicos dirán que lo planeamos todo. La verdad es que no somos tan tontos, ni somos tan listos.»
+        <cite>Donald Keough</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 8 · PREGUNTAS ══════════════ -->
+<section class="franja" id="catalogo">
+  <div class="ancho">
+    <span class="num">Catálogo · Discusión en clase</span>
+    <h2>Las siete preguntas</h2>
+    <p class="lead" style="max-width:720px">Este es el catálogo completo. A cada uno se le asignó <strong>una sola</strong> en el capítulo 7, y esa es la que debe preparar a fondo. Lee las siete de todos modos: en clase vas a escuchar las otras seis y conviene llegar con el terreno reconocido. Despliega cada una para ver cómo abordarla.</p>
+    <p style="font-family:var(--sans);font-size:.9rem;color:var(--gris);max-width:720px">Los grupos se forman por letra: <strong>A</strong> = pregunta 01, <strong>B</strong> = 02, <strong>C</strong> = 03, <strong>D</strong> = 04, <strong>E</strong> = 05, <strong>F</strong> = 06, <strong>G</strong> = 07.</p>
+
+    <details class="pregunta">
+      <summary><span class="pnum">01</span><span>Si los datos eran correctos, ¿dónde exactamente estuvo la falla? Señala un solo punto.</span></summary>
+      <div class="cuerpo">
+        <p>Esta es la pregunta de apertura y tiene trampa: casi todo el mundo responde «no consideraron las emociones». Eso es cierto pero es demasiado vago para servir de algo.</p>
+        <p><strong>Obligate a ser quirúrgico.</strong> Nombra el momento concreto del proceso donde se rompió la cadena. ¿Fue en la definición de la variable de respuesta? ¿En la unidad de análisis? ¿En la población muestreada? ¿En el salto del hallazgo a la recomendación? ¿En la interpretación de una señal disponible?</p>
+        <p>Defiende tu punto único contra los de tus compañeros. Si tres personas señalan tres puntos distintos y las tres tienen argumentos, eso ya te dice algo importante sobre cómo fallan los análisis: <strong>rara vez hay un solo error, hay una cadena de decisiones pequeñas y defendibles.</strong></p>
+      </div>
+    </details>
+
+    <details class="pregunta">
+      <summary><span class="pnum">02</span><span>Escribe la pregunta de negocio que Coca-Cola debió haber respondido. Una sola oración.</span></summary>
+      <div class="cuerpo">
+        <p>La que respondieron fue: <em>«¿Qué fórmula prefieren los consumidores en una prueba ciega?»</em></p>
+        <p>Tu tarea es escribir la que importaba. Antes de redactarla, verifica que cumpla tres condiciones:</p>
+        <ul>
+          <li>Contiene un <strong>comportamiento</strong>, no una opinión.</li>
+          <li>Contiene la <strong>acción real que se está evaluando</strong> (retirar el producto original), no una versión suavizada.</li>
+          <li>Su respuesta <strong>cambiaría la decisión</strong> según cuál sea. Si cualquier respuesta lleva al mismo lugar, la pregunta no sirve.</li>
+        </ul>
+        <p>Esta prueba de tres condiciones la vas a aplicar en la Entrega 1 del seminario a tu propio caso. Practícala aquí.</p>
+      </div>
+    </details>
+
+    <details class="pregunta">
+      <summary><span class="pnum">03</span><span>El estudio de 1982 estimó que 10–12% se molestaría. ¿Por qué ese número se leyó como buena noticia?</span></summary>
+      <div class="cuerpo">
+        <p>Piensa en cómo se ve un 11% en una diapositiva. Se ve pequeño. Se ve como un margen de error. Se ve como el precio razonable de una mejora.</p>
+        <p>Ahora conviértelo. Coca-Cola tenía en torno al 21,7% de un mercado nacional de refrescos de Estados Unidos. ¿Cuántas personas físicas son ese 11%? ¿Y qué porcentaje del <em>volumen</em> representan, si son precisamente los consumidores más leales y por tanto los de mayor consumo?</p>
+        <p><strong>El punto general:</strong> un porcentaje sobre personas y un porcentaje sobre volumen no son el mismo número, y confundirlos es uno de los errores más frecuentes y más caros en análisis de negocio. Piensa también en la segunda parte del hallazgo, que casi nunca se cita: la mitad de ese 10–12% <em>no lo superaría nunca</em>.</p>
+      </div>
+    </details>
+
+    <details class="pregunta">
+      <summary><span class="pnum">04</span><span>Los grupos focales dieron la señal correcta y se descartó por «efectos sociales». ¿Fue una decisión irracional?</span></summary>
+      <div class="cuerpo">
+        <p>Resiste la tentación de decir que sí. <strong>El sesgo de deseabilidad social y el efecto de arrastre en grupos focales son fenómenos reales y bien documentados.</strong> Descontar la intensidad de una minoría vocal en un grupo focal es, en general, buena práctica metodológica.</p>
+        <p>Entonces la pregunta interesante es otra: ¿qué habría hecho falta para distinguir «ruido de grupo focal» de «señal auténtica de un segmento crítico»? Piensa en triangulación: ¿qué otra fuente de datos, ya disponible dentro de la empresa, podría haber corroborado o descartado esa señal?</p>
+        <p>Esto conecta con un tema recurrente del seminario: <strong>una regla metodológica correcta aplicada sin criterio produce el mismo daño que no tener regla.</strong></p>
+      </div>
+    </details>
+
+    <details class="pregunta">
+      <summary><span class="pnum">05</span><span>¿Por qué el periodista formuló la pregunta correcta y el equipo de investigación no?</span></summary>
+      <div class="cuerpo">
+        <p>El periodista no tenía datos, ni presupuesto, ni formación estadística. Tenía dos cosas que el equipo había perdido: <strong>distancia y ninguna inversión previa en el resultado.</strong></p>
+        <p>Discutan qué hace que un equipo deje de ver lo obvio. Considera al menos: dos años de trabajo en un proyecto secreto, un directorio que ya había declarado que no hay vacas sagradas, un rival que llevaba una década humillándolos públicamente, y un hallazgo que por fin les daba una victoria.</p>
+        <p>Y luego lleven la pregunta a terreno propio: <strong>¿qué mecanismo concreto pondrían en su proyecto del seminario para que alguien pueda hacerles esa pregunta a tiempo?</strong> No basta con decir «ser humilde». Nombra un mecanismo: una revisión externa, un revisor rotativo, una regla de escribir la conclusión contraria, algo ejecutable.</p>
+      </div>
+    </details>
+
+    <details class="pregunta">
+      <summary><span class="pnum">06</span><span>¿Se puede medir el apego emocional a una marca? Keough dijo que no.</span></summary>
+      <div class="cuerpo">
+        <p>Tomen postura y defiéndanla. Si dicen que sí, tienen que decir <strong>cómo</strong>: qué instrumento, qué variable observable, con qué unidad, en qué población.</p>
+        <p>Algunas direcciones para pensar: pruebas de privación en lugar de pruebas de preferencia; disposición a pagar o a desplazarse a otra tienda; comportamiento de recompra observado en lugar de intención declarada; concentración de volumen por decil de consumidor; comportamiento de stock (acaparamiento) ante rumores de escasez.</p>
+        <p>Si dicen que no se puede medir, entonces tienen que responder la consecuencia incómoda: <strong>¿cómo se toma una decisión irreversible sobre un factor que se declara inmedible?</strong> «No se puede medir» no es una excusa válida para «entonces lo ignoramos».</p>
+      </div>
+    </details>
+
+    <details class="pregunta">
+      <summary><span class="pnum">07</span><span>¿Dónde está tu New Coke? Aplícalo al caso que tu equipo trabaja en el seminario.</span></summary>
+      <div class="cuerpo">
+        <p>Cierre de la sesión, y el más importante para las próximas cuatro semanas.</p>
+        <p>Mira el caso de datos que tu equipo eligió. Identifica <strong>una variable que vas a medir porque es fácil de medir</strong>, y pregúntate qué cosa difícil de medir estás sustituyendo con ella.</p>
+        <p>Ejemplos del tipo de sustitución que buscamos: medir clics cuando lo que importa es satisfacción; medir precisión del modelo cuando lo que importa es el costo del error; medir número de reseñas cuando lo que importa es intención de recompra; medir promedio cuando lo que importa es la cola.</p>
+        <p><strong>Anótalo.</strong> Va a formar parte de la ficha del dataset en la Entrega 1, en la sección de limitaciones.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 9 · ENTREGABLE ══════════════ -->
+<section>
+  <div class="wrap">
+    <span class="num">Entregable</span>
+    <h2>Rediseñen el estudio</h2>
+
+    <p class="lead">En equipos de tres. Una página. Fecha de entrega: la que fije el docente al cierre de la sesión.</p>
+
+    <p>Están en Atlanta, en enero de 1983. Los químicos todavía no han creado nada. La dirección les entrega el mismo presupuesto que tuvo el Proyecto Kansas —cuatro millones de dólares y dos años— y el mismo encargo: <strong>determinar si Coca-Cola debe cambiar su fórmula y qué hacer con la original.</strong></p>
+
+    <p>No pueden usar información posterior a enero de 1983. No vale decir «yo sé que va a salir mal». Diseñen el estudio que ustedes habrían ejecutado.</p>
+
+    <h3>Estructura obligatoria</h3>
+
+    <table class="rubrica">
+      <thead>
+        <tr><th style="width:26%">Sección</th><th>Qué debe contener</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Pregunta de negocio</td><td>Una sola oración. Debe pasar la prueba de las tres condiciones de la Pregunta 02.</td></tr>
+        <tr><td>Hipótesis</td><td>Dos o tres hipótesis rivales sobre <em>por qué</em> Coca-Cola está perdiendo participación. Al menos una no debe tener nada que ver con el sabor.</td></tr>
+        <tr><td>Unidad de análisis</td><td>¿Quién es el sujeto? ¿Un sorbo, una persona, un hogar, una ocasión de consumo, una semana de compras? Justifiquen.</td></tr>
+        <tr><td>Diseño</td><td>Qué van a hacer exactamente. Si incluyen una prueba de sabor, expliquen qué añaden alrededor de ella para que signifique algo.</td></tr>
+        <tr><td>Variables</td><td>Qué miden y cómo. Distingan explícitamente entre lo declarado y lo observado.</td></tr>
+        <tr><td>Segmentación</td><td>Cómo tratan al consumidor de alto volumen frente al ocasional. Un promedio los mezcla; ustedes decidan si eso es aceptable.</td></tr>
+        <tr><td>Criterio de decisión</td><td><strong>Lo más importante.</strong> Escriban de antemano qué resultado los llevaría a recomendar el cambio y cuál a no recomendarlo. Con números.</td></tr>
+        <tr><td>Qué no van a saber</td><td>Tres limitaciones que su diseño no resuelve. Sean honestos.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="nota">
+      <p><strong>El criterio de decisión escrito antes de ver los datos es el corazón del ejercicio.</strong> Coca-Cola nunca lo escribió. Por eso, cuando llegó el 55%, no había forma de saber si ese número era suficiente o no: se convirtió en suficiente porque era el número que tenían.</p>
+      <p>Escribir el umbral antes de mirar es la defensa más barata y más efectiva que existe contra el autoengaño analítico. Lo vamos a exigir en las cuatro entregas del seminario.</p>
+    </div>
+
+    <h3>Cómo se evalúa</h3>
+
+    <table class="rubrica">
+      <thead>
+        <tr><th style="width:34%">Criterio</th><th class="n" style="width:14%">Peso</th><th>Qué distingue un trabajo excelente</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Calidad de la pregunta</td><td class="n">30%</td><td>Contiene comportamiento, contiene la acción real evaluada, y su respuesta cambia la decisión.</td></tr>
+        <tr><td>Hipótesis rivales</td><td class="n">20%</td><td>Hay al menos una hipótesis genuinamente no relacionada con el producto, y es plausible.</td></tr>
+        <tr><td>Criterio de decisión previo</td><td class="n">25%</td><td>Umbrales numéricos explícitos, con justificación de por qué ese número y no otro.</td></tr>
+        <tr><td>Tratamiento de la heterogeneidad</td><td class="n">15%</td><td>El diseño distingue segmentos en lugar de promediarlos, y explica por qué importa.</td></tr>
+        <tr><td>Honestidad sobre los límites</td><td class="n">10%</td><td>Las tres limitaciones son reales y relevantes, no de trámite.</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-family:var(--sans);font-size:.9rem;color:var(--gris)">No se evalúa si su diseño «habría evitado el desastre». Se evalúa si su diseño produce información que cambia decisiones.</p>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 10 · GUÍA DEL DOCENTE ══════════════ -->
+<section class="franja">
+  <div class="ancho">
+    <span class="num">Solo para el docente</span>
+    <h2>Guion de facilitación</h2>
+    <p class="lead" style="max-width:720px">Sesión de 2h30. Este bloque está pensado para proyectarse en pantalla partida o leerse antes de clase.</p>
+
+    <div class="fase"><div class="t">0–5</div><div class="d"><b>Apertura en frío.</b> Sin diapositiva de objetivos. Proyecta solo la tabla de resultados del Capítulo 3 y pregunta: «Si les entrego esta tabla en una reunión mañana, ¿qué recomiendan?». Deja que recomienden el cambio. La mayoría lo hará. Anota los nombres de quienes lo hagan; los vas a citar al final con afecto.</div></div>
+
+    <div class="fase"><div class="t">5–20</div><div class="d"><b>Contexto generacional.</b> Capítulo 0. Es imprescindible: sin esto, el caso no funciona con un grupo que nació después del 2000. Usa la analogía de Spotify/WhatsApp y déjalos proponer las suyas propias, funciona mejor.</div></div>
+
+    <div class="fase"><div class="t">20–40</div><div class="d"><b>La guerra de las colas.</b> Proyecta el comercial del Pepsi Challenge. Pregunta específica: «¿Qué mide exactamente este comercial?». Buscas que alguien diga «un sorbo». Si nadie lo dice, no lo digas tú todavía: pásalos al dato de los años setenta (con marca visible ganaba Coca-Cola, a ciegas no) y deja que caiga solo.</div></div>
+
+    <div class="fase"><div class="t">40–60</div><div class="d"><b>El problema y la investigación.</b> Figura 1 y Capítulo 3. Insiste en que la metodología era buena. Si el grupo se va rápido a «hicieron mal el estudio», frénalos: no lo hicieron mal, lo hicieron impecable. Ahí está la incomodidad productiva del caso.</div></div>
+
+    <div class="fase"><div class="t">60–75</div><div class="d"><b>La rueda de prensa.</b> Lee el diálogo en voz alta, repartiendo papeles entre estudiantes. Funciona mucho mejor actuado que leído en silencio. Al llegar a la pregunta marcada en rojo, detente. Silencio de cinco segundos. Es el clímax de la sesión.</div></div>
+
+    <div class="fase"><div class="t">75–100</div><div class="d"><b>Discusión por grupos.</b> Pide que se agrupen por la letra de su tarjeta: <b>A</b> a <b>G</b>. Cada grupo tuvo asignada una pregunta distinta y llega con ella preparada. Diez minutos de contraste interno, luego cada grupo expone en tres minutos. Regla de oro: nadie puede decir «se olvidaron de las emociones» sin nombrar el punto exacto del proceso donde ocurrió el error.</div></div>
+
+    <div class="fase"><div class="t">100–120</div><div class="d"><b>La escalera.</b> Recién <em>aquí</em> presentas el marco, no antes. Si lo das al inicio, lo aplican mecánicamente; si lo das después de que sufrieron el caso, lo entienden. Cierra con la advertencia central: el valor vive en los peldaños 1 y 2, y casi nadie los hace bien.</div></div>
+
+    <div class="fase"><div class="t">120–145</div><div class="d"><b>Aterrizaje.</b> Preguntas 06 y 07. Cada equipo nombra en voz alta la variable fácil que está sustituyendo a la variable difícil en su propio caso del seminario. Anótalas en la pizarra: te van a servir de referencia durante las cuatro semanas.</div></div>
+
+    <div class="fase"><div class="t">145–150</div><div class="d"><b>Cierre y entregable.</b> Explica el rediseño del estudio. Menciona que el desenlace se abre esta noche en el documento. No lo cuentes: el efecto de que lo lean solos, después de haber decidido, es mucho más fuerte.</div></div>
+
+    <h3>Cómo funciona el trabajo previo</h3>
+
+    <p style="font-family:var(--sans);font-size:.94rem;color:var(--gris);line-height:1.68">Los estudiantes leen el caso en casa hasta el capítulo 6. En el capítulo 7 se encuentran un <strong>quiz de cuatro preguntas</strong> de comprensión: con tres aciertos se abre su asignación, con cuatro es señal de que entendieron el argumento y no solo la anécdota. Pueden reintentar sin límite, así que el quiz filtra desatención, no capacidad.</p>
+
+    <p style="font-family:var(--sans);font-size:.94rem;color:var(--gris);line-height:1.68">Al aprobar escriben su nombre y el sistema les asigna <strong>al azar una de las siete preguntas</strong>, con su letra de grupo. La asignación no se guarda en ningún servidor ni base de datos: existe solo en la pantalla. Por eso el requisito es la <strong>captura de pantalla</strong>, que además lleva el nombre y la fecha y hora de asignación impresos en la tarjeta.</p>
+
+    <div class="nota">
+      <p><strong>Lo que esto te da al llegar a clase.</strong> Siete grupos formados solos, sin que tengas que organizar nada, con reparto aproximadamente uniforme. Pide las capturas en la puerta o proyecta las letras y que se sienten por bloques.</p>
+      <p><strong>Advertencia práctica:</strong> al ser aleatorio, la distribución no es exacta. Con un curso de 21 personas espera entre 1 y 6 por grupo, no 3 y 3. Si alguna letra queda vacía, asigna esa pregunta al grupo más numeroso como segunda tarea, o tómala tú para cerrar la discusión.</p>
+      <p><strong>Si alguien llega sin captura:</strong> puede rehacer el quiz en el momento desde el móvil. Toma dos minutos.</p>
+    </div>
+
+    <div class="nota" style="margin-top:32px">
+      <p><strong>Si necesitas abrir el desenlace durante la clase</strong> —por ejemplo si el grupo llega ya sabiendo el final y prefieres trabajar sobre el diagnóstico— añade <code style="font-family:var(--sans);background:#fff;padding:2px 6px;border:1px solid var(--linea);border-radius:2px">#docente</code> al final de la dirección del documento en el navegador y recarga. El bloque se abre de inmediato solo para ti.</p>
+      <p><strong>Fecha de apertura automática:</strong> martes 18 de agosto de 2026 a las 00:00, hora de Ecuador. Para cambiarla, edita la primera línea del bloque <code style="font-family:var(--sans);background:#fff;padding:2px 6px;border:1px solid var(--linea);border-radius:2px">&lt;script&gt;</code> al final del archivo.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ══════════════ 11 · FUENTES ══════════════ -->
+<section>
+  <div class="wrap">
+    <span class="num">Aparato crítico</span>
+    <h2>Fuentes y material complementario</h2>
+
+    <h3>Fuente primaria</h3>
+    <ul class="fuentes">
+      <li><span class="tipo">Caso</span> Fournier, Susan. <strong><em>Introducing New Coke</em></strong>. Harvard Business School, caso 9-500-067. Boston: Harvard Business School Publishing, 1999 (revisado en octubre de 2001). 36 páginas, 15 anexos. Todas las cifras, citas textuales y fechas de este documento provienen de este caso.</li>
+    </ul>
+
+    <h3>Fuentes secundarias citadas dentro del caso</h3>
+    <ul class="fuentes">
+      <li><span class="tipo">Libro</span> Oliver, Thomas. <em>The Real Coke, The Real Story</em>. Nueva York: Penguin Books, 1986. Es la fuente de la mayoría de las citas de Goizueta, Keough, Dyson y Zyman.</li>
+      <li><span class="tipo">Libro</span> Pendergrast, Mark. <em>For God, Country, and Coca-Cola</em>. Nueva York: Collier Books, 1993.</li>
+      <li><span class="tipo">Libro</span> Hartley, Robert. «Coca-Cola's Classic Blunder», en <em>Marketing Mistakes</em>. Nueva York: John Wiley &amp; Sons. Fuente de los datos de participación de mercado del Anexo 4.</li>
+      <li><span class="tipo">Archivo</span> «Coca-Cola USA Press Conference Satellite Downlink», transcripción del 23 de abril de 1985, Prueba 78 del demandante en el caso judicial de Diet Coke. Fuente del diálogo del Capítulo 5.</li>
+      <li><span class="tipo">Prensa</span> Greenwald, John. «Coca-Cola's Big Fizzle», <em>Time</em>, 22 de julio de 1985, p. 48.</li>
+      <li><span class="tipo">Prensa</span> Kilman, Scott. «Coca-Cola to Bring Back its Old Coke», <em>The Wall Street Journal</em>, 11 de julio de 1985, p. 2.</li>
+    </ul>
+
+    <h3>Material audiovisual</h3>
+    <ul class="fuentes">
+      <li><span class="tipo">Video</span> <a href="https://www.cbsnews.com/video/1985-coca-cola-launches-new-coke/" target="_blank" rel="noopener">1985: Coca-Cola launches new Coke</a> — reportaje original del <em>CBS Evening News</em> del 23 de abril de 1985, con el corresponsal James McManus. Archivo de CBS News.</li>
+      <li><span class="tipo">Video</span> <a href="https://www.youtube.com/watch?v=v7lw_vhxtNc" target="_blank" rel="noopener">Pepsi Taste Test commercial (1983)</a> — ejemplo del formato de la prueba ciega tal como se emitió en televisión.</li>
+      <li><span class="tipo">Video</span> <a href="https://www.youtube.com/watch?v=hQkCaGqFc0w" target="_blank" rel="noopener">New Coke Commercial with Bill Cosby (1985)</a> — comercial de lanzamiento.</li>
+      <li><span class="tipo">Video</span> <a href="https://www.youtube.com/watch?v=eiO_JES4yBY" target="_blank" rel="noopener">Pepsi Challenge (1981)</a> — variante anterior de la campaña, útil para ver la evolución del mensaje.</li>
+    </ul>
+
+    <h3>Imágenes</h3>
+    <ul class="fuentes">
+      <li><span class="tipo">Cap. 0</span> Expositor de Coca-Cola con el Papá Noel de Haddon Sundblom (h. 1931) y collage de iconografía publicitaria histórica de la marca. Material de archivo publicitario de dominio comercial, reproducido con fines docentes.</li>
+      <li><span class="tipo">Cap. 4</span> Valla publicitaria de New Coke, 1985. <strong>Getty Images.</strong></li>
+      <li><span class="tipo">Cap. 8</span> Miembro de Old Coke Drinkers of America rodeada de producto acaparado, 1985. <strong>Getty Images.</strong></li>
+      <li><span class="tipo">Cap. 8</span> Recorte de prensa «The old Coke is back», julio de 1985, y comparativa de las latas New Coke / Coca-Cola Classic.</li>
+      <li><span class="tipo">Diagramas</span> Las cinco figuras del documento son originales, construidas en SVG a partir de los datos de los Anexos 4 y 15 del caso HBS y del cuerpo del texto.</li>
+    </ul>
+
+    <div class="nota">
+      <p><strong>Nota sobre derechos de imagen.</strong> Dos de las fotografías proceden de agencias de prensa y se incluyen aquí al amparo del uso docente, dentro de un material de clase de circulación restringida. Si este documento se publica en un sitio web de acceso abierto, esas dos imágenes deben sustituirse o licenciarse.</p>
+    </div>
+
+    <h3>Para profundizar</h3>
+    <ul class="fuentes">
+      <li><span class="tipo">Empresa</span> <a href="https://www.coca-colacompany.com/about-us/history/new-coke-the-most-memorable-marketing-blunder-ever" target="_blank" rel="noopener">«New Coke: The Most Memorable Marketing Blunder Ever?»</a> — la versión oficial de la propia Coca-Cola, cuarenta años después. Léela con ojo crítico: es un ejercicio interesante notar qué omite.</li>
+      <li><span class="tipo">Prensa</span> <a href="https://time.com/3950205/new-coke-history-america/" target="_blank" rel="noopener">«New Coke and Coca-Cola Classic: What the Story Says About America»</a>, <em>Time</em>.</li>
+      <li><span class="tipo">Prensa</span> <a href="https://www.history.com/articles/why-coca-cola-new-coke-flopped" target="_blank" rel="noopener">«Why Coca-Cola's New Coke Flopped»</a>, History.com.</li>
+      <li><span class="tipo">Enciclopedia</span> <a href="https://www.britannica.com/topic/New-Coke" target="_blank" rel="noopener">New Coke</a>, Encyclopædia Britannica.</li>
+    </ul>
+
+    <div class="nota">
+      <p><strong>Sobre esta adaptación.</strong> Este documento es una versión narrativa en español preparada exclusivamente para la discusión en clase del Seminario de Análisis Exploratorio de Datos. No sustituye al caso original de Harvard Business School ni lo reproduce: reorganiza sus hechos y citas con un enfoque analítico distinto, centrado en el diseño de la investigación en lugar del comportamiento de marca. Quien quiera trabajar el caso completo debe adquirirlo en <a href="https://hbsp.harvard.edu" target="_blank" rel="noopener">hbsp.harvard.edu</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>Seminario de Análisis Exploratorio de Datos</strong> · Sesión 1: por qué fracasan los análisis<br>
+    Caso de apertura · Universidad San Francisco de Quito<br>
+    <span style="color:#B8B8B8">Adaptado de Susan Fournier, «Introducing New Coke», HBS 9-500-067.</span>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   APERTURA DEL DESENLACE
+   Cambia esta fecha si mueves la sesión. Formato ISO con la
+   compensación horaria de Ecuador (-05:00).
+   ═══════════════════════════════════════════════════════════════ */
+const APERTURA = new Date('2026-08-18T00:00:00-05:00');
+
+(function(){
+  const candado  = document.getElementById('candado');
+  const revelado = document.getElementById('revelado');
+  const boton    = document.getElementById('btn-abrir');
+  const cuenta   = document.getElementById('cuenta');
+  const etq      = document.getElementById('cuenta-etq');
+
+  const esDocente = () => location.hash.toLowerCase() === '#docente';
+
+  function abrir(){
+    revelado.classList.add('abierto');
+    candado.style.display = 'none';
+  }
+
+  function pintar(){
+    if (esDocente()) { abrir(); return true; }
+
+    const restante = APERTURA - Date.now();
+
+    if (restante <= 0){
+      boton.disabled = false;
+      cuenta.textContent = 'Disponible';
+      etq.textContent = 'ya puedes abrirlo';
+      candado.querySelector('h3').textContent = 'El desenlace está disponible';
+      candado.querySelector('p').textContent = 'La sesión ya pasó. Ahora sí: lee qué ocurrió realmente entre abril y julio de 1985.';
+      candado.querySelector('.icono').textContent = '◉';
+      return true;
+    }
+
+    const d = Math.floor(restante / 86400000);
+    const h = Math.floor(restante % 86400000 / 3600000);
+    const m = Math.floor(restante % 3600000 / 60000);
+    const s = Math.floor(restante % 60000 / 1000);
+
+    cuenta.textContent = (d > 0 ? d + 'd ' : '')
+      + String(h).padStart(2,'0') + ':'
+      + String(m).padStart(2,'0') + ':'
+      + String(s).padStart(2,'0');
+    return false;
+  }
+
+  boton.addEventListener('click', abrir);
+  window.addEventListener('hashchange', () => { if (esDocente()) abrir(); });
+
+  if (!pintar()){
+    const reloj = setInterval(() => { if (pintar()) clearInterval(reloj); }, 1000);
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   QUIZ DE ACCESO  ·  se necesitan 3 de 4 aciertos
+   ═══════════════════════════════════════════════════════════════ */
+const MINIMO_ACIERTOS = 3;
+
+(function(){
+  const quiz  = document.getElementById('quiz');
+  const bloques = [...quiz.querySelectorAll('.q')];
+  const boton = document.getElementById('btn-quiz');
+  const res   = document.getElementById('quiz-res');
+  const panel = document.getElementById('asignacion');
+
+  boton.addEventListener('click', () => {
+    let aciertos = 0, sinResponder = 0;
+
+    bloques.forEach(b => {
+      const marcada = b.querySelector('input:checked');
+      b.classList.remove('bien','mal');
+      const marca = b.querySelector('.marca');
+
+      if (!marcada){ sinResponder++; marca.textContent = ''; return; }
+
+      if (marcada.value === b.dataset.ok){
+        aciertos++;
+        b.classList.add('bien');
+        marca.textContent = '✓ Correcto.';
+      } else {
+        b.classList.add('mal');
+        marca.textContent = '✗ No es esa. Vuelve a leer el capítulo y prueba de nuevo.';
+      }
+    });
+
+    if (sinResponder){
+      res.className = 'no';
+      res.textContent = 'Te faltan ' + sinResponder + (sinResponder === 1 ? ' pregunta por responder.' : ' preguntas por responder.');
+      return;
+    }
+
+    if (aciertos === bloques.length){
+      res.className = 'ok';
+      res.textContent = '4 de 4. Perfecto — entendiste el caso, no solo la anécdota.';
+    } else if (aciertos >= MINIMO_ACIERTOS){
+      res.className = 'ok';
+      res.textContent = aciertos + ' de 4. Suficiente para continuar, pero revisa la que fallaste antes de clase.';
+    } else {
+      res.className = 'no';
+      res.textContent = aciertos + ' de 4. Necesitas al menos ' + MINIMO_ACIERTOS + '. Vuelve a los capítulos 1, 3 y 6 e inténtalo otra vez.';
+      panel.classList.remove('abierto');
+      return;
+    }
+
+    panel.classList.add('abierto');
+    panel.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   ASIGNACIÓN ALEATORIA DE PREGUNTA  ·  grupos A–G
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  const boton   = document.getElementById('btn-asignar');
+  const campo   = document.getElementById('nombre');
+  const tarjeta = document.getElementById('tarjeta');
+  const LETRAS  = ['A','B','C','D','E','F','G'];
+
+  function fechaLarga(){
+    return new Date().toLocaleString('es-EC', {
+      weekday:'long', day:'numeric', month:'long', year:'numeric',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+
+  boton.addEventListener('click', () => {
+    const nombre = campo.value.trim();
+    if (nombre.length < 3){
+      campo.focus();
+      campo.style.borderColor = 'var(--rojo)';
+      campo.placeholder = 'Escribe tu nombre antes de continuar';
+      return;
+    }
+    campo.style.borderColor = '';
+
+    const preguntas = [...document.querySelectorAll('#catalogo .pregunta')];
+    const i = Math.floor(Math.random() * preguntas.length);
+    const elegida = preguntas[i];
+
+    const texto = elegida.querySelector('summary span:last-child').textContent.trim();
+    const guia  = elegida.querySelector('.cuerpo').innerHTML;
+    const num   = String(i + 1).padStart(2, '0');
+
+    tarjeta.innerHTML =
+      '<div class="tarjeta-caja">' +
+        '<div class="tarjeta-cab">' +
+          '<div class="grupo"><small>GRUPO DE TRABAJO</small>' + LETRAS[i] + '</div>' +
+          '<div class="quien"><b>' + nombre.replace(/[<>&]/g,'') + '</b>Seminario de EDA · Sesión 1</div>' +
+        '</div>' +
+        '<div class="tarjeta-cuerpo">' +
+          '<div class="etq">Pregunta ' + num + ' · prepárala para la discusión</div>' +
+          '<div class="preg">' + texto + '</div>' +
+          '<div class="guia">' + guia + '</div>' +
+        '</div>' +
+        '<div class="tarjeta-pie">' +
+          '<span>Asignada el ' + fechaLarga() + '</span>' +
+          '<span>Captura esta tarjeta y llévala a clase</span>' +
+        '</div>' +
+      '</div>';
+
+    tarjeta.classList.add('abierto');
+    boton.disabled = true;
+    boton.textContent = 'Pregunta asignada · Grupo ' + LETRAS[i];
+    campo.disabled = true;
+    tarjeta.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  campo.addEventListener('keydown', e => { if (e.key === 'Enter') boton.click(); });
+})();
+
+/* Barra de progreso de lectura */
+(function(){
+  const barra = document.getElementById('progreso');
+  const actualizar = () => {
+    const alto = document.documentElement.scrollHeight - window.innerHeight;
+    barra.style.width = (alto > 0 ? (window.scrollY / alto) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', actualizar, {passive:true});
+  window.addEventListener('resize', actualizar);
+  actualizar();
+})();
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

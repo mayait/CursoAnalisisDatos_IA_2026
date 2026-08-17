@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Overfitting — Polinomios por Pasos</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;color:#1e293b;line-height:1.5;}
+
+        /* Tooltips */
+        .tip{position:relative;cursor:help;border-bottom:1px dotted #94a3b8;font-weight:500;}
+        .tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+            background:#0f172a;color:#f1f5f9;font-size:.72rem;font-weight:400;padding:8px 12px;border-radius:8px;
+            width:max-content;max-width:260px;line-height:1.45;text-align:left;white-space:normal;
+            pointer-events:none;opacity:0;transition:opacity .15s;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.15);text-transform:none;letter-spacing:0;}
+        .tip::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);
+            border:6px solid transparent;border-top-color:#0f172a;pointer-events:none;opacity:0;transition:opacity .15s;z-index:100;}
+        .tip:hover::after,.tip:hover::before{opacity:1;}
+
+        .help-icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;
+            background:#e2e8f0;color:#64748b;font-size:.6rem;font-weight:800;cursor:help;position:absolute;top:5px;right:6px;}
+        .help-icon::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);right:-8px;left:auto;transform:none;
+            background:#0f172a;color:#f1f5f9;font-size:.7rem;font-weight:400;padding:8px 12px;border-radius:8px;
+            width:max-content;max-width:240px;line-height:1.45;text-align:left;white-space:normal;
+            pointer-events:none;opacity:0;transition:opacity .15s;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+        .help-icon:hover::after{opacity:1;}
+
+        /* Header */
+        header{background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:16px 24px;}
+        .hdr{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+        header h1{font-size:1.3rem;font-weight:700;color:#0f172a;white-space:nowrap;}
+        .step-bar{display:flex;align-items:center;gap:0;}
+        .si{display:flex;flex-direction:column;align-items:center;gap:3px;}
+        .sc{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-size:12px;font-weight:700;border:2px solid #cbd5e1;color:#94a3b8;background:#fff;transition:all .2s;}
+        .sc.cur{border-color:#2563eb;background:#2563eb;color:#fff;}
+        .sc.done{border-color:#059669;background:#059669;color:#fff;}
+        .sl-label{font-size:9px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+        .scon{width:32px;height:2px;background:#e2e8f0;margin-bottom:16px;transition:background .2s;}
+        .scon.done{background:#059669;}
+
+        /* Layout */
+        .container{display:grid;grid-template-columns:1fr 360px;height:calc(100vh - 72px);max-width:1400px;margin:0 auto;}
+        .main{padding:16px;display:flex;flex-direction:column;gap:8px;overflow:hidden;}
+        .cvw{flex:1;background:#fff;border-radius:12px;border:1px solid #e2e8f0;position:relative;overflow:hidden;
+            box-shadow:0 1px 3px rgba(0,0,0,.06);min-height:300px;}
+        canvas{display:block;width:100%;height:100%;}
+
+        /* Sidebar */
+        .sidebar{background:#f8fafc;border-left:1px solid #e2e8f0;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+        .sidebar h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:8px;}
+        .pnl{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;}
+        .pnl-t{font-size:.7rem;text-transform:uppercase;letter-spacing:1.2px;color:#94a3b8;font-weight:700;margin-bottom:8px;}
+
+        .msg{background:#eff6ff;border-left:3px solid #3b82f6;padding:10px 12px;border-radius:0 8px 8px 0;
+            font-size:.8rem;color:#334155;line-height:1.5;margin-bottom:10px;}
+        .msg strong{color:#0f172a;}
+
+        /* Buttons */
+        button{padding:8px 14px;border-radius:8px;border:1px solid #d1d5db;background:#fff;color:#374151;
+            font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;}
+        button:hover{background:#f1f5f9;border-color:#94a3b8;}
+        button.primary{background:#2563eb;border-color:#2563eb;color:#fff;}
+        button.primary:hover{background:#1d4ed8;}
+        button.success{background:#059669;border-color:#059669;color:#fff;}
+        button.success:hover{background:#047857;}
+        button.sel{box-shadow:0 0 0 2px #3b82f6;background:#eff6ff;border-color:#3b82f6;color:#1d4ed8;}
+        .btn-row{display:flex;gap:6px;margin-top:8px;}
+
+        /* Dataset cards */
+        .ds-card{padding:10px 12px;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all .15s;margin-bottom:6px;}
+        .ds-card:hover{border-color:#93c5fd;background:#f8fafc;}
+        .ds-card.active{border-color:#2563eb;background:#eff6ff;}
+        .ds-card .ds-name{font-weight:700;font-size:.82rem;color:#0f172a;}
+        .ds-card .ds-desc{font-size:.72rem;color:#64748b;margin-top:2px;}
+        .ds-card .ds-fn{font-family:'SF Mono',monospace;font-size:.7rem;color:#2563eb;margin-top:3px;}
+
+        /* Metrics */
+        .mg{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+        .mc{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:8px;text-align:center;position:relative;}
+        .mc.hl{border-color:#93c5fd;background:#eff6ff;}
+        .mc.w{grid-column:span 2;}
+        .mc .lb{font-size:.62rem;text-transform:uppercase;letter-spacing:.8px;color:#94a3b8;}
+        .mc .vl{font-size:1.1rem;font-weight:800;margin-top:2px;font-family:'SF Mono','Fira Code',monospace;color:#0f172a;}
+        .vl.good{color:#059669;} .vl.bad{color:#dc2626;} .vl.warn{color:#d97706;}
+
+        /* Slider */
+        .sg{margin-bottom:10px;}
+        .sgl{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px;color:#475569;}
+        .sgl .sv{font-weight:700;background:#2563eb;color:#fff;padding:1px 8px;border-radius:4px;font-size:.75rem;}
+        input[type="range"]{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:#e2e8f0;border-radius:3px;outline:none;}
+        input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+            background:#2563eb;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+
+        /* Status */
+        .status{padding:8px;border-radius:8px;text-align:center;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+        .status.good{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
+        .status.bad{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+        .status.meh{background:#fef3c7;color:#92400e;border:1px solid #fcd34d;}
+
+        /* Concept */
+        .concept{background:#f8fafc;border-left:3px solid #2563eb;border-radius:0 6px 6px 0;padding:8px 10px;margin-bottom:6px;}
+        .concept .ct{font-size:.75rem;font-weight:700;color:#0f172a;margin-bottom:1px;}
+        .concept .cd{font-size:.7rem;color:#475569;line-height:1.3;}
+
+        /* Summary */
+        .summary{background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px;margin-bottom:10px;}
+        .summary h3{font-size:.85rem;font-weight:700;color:#065f46;margin-bottom:6px;}
+        .summary p{font-size:.78rem;color:#166534;margin-bottom:3px;}
+
+        /* Degree legend colors */
+        .clr1{color:#059669;} .clr2{color:#2563eb;} .clr3{color:#dc2626;} .clr4{color:#d97706;}
+        .bg1{background:#059669;} .bg2{background:#2563eb;} .bg3{background:#dc2626;} .bg4{background:#d97706;}
+
+        footer{text-align:center;padding:8px;font-size:.65rem;color:#94a3b8;}
+
+        @media(max-width:900px){.container{grid-template-columns:1fr;height:auto;}.cvw{min-height:350px;}}
+    </style>
+</head>
+<body>
+<header>
+    <div class="hdr">
+        <h1>Simulador de Overfitting</h1>
+        <div class="step-bar" id="stepBar">
+            <div class="si"><div class="sc cur">1</div><div class="sl-label">Dataset</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">2</div><div class="sl-label">Datos</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">3</div><div class="sl-label">Grado 1</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">4</div><div class="sl-label">Explora</div></div>
+            <div class="scon"></div>
+            <div class="si"><div class="sc">5</div><div class="sl-label">Curva U</div></div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="main">
+        <div class="cvw"><canvas id="canvas"></canvas></div>
+    </div>
+    <aside class="sidebar" id="sidebar"></aside>
+</div>
+
+<script>
+/* ================================================================
+   DATASETS — different true functions for different complexity
+   ================================================================ */
+const DATASETS = [
+    {
+        name: 'Lineal',
+        desc: 'Relacion recta. Un grado 1 deberia ser suficiente.',
+        fn: 'y = 0.3x + 1',
+        trueFn: x => 0.3*x + 1,
+        noise: 1.5,
+        ideal: 1,
+        color: '#059669'
+    },
+    {
+        name: 'Cuadratico',
+        desc: 'Relacion parabolica. Se necesita grado 2.',
+        fn: 'y = 0.025x² - 0.4x + 3',
+        trueFn: x => 0.025*x*x - 0.4*x + 3,
+        noise: 1.2,
+        ideal: 2,
+        color: '#2563eb'
+    },
+    {
+        name: 'Cubico',
+        desc: 'Patron con forma de S. Se necesita grado 3.',
+        fn: 'y = 0.002x³ - 0.06x² + 0.4x + 1',
+        trueFn: x => 0.002*x*x*x - 0.06*x*x + 0.4*x + 1,
+        noise: 1.0,
+        ideal: 3,
+        color: '#dc2626'
+    },
+    {
+        name: 'Sinusoidal (complejo)',
+        desc: 'Patron ondulado. Requiere grado alto. Ideal para ver overfitting.',
+        fn: 'y = 3·sin(x/3) + 0.15x',
+        trueFn: x => 3*Math.sin(x/3) + 0.15*x,
+        noise: 1.5,
+        ideal: 6,
+        color: '#d97706'
+    }
+];
+
+/* ================================================================
+   STATE
+   ================================================================ */
+const S = {
+    step: 1,
+    dsIdx: 3,           // default: sinusoidal
+    trainPts: [],
+    testPts: [],
+    degree: 1,
+    models: {},          // degree -> {coeff, xMin, xRange}
+    allErrors: [],       // for U-curve
+    showTrue: false,
+};
+
+const NUM_TRAIN = 60;
+const NUM_TEST = 30;
+const MAX_DEG = 12;
+const XMIN=0, XMAX=20, YMIN=-6, YMAX=14;
+const PAD={top:30,right:30,bottom:50,left:55};
+
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+
+/* ================================================================
+   CANVAS
+   ================================================================ */
+function dpr(){return window.devicePixelRatio||1;}
+function cssW(){return canvas.width/dpr();}
+function cssH(){return canvas.height/dpr();}
+function plotW(){return cssW()-PAD.left-PAD.right;}
+function plotH(){return cssH()-PAD.top-PAD.bottom;}
+
+function resizeCanvas(){
+    const w=canvas.parentElement;
+    canvas.width=w.clientWidth*dpr();
+    canvas.height=w.clientHeight*dpr();
+    ctx.setTransform(dpr(),0,0,dpr(),0,0);
+}
+
+function d2c(dx,dy){
+    return{x:PAD.left+((dx-XMIN)/(XMAX-XMIN))*plotW(), y:PAD.top+((YMAX-dy)/(YMAX-YMIN))*plotH()};
+}
+
+/* ================================================================
+   DATA GENERATION
+   ================================================================ */
+function generateData(){
+    const ds=DATASETS[S.dsIdx];
+    S.trainPts=[];S.testPts=[];S.models={};S.allErrors=[];
+    for(let i=0;i<NUM_TRAIN;i++){
+        const x=XMIN+0.5+Math.random()*(XMAX-XMIN-1);
+        const y=ds.trueFn(x)+(Math.random()-0.5)*ds.noise*2;
+        S.trainPts.push({x,y});
+    }
+    S.trainPts.sort((a,b)=>a.x-b.x);
+    for(let i=0;i<NUM_TEST;i++){
+        const x=XMIN+0.5+Math.random()*(XMAX-XMIN-1);
+        const y=ds.trueFn(x)+(Math.random()-0.5)*ds.noise*2;
+        S.testPts.push({x,y});
+    }
+    fitAllDegrees();
+}
+
+/* ================================================================
+   POLYNOMIAL FITTING
+   ================================================================ */
+function fitPoly(pts, degree){
+    if(pts.length<=degree) return null;
+    const xs=pts.map(p=>p.x);
+    const xMin=Math.min(...xs), xMax=Math.max(...xs), xRange=(xMax-xMin)||1;
+    const xn=xs.map(x=>2*(x-xMin)/xRange-1);
+    const ys=pts.map(p=>p.y);
+    const m=degree+1;
+    const XTX=Array.from({length:m},()=>new Float64Array(m));
+    const XTy=new Float64Array(m);
+    for(let k=0;k<xn.length;k++){
+        const row=new Float64Array(m);
+        for(let j=0;j<m;j++) row[j]=Math.pow(xn[k],j);
+        for(let i=0;i<m;i++){
+            for(let j=0;j<m;j++) XTX[i][j]+=row[i]*row[j];
+            XTy[i]+=row[i]*ys[k];
+        }
+    }
+    const A=XTX.map((r,i)=>[...r,XTy[i]]);
+    for(let col=0;col<m;col++){
+        let best=col;
+        for(let r=col+1;r<m;r++) if(Math.abs(A[r][col])>Math.abs(A[best][col])) best=r;
+        [A[col],A[best]]=[A[best],A[col]];
+        if(Math.abs(A[col][col])<1e-12) continue;
+        for(let r=col+1;r<m;r++){
+            const f=A[r][col]/A[col][col];
+            for(let j=col;j<=m;j++) A[r][j]-=f*A[col][j];
+        }
+    }
+    const c=new Float64Array(m);
+    for(let i=m-1;i>=0;i--){
+        c[i]=A[i][m];
+        for(let j=i+1;j<m;j++) c[i]-=A[i][j]*c[j];
+        c[i]/=A[i][i];
+    }
+    return{coeff:Array.from(c),xMin,xRange};
+}
+
+function evalPoly(model,x){
+    const xn=2*(x-model.xMin)/model.xRange-1;
+    let r=0;
+    for(let i=0;i<model.coeff.length;i++) r+=model.coeff[i]*Math.pow(xn,i);
+    return r;
+}
+
+function rmse(pts,model){
+    let s=0;
+    for(const p of pts){const e=p.y-evalPoly(model,p.x);s+=e*e;}
+    return Math.sqrt(s/pts.length);
+}
+
+function fitAllDegrees(){
+    S.models={};S.allErrors=[];
+    for(let d=1;d<=MAX_DEG;d++){
+        const model=fitPoly(S.trainPts,d);
+        if(!model){S.allErrors.push({d,tr:99,te:99});continue;}
+        S.models[d]=model;
+        S.allErrors.push({d, tr:rmse(S.trainPts,model), te:rmse(S.testPts,model)});
+    }
+}
+
+/* ================================================================
+   DRAWING
+   ================================================================ */
+const CURVE_COLORS=['#059669','#2563eb','#dc2626','#d97706','#7c3aed','#0891b2','#be185d','#ca8a04','#4f46e5','#16a34a','#ea580c','#6d28d9'];
+
+function draw(){
+    resizeCanvas();
+    const W=cssW(),H=cssH();
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+    drawGrid();drawAxes();
+
+    // True function (dashed gray)
+    if(S.showTrue && S.step>=2){
+        const ds=DATASETS[S.dsIdx];
+        ctx.save();ctx.strokeStyle='#94a3b8';ctx.lineWidth=2;ctx.setLineDash([6,4]);
+        ctx.beginPath();
+        for(let i=0;i<=200;i++){
+            const x=XMIN+(i/200)*(XMAX-XMIN);
+            const y=ds.trueFn(x);
+            const p=d2c(x,Math.max(YMIN,Math.min(YMAX,y)));
+            i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);
+        }
+        ctx.stroke();ctx.restore();
+    }
+
+    // Fitted curves
+    if(S.step>=3){
+        if(S.step===3){
+            // Only degree 1
+            drawCurve(1,CURVE_COLORS[0],3);
+        } else if(S.step===4){
+            // Current degree
+            drawCurve(S.degree,CURVE_COLORS[(S.degree-1)%CURVE_COLORS.length],3);
+        } else if(S.step===5){
+            // Show degree 1 and optimal
+            const optIdx=S.allErrors.reduce((b,e,i)=>e.te<S.allErrors[b].te?i:b,0);
+            const optD=S.allErrors[optIdx].d;
+            drawCurve(1,'#059669',2,[6,4]);
+            if(optD>1) drawCurve(optD,CURVE_COLORS[(optD-1)%CURVE_COLORS.length],3);
+        }
+    }
+
+    // Points
+    if(S.step>=2){
+        // Train
+        for(const p of S.trainPts){
+            const cp=d2c(p.x,p.y);
+            ctx.fillStyle='#3b82f6';ctx.beginPath();ctx.arc(cp.x,cp.y,4,0,Math.PI*2);ctx.fill();
+            ctx.strokeStyle='#fff';ctx.lineWidth=1;ctx.stroke();
+        }
+        // Test (step 5 or if desired)
+        if(S.step>=5){
+            for(const p of S.testPts){
+                const cp=d2c(p.x,p.y);
+                ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(cp.x,cp.y,4,0,Math.PI*2);ctx.fill();
+                ctx.strokeStyle='#fff';ctx.lineWidth=1;ctx.stroke();
+            }
+        }
+    }
+
+    // Legend
+    drawCanvasLegend();
+
+    // Step 1: show dataset previews
+    if(S.step===1) drawDatasetPreview();
+}
+
+function drawGrid(){
+    ctx.strokeStyle='#f1f5f9';ctx.lineWidth=1;
+    for(let x=XMIN;x<=XMAX;x+=2){const p=d2c(x,0);ctx.beginPath();ctx.moveTo(p.x,PAD.top);ctx.lineTo(p.x,cssH()-PAD.bottom);ctx.stroke();}
+    for(let y=YMIN;y<=YMAX;y+=2){const p=d2c(0,y);ctx.beginPath();ctx.moveTo(PAD.left,p.y);ctx.lineTo(cssW()-PAD.right,p.y);ctx.stroke();}
+}
+
+function drawAxes(){
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(PAD.left,cssH()-PAD.bottom);ctx.lineTo(cssW()-PAD.right,cssH()-PAD.bottom);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(PAD.left,PAD.top);ctx.lineTo(PAD.left,cssH()-PAD.bottom);ctx.stroke();
+    ctx.fillStyle='#64748b';ctx.font='11px "SF Mono",monospace';ctx.textAlign='center';ctx.textBaseline='top';
+    for(let x=XMIN;x<=XMAX;x+=5){const p=d2c(x,YMIN);ctx.fillText(x,p.x,cssH()-PAD.bottom+6);}
+    ctx.textAlign='right';ctx.textBaseline='middle';
+    for(let y=YMIN;y<=YMAX;y+=4){const p=d2c(XMIN,y);ctx.fillText(y,PAD.left-7,p.y);}
+    ctx.fillStyle='#475569';ctx.font='bold 12px "Segoe UI",sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='top';
+    ctx.fillText('X',cssW()/2,cssH()-12);
+    ctx.save();ctx.translate(13,(PAD.top+cssH()-PAD.bottom)/2);ctx.rotate(-Math.PI/2);ctx.fillText('Y',0,0);ctx.restore();
+}
+
+function drawCurve(degree,color,width,dash){
+    const model=S.models[degree];
+    if(!model) return;
+    ctx.save();
+    ctx.beginPath();ctx.rect(PAD.left,PAD.top,plotW(),plotH());ctx.clip();
+    ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash||[]);
+    ctx.beginPath();
+    let started=false;
+    for(let i=0;i<=300;i++){
+        const x=XMIN+(i/300)*(XMAX-XMIN);
+        let y=evalPoly(model,x);
+        y=Math.max(YMIN-2,Math.min(YMAX+2,y));
+        const p=d2c(x,y);
+        if(!started){ctx.moveTo(p.x,p.y);started=true;}
+        else ctx.lineTo(p.x,p.y);
+    }
+    ctx.stroke();ctx.restore();
+}
+
+function drawCanvasLegend(){
+    const items=[];
+    if(S.step>=2 && S.showTrue) items.push(['#94a3b8','Funcion real (oculta)',true]);
+    if(S.step>=2) items.push(['#3b82f6','Train',false]);
+    if(S.step>=5) items.push(['#ef4444','Test',false]);
+    if(S.step===3) items.push([CURVE_COLORS[0],'Grado 1',false]);
+    if(S.step===4) items.push([CURVE_COLORS[(S.degree-1)%CURVE_COLORS.length],`Grado ${S.degree}`,false]);
+    if(S.step===5){
+        const optIdx=S.allErrors.reduce((b,e,i)=>e.te<S.allErrors[b].te?i:b,0);
+        const optD=S.allErrors[optIdx].d;
+        items.push([CURVE_COLORS[0],'Grado 1',true]);
+        if(optD>1) items.push([CURVE_COLORS[(optD-1)%CURVE_COLORS.length],`Grado ${optD} (optimo)`,false]);
+    }
+    if(!items.length) return;
+    const x=cssW()-PAD.right-10;let y=PAD.top+14;
+    const lh=items.length*18+8;
+    ctx.save();ctx.fillStyle='rgba(255,255,255,.92)';ctx.strokeStyle='#e2e8f0';ctx.lineWidth=1;
+    ctx.fillRect(x-140,y-10,150,lh);ctx.strokeRect(x-140,y-10,150,lh);ctx.restore();
+    ctx.font='11px "Segoe UI",sans-serif';ctx.textAlign='right';
+    for(const [c,l,dashed] of items){
+        ctx.save();ctx.strokeStyle=c;ctx.fillStyle=c;ctx.lineWidth=2;
+        if(dashed) ctx.setLineDash([5,3]); else ctx.setLineDash([]);
+        ctx.beginPath();ctx.moveTo(x-100,y);ctx.lineTo(x-80,y);ctx.stroke();ctx.restore();
+        ctx.fillStyle='#475569';ctx.fillText(l,x,y+4);y+=18;
+    }
+}
+
+function drawDatasetPreview(){
+    const W=cssW(),H=cssH();
+    const cw=(plotW()-30)/2, ch=(plotH()-30)/2;
+    DATASETS.forEach((ds,i)=>{
+        const ox=PAD.left+10+(i%2)*(cw+10);
+        const oy=PAD.top+10+Math.floor(i/2)*(ch+10);
+        // Background
+        ctx.fillStyle=i===S.dsIdx?'#eff6ff':'#f8fafc';
+        ctx.strokeStyle=i===S.dsIdx?'#2563eb':'#e2e8f0';
+        ctx.lineWidth=i===S.dsIdx?2:1;
+        ctx.fillRect(ox,oy,cw,ch);ctx.strokeRect(ox,oy,cw,ch);
+        // Mini plot
+        ctx.save();ctx.beginPath();ctx.rect(ox+5,oy+20,cw-10,ch-30);ctx.clip();
+        // Generate mini data
+        ctx.fillStyle=ds.color;
+        for(let j=0;j<30;j++){
+            const x=XMIN+1+Math.random()*(XMAX-2);
+            const y=ds.trueFn(x)+(Math.random()-0.5)*ds.noise*2;
+            const px=ox+5+((x-XMIN)/(XMAX-XMIN))*(cw-10);
+            const py=oy+20+(1-(y-YMIN)/(YMAX-YMIN))*(ch-30);
+            ctx.beginPath();ctx.arc(px,py,2.5,0,Math.PI*2);ctx.fill();
+        }
+        // True curve
+        ctx.strokeStyle=ds.color;ctx.lineWidth=2;ctx.beginPath();
+        for(let j=0;j<=50;j++){
+            const x=XMIN+(j/50)*(XMAX-XMIN);
+            const y=ds.trueFn(x);
+            const px=ox+5+((x-XMIN)/(XMAX-XMIN))*(cw-10);
+            const py=oy+20+(1-(y-YMIN)/(YMAX-YMIN))*(ch-30);
+            j===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+        }
+        ctx.stroke();ctx.restore();
+        // Label
+        ctx.fillStyle=i===S.dsIdx?'#2563eb':'#475569';
+        ctx.font=`bold 12px "Segoe UI",sans-serif`;ctx.textAlign='center';
+        ctx.fillText(ds.name,ox+cw/2,oy+14);
+    });
+}
+
+/* ================================================================
+   U-CURVE DRAWING (Step 5 — bottom half of canvas or overlay)
+   ================================================================ */
+function drawUCurve(){
+    // This is drawn on a secondary canvas area or we split the main canvas
+    // For simplicity, we'll draw it in the sidebar as HTML bars
+}
+
+/* ================================================================
+   SIDEBAR
+   ================================================================ */
+function updateSidebar(){
+    const sb=document.getElementById('sidebar');
+    let h='';
+
+    if(S.step===1){
+        h=`
+        <h2>Paso 1: Elige un Dataset</h2>
+        <div class="msg">Cada dataset tiene una <strong>complejidad diferente</strong>. Elige uno para ver como diferentes grados de polinomio se ajustan a los datos.</div>
+        ${DATASETS.map((ds,i)=>`
+            <div class="ds-card ${i===S.dsIdx?'active':''}" onclick="selectDS(${i})">
+                <div class="ds-name" style="color:${ds.color}">${ds.name}</div>
+                <div class="ds-desc">${ds.desc}</div>
+                <div class="ds-fn">${ds.fn}</div>
+                <div style="font-size:.65rem;color:#94a3b8;margin-top:2px;">Grado ideal: ${ds.ideal}</div>
+            </div>
+        `).join('')}
+        <button class="primary" onclick="goStep(2)" style="width:100%;margin-top:6px;">Siguiente: Ver Datos →</button>
+        `;
+    }
+    else if(S.step===2){
+        const ds=DATASETS[S.dsIdx];
+        h=`
+        <h2>Paso 2: Observa los Datos</h2>
+        <div class="msg">Estos son <strong>${NUM_TRAIN} puntos de entrenamiento</strong> generados a partir de la funcion
+        <strong>${ds.name}</strong> con ruido aleatorio. La funcion real esta oculta — el modelo debe descubrirla.</div>
+
+        <div class="pnl">
+            <div class="pnl-t">Dataset: ${ds.name}</div>
+            <div class="mc w"><div class="lb">Funcion Real (oculta)</div><div class="vl" style="font-size:.8rem;color:${ds.color}">${ds.fn}</div></div>
+            <div class="mg" style="margin-top:6px;">
+                <div class="mc"><div class="lb">Train</div><div class="vl" style="color:#3b82f6">${NUM_TRAIN}</div></div>
+                <div class="mc"><div class="lb">Test</div><div class="vl" style="color:#ef4444">${NUM_TEST}</div></div>
+            </div>
+            <div style="margin-top:8px;">
+                <label style="font-size:.75rem;color:#475569;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                    <input type="checkbox" id="chkTrue" ${S.showTrue?'checked':''} onchange="S.showTrue=this.checked;draw();">
+                    Mostrar funcion real (linea punteada gris)
+                </label>
+            </div>
+        </div>
+
+        <div class="concept" style="border-left-color:#d97706;">
+            <div class="ct">¿Por que hay ruido?</div>
+            <div class="cd">En la realidad, los datos siempre tienen variabilidad. El modelo debe capturar el <strong>patron</strong>, no el ruido.</div>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(1)">← Atras</button>
+            <button class="primary" onclick="goStep(3)">Siguiente: Grado 1 →</button>
+        </div>
+        `;
+    }
+    else if(S.step===3){
+        const e1=S.allErrors.find(e=>e.d===1);
+        h=`
+        <h2>Paso 3: Empieza con Grado 1</h2>
+        <div class="msg">Un polinomio de <strong>grado 1 es una recta</strong>. Es el modelo mas simple posible.
+        Observa como ${DATASETS[S.dsIdx].ideal>1?'<strong>no captura bien</strong> el patron de los datos (underfitting).':'se ajusta bastante bien a estos datos lineales.'}</div>
+
+        <div class="pnl">
+            <div class="pnl-t">Grado 1 = Recta</div>
+            <div class="mg">
+                <div class="mc hl"><span class="help-icon" data-tip="Error del modelo en datos de entrenamiento.">?</span>
+                    <div class="lb">RMSE Train</div><div class="vl">${e1?e1.tr.toFixed(3):'—'}</div></div>
+                <div class="mc"><span class="help-icon" data-tip="Error del modelo en datos nuevos que nunca vio.">?</span>
+                    <div class="lb">RMSE Test</div><div class="vl">${e1?e1.te.toFixed(3):'—'}</div></div>
+            </div>
+        </div>
+
+        <div class="status ${DATASETS[S.dsIdx].ideal===1?'good':'meh'}">${DATASETS[S.dsIdx].ideal===1?'Buen Ajuste':'Underfitting — Modelo muy simple'}</div>
+
+        <div class="concept" style="border-left-color:#d97706;">
+            <div class="ct">Underfitting</div>
+            <div class="cd">Cuando el modelo es demasiado simple para capturar el patron. Error alto tanto en train como en test.</div>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(2)">← Atras</button>
+            <button class="primary" onclick="goStep(4)">Explorar Grados →</button>
+        </div>
+        `;
+    }
+    else if(S.step===4){
+        const e=S.allErrors.find(e=>e.d===S.degree);
+        const gap=e?(e.te-e.tr):0;
+        const ds=DATASETS[S.dsIdx];
+        let statusCls='good',statusTxt='Buen Ajuste';
+        if(e&&e.tr>1.5&&e.te>1.5){statusCls='meh';statusTxt='Underfitting';}
+        else if(gap>0.5){statusCls='bad';statusTxt='Overfitting';}
+        else if(gap>0.2){statusCls='meh';statusTxt='Overfitting Leve';}
+
+        h=`
+        <h2>Paso 4: Explora Diferentes Grados</h2>
+        <div class="msg">Mueve el slider para cambiar el grado del polinomio. Observa como la <strong>curva cambia de forma</strong>:
+        de una recta (grado 1), a una parabola (grado 2), a curvas cada vez mas complejas.</div>
+
+        <div class="pnl">
+            <div class="pnl-t"><span class="tip" data-tip="La potencia maxima del polinomio. Grado 1 = recta, 2 = parabola, 3 = cubica, etc. Mayor grado = mas flexibilidad.">Grado del Polinomio</span></div>
+            <div class="sg">
+                <div class="sgl"><span>Grado</span><span class="sv" id="degVal">${S.degree}</span></div>
+                <input type="range" min="1" max="${MAX_DEG}" value="${S.degree}" id="degSlider">
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:.65rem;color:#94a3b8;">
+                <span>1 (recta)</span><span>6 (flexible)</span><span>${MAX_DEG} (extremo)</span>
+            </div>
+        </div>
+
+        <div class="status ${statusCls}">${statusTxt}</div>
+
+        <div class="pnl">
+            <div class="pnl-t">Metricas Grado ${S.degree}</div>
+            <div class="mg">
+                <div class="mc hl"><span class="help-icon" data-tip="Error en los datos que el modelo uso para aprender.">?</span>
+                    <div class="lb">RMSE Train</div><div class="vl" style="color:#3b82f6">${e?e.tr.toFixed(4):'—'}</div></div>
+                <div class="mc hl"><span class="help-icon" data-tip="Error en datos nuevos que el modelo nunca vio. Este es el error REAL.">?</span>
+                    <div class="lb">RMSE Test</div><div class="vl ${gap>0.5?'bad':gap>0.2?'warn':'good'}">${e?e.te.toFixed(4):'—'}</div></div>
+                <div class="mc"><span class="help-icon" data-tip="Diferencia entre error test y train. Valores altos = overfitting.">?</span>
+                    <div class="lb">Brecha</div><div class="vl">${gap.toFixed(4)}</div></div>
+                <div class="mc"><div class="lb">Grado Ideal</div><div class="vl good">${ds.ideal}</div></div>
+            </div>
+        </div>
+
+        ${S.degree>=8?'<div class="warn">⚠️ Grado muy alto. Observa como la curva ondula exageradamente entre los puntos. Eso es overfitting.</div>':''}
+        ${S.degree===ds.ideal?`<div class="summary"><h3>Grado Optimo!</h3><p>Este grado coincide con la complejidad real de los datos.</p></div>`:''}
+
+        <div class="pnl">
+            <div class="pnl-t">Referencia Rapida</div>
+            ${[1,2,3,ds.ideal>3?ds.ideal:null,Math.min(MAX_DEG,10)].filter((v,i,a)=>v&&a.indexOf(v)===i).map(d=>{
+                const err=S.allErrors.find(e=>e.d===d);
+                const isOpt=d===ds.ideal;
+                return `<div style="display:flex;align-items:center;gap:8px;padding:3px 0;font-size:.75rem;${d===S.degree?'font-weight:700;':''}${isOpt?'color:#059669;':''}">
+                    <span style="width:8px;height:8px;border-radius:50%;background:${CURVE_COLORS[(d-1)%CURVE_COLORS.length]};flex-shrink:0;"></span>
+                    <span style="width:55px;">Grado ${d}${isOpt?' ★':''}</span>
+                    <span style="color:#3b82f6;">${err?err.tr.toFixed(3):'—'}</span> /
+                    <span style="color:#ef4444;">${err?err.te.toFixed(3):'—'}</span>
+                </div>`;
+            }).join('')}
+            <div style="font-size:.6rem;color:#94a3b8;margin-top:4px;">Train / Test RMSE</div>
+        </div>
+
+        <div style="margin-top:4px;">
+            <label style="font-size:.75rem;color:#475569;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                <input type="checkbox" id="chkTrue2" ${S.showTrue?'checked':''} onchange="S.showTrue=this.checked;draw();">
+                Mostrar funcion real
+            </label>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(3)">← Atras</button>
+            <button class="success" onclick="goStep(5)">Ver Curva U →</button>
+        </div>
+        `;
+    }
+    else if(S.step===5){
+        const optIdx=S.allErrors.reduce((b,e,i)=>e.te<S.allErrors[b].te?i:b,0);
+        const opt=S.allErrors[optIdx];
+        const ds=DATASETS[S.dsIdx];
+
+        // Build U-curve as HTML bars
+        const maxErr=Math.max(...S.allErrors.map(e=>Math.max(e.tr,e.te)))*1.1;
+
+        h=`
+        <h2>Paso 5: La Curva en U</h2>
+        <div class="msg">Esta es la <span class="tip" data-tip="La curva clasica que muestra como el error de test primero baja (mejor modelo) pero luego sube (overfitting).">curva de sesgo-varianza</span>.
+        El <strong style="color:#059669">punto optimo</strong> es donde el error de test es minimo.</div>
+
+        <div class="summary">
+            <h3>Resultado</h3>
+            <p><strong>Grado Optimo:</strong> ${opt.d} ${opt.d===ds.ideal?'(coincide con la funcion real!)':''}</p>
+            <p><strong>RMSE Test Minimo:</strong> ${opt.te.toFixed(4)}</p>
+            <p><strong>Conclusion:</strong> Un polinomio de grado ${opt.d} ofrece el mejor balance para el dataset "${ds.name}".</p>
+        </div>
+
+        <div class="pnl">
+            <div class="pnl-t">RMSE por Grado</div>
+            <div style="max-height:220px;overflow-y:auto;">
+                <table style="width:100%;font-size:.72rem;border-collapse:collapse;">
+                    <tr style="color:#94a3b8;font-size:.6rem;text-transform:uppercase;letter-spacing:.5px;">
+                        <th style="padding:4px;text-align:center;">Grado</th>
+                        <th style="padding:4px;text-align:center;color:#3b82f6;">Train</th>
+                        <th style="padding:4px;text-align:center;color:#ef4444;">Test</th>
+                        <th style="padding:4px;text-align:center;">Estado</th>
+                    </tr>
+                    ${S.allErrors.map(e=>{
+                        const isOpt=e.d===opt.d;
+                        const gap=e.te-e.tr;
+                        let st='—',sc='';
+                        if(e.tr>1.2&&e.te>1.2){st='Underfit';sc='color:#d97706;';}
+                        else if(gap>0.5){st='Overfit';sc='color:#dc2626;';}
+                        else if(gap>0.2){st='Overfit ⚠️';sc='color:#d97706;';}
+                        else{st='OK';sc='color:#059669;';}
+                        if(isOpt){st='★ Optimo';sc='color:#059669;font-weight:700;';}
+                        return `<tr style="border-top:1px solid #f1f5f9;${isOpt?'background:#f0fdf4;':''}">
+                            <td style="padding:3px;text-align:center;font-weight:${isOpt?'700':'400'};">${e.d}</td>
+                            <td style="padding:3px;text-align:center;color:#3b82f6;">${e.tr.toFixed(4)}</td>
+                            <td style="padding:3px;text-align:center;color:#ef4444;">${e.te.toFixed(4)}</td>
+                            <td style="padding:3px;text-align:center;${sc}font-size:.65rem;">${st}</td>
+                        </tr>`;
+                    }).join('')}
+                </table>
+            </div>
+        </div>
+
+        <div class="concept" style="border-left-color:#d97706;">
+            <div class="ct">Underfitting (izquierda)</div>
+            <div class="cd">Modelo demasiado simple. Ambos errores altos.</div>
+        </div>
+        <div class="concept" style="border-left-color:#059669;">
+            <div class="ct">Punto Optimo (centro)</div>
+            <div class="cd">Balance perfecto entre complejidad y generalizacion.</div>
+        </div>
+        <div class="concept" style="border-left-color:#dc2626;">
+            <div class="ct">Overfitting (derecha)</div>
+            <div class="cd">Modelo memoriza ruido. Train baja, test sube.</div>
+        </div>
+
+        <div style="margin-top:6px;">
+            <label style="font-size:.75rem;color:#475569;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                <input type="checkbox" id="chkTrue3" ${S.showTrue?'checked':''} onchange="S.showTrue=this.checked;draw();">
+                Mostrar funcion real
+            </label>
+        </div>
+
+        <div class="btn-row">
+            <button onclick="goStep(4)">← Atras</button>
+            <button onclick="resetAll()">Reiniciar</button>
+            <button class="primary" onclick="newDS()">Otro Dataset</button>
+        </div>
+        `;
+    }
+
+    sb.innerHTML=h;
+    bindSliders();
+}
+
+function bindSliders(){
+    const ds=document.getElementById('degSlider');
+    if(ds) ds.addEventListener('input',function(){
+        S.degree=parseInt(this.value);
+        document.getElementById('degVal').textContent=S.degree;
+        draw();updateSidebar();
+    });
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+function selectDS(i){
+    S.dsIdx=i;
+    generateData();
+    draw();updateSidebar();
+}
+
+function goStep(n){
+    if(n===2 && !S.trainPts.length) generateData();
+    if(n===3) S.degree=1;
+    if(n===4) S.degree=1;
+    S.step=n;
+    updateProgress();updateSidebar();draw();
+}
+
+function resetAll(){
+    S.step=1;S.degree=1;S.showTrue=false;
+    S.trainPts=[];S.testPts=[];S.models={};S.allErrors=[];
+    updateProgress();updateSidebar();draw();
+}
+
+function newDS(){
+    S.dsIdx=(S.dsIdx+1)%DATASETS.length;
+    S.step=1;S.degree=1;S.showTrue=false;
+    generateData();
+    updateProgress();updateSidebar();draw();
+}
+
+function updateProgress(){
+    document.querySelectorAll('.sc').forEach((c,i)=>{
+        c.classList.remove('cur','done');
+        if(i+1===S.step) c.classList.add('cur');
+        else if(i+1<S.step) c.classList.add('done');
+    });
+    document.querySelectorAll('.scon').forEach((c,i)=>{
+        c.classList.remove('done');
+        if(i+1<S.step) c.classList.add('done');
+    });
+}
+
+/* ================================================================
+   INIT
+   ================================================================ */
+window.addEventListener('resize',draw);
+generateData();
+updateProgress();updateSidebar();draw();
+</script>
+</body>
+</html>

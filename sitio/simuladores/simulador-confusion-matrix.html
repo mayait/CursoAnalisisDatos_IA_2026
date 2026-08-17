@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Interactivo - Matriz de Confusión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        .confusion-matrix {
+            display: grid;
+            grid-template-columns: 80px 120px 120px;
+            grid-template-rows: 80px 120px 120px;
+            gap: 2px;
+            margin: 20px 0;
+        }
+        .matrix-cell {
+            background-color: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .matrix-cell.tp { background-color: #d1fae5; border-color: #10b981; color: #065f46; }
+        .matrix-cell.tn { background-color: #dbeafe; border-color: #3b82f6; color: #1e3a8a; }
+        .matrix-cell.fp { background-color: #fee2e2; border-color: #ef4444; color: #7f1d1d; }
+        .matrix-cell.fn { background-color: #fef3c7; border-color: #f59e0b; color: #78350f; }
+        .matrix-cell.label {
+            background-color: #1f2937;
+            color: white;
+            font-size: 12px;
+            padding: 10px;
+        }
+        .roc-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        canvas {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #f9fafb;
+        }
+        .slider-container {
+            background-color: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e5e7eb;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-2">Simulador de Matriz de Confusión</h1>
+                <p class="text-gray-600">Ajusta el umbral para explorar cómo cambian las métricas de clasificación en tiempo real.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Left Column -->
+                <div>
+                    <!-- Threshold Slider -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Umbral de Clasificación</h2>
+
+                        <div class="slider-container">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-semibold text-gray-700">Umbral</label>
+                                <span class="text-lg font-bold text-blue-600" id="thresholdValue">0.50</span>
+                            </div>
+                            <input type="range" id="thresholdSlider" min="0" max="100" value="50" step="1">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>0.0</span>
+                                <span>0.5</span>
+                                <span>1.0</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-blue-50 border-l-4 border-blue-500 rounded">
+                            <p class="text-xs text-gray-700">
+                                El umbral determina la probabilidad mínima para clasificar como positivo. Un umbral bajo aumenta los falsos positivos, uno alto aumenta los falsos negativos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Confusion Matrix -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Matriz de Confusión</h2>
+
+                        <div style="overflow-x: auto;">
+                            <div class="confusion-matrix">
+                                <!-- Header row -->
+                                <div class="matrix-cell label"></div>
+                                <div class="matrix-cell label">Predicho Positivo</div>
+                                <div class="matrix-cell label">Predicho Negativo</div>
+
+                                <!-- Real Positive row -->
+                                <div class="matrix-cell label">Real Positivo</div>
+                                <div class="matrix-cell tp" id="tp">0</div>
+                                <div class="matrix-cell fn" id="fn">0</div>
+
+                                <!-- Real Negative row -->
+                                <div class="matrix-cell label">Real Negativo</div>
+                                <div class="matrix-cell fp" id="fp">0</div>
+                                <div class="matrix-cell tn" id="tn">0</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-xs text-gray-600 space-y-1">
+                            <p><strong>VP (Verdadero Positivo):</strong> Clasificado positivo correctamente</p>
+                            <p><strong>VN (Verdadero Negativo):</strong> Clasificado negativo correctamente</p>
+                            <p><strong>FP (Falso Positivo):</strong> Clasificado positivo incorrectamente</p>
+                            <p><strong>FN (Falso Negativo):</strong> Clasificado negativo incorrectamente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <!-- Metrics -->
+                    <div class="space-y-3 mb-6">
+                        <div class="metric-card">
+                            <div class="metric-label">Exactitud (Accuracy)</div>
+                            <div class="metric-value" id="accuracy">—</div>
+                            <div class="text-xs mt-1 opacity-75">(VP+VN) / Total</div>
+                        </div>
+
+                        <div class="metric-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <div class="metric-label">Precisión</div>
+                            <div class="metric-value" id="precision">—</div>
+                            <div class="text-xs mt-1 opacity-75">VP / (VP+FP)</div>
+                        </div>
+
+                        <div class="metric-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <div class="metric-label">Sensibilidad (Recall)</div>
+                            <div class="metric-value" id="recall">—</div>
+                            <div class="text-xs mt-1 opacity-75">VP / (VP+FN)</div>
+                        </div>
+
+                        <div class="metric-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <div class="metric-label">F1-Score</div>
+                            <div class="metric-value" id="f1">—</div>
+                            <div class="text-xs mt-1 opacity-75">2 × (Precisión × Recall) / (Precisión + Recall)</div>
+                        </div>
+                    </div>
+
+                    <!-- ROC Curve -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Curva ROC</h2>
+                        <div class="roc-container">
+                            <canvas id="rocCanvas" width="400" height="400"></canvas>
+                        </div>
+                        <div class="text-xs text-gray-600 mt-4">
+                            <p>La curva ROC muestra la relación entre Tasa de Verdaderos Positivos (Sensibilidad) y Tasa de Falsos Positivos. El punto rojo indica el umbral actual.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo (puntuaciones de predicción reales)
+        const predictions = [
+            { score: 0.95, actual: 1 },
+            { score: 0.88, actual: 1 },
+            { score: 0.85, actual: 1 },
+            { score: 0.78, actual: 1 },
+            { score: 0.72, actual: 1 },
+            { score: 0.68, actual: 1 },
+            { score: 0.62, actual: 1 },
+            { score: 0.58, actual: 1 },
+            { score: 0.51, actual: 1 },
+            { score: 0.45, actual: 0 },
+            { score: 0.92, actual: 0 },
+            { score: 0.87, actual: 0 },
+            { score: 0.80, actual: 0 },
+            { score: 0.73, actual: 0 },
+            { score: 0.65, actual: 0 },
+            { score: 0.59, actual: 0 },
+            { score: 0.52, actual: 0 },
+            { score: 0.48, actual: 0 },
+            { score: 0.90, actual: 1 },
+            { score: 0.82, actual: 1 },
+            { score: 0.77, actual: 1 },
+            { score: 0.60, actual: 1 },
+            { score: 0.91, actual: 0 },
+            { score: 0.75, actual: 0 },
+            { score: 0.55, actual: 0 },
+        ];
+
+        let rocCanvas = document.getElementById('rocCanvas');
+        let rocCtx = rocCanvas.getContext('2d');
+        let rocChart = null;
+
+        const thresholdSlider = document.getElementById('thresholdSlider');
+        const thresholdValue = document.getElementById('thresholdValue');
+
+        function calculateMetrics(threshold) {
+            let tp = 0, tn = 0, fp = 0, fn = 0;
+
+            for (let pred of predictions) {
+                const predicted = pred.score >= threshold ? 1 : 0;
+
+                if (predicted === 1 && pred.actual === 1) tp++;
+                else if (predicted === 0 && pred.actual === 0) tn++;
+                else if (predicted === 1 && pred.actual === 0) fp++;
+                else if (predicted === 0 && pred.actual === 1) fn++;
+            }
+
+            return { tp, tn, fp, fn };
+        }
+
+        function updateDisplay(threshold) {
+            const metrics = calculateMetrics(threshold);
+            const { tp, tn, fp, fn } = metrics;
+
+            // Actualizar matriz
+            document.getElementById('tp').textContent = tp;
+            document.getElementById('tn').textContent = tn;
+            document.getElementById('fp').textContent = fp;
+            document.getElementById('fn').textContent = fn;
+
+            // Calcular métricas
+            const total = tp + tn + fp + fn;
+            const accuracy = total > 0 ? ((tp + tn) / total).toFixed(4) : '—';
+            const precision = (tp + fp) > 0 ? (tp / (tp + fp)).toFixed(4) : '—';
+            const recall = (tp + fn) > 0 ? (tp / (tp + fn)).toFixed(4) : '—';
+            const f1 = (precision !== '—' && recall !== '—')
+                ? (2 * (parseFloat(precision) * parseFloat(recall)) / (parseFloat(precision) + parseFloat(recall))).toFixed(4)
+                : '—';
+
+            document.getElementById('accuracy').textContent = accuracy;
+            document.getElementById('precision').textContent = precision;
+            document.getElementById('recall').textContent = recall;
+            document.getElementById('f1').textContent = f1;
+
+            // Actualizar curva ROC
+            updateROCCurve(threshold);
+        }
+
+        function updateROCCurve(currentThreshold) {
+            // Calcular puntos para la curva ROC
+            const thresholds = [];
+            for (let i = 0; i <= 100; i++) {
+                thresholds.push(i / 100);
+            }
+
+            let rocPoints = [];
+            const totalPositive = predictions.filter(p => p.actual === 1).length;
+            const totalNegative = predictions.filter(p => p.actual === 0).length;
+
+            for (let th of thresholds) {
+                const metrics = calculateMetrics(th);
+                const tpr = totalPositive > 0 ? metrics.tp / totalPositive : 0;
+                const fpr = totalNegative > 0 ? metrics.fp / totalNegative : 0;
+                rocPoints.push({ x: fpr, y: tpr });
+            }
+
+            // Calcular punto actual
+            const currentMetrics = calculateMetrics(currentThreshold);
+            const currentTPR = totalPositive > 0 ? currentMetrics.tp / totalPositive : 0;
+            const currentFPR = totalNegative > 0 ? currentMetrics.fp / totalNegative : 0;
+
+            // Destruir gráfico anterior
+            if (rocChart) {
+                rocChart.destroy();
+            }
+
+            // Crear nuevo gráfico
+            rocChart = new Chart(rocCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Curva ROC',
+                            data: rocPoints,
+                            showLine: true,
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            borderWidth: 3,
+                            pointRadius: 0,
+                            tension: 0.4,
+                            fill: true,
+                        },
+                        {
+                            label: 'Diagonal (Random)',
+                            data: [
+                                { x: 0, y: 0 },
+                                { x: 1, y: 1 }
+                            ],
+                            borderColor: '#d1d5db',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            showLine: true,
+                        },
+                        {
+                            label: 'Umbral Actual',
+                            data: [{ x: currentFPR, y: currentTPR }],
+                            pointBackgroundColor: '#ef4444',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 8,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            min: 0,
+                            max: 1,
+                            title: {
+                                display: true,
+                                text: 'Tasa de Falsos Positivos'
+                            }
+                        },
+                        y: {
+                            min: 0,
+                            max: 1,
+                            title: {
+                                display: true,
+                                text: 'Tasa de Verdaderos Positivos'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Event Listener
+        thresholdSlider.addEventListener('input', (e) => {
+            const threshold = parseFloat(e.target.value) / 100;
+            thresholdValue.textContent = threshold.toFixed(2);
+            updateDisplay(threshold);
+        });
+
+        // Inicializar
+        updateDisplay(0.5);
+    </script>
+</body>
+</html>

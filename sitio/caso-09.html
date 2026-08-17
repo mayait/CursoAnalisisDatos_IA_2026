@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso 9 · E-Commerce OLIST Brasil — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Caso 9</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Caso 9 · Logística / LatAm</div>
+<h1>E-Commerce OLIST Brasil</h1>
+<div class="meta">
+<span>Clasificación multi-tabla</span><span>Reto: Join de ocho tablas relacionales</span>
+<span class="">Disponible para el proyecto</span>
+</div>
+<div class="caja ia"><div class="titulo">Semanas del curso que sostienen este caso</div><p>
+<a href="semana-05.html">Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar</a>
+</p></div>
+<div class="caja aviso"><div class="titulo">Ajuste obligatorio</div><p>El caso viene del seminario de Python, donde el entregable era una API en FastAPI más un tablero en Streamlit. Aquí el entregable es un cuaderno reproducible: la API se sustituye por una función documentada dentro del cuaderno y el tablero queda como opcional.</p></div>
+<h2>Caso 9 · Análisis del E-Commerce Latinoamericano: Entrega y Satisfacción del Cliente</h2>
+<h3>Seminario Análisis Exploratorio de Datos</h3>
+<p><strong>Riesgo de complejidad:</strong> 🟡 Medio · <strong>Técnica principal:</strong> Clasificación + Multi-tabla · <strong>Dominio:</strong> Logística / LatAm</p>
+<h3>🏢 Antecedentes</h3>
+<p><strong>OLIST</strong> es el mayor marketplace de e-commerce de Brasil. Su dataset público contiene 100,000 pedidos realizados entre 2016 y 2018, distribuidos en <strong>8 tablas relacionales</strong>: pedidos, clientes, productos, vendedores, reseñas, pagos, ítems y geolocalización.</p>
+<p>Este es el único caso de la matriz que requiere integración multi-tabla real — la habilidad más demandada en el mercado laboral de analítica de datos. Replica fielmente el trabajo diario de un analista en una empresa de e-commerce. La integración se construye encadenando merges siguiendo el esquema relacional:</p>
+<p>```</p>
+<p>orders → customers</p>
+<p>orders → items → products</p>
+<p>orders → reviews</p>
+<p>orders → payments</p>
+<p>customers → geolocation (vendedor y cliente)</p>
+<p>```</p>
+<p>La distancia aproximada entre vendedor y cliente, calculada a partir de coordenadas, resulta ser uno de los predictores más importantes del retraso en la entrega.</p>
+<h3>🎯 Objetivo</h3>
+<p>Construir un sistema predictivo de alertas de entrega que determine si un pedido llegará tarde a su destino, para que la plataforma emita <strong>alertas proactivas al cliente</strong> antes de que el retraso ocurra, analizando qué factores operativos y geográficos aumentan más el riesgo de demora.</p>
+<h3>📚 Actividades para el estudiante</h3>
+<p><strong>Resultado de aprendizaje:</strong> el estudiante diseña y ejecuta una integración multi-tabla compleja, construye variables de ingeniería geoespacial y temporal, y desarrolla un sistema predictivo de logística con visualización geográfica.</p>
+<h4>Fase 1 – Comprensión del dominio</h4>
+<p>Investigar el modelo de negocio de un marketplace de e-commerce y los costos operativos y de reputación de las entregas tardías. Analizar el esquema de las 8 tablas del dataset y <strong>diseñar el diagrama de relaciones entre ellas</strong> antes de escribir ninguna línea de código. Esto es obligatorio.</p>
+<h4>Fase 2 – Preparación y exploración de datos</h4>
+<p>Construir el DataFrame analítico maestre siguiendo el diagrama diseñado. Justificar el tipo de join (inner, left) en cada paso. Calcular las variables de ingeniería clave:</p>
+<ul>
+<li><code>dias_retraso</code> = diferencia entre fecha de entrega real y fecha estimada</li>
+<li><code>entrego_tarde</code> = 1 si el retraso &gt; 0 días (variable objetivo)</li>
+<li><code>distancia_aprox</code> = distancia euclidiana en grados entre coordenadas del vendedor y del cliente</li>
+</ul>
+<h4>Fase 3 – Modelado</h4>
+<ul>
+<li>Cuantificar el desbalance de <code>entrego_tarde</code> y seleccionar la estrategia de manejo apropiada</li>
+<li>Comparar dos clasificadores: Random Forest y Gradient Boosting</li>
+<li>Evaluar con Precisión, Recall, F1 y ROC-AUC</li>
+<li>Extraer los factores más predictivos del retraso e interpretarlos en términos operativos</li>
+</ul>
+<h4>Fase 4 – Producto analítico</h4>
+<p><strong>Pipeline técnico:</strong></p>
+<ul>
+<li>Encadenar merges: <code>orders → customers → items → products → reviews</code></li>
+<li><code>dias_retraso = (order_delivered_customer_date - order_estimated_delivery_date).dt.days</code></li>
+<li>Distancia proxy: diferencia euclidiana entre lat/lon de vendedor y cliente</li>
+<li><code>class_weight='balanced'</code> para el clasificador con el desbalance observado</li>
+</ul>
+<p><strong>API (FastAPI):</strong></p>
+<ul>
+<li><code>POST /orders/delay_risk</code> — recibe estado del vendedor, estado del cliente y categoría del producto; devuelve probabilidad de entrega tardía</li>
+<li><code>GET /orders/top_risk_categories</code> — categorías de producto con mayor tasa histórica de retrasos</li>
+</ul>
+<p><strong>Dashboard (Streamlit):</strong></p>
+<ol>
+<li>Mapa coroplético de Brasil con tasa de entregas tardías por estado del cliente (<code>px.choropleth</code>)</li>
+<li>Gráfico de barras de satisfacción promedio (score de reseña) por categoría de producto</li>
+<li>Formulario donde el equipo de logística ingresa los datos de un nuevo pedido y obtiene la probabilidad de retraso con las principales variables de riesgo identificadas por el modelo</li>
+</ol>
+<h4>Fase 5 – Interpretación y comunicación</h4>
+<p>¿Qué factores predicen más las entregas tardías? ¿Qué estados y categorías de producto representan mayor riesgo? ¿Qué recomendación haría al equipo de logística de OLIST para reducir la tasa de retrasos?</p>
+<h3>🗂️ Dataset y recursos</h3>
+<table><thead><tr><th scope="col">Recurso</th><th scope="col">Enlace</th></tr></thead><tbody>
+<tr><td><strong>Dataset principal</strong></td><td><a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce">Brazilian E-Commerce Public Dataset by Olist — Kaggle</a></td></tr>
+</tbody></table>
+<p><strong>Tablas mínimas requeridas:</strong></p>
+<ul>
+<li><code>olist_orders_dataset.csv</code></li>
+<li><code>olist_customers_dataset.csv</code></li>
+<li><code>olist_order_reviews_dataset.csv</code></li>
+<li><code>olist_order_items_dataset.csv</code></li>
+<li><code>olist_geolocation_dataset.csv</code></li>
+</ul>
+<p><strong>Lecturas recomendadas:</strong></p>
+<ul>
+<li>Diseño de esquemas relacionales: diagrama entidad-relación</li>
+<li>Joins avanzados con Pandas: inner vs. left join y sus implicaciones en el conteo de filas</li>
+<li>Ingeniería de características con fechas (<code>datetime</code>) y coordenadas geográficas</li>
+<li>Visualización geoespacial: mapas coropléticos con Plotly Express (<code>px.choropleth</code>)</li>
+<li>Clasificación con scikit-learn: pipeline de preprocesamiento y modelo</li>
+</ul>
+<h3>📋 Rúbrica de evaluación</h3>
+<table><thead><tr><th scope="col">Entregable</th><th scope="col">Semana</th><th scope="col">Peso</th><th scope="col">Criterios clave</th></tr></thead><tbody>
+<tr><td>Definición del problema</td><td>1</td><td>10 %</td><td>Claridad de la pregunta de negocio, historias de usuario, ficha del dataset</td></tr>
+<tr><td>Pipeline de datos</td><td>2</td><td>20 %</td><td>Reproducibilidad, manejo del reto específico, validaciones documentadas</td></tr>
+<tr><td>EDA + primer modelo</td><td>3</td><td>25 %</td><td>Profundidad del análisis, rigor estadístico, pertinencia del modelo y métricas</td></tr>
+<tr><td>Producto analítico completo</td><td>4</td><td>30 %</td><td>Comparación de ≥ 2 modelos, API y dashboard funcionales, documentación</td></tr>
+<tr><td>Defensa oral y trabajo en equipo</td><td>4</td><td>15 %</td><td>Dominio técnico, claridad, manejo de preguntas, colaboración</td></tr>
+</tbody></table>
+<div class="caja"><p><strong>Modalidad:</strong> grupos de 3 estudiantes · <strong>Entrega final:</strong> sesión final del seminario</p></div>
+<div class="nav-pie"><a href="casos.html"><span class="e">Índice</span><span class="t">Todos los casos</span></a><a class="sig" href="caso-10.html"><span class="e">Siguiente</span><span class="t">Caso 10</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>
