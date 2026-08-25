@@ -45,7 +45,7 @@ CASO_SEMANAS = {
 
 BLOQUE_COLOR = {1:"#0F6E8C",2:"#7A4BA8",3:"#A6192E",4:"#0B6E4F",5:"#B26B00",6:"#3E5C8A"}
 
-REPO_GITHUB = "julianmaya/CursoAnalisisDatos_IA_2026"   # cambiar al publicar
+REPO_GITHUB = "mayait/CursoAnalisisDatos_IA_2026"
 
 def colab(rel):
     """Badge de Colab para un cuaderno del repositorio."""
