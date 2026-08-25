@@ -24,11 +24,10 @@ DATACAMP = [(1, '19-ago-2026', 'Understanding Data Science'), (3, '02-sep-2026',
 
 PENDIENTES = [
  {'orden': 1, 'semana': 1, 'limite': '17-ago-2026', 'que': 'Publicar el material de nivelación de Python', 'situacion': 'El laboratorio 1 ya usa groupby y merge el segundo día de clase, y la certificación Introduction to Python está en la semana 3. Los cuadernos de fundamentos existen en Material Actual pero no están publicados ni enlazados.'},
- {'orden': 2, 'semana': 1, 'limite': '17-ago-2026', 'que': 'Subir el repositorio a GitHub y fijar la ruta', 'situacion': 'Los badges Abrir en Colab apuntan a REPO_GITHUB en generar_sitio.py. Hasta publicar el repositorio, los estudiantes tienen que descargar el .ipynb.'},
- {'orden': 3, 'semana': 1, 'limite': '17-ago-2026', 'que': 'Verificar los ocho cursos de DataCamp contra el catálogo vigente', 'situacion': 'Las rutas de DataCamp cambian de nombre entre versiones. Hay que confirmarlos antes de publicarlos en D2L.'},
- {'orden': 4, 'semana': 2, 'limite': '24-ago-2026', 'que': 'Carta de consentimiento de la empresa, una página', 'situacion': 'El protocolo de datos la exige antes de que un grupo descargue un solo archivo, y todavía no está redactada.'},
- {'orden': 5, 'semana': 10, 'limite': '26-oct-2026', 'que': 'La sesión conceptual del lunes sobre transformación digital', 'situacion': 'El laboratorio del miércoles ya está construido (journey map y blueprint con evidencia de datos), pero la clase teórica del lunes no existe en ninguno de los cursos anteriores.'},
- {'orden': 6, 'semana': 15, 'limite': '30-nov-2026', 'que': 'El caso de riesgo crediticio de la clase teórica', 'situacion': 'El laboratorio de auditoría de sesgo está construido sobre el modelo de abandono, pero la sesión del lunes necesita un caso propio sobre decisiones automatizadas que afectan a personas.'},
+ {'orden': 2, 'semana': 1, 'limite': '17-ago-2026', 'que': 'Verificar los ocho cursos de DataCamp contra el catálogo vigente', 'situacion': 'Las rutas de DataCamp cambian de nombre entre versiones. Hay que confirmarlos antes de publicarlos en D2L.'},
+ {'orden': 3, 'semana': 2, 'limite': '24-ago-2026', 'que': 'Carta de consentimiento de la empresa, una página', 'situacion': 'El protocolo de datos la exige antes de que un grupo descargue un solo archivo, y todavía no está redactada.'},
+ {'orden': 4, 'semana': 10, 'limite': '26-oct-2026', 'que': 'La sesión conceptual del lunes sobre transformación digital', 'situacion': 'El laboratorio del miércoles ya está construido (journey map y blueprint con evidencia de datos), pero la clase teórica del lunes no existe en ninguno de los cursos anteriores.'},
+ {'orden': 5, 'semana': 15, 'limite': '30-nov-2026', 'que': 'El caso de riesgo crediticio de la clase teórica', 'situacion': 'El laboratorio de auditoría de sesgo está construido sobre el modelo de abandono, pero la sesión del lunes necesita un caso propio sobre decisiones automatizadas que afectan a personas.'},
 ]
 
 

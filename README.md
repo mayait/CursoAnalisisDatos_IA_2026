@@ -120,7 +120,6 @@ Los dieciséis laboratorios están escritos y verificados, la base de datos exis
 | Para el | Semana | Qué falta |
 |---|---|---|
 | 17-ago-2026 | 1 | Publicar el material de nivelación de Python: el laboratorio 1 ya usa `groupby` el segundo día |
-| 17-ago-2026 | 1 | Subir el repositorio a GitHub y fijar `REPO_GITHUB` para que los badges de Colab funcionen |
 | 17-ago-2026 | 1 | Verificar los ocho cursos de DataCamp contra el catálogo vigente |
 | 24-ago-2026 | 2 | Redactar la carta de consentimiento de la empresa, una página |
 | 26-oct-2026 | 10 | La clase teórica del lunes sobre transformación digital |

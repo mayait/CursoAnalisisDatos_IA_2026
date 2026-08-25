@@ -34,7 +34,7 @@ Calcular estadísticas descriptivas del sistema en su conjunto. Identificar outl
 ### Fase 4 – Producto analítico
 
 **Pipeline técnico:**
-- Navegar a `https://estadisticas.superbancos.gob.ec` y descargar el boletín más reciente
+- Navegar a `https://www.superbancos.gob.ec/estadisticas/` y descargar el boletín más reciente
 - Leer cada hoja con parámetros para manejar encabezados multinivel (`skiprows`, `header`)
 - Aplicar `pandas.melt` para transformar de "bancos en columnas" a formato tidy
 - Estandarizar nombres con `str.strip().str.upper()` antes de los joins
@@ -58,7 +58,7 @@ Calcular estadísticas descriptivas del sistema en su conjunto. Identificar outl
 
 | Recurso | Enlace |
 |---|---|
-| **Dataset principal** | [Portal de Estadísticas — Superintendencia de Bancos Ecuador](https://estadisticas.superbancos.gob.ec) |
+| **Dataset principal** | [Portal de Estadísticas — Superintendencia de Bancos Ecuador](https://www.superbancos.gob.ec/estadisticas/) |
 
 **Lecturas recomendadas:**
 - Indicadores financieros del sector bancario: activos, ROE, morosidad, solvencia
