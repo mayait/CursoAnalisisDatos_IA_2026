@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El encargo de Mar&#237;a &#183; La trampa del promedio</title>
+<style>
+body { margin: 0; background: #ffffff; color: #1e1e1e;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; }
+.cont { max-width: 760px; margin: 0 auto; padding-bottom: 40px; }
+.top { background: #111111; border-bottom: 5px solid #A6192E; padding: 24px 30px; }
+.kicker { font-size: 12px; font-weight: bold; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #d98a96; }
+.titulo { font-size: 24px; font-weight: bold; color: #ffffff; margin-top: 6px; }
+.sub { font-size: 14px; color: #ffffff; opacity: .85; margin-top: 6px; }
+.cuerpo { padding: 24px 30px; border: 1px solid #D6D6D6; border-top: none; background: #ffffff; }
+p { margin: 0 0 14px 0; }
+h2 { font-size: 18px; margin: 24px 0 10px 0; }
+.divisor { border-top: 2px solid #A6192E; padding-top: 16px; margin: 26px 0 12px 0;
+  font-size: 12px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #a6192e; }
+.chat { background: #F2F2F2; border: 1px solid #E2E2E2; border-radius: 10px;
+  padding: 12px 16px; margin: 14px 0; }
+.chat.mia { background: #FBEDEF; border-color: #EFC9CF; }
+.chat .quien { font-size: 12px; font-weight: bold; color: #A6192E; margin-bottom: 4px; }
+.chat p { margin: 0 0 8px 0; } .chat p:last-child { margin-bottom: 0; }
+.memoq { background: #F7F7F7; border: 1px solid #D6D6D6; padding: 14px 18px;
+  margin: 14px 0; font-style: italic; }
+.caja { background: #FBEDEF; border-left: 5px solid #A6192E; padding: 14px 18px; margin: 16px 0; }
+.caja .rot { font-weight: bold; color: #a6192e; margin-bottom: 6px; }
+table.datos { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+table.datos th { background: #F4F4F4; text-align: left; }
+table.datos th, table.datos td { border: 1px solid #D6D6D6; padding: 7px 10px; }
+.figura img { width: 100%; height: auto; border: 1px solid #E5E5E5; display: block; }
+.figura .pie { font-size: 12px; color: #6b6b6b; margin: 6px 0 18px 0; }
+pre.code { background: #F7F7F7; border: 1px solid #D6D6D6; padding: 12px 14px;
+  font-family: Consolas, Menlo, monospace; font-size: 13px; overflow-x: auto; margin: 12px 0; }
+.boton { display: inline-block; background: #A6192E; color: #ffffff !important;
+  text-decoration: none; font-weight: bold; font-size: 14px; padding: 10px 20px;
+  border-radius: 3px; margin: 4px 0; }
+.boton.sec { background: #ffffff; color: #A6192E !important; border: 2px solid #A6192E; }
+.footer { border-top: 1px solid #D6D6D6; margin-top: 26px; padding-top: 12px;
+  font-size: 13px; color: #6b6b6b; }
+.footer .sig { font-weight: bold; color: #A6192E; }
+
+/* &#9472;&#9472; El candado (CSS puro) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+.bloque { margin: 20px 0; }
+.bloque > input.gate { position: absolute; left: -9999px; }
+.bloque > input.num { display: block; width: 200px; padding: 10px 12px; margin: 6px 0 14px 0;
+  border: 2px solid #D6D6D6; border-radius: 3px; font-size: 16px; font-weight: bold;
+  color: #1e1e1e; background: #ffffff; }
+.bloque > input.num:focus { border-color: #A6192E; outline: none; }
+.apuesta { background: #FBEDEF; border-left: 5px solid #A6192E; padding: 16px 18px; }
+.apuesta .rot { font-weight: bold; color: #a6192e; margin-bottom: 6px; }
+.opt { display: block; border: 1px solid #D6D6D6; background: #ffffff; padding: 10px 14px;
+  margin: 8px 0; border-radius: 3px; cursor: pointer; }
+.opt:hover { border-color: #A6192E; }
+.fb { display: none; border: 1px solid #D6D6D6; border-left: 4px solid #6b6b6b;
+  background: #ffffff; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+.fb.ok { border-left-color: #1a7a3c; }
+.fb.meh { border-left-color: #A6192E; }
+.hint { font-size: 13px; color: #a6192e; font-weight: bold; margin-top: 10px; }
+.reveal { display: none; }
+</style>
+</head>
+<body>
+<div class="cont">
+<div class="top">
+<div class="kicker">La trampa del promedio</div>
+<div class="titulo">El encargo de Mar&#237;a</div>
+<div class="sub">Cinco diapositivas para el VP: tu primer entregable.</div>
+</div>
+<div class="cuerpo">
+
+<div class="chat"><div class="quien">Mar&iacute;a &middot; 11h20</div><p>&iexcl;Sali&oacute; redondo! El comit&eacute; aprob&oacute; el umbral de $200 y fren&oacute; lo de Libreros. Y ahora los otros gerentes regionales quieren lo suyo: el VP me pidi&oacute; un <strong>reporte corto en PowerPoint</strong> para reenviar el lunes. Cinco diapositivas, no m&aacute;s. Elige <strong>una regi&oacute;n</strong> &mdash;Oeste, Este, Centro o Sur&mdash; y cu&eacute;ntame si tu detector tambi&eacute;n encuentra la trampa ah&iacute;.</p></div>
+<p>Tu primer entregable como analista. Corto y al grano: <strong>cinco diapositivas</strong>, ni una
+m&aacute;s.</p>
+<table class="datos">
+<tr><th style="width:36px;">1</th><td><strong>Tu memo del comit&eacute;</strong> &mdash; las tres
+respuestas de la ma&ntilde;ana: un n&uacute;mero y su advertencia por pregunta, en idioma de gerente
+(el que escribiste en la p&aacute;gina anterior).</td></tr>
+<tr><th>2</th><td><strong>Tu regi&oacute;n, tus n&uacute;meros</strong> &mdash; para la regi&oacute;n
+que elegiste: cu&aacute;ntos pedidos tiene, su media, su mediana y el porcentaje de pedidos por
+debajo de la media. Calculados por ti.</td></tr>
+<tr><th>3</th><td><strong>Tu histograma</strong> &mdash; el valor del pedido en esa regi&oacute;n,
+con la media y la mediana marcadas como dos l&iacute;neas verticales. Hecho por ti, no el del
+taller.</td></tr>
+<tr><th>4</th><td><strong>Tu veredicto</strong> &mdash; &iquest;el promedio tambi&eacute;n miente en
+tu regi&oacute;n? &iquest;Qu&eacute; umbral de env&iacute;o gratis le pondr&iacute;as y por
+qu&eacute;?</td></tr>
+<tr><th>5</th><td><strong>La pregunta que dejas abierta</strong> &mdash; un &laquo;&iquest;por
+qu&eacute;...?&raquo; de escal&oacute;n 2 que valdr&iacute;a la pena investigar despu&eacute;s.</td></tr>
+</table>
+<div class="caja"><div class="rot">La &uacute;nica parte t&eacute;cnica</div>
+<p style="margin:0;">La pregunta es por <em>pedidos</em> y el archivo trae <em>l&iacute;neas</em>
+(son m&aacute;s de 800 pedidos por regi&oacute;n: con calculadora no se puede). En Excel o Google
+Sheets: tabla din&aacute;mica con filas <code>pedido_id</code>, valores suma de <code>venta</code> y
+filtro <code>region</code>; sobre esa columna usa PROMEDIO, MEDIANA y
+CONTAR.SI(rango;"&lt;"&amp;promedio), y arma el gr&aacute;fico de histograma. En el cuaderno opcional
+de Colab es una l&iacute;nea: <code>df[df.region == "Oeste"].groupby("pedido_id")["venta"].sum()</code>.</p></div>
+<p>&iquest;Asistente de IA? Bienvenido: pega en la &uacute;ltima diapositiva el prompt que usaste y
+qu&eacute; verificaste de lo que te devolvi&oacute;. Aqu&iacute; se califica el encargo y la
+verificaci&oacute;n, no el tecleo.</p>
+<p style="margin-bottom:6px;">&iquest;No tienes el archivo a la mano?</p>
+<p><a class="boton" href="superstore_2026.csv" download="superstore_2026.csv">Descargar</a></p>
+<h2>C&oacute;mo se califica (sobre 10)</h2>
+<table class="datos" style="max-width:520px;">
+<tr><td>N&uacute;meros correctos y verificables</td><td style="width:60px;"><strong>3</strong></td></tr>
+<tr><td>Histograma propio, legible, con las dos l&iacute;neas</td><td><strong>3</strong></td></tr>
+<tr><td>Veredicto en idioma de Mar&iacute;a</td><td><strong>2</strong></td></tr>
+<tr><td>La pregunta de escal&oacute;n 2</td><td><strong>1</strong></td></tr>
+<tr><td>Cinco diapositivas justas y prolijas</td><td><strong>1</strong></td></tr>
+</table>
+<div class="caja"><div class="rot">Entrega</div>
+<p style="margin:0;">Individual. Archivo <code>s05_reporte_apellido.pptx</code> (PowerPoint o Google
+Slides exportado) al buz&oacute;n <strong>Taller 5 &middot; Reporte para Mar&iacute;a</strong>, antes
+de la clase del mi&eacute;rcoles.</p></div>
+<p>Mar&iacute;a cuenta contigo. Nos vemos el mi&eacute;rcoles.</p>
+
+<div class="footer"><div class="sig">Eso es todo. Tu reporte va al buz&oacute;n antes del mi&eacute;rcoles.</div></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "filas": 1335,
+  "columnas": 19,
+  "duplicados_exactos": 24,
+  "sin_cliente": {
+    "nan": 61,
+    "vacio": 38,
+    "sin_id": 21,
+    "total": 120,
+    "pct": 9.0,
+    "por_region_pct": {
+      "Amazonía": 0.0,
+      "Costa": 11.4,
+      "Galápagos": 3.6,
+      "Sierra": 7.1
+    }
+  },
+  "descuento_nan": 212,
+  "descuento_cero": 658,
+  "utilidad_centinela": 15,
+  "provincia_nan": 32,
+  "cantidad_negativa": 9,
+  "ciudad_variantes_quito": [
+    " Quito",
+    "QUITO",
+    "Quito",
+    "quito"
+  ],
+  "ciudad_sto_domingo": 14,
+  "fechas_ddmm": 35,
+  "envio_antes_pedido": 6,
+  "ventas_texto": 43,
+  "pedido_ejemplo": {
+    "id": "AM-2026-0042",
+    "lineas": 4,
+    "total": 187.4,
+    "suma_total_pedido_mal": 749.6
+  },
+  "suma_ventas_real": 185389.0,
+  "suma_total_pedido_doble": 704623.49
+}

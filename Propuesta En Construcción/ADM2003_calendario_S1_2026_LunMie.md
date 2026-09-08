@@ -57,9 +57,11 @@ La evaluación docente se abre del 7 al 10 de diciembre. La última clase de est
 
 ### Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA
 
-*Colab, cuadernos ejecutables, protocolo de uso de IAG y bitácora de prompts* · Bloque I · Leer datos
+*Colab, cuadernos ejecutables y bitácora de prompts* · Bloque I · Leer datos
 
 **Material del seminario de Python:** `S01-C1 · Kick-off del seminario · clase_01.ipynb`
+
+**Slides:** `slides/S1_BigData_Era_IA.pptx` (sesión 1) · `slides/S2_Recorrido_Analisis.pptx` (sesión 2)
 
 **Sesión 1 · Lunes 17 de agosto — Por qué fracasan los análisis**
 
@@ -69,7 +71,7 @@ Un informe real con datos correctos y conclusión inválida. La escalera descrip
 
 **Sesión 2 · Miércoles 19 de agosto — Colab y el primer cuaderno**
 
-Recorrido guiado de un análisis completo de principio a fin, de la pregunta a la recomendación. Firma del protocolo de uso de IA generativa y apertura de la bitácora de prompts.
+Recorrido guiado de un análisis completo de principio a fin, de la pregunta a la recomendación. Apertura de la bitácora de prompts.
 
 > Entrega: Contrato de grupo firmado. DataCamp: Understanding Data Science.
 

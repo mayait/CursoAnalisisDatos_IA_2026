@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las 4 V del Big Data · Piensa como gerente — ADM 2003 · USFQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rojo:#A6192E; --rojo-osc:#7C1222; --rojo-suave:#FCF0F2; --rojo-borde:#F0CDD3;
+  --tinta:#232326; --tinta-2:#4A4A50; --tinta-3:#74747C;
+  --linea:#E4E4E8; --linea-2:#F0F0F3;
+  --papel:#FFFFFF; --papel-2:#FAFAFB; --papel-3:#F5F5F7;
+  --vol:#0F6E8C;  --vol-bg:#EAF4F8;
+  --vel:#B26B00;  --vel-bg:#FDF3E3;
+  --var:#7A4BA8;  --var-bg:#F2ECF9;
+  --ver:#0B6E4F;  --ver-bg:#E8F4EF;
+  --r:10px; --r-s:6px;
+  --sombra:0 1px 2px rgba(35,35,38,.05),0 4px 14px rgba(35,35,38,.06);
+  --font:'Source Sans 3','Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono','SFMono-Regular',Consolas,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:var(--font);color:var(--tinta);background:var(--papel-2);line-height:1.65;-webkit-font-smoothing:antialiased}
+
+header{background:var(--papel);border-bottom:3px solid var(--rojo);padding:14px 20px}
+.head-in{max-width:880px;margin:0 auto;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand .sigla{font-family:var(--serif);font-weight:700;color:var(--rojo);font-size:1.15rem;letter-spacing:.5px}
+.brand .curso{font-size:.78rem;color:var(--tinta-3)}
+header .tema{font-size:.8rem;color:var(--tinta-2);font-weight:600}
+
+main{max-width:880px;margin:0 auto;padding:30px 20px 60px}
+h1{font-family:var(--serif);font-size:1.75rem;color:var(--tinta);margin-bottom:10px;line-height:1.3}
+.bajada{color:var(--tinta-2);font-size:1.02rem;max-width:66ch;margin-bottom:8px}
+.bajada strong{color:var(--tinta)}
+.regla{border:none;border-top:1px solid var(--linea);margin:26px 0}
+
+.vsec{background:var(--papel);border:1px solid var(--linea);border-left:5px solid;border-radius:var(--r);box-shadow:var(--sombra);padding:20px 22px;margin-bottom:16px}
+.vsec h2{font-size:1.15rem;margin-bottom:2px}
+.vsec .resumen-v{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--tinta-3);margin-bottom:10px}
+.vsec p{font-size:.92rem;color:var(--tinta-2);max-width:70ch;margin-bottom:10px}
+.vsec .preg{font-style:italic;font-weight:600;font-size:.9rem;padding:8px 14px;border-radius:var(--r-s);display:inline-block;margin-bottom:10px}
+.fila-mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{background:var(--papel-3);border-radius:var(--r-s);padding:10px 12px;font-size:.82rem;color:var(--tinta-2)}
+.mini b{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.8px;color:var(--tinta-3);margin-bottom:2px}
+.vsec.vol{border-left-color:var(--vol)} .vsec.vol h2{color:var(--vol)} .vsec.vol .preg{background:var(--vol-bg);color:var(--vol)}
+.vsec.vel{border-left-color:var(--vel)} .vsec.vel h2{color:var(--vel)} .vsec.vel .preg{background:var(--vel-bg);color:var(--vel)}
+.vsec.var{border-left-color:var(--var)} .vsec.var h2{color:var(--var)} .vsec.var .preg{background:var(--var-bg);color:var(--var)}
+.vsec.ver{border-left-color:var(--ver)} .vsec.ver h2{color:var(--ver)} .vsec.ver .preg{background:var(--ver-bg);color:var(--ver)}
+
+.cierre{background:var(--rojo-suave);border:1px solid var(--rojo-borde);border-radius:var(--r);padding:18px 22px;margin-top:24px}
+.cierre h2{font-family:var(--serif);font-size:1.1rem;color:var(--rojo-osc);margin-bottom:8px}
+.cierre p{font-size:.92rem;color:var(--tinta-2);max-width:70ch;margin-bottom:8px}
+.cierre ol{margin:6px 0 4px 20px;font-size:.9rem;color:var(--tinta-2)}
+.cierre li{margin-bottom:4px}
+footer{max-width:880px;margin:0 auto;padding:0 20px 40px;font-size:.72rem;color:var(--tinta-3)}
+@media (max-width:620px){ .fila-mini{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<header>
+  <div class="head-in">
+    <div class="brand"><span class="sigla">USFQ</span><span class="curso">Análisis de Datos con IA y Python · ADM 2003</span></div>
+    <span class="tema">Semana 1 · Big Data en la empresa</span>
+  </div>
+</header>
+
+<main>
+<h1>Las 4 V del Big Data: piensa como gerente, no como ingeniero</h1>
+<p class="bajada">«Big Data» no es un tamaño de disco: es el momento en que los datos dejan de caber en la forma habitual de decidir. Cada una de las 4 V es, antes que un problema técnico, una <strong>pregunta de negocio</strong>. Si aprendes a hacer la pregunta correcta, sabrás qué comprar, qué priorizar y qué exigirle al equipo técnico — sin escribir una sola línea de código.</p>
+
+<hr class="regla">
+
+<section class="vsec vol">
+  <h2>Volumen</h2>
+  <div class="resumen-v">La restricción es la escala y su costo</div>
+  <span class="preg">¿El valor de analizar todo el detalle justifica el costo de guardarlo y procesarlo?</span>
+  <p>El dato es correcto y llega a tiempo, pero hay tanto que almacenarlo y procesarlo cuesta más de lo que el análisis devuelve. Es una conversación de presupuesto e infraestructura, no de algoritmos: qué detalle conservar, qué resumir y qué borrar.</p>
+  <div class="fila-mini">
+    <div class="mini"><b>Señal en la empresa</b>La factura de la nube crece más rápido que el valor de los análisis; las consultas tardan horas.</div>
+    <div class="mini"><b>Ejemplo</b>Una cadena de supermercados guarda cada línea de ticket de ocho años y nadie decidió nunca para qué.</div>
+  </div>
+</section>
+
+<section class="vsec vel">
+  <h2>Velocidad</h2>
+  <div class="resumen-v">La restricción es el momento</div>
+  <span class="preg">¿Cuánto vale este dato una hora —o un día— después de generado?</span>
+  <p>El valor del dato caduca: la decisión ocurre ahora y el informe llega después. Aquí no gana quien más datos tiene, sino quien tiene el ciclo más corto entre dato y decisión. La inversión típica acorta ese ciclo: alertas, decisiones automáticas, precios que reaccionan.</p>
+  <div class="fila-mini">
+    <div class="mini"><b>Señal en la empresa</b>Informes impecables que ya no cambian ninguna decisión: llegan cuando el dinero ya salió.</div>
+    <div class="mini"><b>Ejemplo</b>Aprobar o negar una tarjeta sospechosa mientras el cliente espera en la caja — no en el comité del lunes.</div>
+  </div>
+</section>
+
+<section class="vsec var">
+  <h2>Variedad</h2>
+  <div class="resumen-v">La restricción es la integración</div>
+  <span class="preg">¿Qué decisión mejoraría si combinara fuentes que hoy viven separadas?</span>
+  <p>La respuesta que el directorio pide existe, pero está repartida en fuentes que no calzan en una tabla: fotos, audios, PDF, chats, video, y el ERP de siempre. El valor no está en ninguna fuente individual sino en hacerlas conversar alrededor de una pregunta de negocio.</p>
+  <div class="fila-mini">
+    <div class="mini"><b>Señal en la empresa</b>«La respuesta está en cinco sistemas distintos» y cada expediente se arma a mano.</div>
+    <div class="mini"><b>Ejemplo</b>Liquidar un siniestro exige juntar las fotos del choque, el audio del call center, el parte policial en PDF y la tabla de la póliza.</div>
+  </div>
+</section>
+
+<section class="vsec ver">
+  <h2>Veracidad</h2>
+  <div class="resumen-v">La restricción es la confianza</div>
+  <span class="preg">¿Apostaría el presupuesto —o el bono del equipo— a este número?</span>
+  <p>El dato existe, llega a tiempo y hasta luce bien en el dashboard, pero miente: clientes duplicados, reseñas fabricadas, sensores descalibrados, cuentas de prueba. Decidir sobre un dato contaminado es decidir a ciegas con confianza fingida — y suele salir más caro que no tener el dato.</p>
+  <div class="fila-mini">
+    <div class="mini"><b>Señal en la empresa</b>Las métricas suben mientras el negocio baja; nadie se atreve a defender la cifra ante el CFO.</div>
+    <div class="mini"><b>Ejemplo</b>«María Pérez», «Maria Perez R.» y «M. Pérez» son la misma clienta, y la métrica de clientes nuevos crece sola.</div>
+  </div>
+</section>
+
+<div class="cierre">
+  <h2>Cómo usar esta lente en cualquier reunión</h2>
+  <p>Cuando alguien proponga «un proyecto de Big Data», no preguntes por la tecnología. Haz las cuatro preguntas en orden y observa cuál duele:</p>
+  <ol>
+    <li>¿Guardar y procesar todo esto justifica su costo? → el problema es de <strong>Volumen</strong>.</li>
+    <li>¿El dato llega antes o después de la decisión? → el problema es de <strong>Velocidad</strong>.</li>
+    <li>¿La respuesta está repartida en fuentes que no conversan? → el problema es de <strong>Variedad</strong>.</li>
+    <li>¿Apostarías el presupuesto a ese número? → el problema es de <strong>Veracidad</strong>.</li>
+  </ol>
+  <p>Casi ningún problema real es puro: suele haber una V dominante y otra de fondo. Tu trabajo como gerente es nombrar la dominante, porque esa define dónde se invierte primero. En el simulador del reto pondrás esta lente a prueba con casos de empresas reales.</p>
+</div>
+</main>
+
+<footer>Material del curso ADM 2003 · Los ejemplos son situaciones ficticias con fines pedagógicos.</footer>
+</body>
+</html>

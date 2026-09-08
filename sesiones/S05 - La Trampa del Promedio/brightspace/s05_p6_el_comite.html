@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El comit&#233; &#183; La trampa del promedio</title>
+<style>
+body { margin: 0; background: #ffffff; color: #1e1e1e;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; }
+.cont { max-width: 760px; margin: 0 auto; padding-bottom: 40px; }
+.top { background: #111111; border-bottom: 5px solid #A6192E; padding: 24px 30px; }
+.kicker { font-size: 12px; font-weight: bold; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #d98a96; }
+.titulo { font-size: 24px; font-weight: bold; color: #ffffff; margin-top: 6px; }
+.sub { font-size: 14px; color: #ffffff; opacity: .85; margin-top: 6px; }
+.cuerpo { padding: 24px 30px; border: 1px solid #D6D6D6; border-top: none; background: #ffffff; }
+p { margin: 0 0 14px 0; }
+h2 { font-size: 18px; margin: 24px 0 10px 0; }
+.divisor { border-top: 2px solid #A6192E; padding-top: 16px; margin: 26px 0 12px 0;
+  font-size: 12px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #a6192e; }
+.chat { background: #F2F2F2; border: 1px solid #E2E2E2; border-radius: 10px;
+  padding: 12px 16px; margin: 14px 0; }
+.chat.mia { background: #FBEDEF; border-color: #EFC9CF; }
+.chat .quien { font-size: 12px; font-weight: bold; color: #A6192E; margin-bottom: 4px; }
+.chat p { margin: 0 0 8px 0; } .chat p:last-child { margin-bottom: 0; }
+.memoq { background: #F7F7F7; border: 1px solid #D6D6D6; padding: 14px 18px;
+  margin: 14px 0; font-style: italic; }
+.caja { background: #FBEDEF; border-left: 5px solid #A6192E; padding: 14px 18px; margin: 16px 0; }
+.caja .rot { font-weight: bold; color: #a6192e; margin-bottom: 6px; }
+table.datos { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+table.datos th { background: #F4F4F4; text-align: left; }
+table.datos th, table.datos td { border: 1px solid #D6D6D6; padding: 7px 10px; }
+.figura img { width: 100%; height: auto; border: 1px solid #E5E5E5; display: block; }
+.figura .pie { font-size: 12px; color: #6b6b6b; margin: 6px 0 18px 0; }
+pre.code { background: #F7F7F7; border: 1px solid #D6D6D6; padding: 12px 14px;
+  font-family: Consolas, Menlo, monospace; font-size: 13px; overflow-x: auto; margin: 12px 0; }
+.boton { display: inline-block; background: #A6192E; color: #ffffff !important;
+  text-decoration: none; font-weight: bold; font-size: 14px; padding: 10px 20px;
+  border-radius: 3px; margin: 4px 0; }
+.boton.sec { background: #ffffff; color: #A6192E !important; border: 2px solid #A6192E; }
+.footer { border-top: 1px solid #D6D6D6; margin-top: 26px; padding-top: 12px;
+  font-size: 13px; color: #6b6b6b; }
+.footer .sig { font-weight: bold; color: #A6192E; }
+
+/* &#9472;&#9472; El candado (CSS puro) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; */
+.bloque { margin: 20px 0; }
+.bloque > input.gate { position: absolute; left: -9999px; }
+.bloque > input.num { display: block; width: 200px; padding: 10px 12px; margin: 6px 0 14px 0;
+  border: 2px solid #D6D6D6; border-radius: 3px; font-size: 16px; font-weight: bold;
+  color: #1e1e1e; background: #ffffff; }
+.bloque > input.num:focus { border-color: #A6192E; outline: none; }
+.apuesta { background: #FBEDEF; border-left: 5px solid #A6192E; padding: 16px 18px; }
+.apuesta .rot { font-weight: bold; color: #a6192e; margin-bottom: 6px; }
+.opt { display: block; border: 1px solid #D6D6D6; background: #ffffff; padding: 10px 14px;
+  margin: 8px 0; border-radius: 3px; cursor: pointer; }
+.opt:hover { border-color: #A6192E; }
+.fb { display: none; border: 1px solid #D6D6D6; border-left: 4px solid #6b6b6b;
+  background: #ffffff; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+.fb.ok { border-left-color: #1a7a3c; }
+.fb.meh { border-left-color: #A6192E; }
+.hint { font-size: 13px; color: #a6192e; font-weight: bold; margin-top: 10px; }
+.reveal { display: none; }
+#q6a:checked ~ .apuesta label[for=q6a] { border-color: #A6192E; background: #FBEDEF; font-weight: 600; }
+#q6a:checked ~ .apuesta .fb-q6a { display: block; }
+#q6b:checked ~ .apuesta label[for=q6b] { border-color: #A6192E; background: #FBEDEF; font-weight: 600; }
+#q6b:checked ~ .apuesta .fb-q6b { display: block; }
+#q6c:checked ~ .apuesta label[for=q6c] { border-color: #A6192E; background: #FBEDEF; font-weight: 600; }
+#q6c:checked ~ .apuesta .fb-q6c { display: block; }
+.bloque > input.gate:checked ~ .reveal { display: block; }
+.bloque > input.gate:checked ~ .apuesta .hint { display: none; }
+</style>
+</head>
+<body>
+<div class="cont">
+<div class="top">
+<div class="kicker">La trampa del promedio</div>
+<div class="titulo">El comit&#233;</div>
+<div class="sub">Tres trampas cazadas, un memo por escribir.</div>
+</div>
+<div class="cuerpo">
+
+<div class="chat"><div class="quien">Mar&iacute;a &middot; 9h45</div><p>Antes de entrar: marketing pregunta a qu&eacute; <strong>segmento</strong> apuntar la campa&ntilde;a del env&iacute;o gratis: &iquest;Consumidor, Corporativo u Oficina en casa? Quieren el que tenga el <strong>pedido t&iacute;pico m&aacute;s alto</strong>.</p></div>
+<div class="bloque">
+<input class="gate" type="radio" name="q6" id="q6a"><input class="gate" type="radio" name="q6" id="q6b"><input class="gate" type="radio" name="q6" id="q6c">
+<div class="apuesta">
+<p>&iquest;Qu&eacute; segmento tiene el pedido t&iacute;pico m&aacute;s alto?</p>
+<label class="opt" for="q6a">Consumidor: son la mayor&iacute;a, ah&iacute; est&aacute; la plata.</label><label class="opt" for="q6b">Corporativo: empresas compran m&aacute;s por pedido.</label><label class="opt" for="q6c">Oficina en casa: el teletrabajo dispara los pedidos.</label><div class="fb meh fb-q6a">Son el 52&nbsp;% de los pedidos (dato &uacute;til para otra decisi&oacute;n), pero ni su media ($449) ni su mediana ($155) lideran. Mira la tabla.</div><div class="fb ok fb-q6b"><strong>Correcto por mediana</strong>: $158.3, el pedido t&iacute;pico m&aacute;s alto de los tres. La media dice otra cosa&hellip; a estas alturas ya sabes a cu&aacute;l creerle y por qu&eacute;.</div><div class="fb meh fb-q6c">Eso dice <strong>la media</strong> ($472.7, la m&aacute;s alta)&hellip; y por mediana es el <strong>&uacute;ltimo</strong> ($142.3). La trampa del promedio, una vez m&aacute;s: pocos pedidos gigantes de home office inflan su media.</div>
+<div class="hint">Apuesta y cerramos la ma&ntilde;ana.</div>
+</div>
+<div class="reveal">
+
+<h2>El marcador del segmento</h2>
+<table class="datos" style="max-width:520px;">
+<tr><th>Segmento</th><th>Pedidos</th><th>Media</th><th>Mediana</th></tr>
+<tr><td>Consumidor</td><td>2,586</td><td>$449.1</td><td>$154.7</td></tr>
+<tr><td>Corporativo</td><td>1,514</td><td>$466.4</td><td><strong>$158.3</strong></td></tr>
+<tr><td>Oficina en casa</td><td>909</td><td><strong>$472.7</strong></td><td>$142.3</td></tr>
+</table>
+<p>La media corona a Oficina en casa; la mediana lo manda al &uacute;ltimo lugar. Cuatro veces en
+una ma&ntilde;ana, la misma lecci&oacute;n. Y un bonus para la pr&oacute;xima pelea: las 5,196
+l&iacute;neas vendidas <em>con descuento</em> tienen media <strong>&minus;$6.66</strong> (pierden) y
+mediana <strong>+$3.34</strong> (ganan). Dos poblaciones mezcladas en una sola distribuci&oacute;n:
+lo ver&aacute;s como histograma bimodal el mi&eacute;rcoles.</p>
+<h2>El marcador de la ma&ntilde;ana</h2>
+<table class="datos">
+<tr><th>Pregunta de Mar&iacute;a</th><th>Dec&iacute;a la media</th><th>Dec&iacute;a la mediana</th><th>Qui&eacute;n enga&ntilde;aba</th></tr>
+<tr><td>Umbral de env&iacute;o gratis</td><td>$459</td><td>$152</td><td>La media (cola larga)</td></tr>
+<tr><td>Inventario: &iquest;qu&eacute; categor&iacute;a?</td><td>Suministros</td><td>Muebles</td><td>La media (extremos)</td></tr>
+<tr><td>&iquest;Eliminar Libreros?</td><td>&minus;$15.23 &rarr; s&iacute;</td><td>+$4.13 &rarr; no</td><td>La mediana (ignora tama&ntilde;os)</td></tr>
+</table>
+<div class="caja"><div class="rot">La regla de la casa</div>
+<p style="margin:0; font-size:17px;"><strong>Ning&uacute;n promedio sin su
+distribuci&oacute;n.</strong> Media para distribuciones sim&eacute;tricas sin extremos; mediana
+cuando hay colas o extremos; moda para categor&iacute;as; y ninguna de las tres sin haber visto el
+histograma. Quien reporta un centro sin mirar la distribuci&oacute;n no est&aacute; resumiendo:
+est&aacute; adivinando.</p></div>
+<h2>Tu memo de las 10h00</h2>
+<p>Escribe el mensaje final para Mar&iacute;a en <strong>m&aacute;ximo tres l&iacute;neas, un
+n&uacute;mero por pregunta, cada uno con su advertencia</strong>, en idioma de comit&eacute;
+(&laquo;el pedido t&iacute;pico&raquo;, &laquo;la mitad de los pedidos&raquo;, nada de
+&laquo;mediana&raquo;). Gu&aacute;rdalo bien: va a ser la <strong>primera diapositiva</strong> de
+tu reporte &mdash;el encargo completo est&aacute; en el siguiente tema. Esta caja no guarda tu
+texto, as&iacute; que c&oacute;pialo a un lado.</p>
+<textarea style="width:100%; min-height:120px; border:2px solid #D6D6D6; border-radius:3px;
+padding:12px; font-family:inherit; font-size:14px;"
+placeholder="Para: Maria - Asunto: Tus tres numeros para el comite&#10;1. ...&#10;2. ...&#10;3. ..."></textarea>
+<h2>Para seguir</h2>
+<p><strong>El mi&eacute;rcoles</strong>: perfilado descriptivo contra reloj sobre Comercial Andina,
+con <code>describe</code>, <code>quantile</code> y <code>value_counts</code>. Hoy fue el criterio;
+el mi&eacute;rcoles, la velocidad. Trae la laptop.</p>
+<p><strong>Para tu equipo</strong>: corran la pregunta 1 de Mar&iacute;a sobre el dataset de su
+caso: &iquest;la media y la mediana de su variable de dinero cuentan la misma historia? Traigan el
+histograma.</p>
+<p style="margin-bottom:6px;"><strong>Opcional</strong>, el mismo caso paso a paso en Python:</p>
+<p><a class="boton sec" href="https://colab.research.google.com/github/mayait/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/taller_05_superstore.ipynb" target="_blank" rel="noopener">Abrir el cuaderno en Colab</a></p>
+<h2>Si quieres m&aacute;s</h2>
+<p style="margin-bottom:8px;"><strong><a href="https://es.khanacademy.org/math/probability/data-distributions-a1" target="_blank" rel="noopener" style="color:#A6192E;">Khan Academy &middot; Distribuciones de datos</a></strong> &mdash; media, mediana, percentiles e histogramas, con ejercicios, en espa&ntilde;ol.</p>
+<p style="margin-bottom:8px;"><strong><a href="https://es.wikipedia.org/wiki/Cuarteto_de_Anscombe" target="_blank" rel="noopener" style="color:#A6192E;">El cuarteto de Anscombe</a></strong> &mdash; cuatro datasets con estad&iacute;sticos id&eacute;nticos y gr&aacute;ficos radicalmente distintos.</p>
+<p><strong>Darrell Huff &middot; <em>C&oacute;mo mentir con estad&iacute;stica</em></strong> &mdash; el cap&iacute;tulo del &laquo;promedio bien escogido&raquo; es esta ma&ntilde;ana con corbata de 1954.</p>
+</div>
+</div>
+
+<div class="footer"><div class="sig">Ve al siguiente tema &rarr;</div></div>
+</div>
+</div>
+</body>
+</html>

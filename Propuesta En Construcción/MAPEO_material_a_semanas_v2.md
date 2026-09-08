@@ -45,14 +45,20 @@ Estados de lo heredado: **REUTILIZABLE** = el enunciado sirve casi tal cual · *
 
 | Actividad | Curso | Estado | Qué hay que cambiar | Carpeta |
 |---|---|---|---|---|
-| **Contrato de Grupo** | 202410 Python+Tableau | REUTILIZABLE | Sirve tal cual. Añadir la firma del protocolo de uso de IA generativa que pide la semana 1. | `Material Actual/Actividades Organizadas/00_Gestion_de_Curso_y_Equipos/2024_Contrato_de_Grupo/` |
-| **Sin inteligencia artificial no te van a escuchar. ¿Valor o Humo?** | 202520 KNIME | ADAPTAR | Debate sobre valor real frente a humo de la IA. Encaja con la apertura de la semana 1; hay que redactar el enunciado porque el export viene vacío. | `Material Actual/Actividades Organizadas/09_Casos_y_Procesos_de_Negocio/2025_Sin_inteligencia_artificial_no_te_van_a_escuchar_Valor_o_Humo/` |
+| **Contrato de Grupo** | 202410 Python+Tableau | REUTILIZABLE | Sirve tal cual. | `Material Actual/Actividades Organizadas/00_Gestion_de_Curso_y_Equipos/2024_Contrato_de_Grupo/` |
 
 **Material del seminario de Python**
 
 | Tipo | Recurso | Cómo se usa |
 |---|---|---|
-| 📓 cuaderno | `S01-C1 · Kick-off del seminario · clase_01.ipynb` | Formación de equipos, contrato y arranque del repo. Se le añade la firma del protocolo de uso de IA generativa. |
+| 📓 cuaderno | `S01-C1 · Kick-off del seminario · clase_01.ipynb` | Formación de equipos, contrato y arranque del repo. |
+
+**Slides nuevos (2026)**
+
+| Tipo | Recurso | Cómo se usa |
+|---|---|---|
+| 🖥️ slides | `slides/S1_BigData_Era_IA.pptx` | Sesión 1: Big Data en la era de la IA. |
+| 🖥️ slides | `slides/S2_Recorrido_Analisis.pptx` | Sesión 2: el recorrido de un análisis, de la pregunta a la recomendación. |
 
 ### Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato
 
