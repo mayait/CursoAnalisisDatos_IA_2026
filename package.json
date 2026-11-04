@@ -1,0 +1,8 @@
+{
+  "name": "adm2003-analisis-datos",
+  "private": true,
+  "description": "Dependencias de los generadores de decks (crear_slides.js en sesiones/)",
+  "devDependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

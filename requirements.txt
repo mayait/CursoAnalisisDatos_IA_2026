@@ -1,0 +1,15 @@
+# Entorno local para correr generadores y verificar cuadernos antes de publicarlos.
+# Los estudiantes usan Google Colab; esto solo replica sus librerías.
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+statsmodels
+plotly
+openpyxl
+python-pptx
+nbformat
+nbclient
+nbconvert
+ipykernel
