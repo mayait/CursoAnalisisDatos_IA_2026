@@ -1,0 +1,134 @@
+/* ============================================================
+   Marco de presentaciones · Análisis de Datos con IA y Python
+   USFQ · claro, tipografía grande, un acento por sesión.
+   Uso: <body class="deck" data-acento="#0F6E8C"> y una
+   <section class="diapo"> por lámina. marco.js hace el resto.
+   ============================================================ */
+
+:root {
+  --rojo: #A6192E; --rojo-osc: #7C1222;
+  --tinta: #232326; --tinta-2: #4A4A50; --tinta-3: #74747C;
+  --linea: #E4E4E8; --papel: #FFFFFF; --papel-2: #FAFAFB; --papel-3: #F5F5F7;
+  --acento: var(--rojo);
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body.deck {
+  font-family: var(--sans); color: var(--tinta); background: var(--papel-3);
+  overflow: hidden; -webkit-font-smoothing: antialiased;
+}
+
+/* ── diapositiva ──────────────────────────────────────────── */
+.diapo {
+  position: absolute; inset: 0; display: none;
+  flex-direction: column; justify-content: center;
+  padding: 6vh 8vw; background: var(--papel);
+  font-size: clamp(18px, 2.6vh, 30px); line-height: 1.5;
+}
+.diapo.activa { display: flex; }
+.diapo::after {              /* filete inferior con el acento */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 6px; background: var(--acento);
+}
+
+.diapo h1 { font-family: var(--serif); font-size: clamp(34px, 7.2vh, 84px); line-height: 1.12; margin-bottom: 2.2vh; max-width: 24ch; }
+.diapo h2 { font-family: var(--serif); font-size: clamp(26px, 5vh, 58px);  line-height: 1.18; margin-bottom: 2.4vh; max-width: 28ch; }
+.diapo h3 { font-size: clamp(18px, 2.9vh, 32px); color: var(--acento); margin-bottom: 1.2vh; }
+.diapo p  { max-width: 34ch; margin-bottom: 1.6vh; color: var(--tinta-2); }
+.diapo p.grande { font-size: clamp(22px, 3.6vh, 44px); color: var(--tinta); max-width: 28ch; }
+.diapo ul, .diapo ol { margin: 0 0 1.6vh 1.2em; max-width: 40ch; }
+.diapo li { margin-bottom: 1.4vh; color: var(--tinta-2); }
+.diapo li::marker { color: var(--acento); font-weight: 700; }
+.diapo strong { color: var(--tinta); }
+.diapo code { font-family: var(--mono); font-size: .82em; background: var(--papel-3); border: 1px solid var(--linea); border-radius: 4px; padding: .05em .3em; color: var(--rojo-osc); }
+
+.kicker { font-size: clamp(12px, 1.7vh, 18px); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--acento); margin-bottom: 1.6vh; }
+
+/* ── variantes ────────────────────────────────────────────── */
+.diapo.portada { background: linear-gradient(135deg, color-mix(in srgb, var(--acento) 8%, #fff) 0%, #fff 55%); }
+.diapo.portada .curso { position: absolute; top: 5vh; left: 8vw; font-weight: 800; letter-spacing: .1em; font-size: clamp(12px,1.8vh,17px); color: var(--tinta-3); text-transform: uppercase; }
+.diapo.portada .sello { position: absolute; top: 4.6vh; right: 8vw; background: var(--rojo); color: #fff; font-weight: 800; letter-spacing: .1em; padding: .45em .8em; border-radius: 6px; font-size: clamp(11px,1.7vh,16px); }
+
+.diapo.seccion { background: var(--acento); }
+.diapo.seccion h2, .diapo.seccion p { color: #fff; }
+.diapo.seccion .kicker { color: rgba(255,255,255,.8); }
+.diapo.seccion::after { background: rgba(255,255,255,.35); }
+
+.diapo.pregunta { background: var(--papel-2); }
+.diapo.pregunta h2 { max-width: 22ch; }
+.diapo.pregunta .mano {
+  display: inline-flex; align-items: center; gap: .5em;
+  background: #fff; border: 2px solid var(--acento); color: var(--acento);
+  font-weight: 800; border-radius: 999px; padding: .5em 1.1em;
+  font-size: clamp(15px, 2.3vh, 24px); margin-top: 1vh;
+}
+
+.diapo.cifra { text-align: center; align-items: center; }
+.diapo.cifra .numero { font-family: var(--serif); font-weight: 700; font-size: clamp(70px, 22vh, 230px); line-height: 1; color: var(--acento); }
+.diapo.cifra .etiqueta { font-size: clamp(18px, 3vh, 34px); color: var(--tinta-2); max-width: 28ch; margin: 2vh auto 0; }
+
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: start; width: 100%; }
+.dos .col { min-width: 0; }
+.panel { background: var(--papel-2); border: 1px solid var(--linea); border-radius: 12px; padding: 2.4vh 1.6vw; }
+.panel.destacado { border-color: var(--acento); border-width: 2px; }
+.panel .titulo { font-size: clamp(12px,1.8vh,18px); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); margin-bottom: 1vh; }
+
+/* ranking animado que usan varias sesiones */
+.ranking { width: 100%; max-width: 60vw; }
+.ranking .fila { display: grid; grid-template-columns: 2.2em 1fr auto; gap: 1vw; align-items: center; margin-bottom: 1.2vh; font-size: clamp(16px,2.6vh,28px); }
+.ranking .pos { font-family: var(--serif); font-weight: 700; color: var(--tinta-3); text-align: right; }
+.ranking .barra { position: relative; background: var(--papel-3); border-radius: 6px; height: 2.1em; overflow: hidden; }
+.ranking .barra i { position: absolute; inset: 0 auto 0 0; width: var(--w,50%); background: color-mix(in srgb, var(--acento) 22%, #fff); border-right: 4px solid var(--acento); border-radius: 6px 0 0 6px; }
+.ranking .barra span { position: relative; z-index: 1; display: inline-flex; align-items: center; height: 100%; padding-left: .7em; font-weight: 700; }
+.ranking .valor { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--tinta-2); }
+.ranking .fila.gana .pos, .ranking .fila.gana .valor { color: var(--acento); }
+
+table.mini { border-collapse: collapse; font-size: clamp(14px,2.2vh,24px); width: 100%; }
+table.mini th { text-align: left; font-size: .72em; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-3); border-bottom: 2px solid var(--acento); padding: .35em .6em; }
+table.mini td { padding: .4em .6em; border-bottom: 1px solid var(--linea); }
+table.mini tr.gana td { color: var(--acento); font-weight: 700; }
+
+/* fragmentos: aparecen al avanzar */
+.frag { opacity: 0; transform: translateY(10px); transition: opacity .28s, transform .28s; }
+.frag.visible { opacity: 1; transform: none; }
+
+/* ── cromo ────────────────────────────────────────────────── */
+#progreso { position: fixed; top: 0; left: 0; height: 4px; background: var(--acento); width: 0%; z-index: 60; transition: width .2s; }
+#contador { position: fixed; bottom: 1.6vh; right: 1.6vw; font-size: 13px; color: var(--tinta-3); z-index: 60; font-variant-numeric: tabular-nums; }
+#marca { position: fixed; bottom: 1.6vh; left: 1.6vw; font-size: 12px; font-weight: 800; letter-spacing: .1em; color: var(--tinta-3); z-index: 60; text-transform: uppercase; }
+
+#notas {
+  position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto;
+  background: var(--tinta); color: #EDEDEF; padding: 2vh 3vw; z-index: 70;
+  font-size: 15px; line-height: 1.6; display: none; border-top: 4px solid var(--acento);
+}
+#notas.visible { display: block; }
+#notas .titulo { font-weight: 800; letter-spacing: .1em; text-transform: uppercase; font-size: 11px; color: #B9B9C0; margin-bottom: .5vh; }
+
+#ayuda {
+  position: fixed; inset: 0; background: rgba(35,35,38,.55); z-index: 80;
+  display: none; align-items: center; justify-content: center;
+}
+#ayuda.visible { display: flex; }
+#ayuda .caja { background: #fff; border-radius: 14px; padding: 4vh 3vw; max-width: 34rem; font-size: 16px; }
+#ayuda h3 { margin-bottom: 1.5vh; font-family: var(--serif); }
+#ayuda td { padding: .3em .8em .3em 0; color: var(--tinta-2); }
+#ayuda kbd { font-family: var(--mono); background: var(--papel-3); border: 1px solid var(--linea); border-bottom-width: 2px; border-radius: 5px; padding: .1em .5em; font-size: .9em; }
+
+/* vista de rejilla (tecla G) */
+body.rejilla { overflow: auto; background: var(--papel-3); }
+body.rejilla .diapo { display: flex !important; position: relative; inset: auto; width: 30.5%; aspect-ratio: 16/9; float: left; margin: 1.5%; padding: 2vh 2vw; font-size: 8px; cursor: pointer; border: 1px solid var(--linea); border-radius: 8px; overflow: hidden; }
+body.rejilla .diapo h1 { font-size: 16px; } body.rejilla .diapo h2 { font-size: 13px; }
+body.rejilla .diapo .frag { opacity: 1; transform: none; }
+body.rejilla #contador, body.rejilla #marca, body.rejilla #progreso { display: none; }
+
+@media print {
+  body.deck { overflow: visible; background: #fff; }
+  .diapo { display: flex !important; position: relative; inset: auto; page-break-after: always; height: 100vh; }
+  .frag { opacity: 1; transform: none; }
+  #progreso, #contador, #marca, #notas, #ayuda { display: none !important; }
+}

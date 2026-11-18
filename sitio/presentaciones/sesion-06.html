@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 6 · El torneo de las doce preguntas — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#0B6E4F" data-marca="Sesión 6 · 02-sep-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: marcador dibujado en la pizarra (equipos × 12 preguntas), stickers en el bolsillo, y el lab_03 abierto con el reto de las doce preguntas a mano. El deck ocupa unos 30 minutos; el torneo, 55. Los equipos se sientan juntos desde el arranque.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 6</div>
+  <div class="kicker">Semana 3 · Taller · Miércoles 2 de septiembre</div>
+  <h1>El torneo de las doce preguntas</h1>
+  <p class="grande">Un catálogo de 32 833 canciones, doce preguntas y una regla: sin el porqué, no hay punto.</p>
+</section>
+
+<!-- 2 · calentamiento -->
+<section class="diapo pregunta" data-notas="0-6 min. Calentamiento con la pregunta del lunes. Votación: ¿media o mediana? Quien conteste «3,76» a secas pierde un punto imaginario: la respuesta completa es mediana 3,60, porque la cola de remixes infla la media. Esa es exactamente la vara con la que se puntúa hoy: la cifra sola no vale.">
+  <div class="kicker">Calentamiento · la del lunes</div>
+  <h2>¿Cuánto dura una canción típica?</h2>
+  <span class="mano">✋ ¿Media o mediana?</span>
+  <p class="frag grande">«3,76» pierde. La respuesta completa: <strong>mediana 3,60</strong>, porque la cola de remixes infla la media.</p>
+  <p class="frag">Esa es la vara de hoy.</p>
+</section>
+
+<!-- 3 · reglas -->
+<section class="diapo" data-notas="6-12 min. Las reglas, sin prisa, porque el torneo vive de ellas. Una respuesta escrita por equipo y unos 5 minutos por pregunta. Las tres partes obligatorias: cifra, estadístico, porqué. La IA está permitida —es la política del curso— pero el número se verifica con pandas antes de cantarlo: cifra equivocada, punto perdido. El robo mantiene a todos despiertos en las preguntas ajenas.">
+  <div class="kicker">Las reglas</div>
+  <h2>Cifra + estadístico + porqué</h2>
+  <ul>
+    <li>Equipos del proyecto. Una respuesta <strong>escrita</strong> por equipo, contra reloj: unos 5 minutos por pregunta.</li>
+    <li class="frag">La respuesta vale si trae las tres partes: la <strong>cifra</strong>, el <strong>estadístico elegido</strong> y el <strong>porqué</strong> apoyado en la forma de la distribución.</li>
+    <li class="frag">La IA está permitida. Pero el número se verifica con pandas antes de cantarlo: <strong>cifra equivocada, punto perdido</strong>.</li>
+    <li class="frag">Si un equipo falla el porqué, otro puede <strong>robar</strong> el punto.</li>
+  </ul>
+</section>
+
+<!-- 4 · tablero -->
+<section class="diapo" data-notas="12-16 min. El sistema de puntos premia el criterio sobre la cifra: 3 puntos la respuesta completa, 1 la cifra con porqué flojo, 0 la cifra equivocada aunque el porqué suene bonito, 2 al que roba el porqué. El marcador vive en la pizarra; las doce preguntas están en el reto del lab 3 y van saliendo de una en una.">
+  <div class="kicker">El tablero</div>
+  <h2>Así se anota</h2>
+  <table class="mini">
+    <tr><th>Respuesta</th><th>Puntos</th></tr>
+    <tr class="gana"><td>Cifra + estadístico + porqué</td><td>3</td></tr>
+    <tr><td>Cifra correcta, porqué flojo</td><td>1</td></tr>
+    <tr><td>Cifra equivocada (aunque el porqué suene bonito)</td><td>0</td></tr>
+    <tr><td>Robo: el porqué correcto tras el fallo de otro</td><td>2</td></tr>
+  </table>
+  <p class="frag">El marcador vive en la pizarra. Las doce preguntas salen del reto del laboratorio 3, de una en una.</p>
+</section>
+
+<!-- 5 · cifra: el premio -->
+<section class="diapo cifra" data-notas="16-19 min. Gestión de expectativas antes de arrancar: el torneo vale cero en la nota. Se juega por la gloria, el sticker y el derecho a presumir hasta diciembre. Lo que se califica es el cuaderno con las doce respuestas, cada una con su estadístico y su justificación — ese es el entregable de hoy.">
+  <div class="kicker">Lo que gana el que gana</div>
+  <div class="numero">0</div>
+  <p class="etiqueta">puntos del torneo entran en tu nota. Se juega por la gloria y un sticker. Lo que se califica es el <strong>cuaderno con las doce respuestas</strong>, con estadístico y justificación.</p>
+</section>
+
+<!-- 6 · sección -->
+<section class="diapo seccion" data-notas="19 min. Ronda de ejemplo: tres preguntas de muestra, de fácil a endiablada, sin puntos. Sirven para calibrar qué significa una respuesta completa antes de que el marcador empiece a doler.">
+  <div class="kicker">Ronda de ejemplo · sin puntos</div>
+  <h2>Así se juega</h2>
+  <p>Tres preguntas de muestra, de fácil a endiablada.</p>
+</section>
+
+<!-- 7 · ejemplo fácil -->
+<section class="diapo pregunta" data-notas="19-23 min. Nivel fácil. Deja que canten respuestas y luego revela. edm: 6 043 filas, el 18,4 % del catálogo. La parte que puntúa: es un conteo con value_counts — la variable es categórica, no hay media ni mediana que valga. Quien diga eso, punto entero.">
+  <div class="kicker">Nivel fácil</div>
+  <h2>¿Qué género domina el catálogo?</h2>
+  <span class="mano">✋ Respuestas</span>
+  <p class="frag grande"><strong>edm</strong>: 6 043 filas, el 18,4 %.</p>
+  <p class="frag">Respuesta completa: es un <strong>conteo</strong> — <code>value_counts</code> — porque la variable es categórica: no hay media ni mediana que valga. Punto entero.</p>
+</section>
+
+<!-- 8 · ejemplo medio -->
+<section class="diapo pregunta" data-notas="23-28 min. Nivel medio. Votación sí/no y luego el giro: la pregunta es de posición, no de promedio. 5:00 cae en el p90 del catálogo completo —la frontera del 10 % más largo—, pero dentro de rock es p83 y dentro de edm p88. La respuesta completa nombra el percentil Y el grupo de referencia, porque el percentil cambia con él.">
+  <div class="kicker">Nivel medio</div>
+  <h2>Una canción de 5:00, ¿es «larga»?</h2>
+  <span class="mano">✋ ¿Sí o no?</span>
+  <p class="frag grande">Depende del grupo: 5:00 es el <strong>p90</strong> del catálogo, el <strong>p83</strong> dentro de rock y el <strong>p88</strong> dentro de edm.</p>
+  <p class="frag">Respuesta completa: un <strong>percentil</strong>, no un promedio — la pregunta es de posición — y con el <strong>grupo de referencia</strong> nombrado, porque el percentil cambia con él.</p>
+</section>
+
+<!-- 9 · ejemplo difícil -->
+<section class="diapo pregunta" data-notas="28-33 min. Nivel endiablado, el caso del lunes convertido en pregunta de torneo. Votación: ¿Marketing o Auditoría? Nadie miente: 42,48 promedia filas (apariciones en playlists), 39,33 promedia canciones únicas, y las famosas votan hasta diez veces. El matiz que separa el 3 del 1: quien conteste «la media está mal» no se lleva el punto — las dos están bien, contestan preguntas distintas. Antes del estadístico, la unidad de análisis.">
+  <div class="kicker">Nivel endiablado</div>
+  <h2>Marketing dice 42. Auditoría dice 39. ¿Quién miente?</h2>
+  <span class="mano">✋ ¿Marketing? ¿Auditoría?</span>
+  <p class="frag grande">Nadie: <strong>42,48</strong> promedia filas —apariciones en playlists— y <strong>39,33</strong> promedia canciones únicas. Las famosas votan hasta diez veces.</p>
+  <p class="frag">Respuesta completa: antes del estadístico, la <strong>unidad de análisis</strong>. «La media está mal» no puntúa: las dos están bien, contestan preguntas distintas.</p>
+</section>
+
+<!-- 10 · arranque -->
+<section class="diapo" data-notas="33-88 min. Arranca el torneo y deja esta lámina proyectada; el marcador vive en la pizarra. Las preguntas salen del reto del lab 3, de una en una. Chuleta del árbitro: (3) más de 5 min = 10,0 %, menos de 2 = 1,3 % · (6) pop lidera por mediana (52) y también por media (47,7): el líder no cambia · (7) hacen falta 1 016 artistas de 10 692 para acumular el 50 % de las filas · (10) ceros = 8,2 % · (11) repetidas 60,2 vs 37,1. Las preguntas 7 y 11 son las lentas: avísalo. Cierra el marcador a los 88.">
+  <div class="kicker">En marcha</div>
+  <h2>Sesenta minutos, doce preguntas</h2>
+  <ul>
+    <li>Las preguntas salen de una en una. El tiempo corre desde que la leo.</li>
+    <li class="frag">Las respuestas se escriben en el cuaderno del equipo: es lo que se entrega al cierre, con estadístico y justificación.</li>
+    <li class="frag">Las preguntas <strong>7</strong> y <strong>11</strong> son las que más tiempo comen: repartan el trabajo.</li>
+  </ul>
+  <p class="frag">Fila de bitácora obligatoria: verifiquen contra pandas al menos una respuesta del asistente. <strong>Alguna no va a coincidir.</strong></p>
+</section>
+
+<!-- 11 · cierre -->
+<section class="diapo cifra" data-notas="88-90 min. Ceremonia relámpago: anuncia al campeón, entrega el sticker, foto si quieren. Recuerda la entrega del cuaderno hoy. Teaser del lunes: Netflix, 7 787 títulos… ¿o no? La pregunta trae trampa y la trampa es la semana entera.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:24ch">«Un número sin su porqué es una apuesta.»</p>
+  <p class="etiqueta">Sesión 7 · lunes 7 de septiembre — Netflix: 7 787 títulos… ¿o no?</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

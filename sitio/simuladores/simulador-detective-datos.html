@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detective de datos — Simulador · Semana 4 · ADM 2003</title>
+<style>
+:root{--acc:#B26B00;--acc-soft:#FBF1E1;--acc-dark:#8A5300;--ink:#232326;--mut:#6d6d74;--line:#e6e6ea;--bg2:#f7f7f9;--alert:#A6192E;--ok:#1a7a4a;--ok-soft:#e9f5ee}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:var(--ink);line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;margin:.15em 0 .2em}
+.sub{color:var(--mut);max-width:70ch}
+section{margin-top:26px;border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+h2{font-size:1.3rem;font-weight:800;margin-bottom:4px}
+.h2sub{color:var(--mut);font-size:.95rem;margin-bottom:14px}
+.statusbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.chip{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:.95rem}
+.chip b{font-variant-numeric:tabular-nums}
+.chip.found b{color:var(--ok)}
+.chip.fails b{color:var(--alert)}
+.hintbtn{margin-left:auto;padding:10px 18px;font-size:.95rem;font-weight:700;background:#fff;color:var(--acc-dark);border:2px solid var(--acc);border-radius:12px;cursor:pointer}
+.hintbtn:hover{background:var(--acc-soft)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px;border-radius:6px}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:900px;font-size:.86rem}
+th{background:var(--bg2);text-align:left;padding:10px 8px;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--mut);border-bottom:2px solid var(--line);position:sticky;top:0}
+td{border-bottom:1px solid var(--line);padding:0}
+tr.hintrow td{background:var(--acc-soft)}
+.cell{display:block;width:100%;min-height:44px;padding:9px 8px;text-align:left;background:transparent;border:none;
+  font:inherit;color:inherit;cursor:pointer;white-space:pre;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.cell:hover{background:var(--acc-soft)}
+.cell.hit{background:var(--ok-soft);box-shadow:inset 0 0 0 2px var(--ok);cursor:default}
+.cell.hit::after{content:" ✓";color:var(--ok);font-weight:800}
+.cell.miss{animation:shake .3s;background:#fdf3f4;box-shadow:inset 0 0 0 2px var(--alert)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.feedback{margin-top:14px;border-radius:12px;padding:14px 18px;font-size:.98rem;display:none}
+.feedback.ok{display:block;border-left:4px solid var(--ok);background:var(--ok-soft)}
+.feedback.bad{display:block;border-left:4px solid var(--alert);background:#fdf3f4}
+.feedback b.t{display:block;margin-bottom:2px}
+.f2{display:none}
+.f2.on{display:block}
+.f2grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start}
+.probcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px;background:var(--bg2)}
+.probcard h3{font-size:1rem;margin-bottom:2px}
+.probcard .pc-n{font-size:.85rem;color:var(--mut);margin-bottom:8px}
+.probcard select{width:100%;font-size:1rem;padding:11px 12px;border:2px solid var(--line);border-radius:10px;background:#fff;font-family:inherit;color:var(--ink)}
+.probcard select:hover{border-color:var(--acc)}
+.rverdict{margin-top:8px;font-size:.9rem;border-radius:8px;padding:8px 12px;display:none}
+.rverdict.g10{display:block;background:var(--ok-soft);border-left:3px solid var(--ok)}
+.rverdict.g5{display:block;background:var(--acc-soft);border-left:3px solid var(--acc)}
+.rverdict.g0{display:block;background:#fdf3f4;border-left:3px solid var(--alert)}
+.kpis{position:sticky;top:12px;border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}
+.kpis h3{font-size:1rem;margin-bottom:10px}
+.kpi{margin-bottom:16px}
+.kpi .lb{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mut)}
+.kpi .vl{font-size:1.9rem;font-weight:800;font-variant-numeric:tabular-nums}
+.kpi .vl small{font-size:.9rem;color:var(--mut);font-weight:500}
+.kbar{height:14px;background:#e9e9ee;border-radius:7px;overflow:hidden;margin-top:6px}
+.kfill{height:100%;background:var(--acc);border-radius:7px;transition:width .5s}
+.kfill.tv{background:var(--acc-dark)}
+.kpi .delta{font-size:.85rem;font-weight:600}
+.delta.down{color:var(--alert)}
+.delta.same{color:var(--ok)}
+.dropnabtn{width:100%;margin-top:6px;padding:12px;font-size:.95rem;font-weight:700;background:#fff;color:var(--alert);border:2px solid var(--alert);border-radius:12px;cursor:pointer}
+.dropnabtn[aria-pressed="true"]{background:var(--alert);color:#fff}
+.dropnote{display:none;margin-top:10px;font-size:.88rem;padding:10px 12px;background:#fdf3f4;border-left:3px solid var(--alert);border-radius:0 8px 8px 0}
+.dropnote.on{display:block}
+.closebtn{margin-top:16px;padding:14px 26px;font-size:1.05rem;font-weight:800;background:var(--acc);color:#fff;border:none;border-radius:12px;cursor:pointer}
+.closebtn:hover{background:var(--acc-dark)}
+.closebtn:disabled{opacity:.4;cursor:not-allowed}
+.final{display:none;margin-top:18px;padding:22px;border-radius:14px;background:var(--acc-soft);text-align:center}
+.final .big{font-size:2.6rem;font-weight:800;color:var(--acc-dark)}
+.final .msg{font-size:1.1rem;font-weight:700;margin-top:4px}
+.final .det{color:var(--mut);font-size:.9rem;margin-top:6px}
+.lesson{margin-top:34px;text-align:center;padding:26px 18px;background:var(--ink);color:#fff;border-radius:16px}
+.lesson p{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:800}
+.lesson small{color:#bdbdc4;font-size:.9rem}
+footer{margin-top:30px;padding:18px 20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--acc-dark);font-weight:600;text-decoration:none}
+footer a:hover{text-decoration:underline}
+@media (max-width:860px){.f2grid{grid-template-columns:1fr}.kpis{position:static}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Semana 4 · Simulador · 14 títulos reales de netflix_titulos.csv</p>
+  <h1>Detective de datos</h1>
+  <p class="sub">El catálogo completo tiene <b>7&#8239;787 títulos</b> (5&#8239;377 películas y 2&#8239;410 series) y esconde de todo: vacíos, espacios invisibles, columnas con dos unidades. Aquí tienes 14 filas reales. <b>Haz clic en las celdas que te parezcan sospechosas.</b> Hay 9 problemas. Cada clic en una celda sana cuesta 3 puntos.</p>
+
+  <section aria-labelledby="t1">
+    <h2 id="t1">Fase 1 · La inspección</h2>
+    <p class="h2sub">Pistas: no todo lo vacío se ve vacío, y no todo lo idéntico es idéntico.</p>
+    <div class="statusbar">
+      <span class="chip found">Encontrados: <b id="cFound">0 / 9</b></span>
+      <span class="chip fails">Falsas alarmas: <b id="cFails">0</b></span>
+      <span class="chip">Puntaje: <b id="cScore">0</b></span>
+      <button class="hintbtn" id="hintbtn">Dame una pista (−2 pts)</button>
+    </div>
+    <div class="tblwrap">
+      <table aria-describedby="t1">
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+  </section>
+
+  <section class="f2" id="fase2" aria-labelledby="t2">
+    <h2 id="t2">Fase 2 · El remedio</h2>
+    <p class="h2sub">Encontraste los 9 problemas. Ahora decide qué hacer con cada uno y mira lo que le pasa al catálogo. No hay arreglo gratis.</p>
+    <div class="f2grid">
+      <div id="problist"></div>
+      <aside class="kpis" aria-live="polite" aria-label="Indicadores del catálogo">
+        <h3>Tu catálogo después de limpiar</h3>
+        <div class="kpi">
+          <div class="lb">Títulos en catálogo</div>
+          <div class="vl" id="kTot">7&#8239;787</div>
+          <div class="kbar"><div class="kfill" id="kTotBar" style="width:100%"></div></div>
+          <div class="delta" id="kTotD"></div>
+        </div>
+        <div class="kpi">
+          <div class="lb">% de series</div>
+          <div class="vl" id="kTv">30,9&#8239;%</div>
+          <div class="kbar"><div class="kfill tv" id="kTvBar" style="width:30.9%"></div></div>
+          <div class="delta" id="kTvD"></div>
+        </div>
+        <button class="dropnabtn" id="dropna" aria-pressed="false">La tentación: df.dropna()</button>
+        <div class="dropnote" id="dropnote">
+          <b>df.dropna()</b> deja <b>4&#8239;804 títulos</b> (pierdes el 38,3&#8239;%) y solo <b>131 series de 2&#8239;410</b> (sobrevive el 5,4&#8239;%). El catálogo pasa de 30,9&#8239;% de series a <b>2,7&#8239;%</b>: acabas de «descubrir» que Netflix casi no tiene series.
+        </div>
+      </aside>
+    </div>
+    <button class="closebtn" id="closebtn" disabled>Cerrar el caso</button>
+    <div class="final" id="final" aria-live="polite"></div>
+  </section>
+
+  <div class="lesson">
+    <p>«Limpiar no es borrar: cada arreglo cambia lo que los datos pueden decir.»</p>
+    <small>dropna() sin mirar: 7&#8239;787 &rarr; 4&#8239;804 títulos, y las series casi desaparecen (131 de 2&#8239;410).</small>
+  </div>
+
+  <footer>
+    <span>ADM 2003 · Análisis de Datos con IA y Python · USFQ</span>
+    <a href="../semana-04.html">&larr; Volver al curso</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+const NB="\u202F";
+function fmt(x,d){d=d||0;const s=Math.abs(x).toFixed(d),p=s.split(".");
+  return (x<0?"−":"")+p[0].replace(/\B(?=(\d{3})+(?!\d))/g,NB)+(p[1]?","+p[1]:"");}
+
+/* ============ 14 filas REALES de netflix_titulos.csv ============ */
+const COLS=["Título","Tipo","Director","País","Añadido el","Año","Duración"];
+const ROWS=[
+["Stranger Things","TV Show","","United States","July 4, 2019","2019","3 Seasons"],
+["The Irishman","Movie","Martin Scorsese","United States","November 27, 2019","2019","209 min"],
+["Altered Carbon","TV Show","","United States","February 27, 2020","2020","2 Seasons"],
+["Consequences","Movie","Ozan Açıktan","Turkey","October 25, 2019","2014","106 min"],
+["Consequences\u00A0","Movie","Ozan Açıktan","Turkey","October 25, 2019","2014","106 min"],
+["13TH: A Conversation with Oprah Winfrey & Ava DuVernay","Movie","","","January 26, 2017","2017","37 min"],
+["Royal Pains","TV Show","Jay Chandrasekhar","United States"," May 18, 2017","2016","8 Seasons"],
+["Abducted in Plain Sight","Movie","Skye Borgman","United States","January 15, 2019","2017","90 min"],
+["Klaus","Movie","Sergio Pablos","Spain, United Kingdom","November 15, 2019","2019","98 min"],
+["Bird Box","Movie","Susanne Bier","United States","December 21, 2018","2018","124 min"],
+["Okja","Movie","Bong Joon Ho","South Korea, United States","June 28, 2017","2017","121 min"],
+["The Two Popes","Movie","Fernando Meirelles","United Kingdom, Italy","December 20, 2019","2019","126 min"],
+["#cats_the_mewvie","Movie","Michael Margolis","Canada","February 5, 2020","2020","90 min"],
+["Marriage Story","Movie","Noah Baumbach","United Kingdom, United States","December 6, 2019","2019","137 min"]];
+
+/* Problemas: celda "fila,columna" -> id de problema */
+const PMAP={"0,2":"dir","2,2":"dir2","5,2":"dir3","5,3":"pais","6,4":"fecha","0,6":"dur1","2,6":"dur2","6,6":"dur3","3,0":"dup","4,0":"dup"};
+const PTXT={
+ dir:"Director vacío (NaN). No es un caso raro: en el catálogo completo faltan 2 389 directores, sobre todo en series (2 226).",
+ dir2:"Otro director vacío. Las series casi nunca traen director: 2 226 de las 2 410 no lo tienen.",
+ dir3:"Tercer director vacío — y en una película. El hueco no discrimina formatos.",
+ pais:"País vacío. Le pasa a 507 títulos del catálogo. ¿Se borran, se imputan o se investigan?",
+ fecha:"« May 18, 2017» empieza con un espacio invisible. Hay 88 fechas así: un to_datetime() estricto las vuelve NaT y esas filas mueren en silencio.",
+ dur1:"«3 Seasons» en la misma columna que «209 min»: duration mezcla dos unidades. Así no hay promedio posible.",
+ dur2:"«2 Seasons»: segunda evidencia. La columna duration es texto disfrazado de número.",
+ dur3:"«8 Seasons»: tercera evidencia. Minutos y temporadas conviven en una sola columna.",
+ dup:"Dos «Consequences» casi idénticas. La segunda (s1487) termina en un espacio invisible (NBSP, \\xa0): para pandas son títulos distintos y drop_duplicates() no la atrapa."};
+const NPROB=9;
+const SANE=["Celda sana: ese valor es legítimo. −3 puntos.","Nada que ver aquí: el dato es correcto. −3 puntos.","Falsa alarma: esta celda está limpia. −3 puntos."];
+
+let found={}, fails=0, hints=0, score1=0;
+const $=id=>document.getElementById(id);
+
+/* ---------- construir tabla ---------- */
+const thead=$("thead");
+COLS.forEach(c=>{const th=document.createElement("th");th.scope="col";th.textContent=c;thead.appendChild(th);});
+const tbody=$("tbody");
+ROWS.forEach((r,ri)=>{
+  const tr=document.createElement("tr");tr.id="row"+ri;
+  r.forEach((v,ci)=>{
+    const td=document.createElement("td");
+    const b=document.createElement("button");
+    b.className="cell";b.type="button";
+    b.textContent=v;
+    b.dataset.key=ri+","+ci;
+    b.setAttribute("aria-label",COLS[ci]+" de "+(r[0].trim()||"fila "+(ri+1))+": "+(v.trim()===""?"vacío":"«"+v+"»"));
+    b.addEventListener("click",()=>clickCell(b));
+    td.appendChild(b);tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+});
+
+function setChips(){
+  $("cFound").textContent=Object.keys(found).length+" / "+NPROB;
+  $("cFails").textContent=fmt(fails);
+  $("cScore").textContent=fmt(score1);
+}
+function clickCell(b){
+  if(b.classList.contains("hit"))return;
+  const pid=PMAP[b.dataset.key], fb=$("feedback");
+  if(pid){
+    if(found[pid])return;
+    found[pid]=true;score1+=10;
+    /* el duplicado ilumina sus dos celdas gemelas */
+    document.querySelectorAll(".cell").forEach(c=>{if(PMAP[c.dataset.key]===pid)c.classList.add("hit");});
+    fb.className="feedback ok";
+    fb.innerHTML="<b class='t'>Problema encontrado (+10)</b>"+PTXT[pid];
+    if(Object.keys(found).length===NPROB)endPhase1();
+  }else{
+    fails++;score1-=3;
+    b.classList.remove("miss");void b.offsetWidth;b.classList.add("miss");
+    fb.className="feedback bad";
+    fb.innerHTML="<b class='t'>"+SANE[fails%SANE.length]+"</b>";
+    setTimeout(()=>b.classList.remove("miss"),700);
+  }
+  setChips();
+}
+$("hintbtn").addEventListener("click",()=>{
+  const left=Object.keys(PTXT).filter(p=>!found[p]);
+  if(!left.length)return;
+  hints++;score1-=2;setChips();
+  const pid=left[Math.floor(Math.random()*left.length)];
+  const cell=[...document.querySelectorAll(".cell")].find(c=>PMAP[c.dataset.key]===pid);
+  const tr=cell.closest("tr");
+  tr.classList.add("hintrow");
+  setTimeout(()=>tr.classList.remove("hintrow"),1800);
+  const fb=$("feedback");fb.className="feedback bad";
+  fb.innerHTML="<b class='t'>Pista (−2):</b> mira con lupa la fila iluminada.";
+});
+function endPhase1(){
+  $("hintbtn").disabled=true;
+  const fb=$("feedback");fb.className="feedback ok";
+  fb.innerHTML="<b class='t'>Caso documentado: 9 de 9.</b> Baja a la fase 2: encontrar el problema era la parte fácil.";
+  $("fase2").classList.add("on");
+  $("fase2").scrollIntoView({behavior:"smooth"});
+}
+
+/* ============ FASE 2 ============ */
+/* Tabla real de co-ocurrencia de netflix_titulos.csv.
+   Clave: [director NA][país NA][fecha inválida (10 NaN + 88 con espacio)][cast/rating NA] + M/T */
+const CELLS={"0000M":4673,"0000T":131,"0001M":351,"0001T":33,"0010T":4,"0011T":1,"0100M":157,"0100T":10,"0101M":33,"0101T":5,"1000M":88,"1000T":1674,"1001M":35,"1001T":201,"1010T":82,"1011T":7,"1100M":28,"1100T":211,"1101M":12,"1101T":47,"1110T":4};
+const TOTAL=7787,TVTOT=2410;
+function remaining(o){
+  let tot=0,tv=0;
+  for(const k in CELLS){
+    if(o.dDir&&k[0]==="1")continue;
+    if(o.dPais&&k[1]==="1")continue;
+    if(o.dFecha&&k[2]==="1")continue;
+    if(o.dOtros&&k[3]==="1")continue;
+    if(o.dSeries&&k[4]==="T")continue;
+    tot+=CELLS[k];if(k[4]==="T")tv+=CELLS[k];
+  }
+  if(o.dDup&&tot>0)tot-=1;   /* el gemelo s1487 es película con datos completos */
+  return{tot,tv};
+}
+
+const PROBS=[
+ {id:"dir",t:"Directores vacíos",n:"2 389 títulos (30,7 % del catálogo); 2 226 son series",
+  best:"imputar",okk:"investigar",
+  v:{borrar:"Borraste 2 389 títulos. Quedan 5 398 y solo 184 series de 2 410: tu catálogo cree que Netflix no hace series.",
+     imputar:"«Desconocido» conserva los 2 389 títulos, deja el hueco documentado y los promedios intactos. Limpieza sin pérdida.",
+     convertir:"No hay tipo que convertir: el problema es la ausencia, no el formato.",
+     investigar:"Legítimo, pero son 2 389 títulos: investiga una muestra y decide una regla para el resto."}},
+ {id:"pais",t:"País vacío",n:"507 títulos sin país",
+  best:"imputar",okk:"investigar",
+  v:{borrar:"Adiós a 507 títulos (quedan 7 280) solo porque no dijeron de dónde son.",
+     imputar:"«Desconocido» mantiene los 507 en el catálogo y te deja filtrar por país sin mentir.",
+     convertir:"El tipo está bien (texto); lo que falta es el valor.",
+     investigar:"Razonable: muchos países se pueden recuperar del título o del elenco. Costoso pero honesto."}},
+ {id:"fecha",t:"Fechas con espacio inicial",n:"88 fechas con espacio + 10 vacías = 98 filas frágiles",
+  best:"convertir",okk:"investigar",
+  v:{borrar:"Borraste 98 filas que se arreglaban con .str.strip(). Limpieza a machetazos.",
+     imputar:"¿Inventar fechas? Cualquier análisis temporal quedaría contaminado.",
+     convertir:".str.strip() + to_datetime(): recuperas las 88 fechas con espacio; solo las 10 vacías quedan como NaT. Arreglo quirúrgico.",
+     investigar:"Sirve para entender el origen (¿exportación con espacios?), pero el arreglo sigue siendo strip + convertir."}},
+ {id:"dur",t:"duration mezcla minutos y temporadas",n:"las 2 410 series dicen «Seasons»; las 5 377 películas, «min»",
+  best:"convertir",okk:"investigar",
+  v:{borrar:"Eliminaste todo lo que no era «min»: sobreviven 5 377 películas y 0 series. El KPI de series marca 0 %.",
+     imputar:"No falta el dato: está en la unidad equivocada. Imputar no separa minutos de temporadas.",
+     convertir:"Separar en dos columnas (duracion_min y temporadas) deja cada unidad en su casa. Ahora sí hay promedios.",
+     investigar:"Confirmarás rápido que son dos unidades: la solución final es convertir/separar."}},
+ {id:"dup",t:"Duplicado invisible: «Consequences␣»",n:"s1486 y s1487: gemelas separadas por un NBSP",
+  best:"investigar",okk:"borrar",
+  v:{borrar:"Directo: fuera el gemelo (−1 título). Funciona aquí, pero sin investigar no sabrás cuántos NBSP más viven en tu catálogo.",
+     imputar:"No hay nada que imputar: sobra una fila, no falta un valor.",
+     convertir:"Normalizar espacios ayuda a detectarlo, pero después igual hay que quitar la fila repetida.",
+     investigar:"Detective completo: normalizas el título, confirmas que son la misma película turca de 2014 y eliminas una. Catálogo: 7 786."}}];
+
+const state={dir:"",pais:"",fecha:"",dur:"",dup:""};
+const plist=$("problist");
+PROBS.forEach(p=>{
+  const d=document.createElement("div");d.className="probcard";
+  d.innerHTML="<h3>"+p.t+"</h3><div class='pc-n'>"+p.n+"</div>"+
+    "<label style='position:absolute;left:-9999px' for='sel-"+p.id+"'>Remedio para "+p.t+"</label>"+
+    "<select id='sel-"+p.id+"'><option value=''>— Elige un remedio —</option>"+
+    "<option value='borrar'>Borrar fila(s)</option><option value='imputar'>Imputar «Desconocido»</option>"+
+    "<option value='convertir'>Convertir tipo / limpiar</option><option value='investigar'>Investigar el origen</option></select>"+
+    "<div class='rverdict' id='v-"+p.id+"'></div>";
+  plist.appendChild(d);
+  d.querySelector("select").addEventListener("change",e=>{
+    state[p.id]=e.target.value;
+    const v=$("v-"+p.id);
+    if(!e.target.value){v.className="rverdict";v.textContent="";}
+    else{
+      const g=e.target.value===p.best?10:(e.target.value===p.okk?5:0);
+      v.className="rverdict g"+g;
+      v.innerHTML="<b>"+(g===10?"Remedio fino (+10). ":g===5?"Aceptable (+5). ":"Ay. (+0). ")+"</b>"+p.v[e.target.value];
+    }
+    updateKPI();
+    $("closebtn").disabled=!PROBS.every(q=>state[q.id]);
+  });
+});
+
+let dropnaOn=false;
+function updateKPI(){
+  let o;
+  if(dropnaOn){o={dDir:1,dPais:1,dFecha:1,dOtros:1,dSeries:0,dDup:0};}
+  else o={dDir:state.dir==="borrar",dPais:state.pais==="borrar",dFecha:state.fecha==="borrar",
+          dSeries:state.dur==="borrar",dOtros:false,dDup:(state.dup==="borrar"||state.dup==="investigar")};
+  const r=remaining(o), pct=r.tot?r.tv/r.tot*100:0;
+  $("kTot").innerHTML=fmt(r.tot);
+  $("kTotBar").style.width=(r.tot/TOTAL*100)+"%";
+  const lost=TOTAL-r.tot;
+  $("kTotD").textContent=lost>0?("−"+fmt(lost)+" títulos ("+fmt(lost/TOTAL*100,1)+NB+"% del catálogo)"):"catálogo intacto";
+  $("kTotD").className="delta "+(lost>0?"down":"same");
+  $("kTv").innerHTML=fmt(pct,1)+NB+"%";
+  $("kTvBar").style.width=Math.max(pct,0.5)+"%";
+  $("kTvD").textContent=(r.tv===TVTOT&&r.tot===TOTAL)?"series: 2 410 de 2 410":"series restantes: "+fmt(r.tv)+" de 2 410 (antes: 30,9 % del catálogo)";
+  $("kTvD").className="delta "+(r.tv<TVTOT?"down":"same");
+}
+$("dropna").addEventListener("click",()=>{
+  dropnaOn=!dropnaOn;
+  $("dropna").setAttribute("aria-pressed",String(dropnaOn));
+  $("dropna").textContent=dropnaOn?"Volver a mis remedios":"La tentación: df.dropna()";
+  $("dropnote").classList.toggle("on",dropnaOn);
+  updateKPI();
+});
+
+$("closebtn").addEventListener("click",()=>{
+  let s2=0;
+  PROBS.forEach(p=>{s2+=state[p.id]===p.best?10:(state[p.id]===p.okk?5:0);});
+  const tot=score1+s2;
+  const msg=tot>=130?"Detective de élite. Ni un NBSP se te escapa: el catálogo queda limpio y completo."
+    :tot>=100?"Muy buen ojo. Afinando un par de remedios, nadie volverá a colarte un dropna() alegre."
+    :tot>=65?"Aprendiz con futuro. Ya ves los problemas; ahora practica elegir el arreglo que no destruye el dato."
+    :"El dataset se salió con la suya esta vez. Reintenta: los espacios invisibles siempre reinciden.";
+  const f=$("final");f.style.display="block";
+  f.innerHTML="<div class='big'>"+fmt(tot)+" pts</div><div class='msg'>"+msg+"</div>"+
+    "<div class='det'>Fase 1: "+fmt(score1)+" pts ("+fmt(fails)+" falsas alarmas, "+fmt(hints)+" pistas) · Fase 2: "+fmt(s2)+" de 50 · Máximo total: 140</div>";
+  f.scrollIntoView({behavior:"smooth"});
+});
+
+setChips();updateKPI();
+</script>
+</body>
+</html>

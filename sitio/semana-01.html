@@ -29,6 +29,7 @@
 <a href="casos.html">Casos de estudio</a>
 <a href="datacamp.html">DataCamp y concurso</a>
 <a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
 <a href="rubricas.html">Rúbricas</a>
 <a href="apoyo.html">Apoyo y accesibilidad</a>
 <a href="recursos.html">Recursos y datasets</a>
@@ -66,7 +67,7 @@
 <span>17-ago-2026 y 19-ago-2026</span>
 <span>2 sesiones de 1.5 h</span>
 <span>Colab, cuadernos ejecutables, protocolo de uso de IAG y bitácora de prompts</span>
-<span>Laboratorio de 32 celdas</span>
+<span>Laboratorio de 31 celdas</span>
 </div>
 <h2>Cómo se arma la semana</h2>
 <div class="rejilla c3">
@@ -81,6 +82,15 @@
 <li>Explicar por qué un análisis con datos correctos puede llevar a una decisión equivocada.</li>
 <li>Aplicar el protocolo de uso de IA generativa del curso y abrir tu bitácora de prompts.</li>
 </ul>
+<h2>Todo lo de esta semana, listo para el aula</h2>
+<div class="rejilla c3">
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-01.html"><div class="n">Sesión 1 · teoría</div><div class="t">Presentación</div><div class="d">Por qué fracasan los análisis · Caso de la pizzería</div></a>
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-02.html"><div class="n">Sesión 2 · taller</div><div class="t">Presentación</div><div class="d">Colab y el primer cuaderno · Taller de la pizzería</div></a>
+<a class="tarjeta" href="caso-clase-01.html"><div class="n">Gastronomía</div><div class="t">Caso de la clase</div><div class="d">La pizza que sale del menú</div></a>
+<a class="tarjeta" href="material-semana-01.html"><div class="n">15 minutos</div><div class="t">Material de estudio</div><div class="d">Decidir con datos no es calcular bien</div></a>
+<a class="tarjeta" href="simuladores/simulador-pizza-estrella.html"><div class="n">Interactivo</div><div class="t">Simulador de la semana</div><div class="d">Se proyecta el lunes y se juega en el taller.</div></a>
+<a class="tarjeta" href="docente-sesion-01.html"><div class="n">Minuto a minuto</div><div class="t">Guiones del docente</div><div class="d">Las dos sesiones, con tiempos, errores frecuentes y plan si vas tarde.</div></a>
+</div>
 <h2>Clase teórica</h2>
 <div class="sesion">
 <div class="cab"><span class="dia">Lunes · concepto y caso</span><span class="fecha">Sesión 1 · 17-ago-2026 · 90 minutos</span></div>
@@ -106,12 +116,12 @@
 <li>Recorrer un análisis ya escrito e identificar en qué celda se toma la decisión que cambia la conclusión.</li>
 <li>Escribir tres prompts al asistente para la misma pregunta y comparar cuál produce un resultado verificable.</li>
 </ol>
-<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_01.ipynb</code> · 32 celdas (16 de código, 16 de texto). Corre completo sobre los datos de Comercial Andina sin instalar nada.</p><p style="margin-top:.7rem"><a class="boton" href="lab-01.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_01.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_01.ipynb">Descargar .ipynb</a></p></div>
+<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_01.ipynb</code> · 31 celdas (16 de código, 15 de texto). Corre completo sin instalar nada, sobre la pizzería (pizza_ventas.csv).</p><p style="margin-top:.7rem"><a class="boton" href="lab-01.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_01.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_01.ipynb">Descargar .ipynb</a></p></div>
 <h3>Ejercicios del cuaderno</h3>
 <table><thead><tr><th scope="col">Tipo</th><th scope="col">Ejercicio</th><th scope="col">De qué va</th></tr></thead><tbody>
-<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>El informe comparó ciudades. Repite exactamente la misma trampa y la misma corrección con</td></tr>
-<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío</strong></td><td>ventas_por_cliente divide por todos los clientes del padrón, incluidos los cincuenta que nunca</td></tr>
-<tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En parejas. Toma la conclusión del informe («reforzar Quito, revisar la continuidad de Loja») y</td></tr>
+<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>El informe comparó pizzas. Repite exactamente la misma trampa y la misma corrección con</td></tr>
+<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío</strong></td><td>Construye la tabla completa de decisión del menú: las 32 pizzas con sus tres métricas —unidades,</td></tr>
+<tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En parejas. Tomen la conclusión del informe («retirar la Brie Carre, promocionar la Classic Deluxe»)</td></tr>
 </tbody></table>
 <h2>Proyecto y uso de IA</h2>
 <div class="caja"><div class="titulo">Trabajo sobre el caso del grupo</div><p>Formación de equipos, firma del contrato de grupo y apertura del repositorio compartido con la bitácora de prompts.</p></div>
@@ -119,6 +129,7 @@
 <h2>Insumos</h2>
 <h3>Datos que usa el laboratorio</h3><ul>
 <li><strong>Comercial Andina</strong>, la base del curso: <a href="datos.html">ficha de los siete archivos</a></li>
+<li><a href="datos/publicos/pizza_ventas.csv">Pizza Ventas · una pizzería, 21 350 pedidos en un año (gastronomía)</a></li>
 </ul>
 <h3>Material de apoyo</h3>
 <table><thead><tr><th scope="col">Tipo</th><th scope="col">Recurso</th><th scope="col">Cómo se usa</th></tr></thead><tbody>

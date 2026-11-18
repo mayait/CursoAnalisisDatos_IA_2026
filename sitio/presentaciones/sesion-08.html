@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 8 · El inventario de calidad — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#B26B00" data-marca="Sesión 8 · 09-sep-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: lab_04 abierto con la primera celda ejecutada. Hoy cierra el primer bloque del curso: al salir, cada quien sabe producir una limpieza que otro puede auditar. El deck ocupa unos 20 minutos al inicio y 30 al final (error incrustado, deber 2, cierre de bloque).">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 8</div>
+  <div class="kicker">Semana 4 · Taller · Miércoles 9 de septiembre</div>
+  <h1>El inventario de calidad</h1>
+  <p class="grande">Un porcentaje exacto para cada problema, una justificación para cada decisión. Y el cierre del primer bloque.</p>
+</section>
+
+<!-- 2 · votación -->
+<section class="diapo pregunta" data-notas="0-6 min. Abre con la frase que van a escuchar toda la vida profesional: «los datos están sucios». Votación: ¿es un diagnóstico? Revela: no — un diagnóstico dice qué problema, cuántas filas y qué porcentaje, porque de ahí sale la decisión. Un problema del 0,1 % (rating) se trata distinto que uno del 30 % (director). Por eso el inventario va primero y las opiniones después.">
+  <div class="kicker">Diagnóstico o impresión</div>
+  <h2>«Los datos están sucios.» ¿Es eso un diagnóstico?</h2>
+  <span class="mano">✋ ¿Sí o no?</span>
+  <p class="frag grande">No. Un diagnóstico dice <strong>qué problema, cuántas filas y qué porcentaje</strong>.</p>
+  <p class="frag">Un problema del 0,1 % se trata distinto que uno del 30 %. De ahí sale la decisión: por eso el inventario va primero.</p>
+</section>
+
+<!-- 3 · plan del inventario -->
+<section class="diapo" data-notas="6-13 min. El plan de trabajo con las respuestas a la vista: estos son los ocho problemas y sus porcentajes exactos. No es spoiler, es control de calidad: si al equipo no le cuadran estos números, su inventario está mal — o encontró algo nuevo, y ambas cosas se discuten con cifras. Recuérdales guardar las cifras de partida ANTES de tocar nada: sin ellas no hay cifra de control al final.">
+  <div class="kicker">El plan · ocho problemas, ocho porcentajes</div>
+  <h2>Lo que tu inventario debe encontrar</h2>
+  <table class="mini">
+    <tr><th>Problema</th><th>Filas</th><th>% del catálogo</th></tr>
+    <tr><td>director ausente</td><td>2 389</td><td>30,68 %</td></tr>
+    <tr><td>cast ausente</td><td>718</td><td>9,22 %</td></tr>
+    <tr><td>country ausente</td><td>507</td><td>6,51 %</td></tr>
+    <tr class="frag"><td>date_added con espacio inicial</td><td>88</td><td>1,13 %</td></tr>
+    <tr class="frag"><td>date_added ausente</td><td>10</td><td>0,13 %</td></tr>
+    <tr class="frag"><td>rating ausente</td><td>7</td><td>0,09 %</td></tr>
+    <tr class="frag gana"><td>duration con dos unidades</td><td>7 787</td><td>100 %</td></tr>
+    <tr class="frag gana"><td>duplicado invisible</td><td>1</td><td>0,01 %</td></tr>
+  </table>
+  <p class="frag">Si tus porcentajes no son estos, el inventario está mal — o encontraste algo que yo no. Ambas cosas se discuten con cifras.</p>
+</section>
+
+<!-- 4 · la bitácora -->
+<section class="diapo" data-notas="13-18 min. La bitácora de limpieza, con el contraste que la explica sola. La fila que no sirve: «se limpiaron los nulos» — ¿cuáles, cuántos, por qué así? La fila auditable trae problema, filas afectadas, decisión y justificación. La columna que se califica es la justificación: cualquiera borra duplicados; casi nadie escribe por qué. Una limpieza sin bitácora no es reproducible: es una opinión.">
+  <div class="kicker">La bitácora de limpieza</div>
+  <h2>Decisión + justificación + filas afectadas</h2>
+  <div class="dos">
+    <div class="col panel"><div class="titulo">Fila que no sirve</div>
+      <p>«Se limpiaron los nulos.»</p>
+      <p>¿Cuáles? ¿Cuántos? ¿Por qué así?</p>
+    </div>
+    <div class="col panel destacado"><div class="titulo">Fila auditable</div>
+      <p>«date_added con espacio (88 filas, 1,13 %): <code>str.strip()</code> antes de convertir, porque <code>coerce</code> sin limpiar borraba 88 fechas reales en silencio.»</p>
+    </div>
+  </div>
+  <p class="frag">La columna que se califica es la <strong>justificación</strong>: cualquiera borra duplicados, casi nadie escribe por qué.</p>
+</section>
+
+<!-- 5 · la cifra de control -->
+<section class="diapo" data-notas="18-22 min. ¿Perdí información? no se contesta con una sensación: se contesta con invariantes. Títulos 7 787 → 7 786 con la única baja identificada por su show_id (s1487); películas y series intactas; los 10 sin fecha siguen siendo 10 — si fueran 98, alguien convirtió sin strip. Eso es lo que significa «limpio»: todo lo que cambió está explicado y todo lo que no tenía que cambiar sigue igual.">
+  <div class="kicker">La cifra de control</div>
+  <h2>«¿Perdí información?» no se contesta con una sensación</h2>
+  <table class="mini">
+    <tr><th>Invariante</th><th>Antes</th><th>Después</th></tr>
+    <tr><td>Títulos</td><td>7 787</td><td>7 786</td></tr>
+    <tr><td>Películas</td><td>5 377</td><td>5 377</td></tr>
+    <tr><td>Series</td><td>2 410</td><td>2 410</td></tr>
+    <tr><td>Sin fecha de adición</td><td>10</td><td>10</td></tr>
+  </table>
+  <p class="frag">Un solo cambio, explicado hasta su <code>show_id</code>: la copia <code>s1487</code>. Todo lo demás, intacto. <strong>Eso</strong> significa «limpio».</p>
+</section>
+
+<!-- 6 · sección: al cuaderno -->
+<section class="diapo seccion" data-notas="22-55 min. Suelta a las parejas (teclado rota) y deja esta lámina proyectada. Hitos: radiografía y cifras de partida, fechas con strip (verificar 10 NaT, ni uno más), separar duration en dos columnas, tres nulos con tres tratamientos, cazar el duplicado con repr(). Ronda por las mesas: el error típico es convertir fechas sin strip y ver 98 NaT en la comprobación. A los 55 corta para el ejercicio del error incrustado.">
+  <div class="kicker">Los siguientes 30 minutos</div>
+  <h2>Inventario, bitácora y control</h2>
+  <p>Secciones 1 a 8 del laboratorio. Guarda las cifras de partida antes de tocar nada.</p>
+</section>
+
+<!-- 7 · el error incrustado -->
+<section class="diapo" data-notas="55-65 min. El ejercicio estrella de la semana (está en la política de IA del curso: semanas 4 y 14). Proyecta el fragmento: es la limpieza que devolvió un asistente, corre sin errores y termina en «impecable». Tiene un fallo grave y uno sutil. Diez minutos en equipos: encontrarlos y ponerles una cifra a cada uno. No avances a la siguiente lámina hasta que al menos dos equipos tengan las tres cifras.">
+  <div class="kicker">A los 55 minutos · el error incrustado</div>
+  <h2>El asistente entregó esta limpieza</h2>
+  <p><code>df["date_added"] = pd.to_datetime(df["date_added"], format="%B %d, %Y", errors="coerce")</code><br>
+     <code>df = df.dropna()</code>&nbsp;&nbsp;<code>df = df.drop_duplicates()</code></p>
+  <ul>
+    <li>Corre sin errores. Es legible. Termina diciendo «impecable».</li>
+    <li class="frag">Contiene <strong>un fallo grave y uno sutil</strong>.</li>
+    <li class="frag">Diez minutos: encuéntrenlos y pónganle <strong>una cifra</strong> a cada uno.</li>
+  </ul>
+</section>
+
+<!-- 8 · cifra -->
+<section class="diapo cifra" data-notas="65-68 min. Revela solo cuando los equipos hayan medido. 2 983 títulos borrados: el 38,3 % del catálogo y el 94,6 % de las series (quedan 131 de 2 410), sin un error ni un warning. El coerce fabricó 88 NaT de fechas reales y el dropna los remató. Y el único duplicado real —Consequences con su espacio— sobrevivió: borró lo que no debía y conservó lo que sobraba.">
+  <div class="kicker">El daño, medido</div>
+  <div class="numero">2 983</div>
+  <p class="etiqueta">títulos borra el fragmento sin un solo error ni warning: el 38,3 % del catálogo y el <strong>94,6 % de las series</strong>. Y el único duplicado real sobrevivió.</p>
+</section>
+
+<!-- 9 · cómo se reporta el daño -->
+<section class="diapo" data-notas="68-78 min. La plantilla de reporte, punto por punto: la línea culpable (dropna sin subset), lo que borró (2 983 títulos; 2 279 series de 2 410), lo que fabricó el coerce (88 fechas reales en NaT, rematadas por el dropna), qué análisis quedan sesgados (toda serie temporal de adiciones y el peso de las series, que cae del 31 % al 2,7 %) y la estimación de costo si llegaba a un informe — esa estimación entra al deber. Cierra con el reto de las líneas trampa si el reloj alcanza; si no, va de tarea opcional.">
+  <div class="kicker">Cómo se reporta</div>
+  <h2>El daño se reporta con cifras, no con adjetivos</h2>
+  <ul>
+    <li><strong>Qué línea</strong> — <code>dropna()</code> sin <code>subset</code>: decide por ti que toda fila incompleta sobra.</li>
+    <li class="frag"><strong>Qué borró</strong> — 2 983 títulos; 2 279 series de 2 410.</li>
+    <li class="frag"><strong>Qué fabricó</strong> — el <code>coerce</code> convirtió 88 fechas reales en NaT, y el <code>dropna()</code> las remató.</li>
+    <li class="frag"><strong>Qué queda sesgado</strong> — cualquier análisis por año y todo el peso de las series en el catálogo.</li>
+    <li class="frag"><strong>Cuánto habría costado</strong> si llegaba a un informe: esa estimación entra al deber.</li>
+  </ul>
+  <p class="frag">Reto de cierre: cada equipo escribe una línea trampa y el vecino le mide el daño. Gana la que más tarde en cuantificarse.</p>
+</section>
+
+<!-- 10 · deber 2 -->
+<section class="diapo" data-notas="78-84 min. La checklist del deber 2, la entrega que desbloquea el resto del curso: sobre esta forma de trabajar corre todo lo que viene. Y la parte de proyecto: bitácora de limpieza del dataset del caso más la propuesta formal con diagnóstico de madurez — es prerrequisito duro del proyecto integrador. Tarde: 48 horas, 70 %.">
+  <div class="kicker">Qué entra al deber 2 · hoy al cierre</div>
+  <h2>La entrega que desbloquea el resto del curso</h2>
+  <ul>
+    <li>El <strong>inventario completo</strong>, con el porcentaje exacto de cada problema.</li>
+    <li class="frag">La <strong>bitácora de limpieza</strong>: las ocho filas más las tuyas, cada una con decisión y justificación.</li>
+    <li class="frag">La <strong>cifra de control</strong> cuadrada: invariantes con el único cambio explicado.</li>
+    <li class="frag">El <strong>daño del fragmento</strong> cuantificado: títulos, % de series, fechas borradas.</li>
+    <li class="frag">Fila de bitácora de IA: el asistente revisa tu limpieza; anota qué encontró que tú no.</li>
+  </ul>
+  <p class="frag">Y del proyecto: <strong>bitácora de limpieza del caso + propuesta formal</strong> con diagnóstico de madurez. Tarde: 48 h, 70 %.</p>
+</section>
+
+<!-- 11 · cierre de bloque -->
+<section class="diapo" data-notas="84-87 min. El recuento del primer bloque, industria por industria. Pide al aula que complete cada frase antes de revelarla: ¿qué enseñó la pizzería? ¿el retail? ¿la música? ¿el streaming? Cuatro semanas, cuatro lecciones que juntas son un método.">
+  <div class="kicker">Cuatro semanas, cuatro industrias</div>
+  <h2>Lo que ya sabes hacer</h2>
+  <ul>
+    <li>Una <strong>pizzería</strong> te enseñó que la métrica decide el ranking.</li>
+    <li class="frag">Un <strong>retail</strong>, que la unidad de análisis decide el conteo.</li>
+    <li class="frag">Un <strong>catálogo musical</strong>, que la forma decide el estadístico.</li>
+    <li class="frag">Uno de <strong>streaming</strong>, que ningún número sobrevive a datos sin auditar.</li>
+  </ul>
+</section>
+
+<!-- 12 · cierre: Comercial Andina -->
+<section class="diapo cifra" data-notas="87-90 min. El gran anuncio, déjalo proyectado mientras salen. Se acabó el circuito de entrenamiento: desde el lunes entra Comercial Andina, el distribuidor ecuatoriano con seis sucursales y 80 515 líneas de venta que acompaña el resto del curso — con todos los problemas de estas cuatro semanas juntos en los mismos archivos. Su tabla ya pasó por una limpieza exactamente como la de hoy: cuando lean «ventas_limpias.csv», ya saben todo lo que esa palabra promete y todo lo que hay que auditar antes de creérsela.">
+  <div class="kicker">Y desde el lunes</div>
+  <div class="numero">80 515</div>
+  <p class="etiqueta">líneas de venta, seis sucursales, un distribuidor ecuatoriano: <strong>Comercial Andina</strong>, el negocio que nos acompaña hasta diciembre.</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

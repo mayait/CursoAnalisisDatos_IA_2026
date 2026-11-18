@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 7 · Anatomía y calidad de los datos — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#B26B00" data-marca="Sesión 7 · 07-sep-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: este deck y el simulador detective abiertos. Última industria del circuito de entrenamiento: el streaming. El catálogo público de Netflix, tal cual salió al mundo, sin ensuciar a propósito. Hoy la sesión es una autopsia; el miércoles, el inventario con bisturí. Tiempo total 90 min.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 7</div>
+  <div class="kicker">Semana 4 · Lunes 7 de septiembre</div>
+  <h1>Los datos llegan rotos</h1>
+  <p class="grande">Nadie ensució este catálogo a propósito: así salió al mundo. Hoy aprendes a medir cuán roto está algo antes de repararlo.</p>
+</section>
+
+<!-- 2 · gancho -->
+<section class="diapo pregunta" data-notas="0-6 min. Presenta el dataset en una frase: el catálogo público de Netflix, películas y series, 12 columnas. La pregunta parece la más fácil del semestre. Votación: ¿7 787? La mayoría levantará la mano. Guarda ese voto: en tres láminas nadie lo sostendría.">
+  <div class="kicker">Netflix · el catálogo público</div>
+  <h2>El archivo tiene 7 787 filas. ¿Cuántos títulos tiene el catálogo?</h2>
+  <span class="mano">✋ ¿7 787?</span>
+</section>
+
+<!-- 3 · revela -->
+<section class="diapo" data-notas="6-13 min. Revela fila a fila. 7 787 filas, pero 7 786 títulos reales: hay un duplicado que ningún duplicated() ingenuo ve. Y si exiges todas las columnas llenas, solo 4 808 títulos «completos»: el 38,3 % del catálogo tiene al menos un hueco. La pregunta de la semana 2 —¿qué cuentas?— gana una capa: ¿cuentas lo que está roto?">
+  <div class="kicker">Depende de qué llames «título»</div>
+  <h2>Tres respuestas, otra vez</h2>
+  <ul>
+    <li><strong>7 787</strong> filas en el archivo.</li>
+    <li class="frag"><strong>7 786</strong> títulos reales: hay un duplicado invisible.</li>
+    <li class="frag"><strong>4 808</strong> títulos «completos»: el 38,3 % tiene al menos un hueco.</li>
+  </ul>
+  <p class="frag grande">La pregunta de la semana 2 —¿qué cuentas?— tiene ahora otra capa: <strong>¿cuentas lo que está roto?</strong></p>
+</section>
+
+<!-- 4 · el duplicado fantasma -->
+<section class="diapo" data-notas="13-20 min. La historia del duplicado. «Consequences» existe dos veces: s1486 y s1487, idénticas en tipo, año, país, duración, reparto y descripción. La segunda lleva al final del título un espacio no separable (\xa0): invisible en pantalla, suficiente para burlar a duplicated(). repr() delata lo invisible; se normaliza con strip y minúsculas antes de buscar. Y la decisión importa tanto como el hallazgo: se elimina porque las diez columnas de negocio coinciden — si solo coincidiera el título, la decisión sería la contraria.">
+  <div class="kicker">El duplicado invisible</div>
+  <h2>«Consequences» existe dos veces</h2>
+  <ul>
+    <li><code>s1486</code> y <code>s1487</code>: idénticas en tipo, año, país, duración, reparto y descripción.</li>
+    <li class="frag">La segunda lleva al final del título un <strong>espacio no separable</strong> (<code>\xa0</code>): invisible en pantalla, suficiente para burlar a <code>duplicated()</code>.</li>
+    <li class="frag"><code>repr()</code> delata lo invisible. Se normaliza —strip y minúsculas— antes de buscar duplicados.</li>
+  </ul>
+  <p class="frag">Se elimina la copia <strong>porque las diez columnas de negocio coinciden</strong>, no «porque los duplicados se borran». Dos películas pueden llamarse igual.</p>
+</section>
+
+<!-- 5 · cifra -->
+<section class="diapo cifra" data-notas="20-23 min. El nulo más grande del archivo: 2 389 títulos sin director, el 30,68 %. Pausa dramática y suelta el adelanto: va a resultar ser el problema más explicable del catálogo, no el más grave. La explicación viene en la siguiente lámina.">
+  <div class="kicker">El nulo más grande del archivo</div>
+  <div class="numero">30,68 %</div>
+  <p class="etiqueta">de los títulos no tiene director. Va a resultar ser el problema <strong>más explicable</strong>, no el más grave.</p>
+</section>
+
+<!-- 6 · dónde vive el nulo -->
+<section class="diapo" data-notas="23-30 min. La pregunta clave antes de tratar cualquier nulo: ¿dónde vive? El de director tiene estructura: falta en el 92,4 % de las series y solo en el 3 % de las películas. No es un fallo de captura: una serie tiene un director por episodio y quien diseñó la tabla dejó el campo vacío. Significa «no aplica», y un «no aplica» no se imputa ni se borra: se documenta. Preguntar dónde viven los nulos es la diferencia entre limpiar y amputar — frase que vuelve en la lámina del dropna.">
+  <div class="kicker">Dónde vive el nulo</div>
+  <h2>Falta en el 92,4 % de las series y en el 3 % de las películas</h2>
+  <p>No es un fallo de captura: una serie tiene un director por episodio, y quien diseñó la tabla dejó el campo vacío.</p>
+  <p class="frag grande">El ausente que significa <strong>«no aplica»</strong> no se imputa ni se borra: se documenta.</p>
+  <p class="frag">Preguntar <strong>dónde viven</strong> los nulos antes de decidir es la diferencia entre limpiar y amputar.</p>
+</section>
+
+<!-- 7 · ausente, cero, desconocido -->
+<section class="diapo" data-notas="30-37 min. Tres huecos, tres tratamientos, mismo archivo. director: no aplica, se conserva y se documenta. country: el país existe pero no se registró — centinela «Desconocido», para que ningún groupby esconda 507 títulos en silencio; el centinela queda tercero en el ranking de países, a la vista. rating: 7 títulos, 0,09 % — se documenta y ya. Y la trampa de la semana: rellenar nulos con cero por defecto. Un cliente sin identificador no compró cero: no sabemos quién es.">
+  <div class="kicker">Tres huecos, tres tratamientos</div>
+  <h2>Ausente no siempre significa lo mismo</h2>
+  <ul>
+    <li><code>director</code> (30,68 %) — significa «no aplica»: <strong>se conserva nulo</strong> y se documenta.</li>
+    <li class="frag"><code>country</code> (6,5 %) — el país existe, no se registró: centinela <strong>«Desconocido»</strong>, para que ningún <code>groupby</code> esconda 507 títulos.</li>
+    <li class="frag"><code>rating</code> (7 títulos, 0,09 %) — se documenta: ni sesga ni justifica inventar clasificaciones.</li>
+  </ul>
+  <p class="frag"><strong>La trampa:</strong> rellenar con cero por defecto. Un cliente sin identificador no compró cero: <em>no sabemos quién es</em>.</p>
+</section>
+
+<!-- 8 · sección -->
+<section class="diapo seccion" data-notas="37 min. Cambio de bloque: la autopsia técnica. Tipos que mienten, la columna con dos unidades y las fechas con espacio.">
+  <div class="kicker">Bloque 2 de 3</div>
+  <h2>La autopsia</h2>
+  <p>Tipos que mienten, una columna con dos unidades y las fechas con espacio.</p>
+</section>
+
+<!-- 9 · dtypes -->
+<section class="diapo" data-notas="37-43 min. dtypes antes que nada. Once de las doce columnas llegaron como texto; solo release_year es número. El matiz que separa al analista del robot: show_id como texto es CORRECTO — s1486 es una etiqueta, no una cantidad. date_added como texto es un problema: no se ordena ni se resta. duration como texto son dos problemas a la vez, y tiene lámina propia.">
+  <div class="kicker">Tipos de dato</div>
+  <h2>Once de doce columnas llegaron como texto</h2>
+  <ul>
+    <li><code>dtypes</code> es el primer vistazo: solo <code>release_year</code> llegó como número.</li>
+    <li class="frag"><code>show_id</code> como texto es <strong>correcto</strong>: «s1486» es una etiqueta, no una cantidad.</li>
+    <li class="frag"><code>date_added</code> como texto es un problema: no se puede ordenar ni restar.</li>
+    <li class="frag"><code>duration</code> como texto son <strong>dos problemas a la vez</strong>.</li>
+  </ul>
+</section>
+
+<!-- 10 · duration -->
+<section class="diapo" data-notas="43-50 min. El problema de tipos perfecto. La columna dice «90 min» para películas y «2 Seasons» para series. La mezcla tiene estructura perfecta: 5 377 en minutos, todas películas; 2 410 en temporadas, todas series. No es ruido, es diseño: alguien metió dos variables en una columna. Decisión: separar en dos columnas numéricas; el nulo resultante es diseño («no aplica»), no suciedad. Recién entonces hay números: película mediana 98 minutos, y el 67 % de las series tiene una sola temporada.">
+  <div class="kicker">El problema de tipos perfecto</div>
+  <h2>«90 min» y «2 Seasons» viven en la misma columna</h2>
+  <ul>
+    <li>La mezcla tiene estructura perfecta: <strong>5 377</strong> en minutos, todas películas; <strong>2 410</strong> en temporadas, todas series.</li>
+    <li class="frag">90 minutos y 2 temporadas <strong>no se pueden promediar</strong>: son dos variables disfrazadas de una.</li>
+    <li class="frag">Decisión: dos columnas numéricas, una por unidad. El nulo que resulta es <strong>diseño</strong>, no suciedad.</li>
+    <li class="frag">Recién entonces hay números: película mediana <strong>98 min</strong>; el <strong>67 %</strong> de las series, una sola temporada.</li>
+  </ul>
+</section>
+
+<!-- 11 · las fechas -->
+<section class="diapo" data-notas="50-57 min. La historia de las fechas. date_added viene como texto y 88 fechas traen un espacio delante. Con formato explícito, la conversión explota — bien: el error avisa. La salida cómoda, errors=coerce, convierte y calla: 98 NaT, de los que solo 10 eran nulos reales; 88 fechas correctas y completas, borradas en silencio. La versión honesta: strip primero, convertir después, y verificar que los únicos NaT sean los 10 de origen. La verificación es lo que distingue «convertí las fechas» de «convertí las fechas bien».">
+  <div class="kicker">Las fechas con espacio</div>
+  <h2><code>coerce</code> fabrica 98 NaT si conviertes sin mirar</h2>
+  <ul>
+    <li><code>date_added</code> es texto, y <strong>88 fechas</strong> traen un espacio escondido delante.</li>
+    <li class="frag">Con formato explícito, la conversión <strong>explota</strong>. Bien: el error avisa.</li>
+    <li class="frag">La salida cómoda —<code>errors="coerce"</code>— convierte y calla: <strong>98 NaT</strong>, de los que solo 10 eran nulos reales. 88 fechas correctas, borradas en silencio.</li>
+    <li class="frag">La versión honesta: <code>str.strip()</code> primero, convertir después, y <strong>verificar</strong> que los únicos NaT sean los 10 de origen.</li>
+  </ul>
+</section>
+
+<!-- 12 · pregunta dropna -->
+<section class="diapo pregunta" data-notas="57-63 min. El clímax. Proyecta las tres líneas y cuenta la historia: esto devolvió un asistente al prompt «limpia mi catálogo de streaming». Corre sin errores, es legible y termina imprimiendo «impecable». Votación: ¿quién lo firma? Deja que se comprometan. No reveles el daño todavía: está en la siguiente lámina.">
+  <div class="kicker">El código que devolvió el asistente</div>
+  <h2>Corre sin errores y termina diciendo «impecable». ¿Lo firmas?</h2>
+  <p><code>df["date_added"] = pd.to_datetime(df["date_added"], format="%B %d, %Y", errors="coerce")</code><br>
+     <code>df = df.dropna()</code><br>
+     <code>df = df.drop_duplicates()</code></p>
+  <span class="mano">✋ ¿Quién lo firma?</span>
+  <p class="frag">Tres líneas de apariencia profesional. La siguiente lámina es el daño.</p>
+</section>
+
+<!-- 13 · cifra: 131 -->
+<section class="diapo cifra" data-notas="63-68 min. La cifra de la sesión. De 2 410 series sobreviven 131: el dropna() global borró el 94,6 % de las series, porque el nulo del director vivía justo ahí. En total quedan 4 804 títulos de 7 787. Y el remate: el duplicado de Consequences sobrevivió — el fragmento borró 2 983 filas que no debía y conservó la única que sobraba. La limpieza perezosa no borra al azar: borra con sesgo.">
+  <div class="kicker">El costo de la limpieza perezosa</div>
+  <div class="numero">131</div>
+  <p class="etiqueta">series sobreviven de <strong>2 410</strong>. El <code>dropna()</code> global borró el 94,6 % de las series y dejó 4 804 títulos de 7 787. Y el duplicado invisible… sobrevivió.</p>
+</section>
+
+<!-- 14 · bitácora y cifra de control -->
+<section class="diapo" data-notas="68-74 min. La defensa contra el «impecable». Bitácora de limpieza: una fila por decisión —problema, filas afectadas, decisión, justificación—; la justificación es la columna que casi nadie escribe y la que se califica. Cifra de control: invariantes antes/después, y cada cambio explicado hasta la última fila — en este catálogo, una sola baja, identificada por su show_id. Con esas dos piezas puedes mirar cualquier «impecable» y contestar: demuéstralo.">
+  <div class="kicker">La defensa contra el «impecable»</div>
+  <h2>Limpieza sin bitácora es una opinión</h2>
+  <ul>
+    <li><strong>Bitácora</strong> — una fila por decisión: problema, filas afectadas, decisión y <em>justificación</em>.</li>
+    <li class="frag"><strong>Cifra de control</strong> — invariantes antes y después; cada cambio explicado hasta la última fila. Aquí: una sola baja, <code>s1487</code>.</li>
+    <li class="frag">Con esas dos piezas miras cualquier «impecable» —tuyo, del asistente o de un colega— y contestas: <strong>demuéstralo</strong>.</li>
+  </ul>
+</section>
+
+<!-- 15 · simulador -->
+<section class="diapo" data-notas="74-79 min. Abre el simulador detective y juega una ronda en vivo: un dataset con problemas escondidos y el reloj corriendo. Pide al aula que cante los problemas a medida que los ve. Queda enlazado en el sitio para afilar el ojo antes del miércoles.">
+  <div class="kicker">Para afilar el ojo</div>
+  <h2>El detective de datos</h2>
+  <p class="grande">Un dataset con problemas escondidos. Encuéntralos antes de que te encuentren a ti.</p>
+  <p><a href="../simuladores/simulador-detective-datos.html" target="_blank" rel="noopener">sitio del curso → simuladores → detective de datos</a></p>
+</section>
+
+<!-- 16 · esta semana -->
+<section class="diapo" data-notas="79-86 min. Cierre operativo. El miércoles: el inventario de calidad completo con porcentajes exactos, la bitácora, la cifra de control y el ejercicio del error incrustado. El deber 2 se entrega al cierre. Y la semana del proyecto es grande: bitácora de limpieza del dataset del caso más la propuesta formal del proyecto final con el diagnóstico de madurez analítica de la empresa. Es prerrequisito duro: todo lo demás corre sobre esa tabla.">
+  <div class="kicker">Esta semana · deber 2 y propuesta</div>
+  <h2>El miércoles: inventario de calidad</h2>
+  <ul>
+    <li>Taller: el inventario completo del catálogo, con el <strong>porcentaje exacto</strong> de cada problema, la bitácora y la cifra de control.</li>
+    <li class="frag"><strong>Deber 2</strong> al cierre: incluye cuantificar el daño de un fragmento de limpieza generado por IA.</li>
+    <li class="frag">Y la <strong>propuesta formal del proyecto</strong>: bitácora de limpieza del dataset del caso y diagnóstico de madurez analítica de la empresa.</li>
+  </ul>
+</section>
+
+<!-- 17 · cierre -->
+<section class="diapo cifra" data-notas="86-90 min. Déjala proyectada mientras salen. El miércoles se cierra el primer bloque del curso; recuérdales traer el dataset de su equipo además del laboratorio.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:24ch">«La limpieza perezosa no limpia: amputa.»</p>
+  <p class="etiqueta">Sesión 8 · miércoles 9 de septiembre · trae el dataset de tu equipo</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

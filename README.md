@@ -30,17 +30,26 @@ Más 16 páginas de semana, 16 guías de laboratorio y 10 páginas de caso.
 
 ---
 
-## Los laboratorios
+## Los datos: un negocio distinto cada semana
 
-Dieciséis cuadernos de Jupyter escritos para este curso, en [`sitio/labs/`](./sitio/labs/). Corren en Google Colab sin instalar nada y **están verificados uno por uno**: cada cual se ejecuta de principio a fin sin errores antes de publicarse.
+Las primeras cuatro semanas cambian de industria cada lunes, con datasets reales en [`sitio/datos/publicos/`](./sitio/datos/publicos/):
 
-Los dieciséis trabajan sobre el mismo negocio, **Comercial Andina**, un distribuidor ecuatoriano ficticio con tiendas en Quito, Guayaquil, Cuenca, Manta y Loja. Los datos los genera [`sitio/datos/generar_datos.py`](./sitio/datos/generar_datos.py) con semilla fija y contienen, a propósito, los fenómenos que cada semana necesita enseñar: ticket bimodal, problemas de calidad, uniones que duplican filas, estacionalidad, estructura RFM, una paradoja de Simpson real y abandono con clases desbalanceadas.
+| Semana | Industria | Dataset | El gancho |
+|---|---|---|---|
+| 1 | Gastronomía | `pizza_ventas.csv` (del Taller 01 del curso anterior) | La pizza estrella cambia según la definición |
+| 2 | Retail | `superstore.csv` (el dataset insignia de la clase) | ¿9 994 líneas, 5 009 pedidos o 793 clientes? |
+| 3 | Música | `spotify_canciones.csv` | La media persigue a los remixes; la mediana no |
+| 4 | Streaming | `netflix_titulos.csv` | El `dropna()` que borraba el 94,6 % de las series |
 
-```bash
-cd sitio/datos && python3 generar_datos.py    # regenera los siete archivos
-```
+Más ocho datasets de práctica por interés — videojuegos, café, aviación, cine, autos, telecom, RRHH y banca personal — varios heredados de los casos del curso anterior (Telco KNN, abandono laboral, CO2). El catálogo completo está en [`sitio/datos.html`](./sitio/datos.html) y se regenera con `descargar_publicos.py`.
 
-El script imprime al final las comprobaciones didácticas: si la bimodalidad o la paradoja de Simpson dejan de aparecer, avisa.
+Desde la semana 5 entra **Comercial Andina**, el negocio integrado que acompaña el curso hasta diciembre: lo genera [`sitio/datos/generar_datos.py`](./sitio/datos/generar_datos.py) con semilla fija y contiene a propósito los fenómenos de cada semana (uniones que duplican, estacionalidad, estructura RFM, una paradoja de Simpson real y abandono desbalanceado).
+
+## Los laboratorios y el aula
+
+Dieciséis cuadernos en [`sitio/labs/`](./sitio/labs/), verificados uno por uno: cada cual se ejecuta de principio a fin sin errores antes de publicarse.
+
+Las **sesiones 1 a 8** además están listas para dictarse desde [`sitio/aula.html`](./sitio/aula.html): ocho presentaciones que se proyectan desde el navegador (flechas para avanzar, `N` notas del docente con minutos, `G` vista de rejilla), cuatro casos de clase con juego de roles y giro, cuatro lecturas de estudio, ocho guiones del docente minuto a minuto, y cuatro simuladores interactivos nuevos: la pizza estrella, la unidad de análisis, media contra mediana y el detective de datos.
 
 ---
 

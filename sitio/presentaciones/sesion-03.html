@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 3 · La pregunta antes del dato — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#7A4BA8" data-marca="Sesión 3 · 24-ago-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: este deck y el simulador de unidad de análisis abiertos en pestañas. Hoy cambia el negocio: de la pizzería a Superstore, un retail de cuatro años. No expliques nada todavía: abre directo con la pregunta de la lámina 2. Tiempo total 90 min.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 3</div>
+  <div class="kicker">Semana 2 · Lunes 24 de agosto</div>
+  <h1>La pregunta antes del dato</h1>
+  <p class="grande">La mitad de los análisis fracasan antes de la primera línea de código. Hoy ves exactamente dónde.</p>
+</section>
+
+<!-- 2 · gancho -->
+<section class="diapo pregunta" data-notas="0-7 min. Presenta el negocio en dos frases: Superstore, cuatro años de pedidos de un retail de muebles, oficina y tecnología; el dataset con el que medio mundo aprendió Tableau. Luego la pregunta de primer día de gerente. Pide tres o cuatro cifras en voz alta y anótalas en la pizarra: las vas a necesitar en la lámina siguiente. No des pistas: deja que digan un número, cualquiera.">
+  <div class="kicker">Superstore · cuatro años de un retail</div>
+  <h2>¿Cuántas ventas hizo esta empresa?</h2>
+  <p class="grande">La pregunta que cualquier gerente hace en su primer día.</p>
+  <span class="mano">✋ Digan una cifra</span>
+</section>
+
+<!-- 3 · las tres respuestas -->
+<section class="diapo" data-notas="7-13 min. Revela las tres barras una a una. Las tres salen del mismo archivo y las tres son correctas: 9 994 líneas de pedido, 5 009 pedidos, 793 clientes. Compara con las cifras de la pizarra: casi seguro alguien dijo una de estas. El problema no es el cálculo: es que la palabra venta nunca se definió. Deja un silencio después del fragmento final.">
+  <div class="kicker">Las tres respuestas verdaderas</div>
+  <h2>El mismo archivo contesta tres veces</h2>
+  <div class="ranking">
+    <div class="fila"><span class="pos">1</span><div class="barra"><i style="--w:100%"></i><span>líneas de pedido</span></div><span class="valor">9 994</span></div>
+    <div class="fila frag"><span class="pos">2</span><div class="barra"><i style="--w:50.1%"></i><span>pedidos distintos</span></div><span class="valor">5 009</span></div>
+    <div class="fila frag"><span class="pos">3</span><div class="barra"><i style="--w:7.9%"></i><span>clientes distintos</span></div><span class="valor">793</span></div>
+  </div>
+  <p class="frag grande">Las tres son correctas. La palabra <strong>«venta»</strong> nunca se definió.</p>
+</section>
+
+<!-- 4 · las tres medias -->
+<section class="diapo" data-notas="13-19 min. La segunda vuelta duele más: la venta promedio también tiene tres valores. El que el gerente quería cuando dijo ticket promedio es el segundo (458,61). Si le entregas el primero, la cifra queda a la mitad; el tercero la infla 6,3 veces. Remata: ninguna está mal calculada, dos están mal elegidas.">
+  <div class="kicker">La misma tabla, tres números</div>
+  <h2>¿Y la venta promedio?</h2>
+  <table class="mini">
+    <tr><th>Unidad de análisis</th><th>Cuántas hay</th><th>Venta media</th><th>Qué pregunta contesta</th></tr>
+    <tr><td>Línea de pedido</td><td>9 994</td><td>$ 229,86</td><td>¿Cuánto pesa un producto en el carrito?</td></tr>
+    <tr class="frag gana"><td>Pedido</td><td>5 009</td><td>$ 458,61</td><td>¿Cuánto gasta alguien cuando viene?</td></tr>
+    <tr class="frag"><td>Cliente</td><td>793</td><td>$ 2 896,85</td><td>¿Cuánto vale un cliente para la empresa?</td></tr>
+  </table>
+  <p class="frag">El «ticket promedio» que el gerente pedía es el <strong>segundo</strong>. Ninguno está mal calculado: dos están mal elegidos.</p>
+</section>
+
+<!-- 5 · cifra -->
+<section class="diapo cifra" data-notas="19-22 min. La distancia entre la respuesta más pequeña (229,86) y la más grande (2 896,85) a la misma pregunta: 12,6 veces. Sin un solo error de cálculo, sin un dato sucio. Es la versión retail de la lección de la pizzería, y la razón de ser de esta semana.">
+  <div class="kicker">La distancia entre dos respuestas correctas</div>
+  <div class="numero">12,6</div>
+  <p class="etiqueta">veces separa la respuesta más pequeña de la más grande a la misma pregunta, en el mismo archivo, sin un solo error de cálculo.</p>
+</section>
+
+<!-- 6 · sección -->
+<section class="diapo seccion" data-notas="22 min. Cambio de bloque: del asombro al método. Las cuatro preguntas que se contestan antes de abrir cualquier archivo, con Superstore de campo de pruebas.">
+  <div class="kicker">Bloque 2 de 3</div>
+  <h2>Las cuatro preguntas antes de abrir el archivo</h2>
+  <p>Unidad, métrica, comparación, decisión. Si falta una, no hay análisis.</p>
+</section>
+
+<!-- 7 · consulta vs análisis -->
+<section class="diapo" data-notas="22-28 min. La distinción que ordena la semana. Pásame las ventas de California se contesta con una consulta y no exige decidir nada. La pregunta del descuento a Corporate obliga a definir unidad, métrica, comparación y decisión. Pide un ejemplo de cada tipo sacado de sus trabajos y clasifícalos en vivo.">
+  <div class="kicker">Primero, distinguir</div>
+  <h2>Petición de reporte no es pregunta de negocio</h2>
+  <div class="dos">
+    <div class="col panel"><div class="titulo">Petición de reporte</div>
+      <p>«Pásame las ventas de California.»</p>
+      <p>Se contesta con una consulta. Nadie decide nada.</p>
+    </div>
+    <div class="col panel destacado"><div class="titulo">Pregunta de negocio</div>
+      <p>«¿Le mantenemos el descuento a Corporate el próximo trimestre?»</p>
+      <p>Exige unidad, métrica, comparación y decisión.</p>
+    </div>
+  </div>
+  <p class="frag">La prueba: si <strong>ningún resultado posible</strong> cambia lo que harás el lunes, es un reporte.</p>
+</section>
+
+<!-- 8 · unidad de análisis -->
+<section class="diapo" data-notas="28-35 min. La primera de las cuatro preguntas y la más importante del primer bloque del curso. En Superstore: un pedido tiene entre 1 y 14 líneas; un cliente, entre 1 y 17 pedidos con mediana 6. Por eso no hay regla de tres que convierta un nivel en otro. La frase final es la que se llevan a casa.">
+  <div class="kicker">Pregunta 1 de 4</div>
+  <h2>¿Qué representa una fila del resultado?</h2>
+  <ul>
+    <li>Línea ≠ pedido ≠ cliente: acabas de ver los tres números.</li>
+    <li class="frag">Un pedido tiene entre 1 y 14 líneas; un cliente, entre 1 y 17 pedidos. No hay regla de tres entre niveles.</li>
+    <li class="frag">El cliente de 17 pedidos pesa 17 veces más que el de uno cuando promedias por línea, y exactamente igual cuando promedias por cliente.</li>
+  </ul>
+  <p class="frag grande">Elegir la unidad de análisis <strong>es elegir a quién le das voz</strong>.</p>
+</section>
+
+<!-- 9 · métrica, comparación, decisión -->
+<section class="diapo" data-notas="35-42 min. Las otras tres, más rápido. La comparación es la que más se olvida y la que más duele: Corporate compró 706 146,37 en el periodo — pregunta al aula si eso es bueno o malo. No se puede saber: falta el contra qué. La decisión cierra el circuito: si nada cambia con el resultado, la pregunta está mal hecha.">
+  <div class="kicker">Preguntas 2, 3 y 4</div>
+  <h2>Métrica, comparación, decisión</h2>
+  <ul>
+    <li><strong>Métrica</strong> — la fórmula exacta, con periodo y filtros. «Ventas» no es una fórmula.</li>
+    <li class="frag"><strong>Comparación</strong> — la que más se olvida: «Corporate compró $ 706 146» no es bueno ni malo hasta decir <em>contra qué</em>.</li>
+    <li class="frag"><strong>Decisión</strong> — qué cambia según el resultado. Si no cambia nada, cambia la pregunta.</li>
+  </ul>
+</section>
+
+<!-- 10 · clínica: pregunta -->
+<section class="diapo pregunta" data-notas="42-47 min. Clínica de definiciones ambiguas. Pregunta con cara seria: ¿cuántos clientes tiene Superstore? Alguien dirá 793, que ya salió. Vota: ¿793 o menos? Luego pregunta qué significa tener un cliente: ¿el que compró alguna vez? ¿este año? ¿este mes? Pide ejemplos de sus trabajos: qué es un cliente activo, un empleado activo, un producto activo.">
+  <div class="kicker">Clínica de definiciones</div>
+  <h2>¿Cuántos clientes «tiene» Superstore?</h2>
+  <span class="mano">✋ ¿793? ¿Menos?</span>
+  <p class="frag grande">Depende de qué signifique <strong>«tener»</strong> un cliente. Y eso nadie lo definió.</p>
+</section>
+
+<!-- 11 · la escalera de activos -->
+<section class="diapo" data-notas="47-54 min. Revela las cinco barras: cinco definiciones defendibles de cliente activo, cinco números, de 203 a 793 — factor 3,9. Quien elige la definición sin decirlo, elige el titular del directorio. La regla del curso: la definición se escribe antes de calcular, va al lado del número y no cambia entre meses. Un indicador que cambia de definición no es un indicador.">
+  <div class="kicker">Cinco definiciones defendibles, cinco números</div>
+  <h2>«Cliente activo», medido de cinco formas</h2>
+  <div class="ranking">
+    <div class="fila"><span class="pos">1</span><div class="barra"><i style="--w:25.6%"></i><span>compró en los últimos 30 días</span></div><span class="valor">203</span></div>
+    <div class="fila frag"><span class="pos">2</span><div class="barra"><i style="--w:55%"></i><span>últimos 90 días</span></div><span class="valor">436</span></div>
+    <div class="fila frag"><span class="pos">3</span><div class="barra"><i style="--w:74.9%"></i><span>últimos 180 días</span></div><span class="valor">594</span></div>
+    <div class="fila frag"><span class="pos">4</span><div class="barra"><i style="--w:87.5%"></i><span>últimos 365 días</span></div><span class="valor">694</span></div>
+    <div class="fila frag gana"><span class="pos">5</span><div class="barra"><i style="--w:100%"></i><span>alguna vez en cuatro años</span></div><span class="valor">793</span></div>
+  </div>
+  <p class="frag">Factor de <strong>3,9</strong> entre extremos. La definición se escribe <strong>antes</strong> de calcular, va al lado del número y no cambia entre meses.</p>
+</section>
+
+<!-- 12 · la sorpresa -->
+<section class="diapo" data-notas="54-60 min. La sorpresa pedagógica: para contar esos 9 994 hubo que limpiar primero. El archivo trae 10 800 filas; 806 son otras dos hojas del Excel original —gerentes regionales y devoluciones— pegadas debajo por un export descuidado. head() no las muestra porque el principio del archivo está impecable. No resuelvas más: el miércoles las destapan ellos con info(), sample() y tail().">
+  <div class="kicker">Y una sorpresa de fábrica</div>
+  <h2>El archivo trae 806 filas que no son ventas</h2>
+  <ul>
+    <li>El archivo tiene <strong>10 800 filas</strong>; solo 9 994 son líneas de pedido.</li>
+    <li class="frag">Las otras <strong>806</strong> son dos hojas del Excel original —gerentes regionales y devoluciones— pegadas debajo.</li>
+    <li class="frag"><code>head()</code> no las muestra: el principio del archivo está limpio. La basura vive al final.</li>
+  </ul>
+  <p class="frag grande">Los datos llegan sucios <strong>de fábrica</strong>. El miércoles los destapas tú.</p>
+</section>
+
+<!-- 13 · la ficha de análisis -->
+<section class="diapo" data-notas="60-67 min. El entregable que ordena todo: una página, sin código, antes de tocar el teclado. Recorre los siete campos con el ejemplo del cuaderno (campaña de reactivación de enero). El campo que más les va a costar es decisión que cambia; el que más olvidan, limitaciones conocidas. El miércoles cada equipo entrega su ficha a otro para que la ataque.">
+  <div class="kicker">El entregable que ordena todo</div>
+  <h2>La ficha de análisis: una página, sin código</h2>
+  <ul>
+    <li><strong>Pregunta de negocio</strong> · <strong>unidad de análisis</strong> · <strong>métrica</strong> · <strong>comparación</strong> · <strong>decisión que cambia</strong></li>
+    <li class="frag"><strong>Fuente y granularidad</strong> — qué archivo y qué representa una fila del origen.</li>
+    <li class="frag"><strong>Limitaciones conocidas</strong> — qué no puedes contestar con estos datos.</li>
+  </ul>
+  <p class="frag">Se entrega a otro grupo <strong>para que la ataque</strong>. Si ninguna decisión cambia con el resultado, la ficha vuelve y se reescribe.</p>
+</section>
+
+<!-- 14 · simulador -->
+<section class="diapo" data-notas="67-72 min. Abre el simulador en la otra pestaña y juega dos rondas en vivo: misma tabla, selector de unidad, y el número cambia delante de ellos. Pide a alguien del aula que prediga el número antes de cambiar la unidad. Queda enlazado en el sitio para practicar en casa.">
+  <div class="kicker">Para jugar, ahora y en casa</div>
+  <h2>El simulador de unidad de análisis</h2>
+  <p class="grande">La misma tabla, un selector de unidad, y el número que cambia delante de ti.</p>
+  <p><a href="../simuladores/simulador-unidad-analisis.html" target="_blank" rel="noopener">sitio del curso → simuladores → unidad de análisis</a></p>
+</section>
+
+<!-- 15 · sección -->
+<section class="diapo seccion" data-notas="72 min. Último bloque, ritmo ágil: qué pasa el miércoles, qué es el deber 1 y qué le toca al proyecto esta semana.">
+  <div class="kicker">Bloque 3 de 3</div>
+  <h2>Esta semana</h2>
+  <p>El taller del miércoles, el deber 1 y la empresa del proyecto.</p>
+</section>
+
+<!-- 16 · miércoles y deber 1 -->
+<section class="diapo" data-notas="72-82 min. El miércoles es taller: los cinco minutos de auditoría sobre Superstore, separar las 806 filas y el ataque de fichas entre equipos. El deber 1 —primera entrega con nota, 25 % del curso entre los siete deberes— se entrega al cierre del taller. Y la decisión de la semana para el proyecto: la empresa se elige ahora y no se cambia; que comprueben antes que pueden conseguir un archivo real con al menos mil filas.">
+  <div class="kicker">El miércoles · deber 1</div>
+  <h2>Carga, auditoría y el ataque de fichas</h2>
+  <ul>
+    <li>Taller: los <strong>cinco minutos</strong> de auditoría sobre Superstore y las 806 filas fuera.</li>
+    <li class="frag"><strong>Deber 1</strong> al cierre del taller: el cuaderno ejecutado más la ficha de análisis de tu equipo.</li>
+    <li class="frag">Cada equipo llega el miércoles con la <strong>empresa del proyecto elegida</strong>. Se elige esta semana y no se cambia.</li>
+  </ul>
+</section>
+
+<!-- 17 · cierre -->
+<section class="diapo cifra" data-notas="82-90 min. Cierra con la frase y déjala proyectada. Si sobra tiempo, una última pasada: unidad, métrica, comparación, decisión — pide al aula que las recite. El miércoles, laptop obligatoria.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:26ch">«Si no puedes decir qué decisión cambia, todavía no tienes una pregunta.»</p>
+  <p class="etiqueta">Sesión 4 · miércoles 26 de agosto · trae tu laptop</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

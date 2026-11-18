@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 1 · Por qué fracasan los análisis — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#0F6E8C" data-marca="Sesión 1 · 17-ago-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: proyector probado, este deck abierto y el simulador del informe engañoso en otra pestaña. No te presentes todavía: abre con la pregunta de la lámina 2. Tiempo total 90 min. Presiona N para ocultar estas notas y ? para ver los controles.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 1</div>
+  <div class="kicker">Semana 1 · Lunes 17 de agosto</div>
+  <h1>Por qué fracasan los análisis</h1>
+  <p class="grande">Los datos estaban bien. La decisión salió mal. Hoy vemos cómo pasa eso.</p>
+</section>
+
+<!-- 2 · gancho -->
+<section class="diapo pregunta" data-notas="0-8 min. Cuenta la situación con calma: una pizzería, un año de ventas, el dueño quiere premiar a la mejor pizza y sacar del menú a la peor. Pide votación a mano alzada ANTES de mostrar ningún número: ¿se puede responder con una tabla de ventas? Casi todos dirán que sí. Guarda ese sí: lo vas a usar en la lámina 6.">
+  <div class="kicker">Una pizzería real · 21 350 pedidos en un año</div>
+  <h2>El dueño quiere premiar a la pizza estrella y eliminar a la peor.</h2>
+  <p class="grande">¿Alcanza con la tabla de ventas para decidirlo?</p>
+  <span class="mano">✋ Votemos: ¿sí o no?</span>
+</section>
+
+<!-- 3 · ranking por unidades -->
+<section class="diapo" data-notas="8-14 min. Muestra el ranking por unidades. La Classic Deluxe gana. Pregunta: ¿le damos el premio? Deja que se comprometan con la respuesta. Las barras están a escala real de los datos del curso (2 453 unidades la primera).">
+  <div class="kicker">La estrella, medida en pizzas vendidas</div>
+  <h2>Ranking por unidades</h2>
+  <div class="ranking">
+    <div class="fila gana"><span class="pos">1</span><div class="barra"><i style="--w:100%"></i><span>Classic Deluxe</span></div><span class="valor">2 453</span></div>
+    <div class="fila"><span class="pos">2</span><div class="barra"><i style="--w:99%"></i><span>Barbecue Chicken</span></div><span class="valor">2 432</span></div>
+    <div class="fila"><span class="pos">3</span><div class="barra"><i style="--w:98.7%"></i><span>Hawaiian</span></div><span class="valor">2 422</span></div>
+    <div class="fila"><span class="pos">4</span><div class="barra"><i style="--w:98.6%"></i><span>Pepperoni</span></div><span class="valor">2 418</span></div>
+    <div class="fila"><span class="pos">5</span><div class="barra"><i style="--w:96.7%"></i><span>Thai Chicken</span></div><span class="valor">2 371</span></div>
+  </div>
+  <p class="frag">¿Premiamos a la <strong>Classic Deluxe</strong>? ✋</p>
+</section>
+
+<!-- 4 · ranking por ingresos -->
+<section class="diapo" data-notas="14-20 min. El giro. Mismo dato, otra pregunta: ¿cuál trae más dinero? La Thai Chicken, que iba QUINTA por unidades, gana por ingresos; la Classic Deluxe cae a cuarta. Nadie tocó los datos: cambió la definición de estrella. Deja un silencio después de revelar.">
+  <div class="kicker">La misma tabla, otra pregunta</div>
+  <h2>Ranking por ingresos</h2>
+  <div class="ranking">
+    <div class="fila gana"><span class="pos">1</span><div class="barra"><i style="--w:100%"></i><span>Thai Chicken</span></div><span class="valor">$ 43 434</span></div>
+    <div class="fila"><span class="pos">2</span><div class="barra"><i style="--w:98.5%"></i><span>Barbecue Chicken</span></div><span class="valor">$ 42 768</span></div>
+    <div class="fila"><span class="pos">3</span><div class="barra"><i style="--w:95.3%"></i><span>California Chicken</span></div><span class="valor">$ 41 410</span></div>
+    <div class="fila frag"><span class="pos">4</span><div class="barra"><i style="--w:87.9%"></i><span>Classic Deluxe — la “estrella”</span></div><span class="valor">$ 38 180</span></div>
+  </div>
+  <p class="frag grande">La estrella de unidades iba <strong>quinta</strong> en dinero. Y al revés.</p>
+</section>
+
+<!-- 5 · la peor -->
+<section class="diapo pregunta" data-notas="20-26 min. Segunda vuelta del gancho: la peor. Por unidades es la Brie Carre (490 en el año). ¿La eliminamos? Fragmento: es también una de las más caras del menú — vender poco no es lo mismo que aportar poco. Y todavía nadie preguntó por el margen ni por quién la pide. La decisión de eliminar necesita una definición que la tabla no trae.">
+  <div class="kicker">¿Y la peor?</div>
+  <h2>La Brie Carre vendió 490 unidades en todo el año.</h2>
+  <span class="mano">✋ ¿La sacamos del menú?</span>
+  <p class="frag grande">Es también una de las más caras del menú. ¿Vender poco es aportar poco?</p>
+  <p class="frag">Nadie preguntó todavía por el <strong>margen</strong>, ni por <strong>quién</strong> la pide, ni <strong>cuándo</strong>.</p>
+</section>
+
+<!-- 6 · idea central -->
+<section class="diapo cifra" data-notas="26-30 min. La idea que sostiene el curso entero. Recuerda el voto de la lámina 2: casi todos dijeron que la tabla alcanzaba. Los datos eran correctos, completos y limpios. Lo que faltaba era la definición de estrella. Esta frase vuelve todas las semanas.">
+  <div class="kicker">La idea central del curso</div>
+  <div class="numero">0</div>
+  <p class="etiqueta">errores había en los datos. El análisis falló igual: la palabra <strong>estrella</strong> nunca se definió.</p>
+</section>
+
+<!-- 7 · sección: la escalera -->
+<section class="diapo seccion" data-notas="30 min. Cambio de bloque: ahora el mapa conceptual de la analítica. Anuncia que la pizzería nos acompaña todo el bloque.">
+  <div class="kicker">Bloque 2 de 4</div>
+  <h2>La escalera de la analítica</h2>
+  <p>Cuatro preguntas distintas, cuatro niveles de dificultad y de valor.</p>
+</section>
+
+<!-- 8 · escalera con fragmentos -->
+<section class="diapo" data-notas="30-42 min. Revela peldaño por peldaño con la pizzería como ejemplo. Descriptivo: ¿cuánto vendimos? Diagnóstico: ¿por qué cayó agosto? Predictivo: ¿cuántas masas compro para diciembre? Prescriptivo: ¿qué precio le pongo a la Brie Carre? En cada peldaño pregunta al aula qué haría falta saber. El costo de saltarse peldaños: pedir un modelo predictivo sin tener claro el descriptivo.">
+  <h2>Cuatro preguntas sobre la misma pizzería</h2>
+  <ul>
+    <li><strong>Descriptivo</strong> — ¿cuánto vendimos y de qué? <em>La tabla que ya vimos.</em></li>
+    <li class="frag"><strong>Diagnóstico</strong> — ¿por qué agosto cayó 18 %?</li>
+    <li class="frag"><strong>Predictivo</strong> — ¿cuántas masas compro para diciembre?</li>
+    <li class="frag"><strong>Prescriptivo</strong> — ¿qué hago con el precio de la Brie Carre?</li>
+  </ul>
+  <p class="frag"><strong>La trampa:</strong> pedir el peldaño 4 sin haber pisado el 1. Es el error más caro de la industria.</p>
+</section>
+
+<!-- 9 · qué es BA -->
+<section class="diapo" data-notas="42-48 min. Definición corta y honesta. Business Analytics no es hacer reportes ni saber programar: es habilitar decisiones con evidencia. Big data es un problema de infraestructura; este curso trabaja el criterio. El curso les enseña a decidir, Python es el medio.">
+  <div class="kicker">Qué es y qué no es</div>
+  <h2>Business Analytics es habilitar una decisión con evidencia.</h2>
+  <div class="dos">
+    <div class="col panel"><div class="titulo">No es</div>
+      <ul><li>Hacer reportes más rápido</li><li>Acumular datos por si acaso</li><li>Saber programar</li></ul>
+    </div>
+    <div class="col panel destacado"><div class="titulo">Es</div>
+      <ul><li>Definir la pregunta antes del dato</li><li>Comparar contra algo</li><li>Decir qué hacer el lunes</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · anatomía del fracaso -->
+<section class="diapo" data-notas="48-56 min. Los tres agujeros por los que se cae un análisis con datos correctos. Pide un ejemplo propio de cada uno: una muestra torcida (encuestar solo a quien contesta), una comparación ausente (¿subió respecto a qué?), una métrica sin definir (¿qué es un cliente activo?). Anota los ejemplos del aula: son material para la semana 2.">
+  <div class="kicker">Anatomía del fracaso</div>
+  <h2>Tres agujeros, ningún error de cálculo</h2>
+  <ul>
+    <li><strong>La muestra torcida</strong> — medimos a quienes era fácil medir.</li>
+    <li class="frag"><strong>La comparación ausente</strong> — “subió 12 %”… ¿respecto a qué?</li>
+    <li class="frag"><strong>La métrica sin definir</strong> — “estrella”, “activo”, “venta”: cada uno entendió otra cosa.</li>
+  </ul>
+  <span class="mano frag">✋ ¿Dónde han visto uno de estos tres en su trabajo?</span>
+</section>
+
+<!-- 11 · sección: el curso -->
+<section class="diapo seccion" data-notas="56 min. Bloque 3: cómo funciona el curso. Ritmo más ágil, son reglas del juego.">
+  <div class="kicker">Bloque 3 de 4</div>
+  <h2>Cómo funciona este curso</h2>
+  <p>Dieciséis semanas, un proyecto real y una regla sobre la IA.</p>
+</section>
+
+<!-- 12 · estructura -->
+<section class="diapo" data-notas="56-63 min. El arco del semestre en un vistazo: cinco bloques, el corte de medio semestre con el proyecto RFM el 7 de octubre, la defensa final el 7 y 9 de diciembre. Cada semana un negocio distinto: pizzería hoy, retail, música, streaming las próximas; desde la semana 5 además el proyecto de cada grupo con su propia empresa.">
+  <div class="kicker">El semestre en un vistazo</div>
+  <h2>Cinco bloques y dos entregas grandes</h2>
+  <ul>
+    <li><strong>Leer datos</strong> (sem. 1–5) · <strong>Comunicar</strong> (6–7) · <strong>Decidir</strong> (9–11) · <strong>Predecir</strong> (12–14) · <strong>Responder</strong> (15–16)</li>
+    <li class="frag"><strong>7 de octubre</strong> — proyecto de medio semestre: ¿quiénes son mis clientes y cuánto valen?</li>
+    <li class="frag"><strong>7 y 9 de diciembre</strong> — defensa del proyecto integrador ante panel.</li>
+    <li class="frag">Cada semana, un negocio distinto: hoy una pizzería; vienen un retail, Spotify, Netflix…</li>
+  </ul>
+</section>
+
+<!-- 13 · la IA -->
+<section class="diapo" data-notas="63-72 min. La regla que distingue a este curso. Demo en vivo si hay tiempo: pide al asistente ‘¿cuál es la mejor pizza?’ (respuesta genérica) y luego el prompt bueno con definición de estrella, periodo, métrica y formato de verificación. La diferencia ES la lección. Lo que se califica: el encargo y la verificación, no el código.">
+  <div class="kicker">La regla sobre la IA</div>
+  <h2>La IA se usa para todo. Se califica el encargo.</h2>
+  <div class="dos">
+    <div class="col panel"><div class="titulo">Prompt que no sirve</div>
+      <p>“¿Cuál es la mejor pizza del dataset?”</p>
+    </div>
+    <div class="col panel destacado"><div class="titulo">Encargo verificable</div>
+      <p>“Define estrella como margen total anual. Calcula el top 5, muestra el código y dime qué supuesto hiciste con las devoluciones.”</p>
+    </div>
+  </div>
+  <p class="frag">Cada entrega incluye la <strong>bitácora</strong>: qué pediste, qué devolvió, qué verificaste.</p>
+</section>
+
+<!-- 14 · protocolo -->
+<section class="diapo" data-notas="72-78 min. Las cuatro reglas del protocolo que firman hoy. La cuarta es la que duele: en la defensa se pregunta por cualquier línea del cuaderno, y ‘lo generó el asistente’ no es una respuesta. También: nada de datos reales de una empresa dentro de un asistente; eso llega con el proyecto en la semana 2.">
+  <div class="kicker">El protocolo, en cuatro reglas</div>
+  <h2>Lo que firmamos hoy</h2>
+  <ul>
+    <li>Puedes usar cualquier asistente, para cualquier tarea.</li>
+    <li class="frag">Registras el prompt final y qué verificaste.</li>
+    <li class="frag">Datos reales de una empresa <strong>nunca</strong> entran al asistente.</li>
+    <li class="frag">En la defensa respondes por cada línea. “Lo hizo la IA” no es una respuesta.</li>
+  </ul>
+</section>
+
+<!-- 15 · sección: manos a la obra -->
+<section class="diapo seccion" data-notas="78 min. Último bloque: formación de equipos y cierre.">
+  <div class="kicker">Bloque 4 de 4</div>
+  <h2>Manos a la obra</h2>
+  <p>Equipos, contrato y lo que pasa el miércoles.</p>
+</section>
+
+<!-- 16 · equipos y contrato -->
+<section class="diapo" data-notas="78-86 min. Equipos de cuatro, mezclando quien ya programó con quien no. Hoy: nombre del equipo, contrato de grupo firmado (plantilla en el sitio) y repositorio compartido creado. El contrato incluye la regla de la bitácora. Recuérdales la evaluación 360: el aporte individual se ve.">
+  <div class="kicker">Hoy salen con esto hecho</div>
+  <h2>Equipos de cuatro y contrato firmado</h2>
+  <ul>
+    <li>Nombre del equipo y acuerdo de trabajo — la plantilla está en el sitio del curso.</li>
+    <li class="frag">Repositorio compartido con la carpeta <code>bitacora/</code> creada.</li>
+    <li class="frag">Mezclen: quien ya programó con quien nunca lo hizo. La 360 mide el aporte de cada quien.</li>
+  </ul>
+</section>
+
+<!-- 17 · miércoles -->
+<section class="diapo" data-notas="86-90 min. Cierre operativo: el miércoles es taller, traer laptop con cuenta de Google funcionando. El laboratorio 1 recorre la pizzería completa en Colab, de la pregunta al gráfico, sin instalar nada. Lectura previa: el material de la semana 1 en el sitio (15 minutos). Despídete con la pregunta teaser de la semana 2.">
+  <div class="kicker">El miércoles</div>
+  <h2>Recorremos la pizzería entera en Colab</h2>
+  <ul>
+    <li>Trae laptop con una cuenta de Google que funcione. No se instala nada.</li>
+    <li>Lectura previa: <strong>material de la semana 1</strong> en el sitio del curso — 15 minutos.</li>
+  </ul>
+  <p class="frag grande">Y la semana que viene: un retail con 10 800 filas… donde nadie se pone de acuerdo en <strong>cuántos clientes tiene</strong>.</p>
+</section>
+
+<!-- 18 · cierre -->
+<section class="diapo cifra" data-notas="Última lámina, déjala proyectada mientras salen. Es el resumen de la sesión en una frase.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:24ch">«Los datos no deciden. Deciden las definiciones.»</p>
+  <p class="etiqueta">Sesión 2 · miércoles 19 de agosto · trae tu laptop</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

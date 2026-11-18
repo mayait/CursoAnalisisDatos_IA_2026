@@ -29,6 +29,7 @@
 <a href="casos.html">Casos de estudio</a>
 <a href="datacamp.html">DataCamp y concurso</a>
 <a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
 <a href="rubricas.html">Rúbricas</a>
 <a href="apoyo.html">Apoyo y accesibilidad</a>
 <a href="recursos.html">Recursos y datasets</a>
@@ -65,7 +66,7 @@
 <div class="meta">
 <span>09-sep-2026</span>
 <span>90 minutos</span>
-<span>45 celdas · 22 de código</span>
+<span>43 celdas · 22 de código</span>
 <span><a href="semana-04.html">Semana 4</a></span>
 </div>
 <p><a class="boton" href="labs/lab_04.ipynb">Descargar el cuaderno</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_04.ipynb">Abrir en Colab</a> <a class="boton sec" href="datos.html">Ver los datos</a></p>
@@ -76,15 +77,15 @@
 <li>Escribir una bitácora de limpieza que otra persona pueda auditar.</li>
 </ul>
 <h2>Pasos</h2><ol class="pasos">
-<li>Inventario de problemas de calidad de la base, con el porcentaje exacto que afecta cada uno.</li>
-<li>Decidir el tratamiento de cada problema y escribir la justificación en una línea.</li>
-<li>Producir la tabla limpia y demostrar con una cifra de control que no se perdió información por el camino.</li>
+<li>Inventario de problemas del catálogo de Netflix con el porcentaje exacto de cada uno: 30,68 % sin director, fechas con espacios, duración que mezcla minutos con temporadas.</li>
+<li>Decidir el tratamiento de cada problema y escribir la justificación en una línea. El dropna() perezoso borra el 94,6 % de las series.</li>
+<li>Producir el catálogo limpio y demostrar con una cifra de control que no se perdió un solo título por el camino.</li>
 </ol>
 <h2>Ejercicios</h2>
-<div class="sesion lab"><div class="cab"><span class="etiqueta inf">Guiado · se resuelve en clase</span></div><h3>🌶️ Ejercicio 1 — Guiado</h3><p>Repite el inventario de la sección 1 sobre clientes.csv completo: una tabla con problema, filas</p></div>
-<div class="sesion lab"><div class="cab"><span class="etiqueta avi">Desafío · queda para casa</span></div><h3>🔥 Desafío — el fragmento generado por IA</h3><p>Este es el código que devolvió un asistente al prompt «escribe una función que limpie mi DataFrame de</p></div>
-<div class="sesion lab"><div class="cab"><span class="etiqueta ok">Reto · quince minutos en clase</span></div><h3>🎯 Reto en clase (15 min)</h3><p>En equipos. Cada equipo escribe una línea de limpieza plausible pero equivocada sobre</p></div>
-<div class="caja trampa"><div class="titulo">⚠️ La trampa que este laboratorio desarma</div><p>Rellenar los nulos con cero por defecto. Un cliente sin identificador no compró cero: no sabemos quién es.</p></div>
+<div class="sesion lab"><div class="cab"><span class="etiqueta inf">Guiado · se resuelve en clase</span></div><h3>🌶️ Ejercicio 1 — Guiado</h3><p>Repite el inventario sobre las dos columnas que hoy quedaron fuera: rating y listed_in. Para</p></div>
+<div class="sesion lab"><div class="cab"><span class="etiqueta avi">Desafío · queda para casa</span></div><h3>🔥 Desafío — el fragmento generado por IA</h3><p>Este es el código que devolvió un asistente al prompt «escribe una función que limpie mi catálogo</p></div>
+<div class="sesion lab"><div class="cab"><span class="etiqueta ok">Reto · quince minutos en clase</span></div><h3>🎯 Reto en clase (15 min)</h3><p>En equipos. Cada equipo escribe una línea de limpieza plausible pero equivocada sobre el</p></div>
+<div class="caja trampa"><div class="titulo">⚠️ La trampa que este laboratorio desarma</div><p>Rellenar o borrar por defecto. Un título sin director no es un título que no existe: dropna() global habría borrado 2 279 series del catálogo.</p></div>
 <h2>Entregable</h2><div class="caja entrega"><div class="titulo">Se sube al cierre del taller</div><p>Deber 2: bitácora de limpieza. Propuesta de proyecto final.</p></div>
 <div class="caja ia"><div class="titulo">Uso del asistente en este laboratorio</div><p>Ejercicio de código con error incrustado: el docente entrega un fragmento de limpieza generado por IA que contiene un fallo silencioso. El grupo lo encuentra, lo explica y estima cuánto habría costado si llegaba a un informe.</p></div>
 <h2>Cómo se califica</h2>

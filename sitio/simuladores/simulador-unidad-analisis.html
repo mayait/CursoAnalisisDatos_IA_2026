@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Una fila de qué? — Simulador de unidad de análisis · Semana 2 · ADM 2003</title>
+<style>
+:root{--acc:#7A4BA8;--acc-soft:#F1EAF8;--acc-dark:#5B3580;--ink:#232326;--mut:#6d6d74;--line:#e6e6ea;--bg2:#f7f7f9;--alert:#A6192E;--ok:#1a7a4a;--ok-soft:#e9f5ee}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:var(--ink);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 40px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;margin:.15em 0 .2em}
+.sub{color:var(--mut);max-width:64ch}
+.counter{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+.chip{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:.95rem}
+.chip b{font-variant-numeric:tabular-nums}
+.note{font-size:.85rem;color:var(--mut);margin-top:10px;max-width:75ch}
+section{margin-top:30px;border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+h2{font-size:1.3rem;font-weight:800;margin-bottom:4px}
+.h2sub{color:var(--mut);font-size:.95rem;margin-bottom:14px}
+.modes{display:inline-flex;border:2px solid var(--acc);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.modes button{padding:10px 20px;font-size:1rem;font-weight:700;background:#fff;color:var(--acc);border:none;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--acc);color:#fff}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px;border-radius:8px}
+label.qlab{display:block;font-weight:700;margin-bottom:6px}
+select{width:100%;max-width:640px;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-family:inherit}
+select:hover{border-color:var(--acc)}
+.bigq{font-size:clamp(1.2rem,2.8vw,1.7rem);font-weight:800;margin:16px 0 4px;color:var(--acc-dark)}
+.progress{font-size:.9rem;color:var(--mut);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px}
+.ucard{text-align:left;border:2px solid var(--line);border-radius:14px;padding:18px;background:var(--bg2);cursor:pointer;transition:all .15s;font-family:inherit;color:var(--ink)}
+.ucard:hover{border-color:var(--acc);transform:translateY(-2px)}
+.ucard .un{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.ucard .cnt{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;margin:2px 0}
+.ucard .cnt span{font-size:.95rem;font-weight:500;color:var(--mut)}
+.ucard .mean{font-size:.95rem;color:var(--mut)}
+.ucard .mean b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ucard.sel-ok{border-color:var(--ok);background:var(--ok-soft)}
+.ucard.sel-bad{border-color:var(--alert);background:#fdf3f4}
+.verdict{margin-top:18px;border-radius:12px;padding:16px 18px;display:none;font-size:1rem}
+.verdict.ok{display:block;border-left:4px solid var(--ok);background:var(--ok-soft)}
+.verdict.bad{display:block;border-left:4px solid var(--alert);background:#fdf3f4}
+.verdict h3{font-size:1.05rem;margin-bottom:4px}
+.verdict.ok h3{color:var(--ok)}
+.verdict.bad h3{color:var(--alert)}
+.nextbtn{display:none;margin-top:14px;padding:12px 22px;font-size:1rem;font-weight:700;background:var(--acc);color:#fff;border:none;border-radius:12px;cursor:pointer}
+.nextbtn:hover{background:var(--acc-dark)}
+.score{display:none;margin-top:18px;padding:20px;border-radius:14px;background:var(--acc-soft);text-align:center}
+.score .big{font-size:2.4rem;font-weight:800;color:var(--acc-dark)}
+.lesson{margin-top:34px;text-align:center;padding:26px 18px;background:var(--ink);color:#fff;border-radius:16px}
+.lesson p{font-size:clamp(1.2rem,2.6vw,1.6rem);font-weight:800}
+.lesson small{color:#bdbdc4;font-size:.9rem}
+footer{margin-top:30px;padding:18px 20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--acc);font-weight:600;text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Semana 2 · Simulador · Superstore (retail, EE. UU., 4 años)</p>
+  <h1>El mismo dato, tres respuestas</h1>
+  <p class="sub">Toda tabla responde a una pregunta secreta: <b>¿una fila de qué es?</b> Aquí, una fila es una línea de pedido. Elige una pregunta de negocio y luego la unidad que la responde. Cuidado: los tres números son «correctos»… para preguntas distintas.</p>
+
+  <div class="counter" role="group" aria-label="Tamaño del dataset">
+    <span class="chip"><b>9&#8239;994</b> filas</span>
+    <span class="chip"><b>5&#8239;009</b> pedidos</span>
+    <span class="chip"><b>793</b> clientes</span>
+    <span class="chip"><b>$2&#8239;297&#8239;200,86</b> en ventas</span>
+  </div>
+  <p class="note">Nota de bitácora: el archivo <code>superstore.csv</code> trae 10&#8239;800 filas, pero 806 son de otras hojas de Excel (People y Returns) pegadas debajo. Aquí trabajamos solo con las 9&#8239;994 filas reales de pedidos. Primera lección gratis: mira tu archivo antes de calcular.</p>
+
+  <section aria-labelledby="t1">
+    <h2 id="t1">Elige pregunta, elige unidad</h2>
+    <p class="h2sub">Cada tarjeta cuenta el dataset a un «nivel» distinto: la media de venta cambia de $229,86 a $2&#8239;896,85 sin tocar un solo dato.</p>
+
+    <div class="modes" role="group" aria-label="Modo de juego">
+      <button id="m-libre" aria-pressed="true">Exploración</button>
+      <button id="m-reto" aria-pressed="false">Modo reto (5 preguntas)</button>
+    </div>
+
+    <div id="selwrap">
+      <label class="qlab" for="qsel">Pregunta de negocio</label>
+      <select id="qsel"></select>
+    </div>
+
+    <p class="bigq" id="bigq" aria-live="polite"></p>
+    <p class="progress" id="progress" aria-live="polite"></p>
+
+    <div class="cards" role="group" aria-label="Unidades de análisis">
+      <button class="ucard" id="u-fila" aria-describedby="bigq">
+        <span class="un">Fila · línea de pedido</span>
+        <span class="cnt">9&#8239;994 <span>filas</span></span>
+        <span class="mean">venta media por fila: <b>$229,86</b></span>
+      </button>
+      <button class="ucard" id="u-pedido" aria-describedby="bigq">
+        <span class="un">Pedido · Order ID</span>
+        <span class="cnt">5&#8239;009 <span>pedidos</span></span>
+        <span class="mean">ticket medio por pedido: <b>$458,61</b></span>
+      </button>
+      <button class="ucard" id="u-cliente" aria-describedby="bigq">
+        <span class="un">Cliente · Customer ID</span>
+        <span class="cnt">793 <span>clientes</span></span>
+        <span class="mean">valor medio por cliente: <b>$2&#8239;896,85</b></span>
+      </button>
+    </div>
+
+    <div class="verdict" id="verdict" role="status" aria-live="polite"></div>
+    <button class="nextbtn" id="nextbtn">Siguiente pregunta &rarr;</button>
+    <div class="score" id="scorebox" aria-live="polite"></div>
+  </section>
+
+  <div class="lesson">
+    <p>«Antes de calcular, pregunta: ¿una fila de qué es?»</p>
+    <small>9&#8239;994 filas &middot; 5&#8239;009 pedidos &middot; 793 clientes: tres unidades, tres verdades.</small>
+  </div>
+
+  <footer>
+    <span>ADM 2003 · Análisis de Datos con IA y Python · USFQ</span>
+    <a href="../semana-02.html">&larr; Volver al curso</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+/* Numeros reales de superstore.csv (solo las 9 994 filas de pedidos):
+   filas 9 994 (media $229,86; mediana $54,49) · pedidos 5 009 (media $458,61; mediana $151,96)
+   clientes 793 (media $2 896,85; mediana $2 256,39) · total $2 297 200,86
+   lineas/pedido = 2,0 · pedidos/cliente = 6,3 */
+const NB="\u202F";
+function fmt(x,d){d=d||0;const s=Math.abs(x).toFixed(d),p=s.split(".");
+  return (x<0?"−":"")+p[0].replace(/\B(?=(\d{3})+(?!\d))/g,NB)+(p[1]?","+p[1]:"");}
+const usd=x=>"$"+fmt(x,2);
+
+const Q=[
+ {q:"¿Cuántas ventas hicimos en estos 4 años?",ok:"pedido",
+  win:"5 009 ventas. Una venta = una factura = un Order ID. Lectura de negocio: 5 009 pedidos × $458,61 de ticket medio ≈ $2 297 201. El total cuadra.",
+  bad:{fila:"9 994 no son ventas: son líneas de pedido. Cada factura trae en promedio 2,0 productos, así que estarías inflando tus ventas casi al doble ante tu jefe.",
+       cliente:"793 dice a cuántos clientes llegaste, no cuántas veces vendiste. Cada cliente compró 6,3 veces en promedio: son historias distintas."}},
+ {q:"¿Cuál es el ticket típico de una compra?",ok:"pedido",
+  win:"$458,61 de media por pedido (y ojo: la mediana es $151,96 — el ticket típico-típico es más humilde; eso lo veremos en la semana 3). La unidad correcta es el pedido: el ticket es lo que suma la factura completa.",
+  bad:{fila:"$229,86 es la media por línea de producto, no por compra. Como cada pedido tiene 2,0 líneas, subestimas el ticket a la mitad.",
+       cliente:"$2 896,85 acumula todas las compras de un cliente (6,3 pedidos en promedio). No es un ticket: es una relación completa."}},
+ {q:"¿Cuánto vale un cliente para el negocio?",ok:"cliente",
+  win:"$2 896,85 en promedio por cliente (mediana: $2 256,39). Esa es la cifra que justifica invertir en retención: perder un cliente no cuesta un ticket, cuesta 6,3 tickets.",
+  bad:{fila:"$229,86 es una línea de producto. Valorar así a un cliente es subestimarlo 12,6 veces: craso error si decides cuánto gastar en retenerlo.",
+       pedido:"$458,61 es una compra. Pero un cliente promedio hace 6,3 compras: su valor real es 6 veces mayor. Con esta cifra, matarías campañas de fidelización rentables."}},
+ {q:"¿A cuántos clientes distintos llegamos?",ok:"cliente",
+  win:"793 clientes únicos (Customer ID). Con $2 297 200,86 en ventas totales, cada uno aporta en promedio $2 896,85.",
+  bad:{fila:"9 994 mezcla productos, pedidos y personas: contarías 12,6 veces al mismo cliente.",
+       pedido:"5 009 son compras, no compradores. Los 793 clientes reales repiten 6,3 veces cada uno."}},
+ {q:"¿Cuánto factura, en promedio, cada línea de producto?",ok:"fila",
+  win:"$229,86 por fila. Aquí sí: la pregunta habla de líneas de producto y la tabla ES de líneas de producto. Pregunta y unidad, por fin alineadas.",
+  bad:{pedido:"$458,61 es la factura completa (2,0 líneas juntas). Estás agregando de más.",
+       cliente:"$2 896,85 es un año de relación con un cliente. Te pasaste dos niveles de agregación."}}
+];
+const UNIT_LABEL={fila:"Fila (línea de pedido)",pedido:"Pedido",cliente:"Cliente"};
+
+let mode="libre", qi=0, score=0, answered=false, firstTry=true;
+const $=id=>document.getElementById(id);
+const cards={fila:$("u-fila"),pedido:$("u-pedido"),cliente:$("u-cliente")};
+
+const qsel=$("qsel");
+Q.slice(0,3).forEach((x,i)=>{const o=document.createElement("option");o.value=i;o.textContent=x.q;qsel.appendChild(o);});
+qsel.addEventListener("change",()=>{qi=+qsel.value;resetQuestion();});
+
+function resetQuestion(){
+  answered=false;firstTry=true;
+  Object.values(cards).forEach(c=>{c.classList.remove("sel-ok","sel-bad");c.disabled=false;});
+  const v=$("verdict");v.className="verdict";v.innerHTML="";
+  $("nextbtn").style.display="none";
+  $("bigq").textContent=Q[qi].q;
+  $("progress").textContent = mode==="reto" ? "Pregunta "+(qi+1)+" de 5 · Puntaje: "+score+" / 5" : "Haz clic en la unidad que responde la pregunta.";
+}
+
+function answer(unit){
+  if(answered && mode==="reto") return;
+  const item=Q[qi], v=$("verdict");
+  Object.values(cards).forEach(c=>c.classList.remove("sel-ok","sel-bad"));
+  if(unit===item.ok){
+    cards[unit].classList.add("sel-ok");
+    v.className="verdict ok";
+    v.innerHTML="<h3>Correcto: "+UNIT_LABEL[unit]+"</h3><p>"+item.win+"</p>";
+    if(mode==="reto"&&!answered){if(firstTry)score++;answered=true;
+      $("progress").textContent="Pregunta "+(qi+1)+" de 5 · Puntaje: "+score+" / 5";
+      $("nextbtn").style.display="inline-block";
+      $("nextbtn").textContent = qi<4 ? "Siguiente pregunta →" : "Ver resultado final →";
+      $("nextbtn").focus();
+    }
+  }else{
+    cards[unit].classList.add("sel-bad");
+    v.className="verdict bad";
+    v.innerHTML="<h3>El número engaña: elegiste "+UNIT_LABEL[unit]+"</h3><p>"+item.bad[unit]+"</p><p style='margin-top:6px'><b>Vuelve a intentarlo:</b> ¿de qué habla la pregunta: de líneas, de facturas o de personas?</p>";
+    firstTry=false;
+  }
+}
+Object.entries(cards).forEach(([unit,el])=>el.addEventListener("click",()=>answer(unit)));
+
+$("nextbtn").addEventListener("click",()=>{
+  if(qi<4){qi++;resetQuestion();}
+  else{
+    const s=$("scorebox");s.style.display="block";
+    const msg = score===5?"Impecable. Ya piensas en unidades de análisis: nadie te venderá 9 994 filas como si fueran ventas."
+      : score>=3?"Buen ojo. Afina el reflejo: antes de cada promedio, pregunta de qué es cada fila."
+      : "El dataset te hizo trampa varias veces. Tranquilidad: es la trampa más común del análisis de datos. Repite el reto.";
+    s.innerHTML='<div class="big">'+score+' / 5</div><p>'+msg+'</p>';
+    $("nextbtn").style.display="none";
+    $("bigq").textContent="Reto terminado.";
+    $("progress").textContent="";
+  }
+});
+
+$("m-libre").addEventListener("click",()=>setMode("libre"));
+$("m-reto").addEventListener("click",()=>setMode("reto"));
+function setMode(m){
+  mode=m;score=0;qi=0;
+  $("m-libre").setAttribute("aria-pressed",String(m==="libre"));
+  $("m-reto").setAttribute("aria-pressed",String(m==="reto"));
+  $("selwrap").style.display = m==="libre"?"block":"none";
+  $("scorebox").style.display="none";
+  if(m==="libre"){qsel.value=0;}
+  resetQuestion();
+}
+setMode("libre");
+</script>
+</body>
+</html>

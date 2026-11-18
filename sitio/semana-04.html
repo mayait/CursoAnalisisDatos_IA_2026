@@ -29,6 +29,7 @@
 <a href="casos.html">Casos de estudio</a>
 <a href="datacamp.html">DataCamp y concurso</a>
 <a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
 <a href="rubricas.html">Rúbricas</a>
 <a href="apoyo.html">Apoyo y accesibilidad</a>
 <a href="recursos.html">Recursos y datasets</a>
@@ -66,7 +67,7 @@
 <span>07-sep-2026 y 09-sep-2026</span>
 <span>2 sesiones de 1.5 h</span>
 <span>pandas: dtypes, isna, duplicated, astype</span>
-<span>Laboratorio de 45 celdas</span>
+<span>Laboratorio de 43 celdas</span>
 </div>
 <h2>Cómo se arma la semana</h2>
 <div class="rejilla c3">
@@ -81,6 +82,15 @@
 <li>Detectar y decidir qué hacer con duplicados y valores extremos.</li>
 <li>Escribir una bitácora de limpieza que otra persona pueda auditar.</li>
 </ul>
+<h2>Todo lo de esta semana, listo para el aula</h2>
+<div class="rejilla c3">
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-07.html"><div class="n">Sesión 7 · teoría</div><div class="t">Presentación</div><div class="d">Anatomía y calidad de los datos · Caso Netflix</div></a>
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-08.html"><div class="n">Sesión 8 · taller</div><div class="t">Presentación</div><div class="d">Inventario, bitácora y error incrustado · Taller Netflix</div></a>
+<a class="tarjeta" href="caso-clase-04.html"><div class="n">Streaming</div><div class="t">Caso de la clase</div><div class="d">El catálogo que no sabe cuántos títulos tiene</div></a>
+<a class="tarjeta" href="material-semana-04.html"><div class="n">15 minutos</div><div class="t">Material de estudio</div><div class="d">Datos rotos y decisiones documentadas</div></a>
+<a class="tarjeta" href="simuladores/simulador-detective-datos.html"><div class="n">Interactivo</div><div class="t">Simulador de la semana</div><div class="d">Se proyecta el lunes y se juega en el taller.</div></a>
+<a class="tarjeta" href="docente-sesion-07.html"><div class="n">Minuto a minuto</div><div class="t">Guiones del docente</div><div class="d">Las dos sesiones, con tiempos, errores frecuentes y plan si vas tarde.</div></a>
+</div>
 <h2>Clase teórica</h2>
 <div class="sesion">
 <div class="cab"><span class="dia">Lunes · concepto y caso</span><span class="fecha">Sesión 7 · 07-sep-2026 · 90 minutos</span></div>
@@ -94,23 +104,23 @@
 <tr><td class="num">4</td><td><strong>Duplicados</strong></td><td><code>duplicated</code> con y sin subconjunto de columnas. Duplicado exacto frente a duplicado de negocio.</td></tr>
 <tr><td class="num">5</td><td><strong>Valores extremos</strong></td><td>Detección con rango intercuartílico. Cuándo un extremo es un error y cuándo es el cliente más importante.</td></tr>
 </tbody></table>
-<div class="caja trampa"><div class="titulo">⚠️ La trampa de esta semana</div><p>Rellenar los nulos con cero por defecto. Un cliente sin identificador no compró cero: no sabemos quién es.</p></div>
+<div class="caja trampa"><div class="titulo">⚠️ La trampa de esta semana</div><p>Rellenar o borrar por defecto. Un título sin director no es un título que no existe: dropna() global habría borrado 2 279 series del catálogo.</p></div>
 <h2>Taller: laboratorio en grupos</h2>
 <div class="sesion lab">
 <div class="cab"><span class="dia">Miércoles · laboratorio</span><span class="fecha">Sesión 8 · 09-sep-2026 · 90 minutos</span></div>
 <h3>Inventario de problemas de calidad</h3><p>dtypes, isna, duplicated y astype. Cuantificación de cada problema y decisión de limpieza documentada.</p>
 </div>
 <h3>Pasos del taller</h3><ol class="pasos">
-<li>Inventario de problemas de calidad de la base, con el porcentaje exacto que afecta cada uno.</li>
-<li>Decidir el tratamiento de cada problema y escribir la justificación en una línea.</li>
-<li>Producir la tabla limpia y demostrar con una cifra de control que no se perdió información por el camino.</li>
+<li>Inventario de problemas del catálogo de Netflix con el porcentaje exacto de cada uno: 30,68 % sin director, fechas con espacios, duración que mezcla minutos con temporadas.</li>
+<li>Decidir el tratamiento de cada problema y escribir la justificación en una línea. El dropna() perezoso borra el 94,6 % de las series.</li>
+<li>Producir el catálogo limpio y demostrar con una cifra de control que no se perdió un solo título por el camino.</li>
 </ol>
-<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_04.ipynb</code> · 45 celdas (22 de código, 23 de texto). Corre completo sobre los datos de Comercial Andina sin instalar nada.</p><p style="margin-top:.7rem"><a class="boton" href="lab-04.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_04.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_04.ipynb">Descargar .ipynb</a></p></div>
+<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_04.ipynb</code> · 43 celdas (22 de código, 21 de texto). Corre completo sin instalar nada, sobre el catálogo de Netflix (netflix_titulos.csv).</p><p style="margin-top:.7rem"><a class="boton" href="lab-04.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_04.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_04.ipynb">Descargar .ipynb</a></p></div>
 <h3>Ejercicios del cuaderno</h3>
 <table><thead><tr><th scope="col">Tipo</th><th scope="col">Ejercicio</th><th scope="col">De qué va</th></tr></thead><tbody>
-<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>Repite el inventario de la sección 1 sobre clientes.csv completo: una tabla con problema, filas</td></tr>
-<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío — el fragmento generado por IA</strong></td><td>Este es el código que devolvió un asistente al prompt «escribe una función que limpie mi DataFrame de</td></tr>
-<tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En equipos. Cada equipo escribe una línea de limpieza plausible pero equivocada sobre</td></tr>
+<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>Repite el inventario sobre las dos columnas que hoy quedaron fuera: rating y listed_in. Para</td></tr>
+<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío — el fragmento generado por IA</strong></td><td>Este es el código que devolvió un asistente al prompt «escribe una función que limpie mi catálogo</td></tr>
+<tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En equipos. Cada equipo escribe una línea de limpieza plausible pero equivocada sobre el</td></tr>
 </tbody></table>
 <h2>Proyecto y uso de IA</h2>
 <div class="caja"><div class="titulo">Trabajo sobre el caso del grupo</div><p>Bitácora de limpieza del dataset del caso y propuesta formal del proyecto final, con el diagnóstico de madurez analítica de la empresa elegida.</p></div>
@@ -118,6 +128,7 @@
 <h2>Insumos</h2>
 <h3>Datos que usa el laboratorio</h3><ul>
 <li><strong>Comercial Andina</strong>, la base del curso: <a href="datos.html">ficha de los siete archivos</a></li>
+<li><a href="datos/publicos/netflix_titulos.csv">Netflix · 7 787 títulos con sus defectos de fábrica (streaming)</a></li>
 </ul>
 <h3>Material de apoyo</h3>
 <table><thead><tr><th scope="col">Tipo</th><th scope="col">Recurso</th><th scope="col">Cómo se usa</th></tr></thead><tbody>

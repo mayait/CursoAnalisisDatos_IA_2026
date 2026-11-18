@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 5 · La trampa del promedio — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#0B6E4F" data-marca="Sesión 5 · 31-ago-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: este deck y el simulador de media-mediana abiertos. Nueva industria: la música. 32 833 filas del catálogo de Spotify. Hoy la media miente dos veces, en direcciones opuestas, y al final se anuncia el torneo del miércoles. Tiempo total 90 min.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 5</div>
+  <div class="kicker">Semana 3 · Lunes 31 de agosto</div>
+  <h1>La trampa del promedio</h1>
+  <p class="grande">La estadística más usada del mundo es la que más decisiones arruina. Hoy la ves mentir dos veces, en direcciones opuestas.</p>
+</section>
+
+<!-- 2 · gancho -->
+<section class="diapo pregunta" data-notas="0-6 min. Presenta el negocio: un catálogo de 32 833 canciones de Spotify, con duración, popularidad y género. La pregunta parece trivial y mueve dinero: radios que programan bloques, playlists con límites tácitos, regalías por reproducción. Votación por rangos: ¿tres minutos? ¿tres y media? ¿cuatro? Anota el rango ganador en la pizarra.">
+  <div class="kicker">Spotify · 32 833 canciones</div>
+  <h2>¿Cuánto dura una canción típica?</h2>
+  <span class="mano">✋ ¿Tres minutos? ¿Tres y media? ¿Cuatro?</span>
+</section>
+
+<!-- 3 · revela duración -->
+<section class="diapo" data-notas="6-13 min. Dos respuestas del mismo archivo: media 3,76, mediana 3,60. La cola de remixes y temas de 6, 7 y 8 minutos arrastra la media hacia arriba; el 57,9 % del catálogo queda por debajo de la típica si eliges la media. Y el dato que un programador de radio quiere no es ninguno de los dos: el 48,7 % del catálogo cae entre 3 y 4 minutos — el formato canción existe y se ve en un histograma.">
+  <div class="kicker">Dos respuestas, un archivo</div>
+  <h2>Media 3,76 · mediana 3,60</h2>
+  <ul>
+    <li>La cola de remixes y temas de 6, 7 y 8 minutos <strong>arrastra la media</strong> hacia arriba.</li>
+    <li class="frag">Con la media como «típica», el <strong>57,9 %</strong> del catálogo queda por debajo de ella.</li>
+    <li class="frag">Y el dato que la radio quiere no es ninguno de los dos: el <strong>48,7 %</strong> del catálogo cae entre 3 y 4 minutos.</li>
+  </ul>
+  <p class="frag grande">La respuesta honesta es la mediana: <strong>3 minutos 36 segundos</strong>.</p>
+</section>
+
+<!-- 4 · cifra -->
+<section class="diapo cifra" data-notas="13-16 min. El giro de la sesión: ahora la popularidad. 2 703 canciones con popularidad exactamente cero, el 8,2 % del catálogo: música que nadie reproduce. Ese montón va a tumbar la media de la siguiente lámina. Pregunta retórica: ¿qué le hace un 8,2 % de ceros a un promedio?">
+  <div class="kicker">Ahora, la popularidad</div>
+  <div class="numero">8,2 %</div>
+  <p class="etiqueta">del catálogo tiene popularidad exactamente <strong>cero</strong>: 2 703 canciones que nadie reproduce. Ese montón va a tumbar la media de la siguiente lámina.</p>
+</section>
+
+<!-- 5 · popularidad -->
+<section class="diapo" data-notas="16-23 min. La media también miente hacia abajo: media 42,48, mediana 45. Con la duración la cola estaba a la derecha e inflaba; aquí el pico de ceros desinfla. Sin los ceros la media sube a 46,29. El remate es de negocio, no de estadística: qué tan popular es lo que tenemos y qué tan popular es lo que suena son dos preguntas distintas, y elegir una es una decisión que se escribe al lado del número.">
+  <div class="kicker">La media también miente hacia abajo</div>
+  <h2>Media 42,48 · mediana 45</h2>
+  <ul>
+    <li>Con la duración, la cola derecha <strong>inflaba</strong> la media. Aquí el pico en cero la <strong>desinfla</strong>.</li>
+    <li class="frag">Sin los ceros, la media sube a <strong>46,29</strong>. Ninguna versión es «la correcta» por defecto.</li>
+    <li class="frag">«¿Qué tan popular es lo que <strong>tenemos</strong>?» y «¿qué tan popular es lo que <strong>suena</strong>?» son dos preguntas distintas.</li>
+  </ul>
+  <p class="frag">La elección es de negocio, no de estadística. Y se escribe <strong>al lado del número</strong>.</p>
+</section>
+
+<!-- 6 · la regla -->
+<section class="diapo" data-notas="23-28 min. La regla de la semana, con los dos casos lado a lado. Antes de elegir el estadístico, mirar la forma: el histograma tarda cuatro segundos y te ahorra el ridículo. Si media y mediana coinciden, casi cualquier resumen sirve; si se separan, la forma manda y hay que explicar por qué.">
+  <div class="kicker">La regla de la semana</div>
+  <h2>Antes de elegir el estadístico, mira la forma</h2>
+  <div class="dos">
+    <div class="col panel"><div class="titulo">Cola a la derecha</div>
+      <p>Duración: media 3,76 &gt; mediana 3,60.</p>
+      <p>La media <strong>infla</strong>.</p>
+    </div>
+    <div class="col panel"><div class="titulo">Pico en el extremo</div>
+      <p>Popularidad: media 42,48 &lt; mediana 45.</p>
+      <p>La media <strong>desinfla</strong>.</p>
+    </div>
+  </div>
+  <p class="frag grande">El histograma tarda <strong>cuatro segundos</strong> y te ahorra el ridículo.</p>
+</section>
+
+<!-- 7 · sección -->
+<section class="diapo seccion" data-notas="28 min. Cambio de bloque: del centro al resto de la caja de herramientas descriptiva. Percentiles como umbrales, dispersión y categorías.">
+  <div class="kicker">Bloque 2 de 3</div>
+  <h2>Describir sin mentir</h2>
+  <p>Percentiles, dispersión y las categorías.</p>
+</section>
+
+<!-- 8 · percentiles -->
+<section class="diapo" data-notas="28-36 min. Un percentil no es un adorno: es un umbral operativo con precio. p90 = 5,00: la regla nada de más de cinco minutos rechaza exactamente al 10 % del catálogo — ahora la regla tiene precio. p99 = 7,17: más raro que 99 de cada 100. Y por grupos: el rock corre largo, su mediana 3,96 roza el p75 del catálogo entero; comparar percentil contra percentil evita pedirle al rock temas de radio de tres minutos.">
+  <div class="kicker">quantile y su lectura de negocio</div>
+  <h2>El percentil es un umbral con precio</h2>
+  <ul>
+    <li><strong>p90 = 5,00</strong> — «nada de más de cinco minutos» rechaza exactamente al 10 % del catálogo. Ahora la regla tiene precio.</li>
+    <li class="frag"><strong>p99 = 7,17</strong> — un tema de más de siete minutos es más raro que 99 de cada 100.</li>
+    <li class="frag">El rock corre largo: su mediana, <strong>3,96</strong>, roza el p75 del catálogo entero. Se compara percentil contra percentil, no medias sueltas.</li>
+  </ul>
+</section>
+
+<!-- 9 · dispersión -->
+<section class="diapo" data-notas="36-43 min. El centro sin la dispersión es media información. La desviación estándar vive en las unidades del dato y no compara variables distintas; el coeficiente de variación (desviación entre media) no tiene unidades y sí compara: popularidad 0,59, más del doble que la duración. Lectura de negocio: la industria converge al formato de 3 minutos y medio —puedes planificar una parrilla con la duración típica—; el éxito no tiene formato: no puedes planificar ingresos con la popularidad típica.">
+  <div class="kicker">El centro es media información</div>
+  <h2>El éxito no tiene formato</h2>
+  <ul>
+    <li>La desviación estándar vive en las unidades del dato: no compara minutos con puntos.</li>
+    <li class="frag">El <strong>coeficiente de variación</strong> (desviación ÷ media) no tiene unidades: popularidad <strong>0,59</strong>, más del doble que la duración.</li>
+    <li class="frag">Puedes planificar la parrilla con la duración típica y errar poco. No puedes planificar ingresos con la popularidad «típica»: apenas existe.</li>
+  </ul>
+</section>
+
+<!-- 10 · frecuencias -->
+<section class="diapo" data-notas="43-50 min. Para categorías no hay media que valga: value_counts, y casi siempre normalize=True para reportar proporciones. La tabla junta presencia y desempeño a propósito: edm tiene más filas (6 043, el 18,4 %) y la popularidad mediana más baja (36); pop tiene menos filas y la mediana más alta (52). Tener mucho de algo y que ese algo funcione son dos indicadores distintos: es el ranking engañoso de la semana 1 en versión musical.">
+  <div class="kicker">Las categorías, con value_counts</div>
+  <h2>Tener mucho no es que funcione</h2>
+  <table class="mini">
+    <tr><th>Género</th><th>Filas</th><th>% del catálogo</th><th>Popularidad mediana</th></tr>
+    <tr><td>edm</td><td>6 043</td><td>18,4 %</td><td>36</td></tr>
+    <tr><td>rap</td><td>5 746</td><td>17,5 %</td><td>47</td></tr>
+    <tr class="gana"><td>pop</td><td>5 507</td><td>16,8 %</td><td>52</td></tr>
+    <tr><td>r&amp;b</td><td>5 431</td><td>16,5 %</td><td>44</td></tr>
+    <tr><td>latin</td><td>5 155</td><td>15,7 %</td><td>50</td></tr>
+    <tr><td>rock</td><td>4 951</td><td>15,1 %</td><td>46</td></tr>
+  </table>
+  <p class="frag">El género con <strong>más filas</strong> tiene la popularidad mediana <strong>más baja</strong>. Es el ranking engañoso de la semana 1, en versión musical.</p>
+</section>
+
+<!-- 11 · promedios que no existen -->
+<section class="diapo" data-notas="50-56 min. Dos promedios que no describen a nadie. Bimodalidad: dos poblaciones dentro de la misma columna —dos jorobas en el histograma— y la media cae en el valle, un valor que no le corresponde a ningún caso real; ejemplo clásico: el ticket promedio de un negocio con clientes minoristas y mayoristas. Y las muestras enanas: un promedio sobre doce observaciones no es un promedio, es una anécdota con decimales. De ahí la regla: ninguna cifra viaja sola — siempre con dispersión y con n.">
+  <div class="kicker">Dos promedios que no describen a nadie</div>
+  <h2>Bimodalidad y muestras enanas</h2>
+  <ul>
+    <li>Dos jorobas en el histograma = dos poblaciones en la misma columna. La media cae <strong>en el valle</strong>: no le corresponde a nadie.</li>
+    <li class="frag">Un promedio sobre <strong>doce observaciones</strong> no es un promedio: es una anécdota con decimales.</li>
+    <li class="frag">Por eso ninguna cifra viaja sola: siempre con su <strong>dispersión</strong> y su <strong>n</strong>.</li>
+  </ul>
+</section>
+
+<!-- 12 · caso dos áreas -->
+<section class="diapo pregunta" data-notas="56-66 min. El caso que resuelve la sesión. Marketing reporta popularidad media 42; Auditoría, con el mismo archivo y el mismo mes, 39. Votación: ¿quién se equivocó? Revela: nadie — 42,48 promedia filas (apariciones en playlists) y 39,33 promedia canciones únicas. Las famosas están en más playlists: cada copia es un voto extra; las 3 166 canciones repetidas promedian 60,2 y las demás 37,1. La solución no fue estadística: fue escribir la definición al lado del número. Es la unidad de análisis de la semana 2 mordiendo otra vez.">
+  <div class="kicker">El caso que llega a tu correo</div>
+  <h2>Marketing reporta 42. Auditoría, con el mismo archivo, 39.</h2>
+  <span class="mano">✋ ¿Quién se equivocó?</span>
+  <p class="frag grande">Nadie. Uno promedió <strong>apariciones en playlists</strong>; el otro, <strong>canciones únicas</strong>.</p>
+  <p class="frag">Las famosas están en más playlists: cada copia es un voto extra. Las 3 166 repetidas promedian <strong>60,2</strong>; las demás, <strong>37,1</strong>.</p>
+  <p class="frag">La solución no fue estadística: fue una <strong>definición escrita al lado del número</strong>.</p>
+</section>
+
+<!-- 13 · simulador -->
+<section class="diapo" data-notas="66-71 min. Abre el simulador y juega en vivo: arrastra un punto hacia la cola y mira a la media perseguirlo mientras la mediana ni se inmuta. Pide predicciones antes de cada arrastre. Queda enlazado en el sitio.">
+  <div class="kicker">Para jugar, ahora y en casa</div>
+  <h2>El simulador de media y mediana</h2>
+  <p class="grande">Arrastra puntos y mira a la media perseguir la cola mientras la mediana ni se inmuta.</p>
+  <p><a href="../simuladores/simulador-media-mediana.html" target="_blank" rel="noopener">sitio del curso → simuladores → media y mediana</a></p>
+</section>
+
+<!-- 14 · sección -->
+<section class="diapo seccion" data-notas="71 min. Último bloque: el anuncio del torneo. Sube la energía: es la primera competencia del curso.">
+  <div class="kicker">Bloque 3 de 3</div>
+  <h2>El miércoles: torneo</h2>
+  <p>Doce preguntas, contra reloj, con el estadístico correcto o no vale.</p>
+</section>
+
+<!-- 15 · anuncio del torneo -->
+<section class="diapo" data-notas="71-82 min. Las reglas completas están el miércoles; hoy basta el contrato: cifra + estadístico + porqué, contra reloj, con la IA permitida pero verificada — el número que no coincida con pandas, resta. Se juega por la gloria y un sticker; la nota sale del cuaderno con las doce respuestas. Preparación: correr el lab 3 antes del miércoles. Quien llega con describe(), quantile() y value_counts() frescos, arrasa.">
+  <div class="kicker">Miércoles 2 de septiembre</div>
+  <h2>El torneo de las doce preguntas</h2>
+  <ul>
+    <li>Equipos del proyecto, contra reloj, una respuesta escrita por equipo.</li>
+    <li class="frag">Cada respuesta exige tres cosas: la <strong>cifra</strong>, el <strong>estadístico elegido</strong> y el <strong>porqué</strong> apoyado en la forma.</li>
+    <li class="frag">La IA está permitida. El número que no coincida con pandas, <strong>resta</strong>.</li>
+    <li class="frag">Se juega por la gloria y un sticker. La nota sale del cuaderno con las doce respuestas.</li>
+  </ul>
+  <p class="frag">Preparación: <strong>correr el laboratorio 3</strong> antes del miércoles. Quien llega con <code>describe()</code>, <code>quantile()</code> y <code>value_counts()</code> frescos, arrasa.</p>
+</section>
+
+<!-- 16 · cierre -->
+<section class="diapo cifra" data-notas="82-90 min. Cierra con la frase y déjala proyectada. Si sobra tiempo, ronda relámpago: da tres preguntas (¿duración típica?, ¿género dominante?, ¿popularidad del catálogo?) y pide para cada una el estadístico correcto con su porqué. Es el calentamiento perfecto para el miércoles.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:26ch">«La forma decide el estadístico. El estadístico decide el titular.»</p>
+  <p class="etiqueta">Sesión 6 · miércoles 2 de septiembre · trae el laboratorio 3 corrido</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

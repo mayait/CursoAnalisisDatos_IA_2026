@@ -29,6 +29,7 @@
 <a href="casos.html">Casos de estudio</a>
 <a href="datacamp.html">DataCamp y concurso</a>
 <a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
 <a href="rubricas.html">Rúbricas</a>
 <a href="apoyo.html">Apoyo y accesibilidad</a>
 <a href="recursos.html">Recursos y datasets</a>
@@ -66,7 +67,7 @@
 <span>24-ago-2026 y 26-ago-2026</span>
 <span>2 sesiones de 1.5 h</span>
 <span>pandas: read_csv, head, info, shape. Ficha de análisis y unidad de análisis</span>
-<span>Laboratorio de 38 celdas</span>
+<span>Laboratorio de 36 celdas</span>
 </div>
 <h2>Cómo se arma la semana</h2>
 <div class="rejilla c3">
@@ -81,6 +82,15 @@
 <li>Redactar una ficha de análisis que otro grupo pueda atacar.</li>
 <li>Distinguir una pregunta de negocio de una petición de reporte.</li>
 </ul>
+<h2>Todo lo de esta semana, listo para el aula</h2>
+<div class="rejilla c3">
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-03.html"><div class="n">Sesión 3 · teoría</div><div class="t">Presentación</div><div class="d">Unidad de análisis y ficha · Caso Superstore</div></a>
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-04.html"><div class="n">Sesión 4 · taller</div><div class="t">Presentación</div><div class="d">Auditoría de Superstore y ataque de fichas · Taller</div></a>
+<a class="tarjeta" href="caso-clase-02.html"><div class="n">Retail</div><div class="t">Caso de la clase</div><div class="d">Tres gerentes, tres números, una reunión</div></a>
+<a class="tarjeta" href="material-semana-02.html"><div class="n">15 minutos</div><div class="t">Material de estudio</div><div class="d">La pregunta antes del dato</div></a>
+<a class="tarjeta" href="simuladores/simulador-unidad-analisis.html"><div class="n">Interactivo</div><div class="t">Simulador de la semana</div><div class="d">Se proyecta el lunes y se juega en el taller.</div></a>
+<a class="tarjeta" href="docente-sesion-03.html"><div class="n">Minuto a minuto</div><div class="t">Guiones del docente</div><div class="d">Las dos sesiones, con tiempos, errores frecuentes y plan si vas tarde.</div></a>
+</div>
 <h2>Clase teórica</h2>
 <div class="sesion">
 <div class="cab"><span class="dia">Lunes · concepto y caso</span><span class="fecha">Sesión 3 · 24-ago-2026 · 90 minutos</span></div>
@@ -101,15 +111,15 @@
 <h3>Carga y primer contacto con la base del curso</h3><p>read_csv, head, info y shape. Cada grupo redacta la ficha de análisis de su proyecto y otro grupo la ataca.</p>
 </div>
 <h3>Pasos del taller</h3><ol class="pasos">
-<li>Cargar la base del curso con los parámetros correctos de separador, codificación y fechas.</li>
-<li>Auditarla con <code>shape</code>, <code>info</code>, <code>head</code> y <code>describe</code> y anotar tres observaciones iniciales.</li>
+<li>Cargar Superstore, el dataset insignia del curso anterior, y descubrir que trae 806 filas de otras hojas pegadas.</li>
+<li>Auditarlo con <code>shape</code>, <code>info</code>, <code>head</code> y <code>describe</code>, y contar la misma tabla en tres unidades: 9 994 líneas, 5 009 pedidos, 793 clientes.</li>
 <li>Redactar la ficha de análisis del proyecto del grupo y entregarla a otro grupo para que la ataque.</li>
 </ol>
-<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_02.ipynb</code> · 38 celdas (19 de código, 19 de texto). Corre completo sobre los datos de Comercial Andina sin instalar nada.</p><p style="margin-top:.7rem"><a class="boton" href="lab-02.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_02.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_02.ipynb">Descargar .ipynb</a></p></div>
+<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_02.ipynb</code> · 36 celdas (18 de código, 18 de texto). Corre completo sin instalar nada, sobre el retail Superstore (superstore.csv).</p><p style="margin-top:.7rem"><a class="boton" href="lab-02.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_02.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_02.ipynb">Descargar .ipynb</a></p></div>
 <h3>Ejercicios del cuaderno</h3>
 <table><thead><tr><th scope="col">Tipo</th><th scope="col">Ejercicio</th><th scope="col">De qué va</th></tr></thead><tbody>
-<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>Carga productos.csv y sucursales.csv y aplícales los cinco minutos completos: shape, head,</td></tr>
-<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío</strong></td><td>La columna factura_id tiene dos prefijos: F y C. Averigua qué son las que empiezan con C,</td></tr>
+<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>Aplica los cinco minutos y los tres conteos al segmento Consumer: cuántas líneas, cuántos pedidos</td></tr>
+<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío</strong></td><td>En el archivo crudo, ventas["Order ID"].nunique() devuelve 5 015. En las líneas de pedido</td></tr>
 <tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En equipos. Escriban la ficha de análisis de su caso —las siete filas, sin saltarse ninguna— y</td></tr>
 </tbody></table>
 <h2>Proyecto y uso de IA</h2>
@@ -118,6 +128,7 @@
 <h2>Insumos</h2>
 <h3>Datos que usa el laboratorio</h3><ul>
 <li><strong>Comercial Andina</strong>, la base del curso: <a href="datos.html">ficha de los siete archivos</a></li>
+<li><a href="datos/publicos/superstore.csv">Superstore · 9 994 líneas de pedidos reales más 806 filas intrusas (retail)</a></li>
 </ul>
 <h3>Casos que se apoyan en esta semana</h3><ul>
 <li><a href="caso-02.html">Caso 2 · Sistema Bancario Ecuatoriano</a></li>

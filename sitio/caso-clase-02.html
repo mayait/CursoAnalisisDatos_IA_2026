@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de clase · Tres gerentes, tres números, una reunión — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Caso S2</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Caso de clase · Semana 2 · Retail</div>
+<h1>Tres gerentes, tres números, una reunión</h1>
+<p class="bajada">La dirección fijó la meta del año: superar las 10 000 ventas. Tres gerentes llegan al directorio con el mismo archivo y tres cifras de cumplimiento distintas. Ninguno se equivocó al calcular.</p>
+<div class="meta">
+<span>Se discute en la sesión 3 (lunes)</span>
+<span>Dataset: <a href="datos/publicos/superstore.csv">superstore.csv</a></span>
+<span><a href="semana-02.html">Semana 2</a></span>
+</div>
+<h2>La situación</h2>
+<p>Superstore es una cadena minorista estadounidense de muebles, material de oficina y tecnología, con cuatro años de pedidos registrados (2015-2018). En la planificación anual, la dirección escribió una meta que sonaba clarísima: «superar las 10 000 ventas». Nadie definió qué era una venta, porque parecía obvio.</p>
+<p>El día del corte, el gerente comercial abre el archivo, cuenta 10 800 filas y manda un correo de celebración: meta cumplida. El gerente de finanzas cuenta pedidos facturados y encuentra 5 009: la mitad del camino. La gerente de marketing sostiene que una venta sin cliente no existe, cuenta 793 compradores distintos y, si se pide que estén «activos», el número baja hasta 203 según la definición que se use.</p>
+<p>Los tres van al mismo directorio, el mismo día, con el mismo archivo. Lo que está en juego es el bono anual del equipo, la meta del año siguiente y la credibilidad de cualquier cifra que vuelva a presentarse en esa sala. Y hay algo peor que nadie ha visto: el archivo que todos usaron ni siquiera contiene solo ventas.</p>
+<h2>Los datos sobre la mesa</h2>
+<div class="rejilla c3">
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">10 800, de las cuales 806 no son ventas</div><div class="etq">Filas del archivo</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">9 994</div><div class="etq">Líneas de pedido reales</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">5 009 (Order ID)</div><div class="etq">Pedidos distintos</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">793 (Customer ID)</div><div class="etq">Clientes distintos</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">229,86 / 458,61 / 2 896,85 USD según la unidad elegida</div><div class="etq">La «venta promedio»</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">de 203 a 793 según la definición: factor 3,9</div><div class="etq">Clientes «activos»</div></div>
+</div>
+<h2>Para discutir en el aula</h2>
+<table><thead><tr><th scope="col">Pregunta</th><th scope="col">Guía para el docente</th></tr></thead><tbody>
+<tr><td><strong>¿Cuántas ventas hizo Superstore? Pide tres o cuatro cifras en voz alta y anótalas en la pizarra.</strong></td><td>Deja que digan un número cualquiera sin pistas. Casi seguro aparecen 10 800, 9 994 o 5 009: las tres saldrán del mismo archivo en diez minutos. La pizarra es tu evidencia de que la ambigüedad no es teórica: ya pasó en el aula.</td></tr>
+<tr><td><strong>¿Quién de los tres gerentes se equivocó? Votación.</strong></td><td>Habrá votos para cada uno. Revela: nadie se equivocó en el cálculo; la palabra «venta» nunca se definió. Lleva a la conclusión de que la pelea del directorio es una pelea de definiciones disfrazada de pelea de números.</td></tr>
+<tr><td><strong>El gerente pidió «el ticket promedio». ¿Cuál de los tres números le entregas: 229,86, 458,61 o 2 896,85?</strong></td><td>El que quería es el segundo: venta media por pedido. Si le entregas el primero (por línea), la cifra queda a la mitad; el tercero (por cliente) la infla 6,3 veces. Remata: ninguna está mal calculada, dos están mal elegidas.</td></tr>
+<tr><td><strong>¿Cuántos clientes «tiene» Superstore? ¿793 o menos?</strong></td><td>Vota primero, luego destapa la clínica: comprar alguna vez, en 365, 180, 90 o 30 días dan 793, 694, 594, 436 y 203. Pide definiciones equivalentes de sus trabajos (cliente activo, empleado activo). La regla: la definición se escribe antes de calcular y no cambia entre meses.</td></tr>
+<tr><td><strong>¿Cómo llegaron 806 filas de gerentes regionales y devoluciones a una tabla de ventas?</strong></td><td>Cuenta la historia del export: un libro de Excel con tres hojas pegadas una debajo de otra en un solo CSV, sin un solo error de lectura. No lo resuelvas más: el miércoles las destapan ellos con info(), sample() y tail(). Siembra la duda: ¿el final de tu archivo se parece al principio?</td></tr>
+</tbody></table>
+<h2>Juego de roles</h2>
+<p>Reparte los roles entre grupos y da cinco minutos para preparar la postura antes del debate.</p>
+<div class="rejilla c2">
+<div class="tarjeta"><div class="t">Gerente comercial</div><div class="d">Meta cumplida: el archivo tiene 10 800 filas y la meta eran 10 000 ventas. Cambiar la definición ahora es moverle el arco al equipo que ya metió el gol.</div></div>
+<div class="tarjeta"><div class="t">Gerente de finanzas</div><div class="d">Solo existen 5 009 pedidos facturados: lo demás es inflar. Al 50 % de avance no se le paga bono, se le hace un plan de acción.</div></div>
+<div class="tarjeta"><div class="t">Gerente de marketing</div><div class="d">Las ventas las hacen personas: hay 793 clientes, y activos de verdad quizá 203. Celebrar filas es celebrar papel; el negocio se mide en compradores que vuelven.</div></div>
+<div class="tarjeta"><div class="t">Analista nueva</div><div class="d">Antes de discutir cifras exige definir «venta», «pedido» y «cliente activo» por escrito, y propone que toda meta futura nazca con su ficha de análisis al lado.</div></div>
+</div>
+<div class="caja trampa"><div class="titulo">⚠️ El giro</div><p>Nadie se equivocó en el cálculo, y sin embargo todos reportaron mal: el archivo contra el que se midió la meta trae 806 filas que no son ventas —las otras dos hojas del Excel original, gerentes regionales y devoluciones, pegadas al final por un export descuidado—. La meta de «10 000 ventas» se celebró contando filas que incluían a los propios gerentes.</p></div>
+<div class="caja entrega"><div class="titulo">Cómo conecta con el taller</div><p>El miércoles (labs/lab_02.ipynb) el taller aplica los cinco minutos de auditoría —shape, head, info, sample, tail— para destapar las 806 filas, demuestra los tres conteos (9 994 · 5 009 · 793) y cierra con el ataque de fichas entre equipos. El deber 1, primera entrega con nota, es la ficha de análisis del proyecto: una página, sin código.</p></div>
+<div class="nav-pie"><a href="aula.html"><span class="e">Aula</span><span class="t">Todas las sesiones</span></a><a class="sig" href="semana-02.html"><span class="e">Semana 2</span><span class="t">Business Analytics en las organizacion</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>

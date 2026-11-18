@@ -29,6 +29,7 @@
 <a href="casos.html">Casos de estudio</a>
 <a href="datacamp.html">DataCamp y concurso</a>
 <a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
 <a href="rubricas.html">Rúbricas</a>
 <a href="apoyo.html">Apoyo y accesibilidad</a>
 <a href="recursos.html">Recursos y datasets</a>
@@ -66,7 +67,7 @@
 <span>31-ago-2026 y 02-sep-2026</span>
 <span>2 sesiones de 1.5 h</span>
 <span>pandas: describe, value_counts, quantile</span>
-<span>Laboratorio de 37 celdas</span>
+<span>Laboratorio de 32 celdas</span>
 </div>
 <h2>Cómo se arma la semana</h2>
 <div class="rejilla c3">
@@ -81,6 +82,15 @@
 <li>Cuantificar la dispersión y explicar por qué importa tanto como el centro.</li>
 <li>Establecer la línea base descriptiva contra la que se comparará todo lo demás.</li>
 </ul>
+<h2>Todo lo de esta semana, listo para el aula</h2>
+<div class="rejilla c3">
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-05.html"><div class="n">Sesión 5 · teoría</div><div class="t">Presentación</div><div class="d">La trampa del promedio · Caso Spotify</div></a>
+<a class="tarjeta" data-b="1" href="presentaciones/sesion-06.html"><div class="n">Sesión 6 · taller</div><div class="t">Presentación</div><div class="d">Torneo de las doce preguntas · Taller Spotify</div></a>
+<a class="tarjeta" href="caso-clase-03.html"><div class="n">Música y streaming</div><div class="t">Caso de la clase</div><div class="d">¿Qué es una canción normal?</div></a>
+<a class="tarjeta" href="material-semana-03.html"><div class="n">15 minutos</div><div class="t">Material de estudio</div><div class="d">El promedio que arruina decisiones</div></a>
+<a class="tarjeta" href="simuladores/simulador-media-mediana.html"><div class="n">Interactivo</div><div class="t">Simulador de la semana</div><div class="d">Se proyecta el lunes y se juega en el taller.</div></a>
+<a class="tarjeta" href="docente-sesion-05.html"><div class="n">Minuto a minuto</div><div class="t">Guiones del docente</div><div class="d">Las dos sesiones, con tiempos, errores frecuentes y plan si vas tarde.</div></a>
+</div>
 <h2>Clase teórica</h2>
 <div class="sesion">
 <div class="cab"><span class="dia">Lunes · concepto y caso</span><span class="fecha">Sesión 5 · 31-ago-2026 · 90 minutos</span></div>
@@ -101,16 +111,16 @@
 <h3>Perfilado descriptivo contra reloj</h3><p>describe, value_counts y quantile. Doce preguntas descriptivas de dificultad creciente sobre la base del curso.</p>
 </div>
 <h3>Pasos del taller</h3><ol class="pasos">
-<li>Perfilado descriptivo completo de la base del curso con <code>describe(include='all')</code>.</li>
-<li>Doce preguntas descriptivas de dificultad creciente contra reloj, en equipos.</li>
+<li>Perfilado descriptivo del catálogo de Spotify con <code>describe(include='all')</code>: 32 833 canciones.</li>
+<li>Doce preguntas descriptivas de dificultad creciente contra reloj, en equipos, sobre duración, popularidad y géneros.</li>
 <li>Para cada respuesta, decidir si el estadístico correcto es la media o la mediana y justificarlo con la forma de la distribución.</li>
 </ol>
-<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_03.ipynb</code> · 37 celdas (19 de código, 18 de texto). Corre completo sobre los datos de Comercial Andina sin instalar nada.</p><p style="margin-top:.7rem"><a class="boton" href="lab-03.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_03.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_03.ipynb">Descargar .ipynb</a></p></div>
+<div class="caja"><div class="titulo">Cuaderno del laboratorio</div><p><code>labs/lab_03.ipynb</code> · 32 celdas (16 de código, 16 de texto). Corre completo sin instalar nada, sobre el catálogo de Spotify (spotify_canciones.csv).</p><p style="margin-top:.7rem"><a class="boton" href="lab-03.html">Ver la guía del laboratorio</a> <a class="boton sec" href="https://colab.research.google.com/github/julianmaya/CursoAnalisisDatos_IA_2026/blob/main/sitio/labs/lab_03.ipynb">Abrir en Colab</a> <a class="boton sec" href="labs/lab_03.ipynb">Descargar .ipynb</a></p></div>
 <h3>Ejercicios del cuaderno</h3>
 <table><thead><tr><th scope="col">Tipo</th><th scope="col">Ejercicio</th><th scope="col">De qué va</th></tr></thead><tbody>
-<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>Repite la sección 4 completa pero abriendo por ciudad en lugar de por tipo_cliente: tabla con</td></tr>
-<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío</strong></td><td>El describe() del ticket dice que el mínimo es -693,68. Una factura de venta no puede ser</td></tr>
-<tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En equipos, contra reloj. Doce preguntas de dificultad creciente sobre la base del curso. Para cada</td></tr>
+<tr><td><span class="etiqueta inf">Guiado</span></td><td><strong>🌶️ Ejercicio 1 — Guiado</strong></td><td>Repite la sección 3 completa abriendo por playlist_genre: una tabla con media, mediana,</td></tr>
+<tr><td><span class="etiqueta avi">Desafío</span></td><td><strong>🔥 Desafío</strong></td><td>El describe() de la sección 2 dice que la canción más corta dura 0,07 minutos: cuatro</td></tr>
+<tr><td><span class="etiqueta ok">Reto en clase</span></td><td><strong>🎯 Reto en clase (15 min)</strong></td><td>En equipos, contra reloj. Doce preguntas descriptivas sobre el catálogo de Spotify. Para cada</td></tr>
 </tbody></table>
 <h2>Proyecto y uso de IA</h2>
 <div class="caja"><div class="titulo">Trabajo sobre el caso del grupo</div><p>Perfilado descriptivo del dataset del caso y primeras tres observaciones que un gerente podría accionar.</p></div>
@@ -118,6 +128,8 @@
 <h2>Insumos</h2>
 <h3>Datos que usa el laboratorio</h3><ul>
 <li><strong>Comercial Andina</strong>, la base del curso: <a href="datos.html">ficha de los siete archivos</a></li>
+<li><a href="datos/publicos/spotify_canciones.csv">Spotify · 32 833 canciones con duración, popularidad y género (música)</a></li>
+<li><a href="datos/publicos/credit.csv">Credit.csv · práctica extra heredada de 202410 (banca personal)</a></li>
 <li><a href="../Material Actual/Actividades Organizadas/02_Primer_Contacto_con_Datos_y_EDA/2025_Taller_02_Ejercicio_Analisis_Individual_Pizza_Sales/adjuntos/EDA_Pizza_BancoPreguntas.docx">Banco de preguntas descriptivas (material de apoyo del docente)</a></li>
 </ul>
 <h3>Casos que se apoyan en esta semana</h3><ul>

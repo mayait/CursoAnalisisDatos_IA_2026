@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cuál es la pizza estrella? — Simulador · Semana 1 · ADM 2003</title>
+<style>
+:root{--acc:#0F6E8C;--acc-soft:#E8F3F8;--acc-dark:#0A5066;--ink:#232326;--mut:#6d6d74;--line:#e6e6ea;--bg2:#f7f7f9;--alert:#A6192E;--ok:#1a7a4a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:var(--ink);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 40px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;margin:.15em 0 .2em}
+.sub{color:var(--mut);max-width:60ch}
+.counter{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+.chip{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:.95rem}
+.chip b{font-variant-numeric:tabular-nums}
+section{margin-top:34px;border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+h2{font-size:1.35rem;font-weight:800;margin-bottom:4px}
+.h2sub{color:var(--mut);font-size:.95rem;margin-bottom:16px}
+.defs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.defbtn{flex:1 1 180px;min-height:58px;padding:12px 18px;font-size:1.02rem;font-weight:700;color:var(--ink);
+  background:var(--bg2);border:2px solid var(--line);border-radius:12px;cursor:pointer;transition:all .18s}
+.defbtn small{display:block;font-weight:500;color:var(--mut);font-size:.78rem}
+.defbtn:hover{border-color:var(--acc)}
+.defbtn[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.defbtn[aria-pressed="true"] small{color:#d7ecf4}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px;border-radius:8px}
+.rankbox{position:relative;height:472px;overflow:hidden}
+.rrow{position:absolute;left:0;right:0;height:59px;display:flex;align-items:center;gap:12px;padding:6px 8px;
+  border-radius:12px;transition:top .6s cubic-bezier(.25,.8,.3,1),opacity .45s,background .3s;background:#fff}
+.rrow.win{background:var(--acc-soft);box-shadow:inset 0 0 0 2px var(--acc)}
+.rrow.out{opacity:0;pointer-events:none}
+.rnum{width:30px;text-align:center;font-weight:800;color:var(--mut);font-size:1.05rem;flex:none}
+.rrow.win .rnum{color:var(--acc)}
+.rname{width:172px;flex:none;font-weight:600;font-size:.92rem;line-height:1.15}
+.badge{display:inline-block;background:var(--acc);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.08em;
+  border-radius:6px;padding:2px 7px;margin-top:2px}
+.track{flex:1;height:26px;background:var(--bg2);border-radius:8px;overflow:hidden}
+.fill{height:100%;background:var(--acc);border-radius:8px;width:0;transition:width .65s cubic-bezier(.25,.8,.3,1);opacity:.85}
+.rrow.win .fill{opacity:1}
+.rval{width:130px;flex:none;text-align:right;font-weight:700;font-variant-numeric:tabular-nums;font-size:.95rem}
+.callout{margin-top:14px;padding:14px 18px;border-left:4px solid var(--acc);background:var(--acc-soft);border-radius:0 12px 12px 0;font-size:1rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:6px}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--bg2)}
+.card h3{font-size:1.05rem;margin-bottom:2px}
+.card .cu{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums}
+.card .cu span{font-size:.85rem;font-weight:500;color:var(--mut)}
+.minitrack{height:10px;background:#e9e9ee;border-radius:5px;margin:10px 0 4px;overflow:hidden}
+.minifill{height:100%;background:var(--mut);border-radius:5px}
+.ipu{display:none;margin-top:10px;font-weight:700;font-size:1.05rem}
+.ipu small{display:block;font-weight:500;color:var(--mut)}
+.show-ipu .ipu{display:block}
+.card.star-ipu{transition:box-shadow .3s}
+.show-ipu .card.star-ipu{box-shadow:inset 0 0 0 2px var(--alert);background:#fdf3f4}
+.show-ipu .card.star-ipu .ipu b{color:var(--alert)}
+.switch{display:inline-flex;align-items:center;gap:12px;margin:18px 0 4px;cursor:pointer;font-weight:600;font-size:1rem}
+.switch input{position:absolute;opacity:0;width:46px;height:26px;cursor:pointer}
+.sl{width:46px;height:26px;flex:none;background:#cfcfd6;border-radius:999px;position:relative;transition:background .2s}
+.sl::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.switch input:checked+.sl{background:var(--acc)}
+.switch input:checked+.sl::after{left:23px}
+.switch input:focus-visible+.sl{outline:3px solid var(--acc);outline-offset:2px}
+.alertbox{display:none;margin-top:14px;padding:14px 18px;border-left:4px solid var(--alert);background:#fdf3f4;border-radius:0 12px 12px 0}
+.alertbox b{color:var(--alert)}
+.show-ipu .alertbox{display:block}
+.lesson{margin-top:34px;text-align:center;padding:26px 18px;background:var(--ink);color:#fff;border-radius:16px}
+.lesson p{font-size:clamp(1.2rem,2.6vw,1.7rem);font-weight:800;letter-spacing:-.01em}
+.lesson small{color:#bdbdc4;font-size:.9rem}
+footer{margin-top:30px;padding:18px 20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--acc);font-weight:600;text-decoration:none}
+footer a:hover{text-decoration:underline}
+@media (max-width:640px){
+  .rname{width:108px;font-size:.78rem}
+  .rval{width:86px;font-size:.78rem}
+  .rrow{height:55px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Semana 1 · Simulador · Datos reales de una pizzería (1 año)</p>
+  <h1>¿Cuál es la pizza estrella?</h1>
+  <p class="sub">Antes de responder con datos, hay que decidir qué significa «estrella». Prueba las tres definiciones y observa el ranking.</p>
+
+  <div class="counter" role="group" aria-label="Tamaño del dataset">
+    <span class="chip"><b>21&#8239;350</b> pedidos</span>
+    <span class="chip"><b>48&#8239;620</b> líneas de venta</span>
+    <span class="chip"><b>32</b> pizzas en el menú</span>
+    <span class="chip"><b>$817&#8239;860,05</b> vendidos</span>
+  </div>
+
+  <section aria-labelledby="t1">
+    <h2 id="t1">Elige tu definición de «estrella»</h2>
+    <p class="h2sub">Mismos datos, tres preguntas distintas. El top 8 se reordena solo.</p>
+    <div class="defs" role="group" aria-label="Definición de pizza estrella">
+      <button class="defbtn" id="b-u" aria-pressed="true">Por unidades vendidas<small>¿Cuál sale más del horno?</small></button>
+      <button class="defbtn" id="b-i" aria-pressed="false">Por ingresos ($)<small>¿Cuál trae más dinero?</small></button>
+      <button class="defbtn" id="b-p" aria-pressed="false">Por pedidos distintos<small>¿Cuál aparece en más facturas?</small></button>
+    </div>
+    <div class="rankbox" id="rankbox" aria-live="polite"></div>
+    <p class="callout" id="callout"></p>
+  </section>
+
+  <section aria-labelledby="t2">
+    <h2 id="t2">¿Y cuál eliminamos del menú?</h2>
+    <p class="h2sub">Las 3 pizzas que menos unidades venden en el año. Candidatas obvias… ¿o no?</p>
+    <div class="cards" id="cards"></div>
+    <label class="switch"><input type="checkbox" id="ipuToggle"><span class="sl" aria-hidden="true"></span>Mostrar ingreso por unidad</label>
+    <div class="alertbox" role="alert" id="ipuAlert">
+      <b>Alerta antes de recortar:</b> la Brie Carre es la pizza <b>más cara por unidad de las 32</b>: <b>$23,65</b>, frente a un promedio de menú de $16,50. Compárala con la Pepperoni: 2&#8239;418 unidades… a $12,47 cada una. <b>Vender poco no es aportar poco.</b>
+    </div>
+  </section>
+
+  <div class="lesson">
+    <p>«Los datos no cambiaron. Cambió la definición.»</p>
+    <small>Definir la métrica es la primera decisión del análisis, no un detalle técnico.</small>
+  </div>
+
+  <footer>
+    <span>ADM 2003 · Análisis de Datos con IA y Python · USFQ</span>
+    <a href="../semana-01.html">&larr; Volver al curso</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+/* Datos reales: pizza_ventas.csv — 48 620 líneas, 21 350 pedidos, 32 pizzas.
+   u = unidades vendidas, i = ingresos $, p = pedidos distintos, ipu = ingreso por unidad. */
+const DATA=[{"n":"Barbecue Chicken","u":2432,"i":42768.0,"p":2273,"ipu":17.59},{"n":"Big Meat","u":1914,"i":22968.0,"p":1811,"ipu":12.0},{"n":"Brie Carre","u":490,"i":11588.5,"p":480,"ipu":23.65},{"n":"Calabrese","u":937,"i":15934.25,"p":918,"ipu":17.01},{"n":"California Chicken","u":2370,"i":41409.5,"p":2197,"ipu":17.47},{"n":"Chicken Alfredo","u":987,"i":16900.25,"p":967,"ipu":17.12},{"n":"Chicken Pesto","u":973,"i":16701.75,"p":938,"ipu":17.17},{"n":"Classic Deluxe","u":2453,"i":38180.5,"p":2329,"ipu":15.56},{"n":"Five Cheese","u":1409,"i":26066.5,"p":1359,"ipu":18.5},{"n":"Four Cheese","u":1902,"i":32265.7,"p":1809,"ipu":16.96},{"n":"Greek","u":1420,"i":28454.1,"p":1361,"ipu":20.04},{"n":"Green Garden","u":997,"i":13955.75,"p":976,"ipu":14.0},{"n":"Hawaiian","u":2422,"i":32273.25,"p":2280,"ipu":13.33},{"n":"Italian Capocollo","u":1438,"i":25094.0,"p":1380,"ipu":17.45},{"n":"Italian Supreme","u":1884,"i":33476.75,"p":1791,"ipu":17.77},{"n":"Italian Vegetables","u":981,"i":16019.25,"p":952,"ipu":16.33},{"n":"Mediterranean","u":934,"i":15360.5,"p":912,"ipu":16.45},{"n":"Mexicana","u":1484,"i":26780.75,"p":1426,"ipu":18.05},{"n":"Napolitana","u":1464,"i":24087.0,"p":1421,"ipu":16.45},{"n":"Pepper Salami","u":1446,"i":25529.0,"p":1383,"ipu":17.65},{"n":"Pepperoni","u":2418,"i":30161.75,"p":2278,"ipu":12.47},{"n":"Pepperoni, Mushroom, and Peppers","u":1359,"i":18834.5,"p":1316,"ipu":13.86},{"n":"Prosciutto and Arugula","u":1457,"i":24193.25,"p":1398,"ipu":16.6},{"n":"Sicilian","u":1938,"i":30940.5,"p":1820,"ipu":15.97},{"n":"Soppressata","u":961,"i":16425.75,"p":941,"ipu":17.09},{"n":"Southwest Chicken","u":1917,"i":34705.75,"p":1825,"ipu":18.1},{"n":"Spicy Italian","u":1924,"i":34831.25,"p":1822,"ipu":18.1},{"n":"Spinach Pesto","u":970,"i":15596.0,"p":945,"ipu":16.08},{"n":"Spinach Supreme","u":950,"i":15277.75,"p":918,"ipu":16.08},{"n":"Spinach and Feta","u":1446,"i":23271.25,"p":1402,"ipu":16.09},{"n":"Thai Chicken","u":2371,"i":43434.25,"p":2225,"ipu":18.32},{"n":"Vegetables + Vegetables","u":1526,"i":24374.75,"p":1463,"ipu":15.97}];
+
+const NB="\u202F";
+function fmt(x,d){d=d||0;const s=Math.abs(x).toFixed(d),parts=s.split(".");
+  return (x<0?"−":"")+parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,NB)+(parts[1]?","+parts[1]:"");}
+const usd=x=>"$"+fmt(x,2);
+
+const METR={
+  u:{key:"u",lab:x=>fmt(x.u)+NB+"unid.",txt:"Por <b>unidades</b>, la estrella es la <b>Classic Deluxe</b>: 2 453 unidades en el año. La Thai Chicken va 5.ª… por ahora. Cambia la definición."},
+  i:{key:"i",lab:x=>usd(x.i),txt:"Por <b>ingresos</b>, la corona cambia de cabeza: <b>Thai Chicken</b>, $43 434,25. Y la Pepperoni desaparece del top 8: mueve mucha masa, pero a $12,47 la unidad."},
+  p:{key:"p",lab:x=>fmt(x.p)+NB+"pedidos",txt:"Por <b>pedidos distintos</b>, gana la <b>Classic Deluxe</b> (2 329 facturas) y la Hawaiian sube al 2.º puesto: pocas unidades por pedido, pero está en todas partes."}
+};
+let cur="u";
+
+/* Filas del ranking: union de los top 8 de las tres métricas */
+const TOPN=8, ROWH=59;
+const union=new Set();
+["u","i","p"].forEach(k=>[...DATA].sort((a,b)=>b[k]-a[k]).slice(0,TOPN).forEach(x=>union.add(x.n)));
+const box=document.getElementById("rankbox");
+const rows={};
+union.forEach(name=>{
+  const d=document.createElement("div");
+  d.className="rrow out";d.style.top=(TOPN*ROWH)+"px";
+  d.innerHTML='<span class="rnum"></span><span class="rname"><span class="nm"></span></span>'+
+              '<span class="track"><span class="fill"></span></span><span class="rval"></span>';
+  d.querySelector(".nm").textContent=name;
+  box.appendChild(d);rows[name]=d;
+});
+
+function render(){
+  const m=METR[cur];
+  const sorted=[...DATA].sort((a,b)=>b[m.key]-a[m.key]);
+  const top=sorted.slice(0,TOPN), max=top[0][m.key];
+  const pos={};top.forEach((x,idx)=>pos[x.n]=idx);
+  union.forEach(name=>{
+    const el=rows[name], idx=pos[name];
+    if(idx===undefined){el.classList.add("out");el.classList.remove("win");el.style.top=(TOPN*ROWH)+"px";return;}
+    const d=DATA.find(x=>x.n===name);
+    el.classList.remove("out");el.style.top=(idx*ROWH)+"px";
+    el.classList.toggle("win",idx===0);
+    el.querySelector(".rnum").textContent=(idx+1)+".";
+    el.querySelector(".fill").style.width=(d[m.key]/max*100)+"%";
+    el.querySelector(".rval").textContent=m.lab(d);
+    const nm=el.querySelector(".rname");
+    let b=nm.querySelector(".badge");
+    if(idx===0&&!b){b=document.createElement("span");b.className="badge";b.textContent="★ ESTRELLA";nm.appendChild(b);}
+    if(idx!==0&&b)b.remove();
+  });
+  document.getElementById("callout").innerHTML=m.txt;
+  [["b-u","u"],["b-i","i"],["b-p","p"]].forEach(([id,k])=>
+    document.getElementById(id).setAttribute("aria-pressed",String(k===cur)));
+}
+["u","i","p"].forEach(k=>document.getElementById("b-"+k).addEventListener("click",()=>{cur=k;render();}));
+
+/* Panel 2: las 3 últimas por unidades (reales) */
+const bottom=[...DATA].sort((a,b)=>a.u-b.u).slice(0,3);
+const maxU=Math.max(...DATA.map(x=>x.u));
+const cardsEl=document.getElementById("cards");
+bottom.forEach((d,i)=>{
+  const rankIpu=1+DATA.filter(x=>x.ipu>d.ipu).length;
+  const c=document.createElement("div");
+  c.className="card"+(d.n==="Brie Carre"?" star-ipu":"");
+  c.innerHTML='<h3>'+(i+1)+'. '+d.n+'</h3>'+
+    '<div class="cu">'+fmt(d.u)+' <span>unidades / año</span></div>'+
+    '<div class="minitrack"><div class="minifill" style="width:'+(d.u/maxU*100)+'%"></div></div>'+
+    '<small style="color:var(--mut)">'+fmt(d.u/49574*100,1)+'&#8239;% de las 49&#8239;574 unidades vendidas</small>'+
+    '<div class="ipu"><b>'+usd(d.ipu)+'</b> por unidad <small>'+rankIpu+'.ª más cara de 32 &middot; '+usd(d.i)+' al año</small></div>';
+  cardsEl.appendChild(c);
+});
+const tg=document.getElementById("ipuToggle");
+tg.addEventListener("change",()=>document.body.classList.toggle("show-ipu",tg.checked));
+
+render();
+</script>
+</body>
+</html>

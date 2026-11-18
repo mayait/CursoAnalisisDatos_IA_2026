@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 2 · El primer cuaderno — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#0F6E8C" data-marca="Sesión 2 · 19-ago-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: proyector, este deck, y el lab_01 abierto en Colab en otra pestaña con la primera celda YA ejecutada (la sesión tarda en arrancar). Hoy el deck ocupa unos 35 minutos repartidos; el resto es taller. Verifica que todos traen laptop; quien no, se sienta con alguien que sí.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 2</div>
+  <div class="kicker">Semana 1 · Taller · Miércoles 19 de agosto</div>
+  <h1>El primer cuaderno</h1>
+  <p class="grande">La pizzería del lunes, entera: de la pregunta al gráfico. Hoy la corres tú.</p>
+</section>
+
+<!-- 2 · votación para armar parejas -->
+<section class="diapo pregunta" data-notas="0-5 min. Pide la votación y cuenta las manos: ese conteo es tu herramienta para armar parejas. Insiste: da igual la respuesta, hoy nadie instala nada y el curso asume cero programación previa. Arma las parejas ahí mismo, un sí con un no, antes de pasar de lámina.">
+  <div class="kicker">Antes de abrir nada</div>
+  <h2>¿Quién ha escrito una línea de código antes de hoy?</h2>
+  <span class="mano">✋ Mano arriba</span>
+  <p class="frag grande">Da igual la respuesta: hoy nadie instala nada y nadie se queda atrás.</p>
+  <p class="frag">Las parejas de hoy mezclan un <strong>sí</strong> con un <strong>no</strong>. Ahora mismo las armamos.</p>
+</section>
+
+<!-- 3 · qué es un cuaderno -->
+<section class="diapo" data-notas="5-11 min. Demo en vivo de 3 minutos en Colab: crea una celda de texto y una de código, ejecuta una celda que usa una variable definida más abajo y muestra el error. Explica que la sesión recuerda lo ejecutado y que se muere sola tras un rato: reiniciar es normal, no un accidente. La regla final es la que se llevan: antes de entregar, Entorno → Reiniciar y ejecutar todo.">
+  <div class="kicker">La herramienta del semestre</div>
+  <h2>Un cuaderno es texto que argumenta y código que demuestra</h2>
+  <ul>
+    <li>Celdas de <strong>texto</strong> y celdas de <strong>código</strong>, en el orden en que se leen.</li>
+    <li class="frag">La sesión <strong>recuerda</strong> lo que ya ejecutaste… y se muere sola de vez en cuando. Reiniciar es normal.</li>
+    <li class="frag">El orden de ejecución importa: una celda corrida fuera de orden miente sin avisar.</li>
+  </ul>
+  <p class="frag grande">La regla: <strong>si no corre de arriba a abajo, no vale.</strong> Entorno → Reiniciar y ejecutar todo, antes de entregar.</p>
+</section>
+
+<!-- 4 · cifra -->
+<section class="diapo cifra" data-notas="11-13 min. Lámina de ambición: un año completo de un negocio real cabe en el navegador y no hay que instalar nada. Es la misma tabla del lunes: hoy dejan de mirarla y empiezan a tocarla.">
+  <div class="kicker">Lo que vas a tocar hoy</div>
+  <div class="numero">48 620</div>
+  <p class="etiqueta">líneas de pedido de un año real de pizzería, esperándote en Colab. Sin instalar nada.</p>
+</section>
+
+<!-- 5 · reglas del taller -->
+<section class="diapo" data-notas="13-17 min. Las reglas del taller valen para todos los miércoles del semestre, así que dilas con calma. La rotación del teclado es la que más cuesta hacer cumplir: anuncia que vas a pasar por las mesas mirando quién teclea. El que mira no descansa: dicta, cuestiona y anota.">
+  <div class="kicker">Cómo trabajamos los miércoles</div>
+  <h2>En parejas, y el teclado rota</h2>
+  <ul>
+    <li>Parejas mezcladas: quien ya programó con quien nunca lo hizo.</li>
+    <li class="frag">El teclado <strong>rota en cada sección</strong> del cuaderno. Quien mira, dicta y cuestiona.</li>
+    <li class="frag">¿Atascados? Primero el compañero, luego el asistente de IA, al final el docente.</li>
+    <li class="frag">Cada quien entrega <strong>su propio cuaderno</strong> ejecutado, aunque trabajen juntos.</li>
+  </ul>
+</section>
+
+<!-- 6 · el arco del lab -->
+<section class="diapo" data-notas="17-21 min. Revela paso a paso. Este arco de cinco pasos es el esqueleto de todos los laboratorios del semestre y del proyecto final: pregunta, carga, describe, gráfico, conclusión. Hoy lo recorren completo en pequeño; en diciembre lo recorren en grande ante un panel.">
+  <div class="kicker">El arco del laboratorio 1</div>
+  <h2>Cinco pasos que vas a repetir todo el semestre</h2>
+  <ul>
+    <li><strong>Pregunta</strong> — ¿cuál es la pizza estrella y cuál eliminamos?</li>
+    <li class="frag"><strong>Carga</strong> — abrir la tabla y saber qué tamaño tiene lo que abriste.</li>
+    <li class="frag"><strong>Describe</strong> — cinco números y un rango de fechas para hablar con el dueño.</li>
+    <li class="frag"><strong>Gráfico</strong> — con la conclusión en el título, no el nombre del eje.</li>
+    <li class="frag"><strong>Conclusión</strong> — tres frases con una cifra cada una, para alguien que no verá tu código.</li>
+  </ul>
+</section>
+
+<!-- 7 · los hitos numéricos -->
+<section class="diapo" data-notas="21-25 min. Estas cifras son los puntos de control del taller: si a alguien no le cuadran, rompió algo y hay que volver atrás. Explica las celdas con ✅: son asserts que gritan solos si el número no da. No corregirlos y seguir es la forma más rápida de perder la hora.">
+  <div class="kicker">Los puntos de control</div>
+  <h2>Si tus números no son estos, algo se rompió</h2>
+  <table class="mini">
+    <tr><th>Qué calculas</th><th>Cifra esperada</th></tr>
+    <tr><td>Líneas de pedido cargadas</td><td>48 620</td></tr>
+    <tr><td>Ingresos del año · tickets</td><td>$ 817 860,05 · 21 350</td></tr>
+    <tr><td>Estrella por unidades</td><td>Classic Deluxe · 2 453</td></tr>
+    <tr><td>Estrella por ingresos</td><td>Thai Chicken · $ 43 434,25</td></tr>
+    <tr><td>La «peor» (Brie Carre)</td><td>490 unidades · $ 23,65 por unidad</td></tr>
+  </table>
+  <p class="frag">Las celdas con ✅ son <strong>comprobaciones automáticas</strong>: si una grita, no sigas. Algo quedó a medias.</p>
+</section>
+
+<!-- 8 · bitácora en vivo -->
+<section class="diapo" data-notas="25-35 min. La demo más importante del día, en vivo y sin ensayo: pídele al asistente tres métricas alternativas para elegir la mejor pizza, muestra la respuesta y registra la fila con registrar() delante de todos. Después enseña la fila de ejemplo que ya viene resuelta en el cuaderno. La regla que deben repetir: si aceptas todo lo que devuelve el asistente, no lo estás verificando.">
+  <div class="kicker">La bitácora de IA, en vivo</div>
+  <h2>Registrar el encargo es parte del trabajo</h2>
+  <ul>
+    <li>El cuaderno trae <code>registrar()</code>: objetivo, prompt final, qué devolvió, cómo lo verificaste, veredicto.</li>
+    <li class="frag">Tres veredictos posibles: <strong>acepto</strong>, <strong>corrijo</strong>, <strong>descarto</strong>.</li>
+    <li class="frag">Si aceptas todo lo que te devuelve el asistente, <strong>no lo estás verificando</strong>.</li>
+  </ul>
+  <p class="frag grande">Ahora mismo, una entrada en vivo. La entrega completa lleva tres, y al menos una con «corrijo» o «descarto».</p>
+</section>
+
+<!-- 9 · sección: a trabajar -->
+<section class="diapo seccion" data-notas="35-80 min. Suelta a las parejas y deja esta lámina proyectada durante el taller. Circula por las mesas: los atascos típicos son la sesión muerta de Colab (reiniciar y volver a correr) y celdas ejecutadas fuera de orden. A los 60 minutos avisa cuánto falta; a los 78 pide manos arriba de quién pasó la comprobación 2. A los 80 pasa a la checklist.">
+  <div class="kicker">Los siguientes 45 minutos</div>
+  <h2>A correr la pizzería</h2>
+  <p>De la pregunta al gráfico. El deck vuelve a los 80 minutos.</p>
+</section>
+
+<!-- 10 · checklist de salida -->
+<section class="diapo" data-notas="80-86 min. Recorre la checklist punto por punto y da dos minutos para el Reiniciar y ejecutar todo final. Lo que no alcanzó (ejercicios, las otras dos filas de bitácora) se termina en casa: la entrega es el cuaderno completo. Recuerda el nombre de archivo: lab_01_apellido.ipynb.">
+  <div class="kicker">Antes de salir por esa puerta</div>
+  <h2>Checklist de salida</h2>
+  <ul>
+    <li>Cuaderno <strong>ejecutado de arriba a abajo</strong> sin errores: Entorno → Reiniciar y ejecutar todo.</li>
+    <li class="frag">Bitácora con <strong>al menos una entrada tuya</strong>, escrita hoy.</li>
+    <li class="frag"><strong>Subido al repositorio</strong> del equipo como <code>lab_01_apellido.ipynb</code>.</li>
+  </ul>
+  <p class="frag">Los tres ejercicios y las tres filas de bitácora se completan en casa si no alcanzó: son parte de la entrega.</p>
+</section>
+
+<!-- 11 · cierre teaser -->
+<section class="diapo cifra" data-notas="86-90 min. Déjala proyectada mientras salen. El lunes llega Superstore: 10 800 filas de un retail donde tres analistas cuentan los clientes y les salen tres números distintos. Pide de lectura previa el material de la semana 2 del sitio.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:26ch">«Hoy conocimos una pizzería. El lunes, un retail donde nadie sabe cuántos clientes hay.»</p>
+  <p class="etiqueta">Sesión 3 · lunes 24 de agosto · lectura previa: material de la semana 2</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

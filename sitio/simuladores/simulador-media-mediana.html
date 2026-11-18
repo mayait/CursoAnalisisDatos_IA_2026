@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Media o mediana? — Simulador · Semana 3 · ADM 2003</title>
+<style>
+:root{--acc:#0B6E4F;--acc-soft:#E7F3EE;--acc-dark:#08533C;--acc-light:#79B9A3;--ink:#232326;--mut:#6d6d74;--line:#e6e6ea;--bg2:#f7f7f9;--alert:#A6192E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#fff;color:var(--ink);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 40px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font-size:clamp(1.9rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;margin:.15em 0 .2em}
+.sub{color:var(--mut);max-width:66ch}
+section{margin-top:26px;border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 16px;min-width:130px}
+.stat .lb{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.stat .vl{font-size:1.35rem;font-weight:800;font-variant-numeric:tabular-nums}
+.stat.media .vl{color:var(--alert)}
+.stat.mediana .vl{color:var(--acc-dark)}
+.stat.wide{flex:1;min-width:230px}
+.stat.wide .vl{font-size:1.15rem}
+canvas{width:100%;height:380px;display:block;border:1px solid var(--line);border-radius:12px;background:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:10px;font-size:.88rem;color:var(--mut)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:22px;height:12px;border-radius:3px;display:inline-block}
+.sw.b{background:var(--acc);opacity:.85}
+.sw.r{background:var(--acc-light)}
+.sw.lm{width:22px;height:0;border-top:3px dashed var(--alert)}
+.sw.ld{width:22px;height:0;border-top:3px solid var(--acc-dark)}
+.controls{margin-top:22px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start}
+.ctl label,.ctl .lab{display:block;font-weight:700;margin-bottom:6px;font-size:1rem}
+.ctl output{font-weight:800;color:var(--acc-dark);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:10px;-webkit-appearance:none;appearance:none;background:linear-gradient(90deg,var(--acc) var(--p,0%),#e2e2e8 var(--p,0%));border-radius:5px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid var(--acc);box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:grab}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--acc);cursor:grab}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px;border-radius:8px}
+.genrebox{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:18px}
+.switch{display:inline-flex;align-items:center;gap:12px;cursor:pointer;font-weight:700;font-size:1rem}
+.switch input{position:absolute;opacity:0;width:46px;height:26px;cursor:pointer}
+.slid{width:46px;height:26px;flex:none;background:#cfcfd6;border-radius:999px;position:relative;transition:background .2s}
+.slid::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.switch input:checked+.slid{background:var(--acc)}
+.switch input:checked+.slid::after{left:23px}
+.switch input:focus-visible+.slid{outline:3px solid var(--acc);outline-offset:2px}
+select{font-size:1rem;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-family:inherit}
+select:disabled{opacity:.45}
+.resetbtn{padding:12px 22px;font-size:1rem;font-weight:700;background:#fff;color:var(--acc-dark);border:2px solid var(--acc);border-radius:12px;cursor:pointer;white-space:nowrap}
+.resetbtn:hover{background:var(--acc-soft)}
+.gnote{display:none;margin-top:14px;padding:12px 16px;border-left:4px solid var(--acc);background:var(--acc-soft);border-radius:0 12px 12px 0;font-size:.95rem}
+.rnote{display:none;margin-top:14px;padding:12px 16px;border-left:4px solid var(--alert);background:#fdf3f4;border-radius:0 12px 12px 0;font-size:.95rem}
+.rnote b{color:var(--alert)}
+.lesson{margin-top:34px;text-align:center;padding:26px 18px;background:var(--ink);color:#fff;border-radius:16px}
+.lesson p{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:800}
+.lesson small{color:#bdbdc4;font-size:.9rem}
+footer{margin-top:30px;padding:18px 20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--acc);font-weight:600;text-decoration:none}
+footer a:hover{text-decoration:underline}
+@media (max-width:720px){.controls{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Semana 3 · Simulador · 3&#8239;000 canciones reales de Spotify</p>
+  <h1>¿Media o mediana?</h1>
+  <p class="sub">Duración de 3&#8239;000 canciones reales (500 por género, muestreadas con semilla 42 de un dataset de 32&#8239;833). Tu misión: sabotear la media con remixes eternos de 10 minutos y ver cuál de las dos medidas sigue contando la verdad.</p>
+
+  <section aria-labelledby="t1">
+    <h2 id="t1" style="position:absolute;left:-9999px">Histograma de duraciones</h2>
+    <div class="stats">
+      <div class="stat"><div class="lb">Canciones</div><div class="vl" id="s-n">—</div></div>
+      <div class="stat media"><div class="lb">Media</div><div class="vl" id="s-media">—</div></div>
+      <div class="stat mediana"><div class="lb">Mediana</div><div class="vl" id="s-mediana">—</div></div>
+      <div class="stat wide"><div class="lb">¿A cuántas describe la media?</div><div class="vl" id="s-pct">—</div></div>
+    </div>
+    <canvas id="cv" role="img" aria-label="Histograma de duración de canciones en minutos"></canvas>
+    <div class="legend">
+      <span><span class="sw b" aria-hidden="true"></span>canciones reales</span>
+      <span><span class="sw r" aria-hidden="true"></span>remixes añadidos (10 min)</span>
+      <span><span class="sw lm" aria-hidden="true"></span>media</span>
+      <span><span class="sw ld" aria-hidden="true"></span>mediana</span>
+    </div>
+
+    <div class="controls">
+      <div class="ctl">
+        <label for="remix">Añade remixes de 10 minutos: <output id="remixOut" for="remix">0</output></label>
+        <input type="range" id="remix" min="0" max="500" step="10" value="0"
+               aria-describedby="rnote">
+      </div>
+      <button class="resetbtn" id="reset">Reiniciar todo</button>
+    </div>
+    <div class="rnote" id="rnote" role="status"></div>
+
+    <div class="genrebox">
+      <label class="switch"><input type="checkbox" id="gToggle"><span class="slid" aria-hidden="true"></span>Solo canciones de tu género</label>
+      <label for="gSel" style="position:absolute;left:-9999px">Género de playlist</label>
+      <select id="gSel" disabled>
+        <option value="pop">Pop</option>
+        <option value="rock">Rock</option>
+        <option value="latin">Latina</option>
+        <option value="rap">Rap</option>
+        <option value="r&b">R&amp;B</option>
+        <option value="edm">EDM</option>
+      </select>
+    </div>
+    <div class="gnote" id="gnote" role="status"></div>
+  </section>
+
+  <div class="lesson">
+    <p>«La media persigue a los extremos. La mediana se queda con la mayoría.»</p>
+    <small>Si la distribución tiene cola, reporta la mediana. Si reportas la media, di quién la está arrastrando.</small>
+  </div>
+
+  <footer>
+    <span>ADM 2003 · Análisis de Datos con IA y Python · USFQ</span>
+    <a href="../semana-03.html">&larr; Volver al curso</a>
+  </footer>
+</div>
+
+<script>
+"use strict";
+/* MUESTRA: duraciones reales (min, 2 decimales) de spotify_canciones.csv.
+   500 por genero, sin duplicados de track dentro del genero, seed 42, ordenadas. */
+const MUESTRA={"edm":[0.56,1.71,1.87,1.89,1.94,1.95,1.99,2.12,2.12,2.19,2.2,2.27,2.28,2.3,2.31,2.32,2.35,2.37,2.37,2.4,2.41,2.44,2.45,2.49,2.5,2.52,2.52,2.54,2.54,2.56,2.57,2.58,2.58,2.58,2.59,2.59,2.6,2.6,2.61,2.61,2.62,2.63,2.64,2.64,2.65,2.66,2.66,2.66,2.66,2.69,2.69,2.71,2.71,2.71,2.71,2.72,2.72,2.73,2.74,2.74,2.74,2.75,2.75,2.75,2.75,2.75,2.76,2.77,2.77,2.77,2.78,2.78,2.78,2.79,2.79,2.79,2.8,2.8,2.81,2.81,2.82,2.83,2.84,2.84,2.84,2.84,2.86,2.86,2.86,2.86,2.87,2.87,2.88,2.88,2.88,2.89,2.89,2.89,2.89,2.9,2.91,2.91,2.91,2.91,2.92,2.92,2.92,2.93,2.93,2.93,2.93,2.94,2.94,2.94,2.94,2.95,2.95,2.95,2.95,2.96,2.96,2.97,2.98,2.98,2.99,2.99,2.99,3.0,3.0,3.0,3.0,3.01,3.01,3.02,3.03,3.03,3.03,3.04,3.04,3.05,3.05,3.05,3.06,3.06,3.06,3.06,3.06,3.07,3.07,3.07,3.08,3.08,3.09,3.09,3.09,3.09,3.11,3.11,3.12,3.12,3.13,3.13,3.14,3.14,3.14,3.15,3.16,3.16,3.16,3.16,3.17,3.18,3.18,3.18,3.19,3.19,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.21,3.21,3.21,3.22,3.22,3.23,3.23,3.24,3.24,3.25,3.25,3.25,3.25,3.25,3.25,3.26,3.26,3.26,3.26,3.27,3.27,3.27,3.28,3.29,3.29,3.3,3.3,3.31,3.31,3.31,3.31,3.31,3.31,3.32,3.33,3.33,3.33,3.34,3.34,3.34,3.35,3.35,3.35,3.35,3.36,3.36,3.38,3.38,3.38,3.38,3.39,3.39,3.39,3.39,3.4,3.4,3.4,3.4,3.41,3.41,3.42,3.42,3.42,3.42,3.42,3.42,3.42,3.43,3.43,3.44,3.44,3.44,3.44,3.44,3.44,3.44,3.45,3.45,3.45,3.45,3.45,3.47,3.47,3.47,3.48,3.48,3.48,3.48,3.48,3.49,3.5,3.5,3.5,3.5,3.5,3.5,3.52,3.52,3.53,3.53,3.53,3.54,3.55,3.55,3.56,3.56,3.56,3.57,3.57,3.57,3.57,3.58,3.58,3.58,3.62,3.62,3.62,3.63,3.63,3.63,3.64,3.64,3.65,3.65,3.65,3.66,3.67,3.68,3.68,3.69,3.69,3.69,3.7,3.7,3.71,3.72,3.72,3.75,3.75,3.75,3.75,3.75,3.75,3.76,3.76,3.76,3.76,3.79,3.79,3.8,3.8,3.81,3.81,3.82,3.82,3.82,3.82,3.82,3.83,3.85,3.85,3.86,3.86,3.86,3.86,3.88,3.88,3.9,3.91,3.91,3.92,3.95,3.95,3.95,3.96,3.97,3.97,3.97,3.97,3.98,3.98,3.99,4.0,4.0,4.01,4.05,4.05,4.07,4.08,4.09,4.1,4.11,4.11,4.12,4.12,4.13,4.14,4.15,4.16,4.16,4.16,4.19,4.19,4.2,4.22,4.25,4.25,4.26,4.26,4.29,4.29,4.3,4.3,4.32,4.32,4.33,4.38,4.38,4.38,4.38,4.38,4.39,4.4,4.4,4.41,4.42,4.44,4.44,4.45,4.46,4.47,4.48,4.49,4.5,4.5,4.52,4.52,4.54,4.56,4.56,4.61,4.62,4.65,4.66,4.66,4.67,4.71,4.72,4.77,4.78,4.79,4.81,4.81,4.84,4.87,4.89,4.9,4.91,4.91,4.94,4.98,5.0,5.03,5.05,5.05,5.06,5.09,5.1,5.13,5.14,5.16,5.22,5.35,5.37,5.39,5.41,5.45,5.46,5.51,5.56,5.56,5.64,5.65,5.69,5.78,5.86,5.9,5.97,5.97,6.03,6.11,6.14,6.19,6.23,6.26,6.29,6.3,6.41,6.45,6.71,6.79,6.8,6.91,7.12,7.25,7.33,7.41,7.81,7.83,7.92,7.93,8.03,8.13,8.15,8.2,8.35],"latin":[1.39,1.55,1.62,1.79,2.13,2.19,2.3,2.31,2.32,2.34,2.39,2.43,2.43,2.45,2.46,2.46,2.47,2.48,2.49,2.51,2.52,2.53,2.55,2.6,2.61,2.61,2.62,2.62,2.62,2.62,2.63,2.65,2.65,2.65,2.67,2.67,2.67,2.67,2.68,2.7,2.71,2.72,2.72,2.73,2.74,2.75,2.75,2.75,2.76,2.77,2.77,2.78,2.79,2.8,2.81,2.81,2.82,2.82,2.83,2.83,2.83,2.83,2.83,2.84,2.84,2.84,2.85,2.85,2.86,2.87,2.87,2.87,2.87,2.88,2.88,2.88,2.89,2.89,2.9,2.9,2.9,2.9,2.91,2.91,2.92,2.92,2.92,2.93,2.93,2.94,2.95,2.95,2.96,2.96,2.96,2.97,2.97,2.98,2.99,2.99,3.0,3.01,3.01,3.01,3.01,3.02,3.02,3.02,3.03,3.03,3.03,3.04,3.04,3.05,3.06,3.06,3.06,3.07,3.07,3.07,3.07,3.08,3.08,3.08,3.08,3.08,3.08,3.09,3.09,3.11,3.11,3.11,3.12,3.12,3.12,3.12,3.13,3.13,3.13,3.13,3.13,3.13,3.14,3.14,3.15,3.15,3.15,3.15,3.15,3.16,3.16,3.16,3.16,3.16,3.17,3.17,3.17,3.17,3.17,3.18,3.19,3.19,3.2,3.2,3.2,3.2,3.21,3.21,3.21,3.21,3.21,3.21,3.22,3.22,3.22,3.22,3.22,3.22,3.22,3.22,3.23,3.23,3.23,3.24,3.24,3.24,3.25,3.25,3.25,3.25,3.26,3.26,3.26,3.26,3.26,3.27,3.28,3.28,3.28,3.28,3.28,3.29,3.29,3.3,3.3,3.31,3.31,3.31,3.32,3.32,3.32,3.32,3.33,3.33,3.34,3.34,3.34,3.34,3.35,3.36,3.36,3.36,3.37,3.37,3.37,3.37,3.37,3.37,3.37,3.38,3.38,3.38,3.38,3.38,3.39,3.39,3.39,3.4,3.4,3.4,3.4,3.41,3.41,3.41,3.42,3.42,3.43,3.43,3.43,3.43,3.44,3.44,3.44,3.44,3.44,3.44,3.45,3.45,3.45,3.45,3.46,3.46,3.46,3.48,3.48,3.48,3.48,3.49,3.49,3.5,3.5,3.5,3.5,3.5,3.51,3.51,3.51,3.51,3.51,3.51,3.52,3.52,3.52,3.53,3.53,3.53,3.53,3.53,3.53,3.54,3.54,3.55,3.56,3.57,3.57,3.57,3.57,3.57,3.58,3.59,3.59,3.59,3.61,3.61,3.62,3.62,3.62,3.62,3.63,3.63,3.63,3.63,3.63,3.63,3.64,3.64,3.64,3.65,3.66,3.66,3.66,3.66,3.67,3.67,3.67,3.67,3.67,3.68,3.68,3.68,3.68,3.69,3.69,3.7,3.7,3.71,3.71,3.71,3.72,3.72,3.73,3.74,3.76,3.76,3.76,3.76,3.76,3.78,3.78,3.78,3.78,3.79,3.79,3.79,3.79,3.8,3.8,3.8,3.8,3.8,3.8,3.82,3.82,3.83,3.83,3.83,3.83,3.84,3.84,3.84,3.85,3.86,3.86,3.86,3.86,3.87,3.87,3.89,3.9,3.9,3.9,3.91,3.92,3.93,3.93,3.93,3.94,3.95,3.96,3.97,3.98,3.99,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.01,4.02,4.02,4.03,4.03,4.03,4.04,4.04,4.05,4.05,4.06,4.06,4.07,4.08,4.08,4.08,4.09,4.09,4.09,4.1,4.12,4.12,4.16,4.17,4.2,4.2,4.21,4.23,4.23,4.24,4.24,4.25,4.27,4.27,4.28,4.29,4.29,4.31,4.32,4.32,4.34,4.35,4.36,4.37,4.39,4.4,4.4,4.4,4.4,4.41,4.43,4.46,4.47,4.48,4.51,4.52,4.56,4.57,4.57,4.58,4.65,4.69,4.69,4.69,4.72,4.72,4.75,4.75,4.76,4.81,4.81,4.84,4.85,4.85,4.86,4.87,4.92,4.93,4.94,4.94,5.03,5.07,5.16,5.17,5.26,5.29,5.33,5.43,5.45,5.67,5.7,5.75,5.76,5.86,5.94,6.0,6.19,6.49,6.62,6.74,7.75],"pop":[0.63,1.02,2.13,2.13,2.22,2.31,2.35,2.37,2.43,2.46,2.47,2.48,2.49,2.5,2.5,2.55,2.55,2.56,2.56,2.58,2.59,2.59,2.6,2.6,2.62,2.64,2.65,2.66,2.66,2.66,2.66,2.7,2.72,2.72,2.73,2.73,2.73,2.74,2.76,2.76,2.79,2.8,2.8,2.81,2.83,2.83,2.85,2.86,2.86,2.87,2.87,2.87,2.88,2.88,2.89,2.89,2.89,2.91,2.92,2.93,2.94,2.94,2.94,2.96,2.96,2.96,2.97,2.97,2.97,2.97,2.98,2.98,2.99,2.99,3.0,3.01,3.01,3.01,3.02,3.02,3.03,3.03,3.03,3.03,3.04,3.04,3.04,3.05,3.06,3.06,3.07,3.07,3.08,3.08,3.08,3.08,3.08,3.08,3.08,3.08,3.08,3.08,3.1,3.1,3.1,3.1,3.1,3.11,3.11,3.11,3.12,3.12,3.12,3.12,3.12,3.13,3.13,3.13,3.13,3.13,3.14,3.14,3.14,3.15,3.15,3.16,3.16,3.16,3.16,3.16,3.17,3.17,3.17,3.17,3.17,3.17,3.17,3.18,3.18,3.18,3.18,3.19,3.2,3.2,3.2,3.2,3.21,3.21,3.21,3.21,3.21,3.22,3.22,3.22,3.22,3.22,3.22,3.22,3.23,3.23,3.23,3.23,3.23,3.23,3.24,3.24,3.25,3.25,3.25,3.26,3.26,3.26,3.26,3.27,3.27,3.28,3.28,3.29,3.29,3.29,3.3,3.3,3.3,3.3,3.31,3.32,3.32,3.33,3.33,3.34,3.35,3.35,3.35,3.35,3.36,3.36,3.36,3.36,3.36,3.36,3.37,3.38,3.38,3.38,3.38,3.38,3.39,3.39,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.42,3.42,3.43,3.43,3.43,3.43,3.44,3.44,3.44,3.45,3.45,3.45,3.45,3.45,3.46,3.47,3.47,3.47,3.47,3.48,3.48,3.48,3.49,3.49,3.49,3.49,3.49,3.49,3.49,3.49,3.5,3.5,3.51,3.51,3.51,3.52,3.52,3.52,3.53,3.53,3.54,3.54,3.54,3.54,3.54,3.55,3.55,3.55,3.55,3.55,3.55,3.55,3.56,3.56,3.56,3.56,3.56,3.57,3.57,3.57,3.57,3.57,3.57,3.58,3.58,3.58,3.59,3.59,3.6,3.6,3.6,3.6,3.6,3.61,3.62,3.63,3.63,3.64,3.64,3.66,3.67,3.67,3.68,3.68,3.68,3.68,3.68,3.68,3.69,3.69,3.69,3.69,3.69,3.7,3.7,3.7,3.71,3.71,3.72,3.73,3.73,3.74,3.74,3.74,3.74,3.74,3.75,3.75,3.76,3.76,3.77,3.79,3.79,3.79,3.79,3.79,3.8,3.8,3.8,3.8,3.8,3.8,3.8,3.8,3.81,3.81,3.82,3.82,3.83,3.83,3.85,3.85,3.85,3.85,3.87,3.89,3.89,3.9,3.91,3.92,3.92,3.92,3.92,3.92,3.93,3.93,3.93,3.93,3.93,3.93,3.94,3.95,3.95,3.95,3.95,3.95,3.95,3.95,3.95,3.96,3.96,3.96,3.96,3.98,4.0,4.0,4.01,4.01,4.03,4.04,4.05,4.05,4.05,4.05,4.06,4.06,4.07,4.09,4.1,4.12,4.12,4.13,4.13,4.13,4.14,4.14,4.15,4.15,4.18,4.21,4.21,4.21,4.23,4.24,4.25,4.27,4.27,4.28,4.28,4.3,4.31,4.31,4.32,4.34,4.35,4.35,4.35,4.35,4.35,4.36,4.36,4.37,4.38,4.38,4.38,4.39,4.4,4.4,4.4,4.43,4.44,4.44,4.45,4.45,4.47,4.47,4.49,4.5,4.5,4.5,4.52,4.54,4.55,4.55,4.56,4.56,4.57,4.63,4.65,4.69,4.69,4.7,4.7,4.71,4.72,4.73,4.73,4.75,4.75,4.77,4.78,4.88,4.93,4.95,4.96,4.97,4.98,5.04,5.05,5.06,5.09,5.16,5.17,5.17,5.21,5.35,5.36,5.4,5.4,5.42,5.52,5.57,5.83,5.9,5.98,6.13,6.16,6.59,6.73,6.77,7.81],"r&b":[1.74,1.87,1.99,2.07,2.19,2.19,2.19,2.23,2.25,2.34,2.4,2.42,2.45,2.45,2.48,2.49,2.49,2.51,2.52,2.55,2.57,2.58,2.61,2.62,2.62,2.63,2.65,2.65,2.66,2.67,2.68,2.68,2.68,2.7,2.7,2.71,2.72,2.73,2.73,2.73,2.74,2.74,2.76,2.77,2.78,2.78,2.78,2.79,2.8,2.8,2.82,2.84,2.84,2.84,2.84,2.86,2.87,2.88,2.88,2.9,2.9,2.9,2.91,2.92,2.92,2.94,2.95,2.95,2.95,2.95,2.97,2.98,2.99,3.0,3.01,3.01,3.03,3.04,3.05,3.05,3.07,3.07,3.07,3.07,3.07,3.08,3.09,3.1,3.1,3.12,3.12,3.14,3.14,3.14,3.15,3.16,3.17,3.17,3.17,3.17,3.18,3.19,3.19,3.19,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.21,3.22,3.24,3.24,3.24,3.25,3.25,3.26,3.26,3.26,3.27,3.27,3.27,3.27,3.27,3.28,3.28,3.28,3.29,3.29,3.29,3.29,3.29,3.3,3.3,3.31,3.31,3.31,3.33,3.33,3.34,3.34,3.35,3.35,3.35,3.35,3.35,3.35,3.36,3.36,3.38,3.38,3.38,3.39,3.39,3.39,3.39,3.4,3.4,3.4,3.4,3.4,3.4,3.41,3.42,3.42,3.42,3.43,3.43,3.43,3.44,3.45,3.46,3.46,3.46,3.46,3.47,3.47,3.48,3.49,3.49,3.5,3.5,3.51,3.51,3.52,3.52,3.53,3.53,3.53,3.54,3.54,3.54,3.55,3.55,3.55,3.55,3.56,3.56,3.56,3.56,3.56,3.56,3.56,3.57,3.58,3.58,3.59,3.59,3.6,3.61,3.61,3.61,3.61,3.62,3.62,3.65,3.65,3.67,3.68,3.68,3.69,3.7,3.7,3.7,3.7,3.71,3.71,3.72,3.72,3.72,3.73,3.73,3.74,3.74,3.74,3.75,3.75,3.76,3.76,3.76,3.76,3.77,3.77,3.77,3.78,3.78,3.8,3.8,3.8,3.8,3.81,3.81,3.82,3.82,3.83,3.83,3.83,3.83,3.84,3.85,3.85,3.86,3.86,3.86,3.87,3.88,3.88,3.89,3.9,3.91,3.91,3.92,3.92,3.93,3.93,3.94,3.94,3.94,3.94,3.95,3.95,3.95,3.97,3.97,3.97,3.97,3.98,3.98,3.98,3.99,3.99,4.0,4.0,4.0,4.0,4.01,4.01,4.01,4.01,4.01,4.01,4.02,4.02,4.02,4.03,4.03,4.04,4.04,4.04,4.05,4.06,4.08,4.08,4.08,4.09,4.1,4.1,4.11,4.11,4.13,4.14,4.14,4.14,4.15,4.15,4.16,4.16,4.16,4.17,4.17,4.18,4.18,4.19,4.2,4.2,4.2,4.22,4.23,4.24,4.25,4.25,4.25,4.26,4.27,4.28,4.28,4.28,4.29,4.29,4.29,4.3,4.3,4.32,4.32,4.33,4.34,4.34,4.34,4.35,4.35,4.37,4.38,4.38,4.38,4.38,4.38,4.39,4.42,4.42,4.42,4.43,4.43,4.44,4.46,4.46,4.47,4.48,4.48,4.48,4.49,4.49,4.5,4.5,4.51,4.51,4.51,4.52,4.53,4.54,4.55,4.56,4.56,4.57,4.57,4.59,4.59,4.59,4.6,4.6,4.6,4.63,4.67,4.68,4.69,4.69,4.7,4.72,4.73,4.74,4.74,4.79,4.79,4.81,4.82,4.83,4.86,4.86,4.87,4.88,4.89,4.91,4.92,4.93,4.96,4.96,4.97,4.97,4.98,4.99,4.99,5.0,5.02,5.03,5.03,5.03,5.05,5.05,5.06,5.06,5.07,5.07,5.08,5.08,5.09,5.1,5.1,5.11,5.12,5.12,5.13,5.14,5.15,5.18,5.2,5.22,5.23,5.32,5.32,5.33,5.36,5.37,5.37,5.38,5.4,5.4,5.42,5.44,5.5,5.52,5.53,5.55,5.62,5.64,5.75,5.75,5.75,5.76,5.83,5.88,6.0,6.0,6.0,6.02,6.04,6.38,6.44,6.45,6.56,6.59,6.77,7.28,7.33,7.34,7.52,8.07,8.17],"rap":[1.13,1.3,1.5,1.55,1.61,1.61,1.62,1.63,1.65,1.65,1.69,1.7,1.74,1.82,1.83,1.85,1.86,1.87,1.91,1.92,1.94,1.97,2.03,2.04,2.07,2.09,2.1,2.1,2.11,2.12,2.13,2.13,2.14,2.14,2.15,2.15,2.16,2.18,2.2,2.2,2.2,2.22,2.23,2.25,2.25,2.26,2.28,2.28,2.29,2.29,2.3,2.32,2.32,2.33,2.33,2.34,2.34,2.36,2.37,2.38,2.4,2.41,2.43,2.44,2.45,2.47,2.47,2.49,2.49,2.5,2.5,2.51,2.51,2.51,2.52,2.52,2.53,2.55,2.55,2.58,2.59,2.61,2.63,2.64,2.65,2.66,2.66,2.66,2.67,2.68,2.68,2.7,2.71,2.71,2.71,2.72,2.72,2.73,2.74,2.76,2.76,2.77,2.77,2.77,2.79,2.79,2.79,2.8,2.8,2.8,2.81,2.82,2.82,2.83,2.84,2.84,2.84,2.85,2.85,2.86,2.86,2.86,2.86,2.86,2.87,2.89,2.89,2.9,2.9,2.9,2.9,2.91,2.91,2.92,2.93,2.93,2.93,2.95,2.95,2.95,2.96,2.97,2.97,2.99,2.99,3.0,3.0,3.01,3.01,3.01,3.01,3.01,3.01,3.02,3.03,3.03,3.03,3.03,3.04,3.04,3.04,3.05,3.06,3.06,3.07,3.09,3.09,3.09,3.1,3.1,3.11,3.12,3.12,3.12,3.13,3.14,3.14,3.15,3.15,3.16,3.16,3.19,3.19,3.2,3.2,3.21,3.21,3.22,3.22,3.22,3.22,3.23,3.23,3.25,3.25,3.25,3.25,3.25,3.26,3.26,3.26,3.27,3.27,3.27,3.28,3.28,3.28,3.31,3.32,3.32,3.32,3.32,3.32,3.32,3.32,3.33,3.33,3.34,3.34,3.35,3.35,3.35,3.36,3.37,3.37,3.38,3.39,3.39,3.39,3.4,3.4,3.4,3.4,3.41,3.41,3.42,3.43,3.43,3.43,3.44,3.44,3.44,3.45,3.46,3.46,3.48,3.49,3.5,3.5,3.5,3.5,3.51,3.51,3.52,3.52,3.53,3.53,3.54,3.54,3.54,3.54,3.55,3.55,3.55,3.56,3.56,3.56,3.56,3.57,3.57,3.58,3.58,3.58,3.58,3.58,3.59,3.62,3.62,3.62,3.62,3.62,3.62,3.63,3.64,3.64,3.64,3.65,3.65,3.66,3.66,3.69,3.69,3.69,3.71,3.71,3.72,3.72,3.73,3.73,3.74,3.74,3.75,3.75,3.75,3.76,3.77,3.77,3.77,3.78,3.78,3.78,3.78,3.78,3.79,3.81,3.81,3.82,3.83,3.83,3.84,3.85,3.85,3.87,3.87,3.88,3.88,3.89,3.89,3.9,3.9,3.91,3.91,3.91,3.91,3.91,3.92,3.92,3.92,3.93,3.93,3.94,3.94,3.94,3.95,3.95,3.95,3.96,3.96,3.96,3.97,3.97,4.01,4.02,4.02,4.03,4.04,4.04,4.05,4.05,4.05,4.05,4.06,4.06,4.07,4.08,4.09,4.1,4.1,4.11,4.11,4.11,4.11,4.12,4.13,4.14,4.14,4.14,4.15,4.16,4.16,4.16,4.16,4.17,4.17,4.19,4.19,4.19,4.2,4.2,4.21,4.21,4.22,4.22,4.23,4.23,4.24,4.24,4.25,4.25,4.26,4.27,4.27,4.28,4.28,4.29,4.29,4.29,4.31,4.32,4.34,4.36,4.36,4.39,4.39,4.4,4.4,4.4,4.4,4.41,4.41,4.41,4.42,4.42,4.42,4.42,4.44,4.45,4.45,4.48,4.48,4.5,4.53,4.54,4.55,4.55,4.56,4.6,4.61,4.61,4.62,4.64,4.64,4.66,4.68,4.69,4.7,4.7,4.72,4.73,4.74,4.75,4.78,4.79,4.8,4.81,4.82,4.83,4.84,4.85,4.87,4.87,4.87,4.89,4.89,4.93,4.94,4.99,5.02,5.03,5.05,5.09,5.12,5.12,5.12,5.17,5.17,5.18,5.18,5.18,5.22,5.24,5.35,5.43,5.43,5.44,5.49,5.55,5.57,5.58,5.69,5.8,5.89,5.95,5.97,5.97,6.04,6.11,6.35,6.46,6.82],"rock":[1.62,1.63,1.88,2.03,2.26,2.27,2.3,2.33,2.36,2.42,2.45,2.46,2.47,2.51,2.51,2.56,2.56,2.57,2.58,2.61,2.61,2.62,2.63,2.64,2.64,2.65,2.7,2.72,2.75,2.76,2.77,2.77,2.78,2.78,2.8,2.82,2.82,2.83,2.85,2.87,2.89,2.89,2.89,2.9,2.92,2.93,2.94,2.94,2.94,2.95,2.95,2.96,2.97,2.98,2.99,2.99,2.99,2.99,2.99,3.02,3.04,3.05,3.05,3.06,3.09,3.11,3.12,3.12,3.12,3.13,3.13,3.14,3.15,3.15,3.15,3.16,3.17,3.18,3.18,3.2,3.2,3.21,3.22,3.22,3.22,3.23,3.23,3.23,3.23,3.24,3.24,3.26,3.27,3.27,3.27,3.27,3.28,3.3,3.3,3.31,3.32,3.32,3.33,3.33,3.33,3.34,3.34,3.34,3.34,3.35,3.35,3.36,3.36,3.36,3.36,3.36,3.37,3.37,3.37,3.37,3.37,3.38,3.38,3.38,3.39,3.39,3.4,3.4,3.41,3.42,3.42,3.43,3.43,3.43,3.44,3.44,3.45,3.45,3.46,3.46,3.47,3.49,3.49,3.49,3.5,3.5,3.5,3.51,3.52,3.52,3.52,3.52,3.52,3.53,3.53,3.53,3.53,3.54,3.54,3.55,3.55,3.55,3.55,3.55,3.55,3.55,3.56,3.56,3.57,3.57,3.57,3.58,3.58,3.58,3.58,3.59,3.59,3.6,3.6,3.6,3.61,3.62,3.62,3.62,3.63,3.63,3.64,3.64,3.65,3.65,3.66,3.66,3.66,3.67,3.67,3.68,3.68,3.68,3.68,3.69,3.69,3.7,3.7,3.71,3.71,3.71,3.71,3.71,3.71,3.72,3.73,3.73,3.73,3.73,3.73,3.74,3.74,3.74,3.74,3.75,3.75,3.76,3.78,3.78,3.78,3.78,3.79,3.79,3.79,3.8,3.8,3.81,3.83,3.83,3.83,3.83,3.83,3.84,3.84,3.84,3.85,3.85,3.85,3.86,3.87,3.87,3.87,3.89,3.9,3.9,3.9,3.91,3.92,3.93,3.93,3.93,3.93,3.94,3.94,3.95,3.95,3.95,3.95,3.95,3.95,3.96,3.97,3.98,3.98,3.98,3.99,3.99,4.0,4.0,4.0,4.0,4.0,4.01,4.02,4.02,4.03,4.04,4.04,4.05,4.05,4.05,4.06,4.06,4.07,4.08,4.08,4.09,4.09,4.11,4.11,4.11,4.14,4.14,4.17,4.18,4.18,4.18,4.19,4.2,4.2,4.21,4.21,4.22,4.25,4.25,4.26,4.26,4.26,4.27,4.27,4.27,4.28,4.28,4.28,4.29,4.29,4.3,4.3,4.3,4.31,4.32,4.33,4.34,4.35,4.36,4.36,4.36,4.37,4.38,4.38,4.38,4.39,4.39,4.39,4.4,4.41,4.43,4.44,4.44,4.46,4.46,4.47,4.48,4.48,4.48,4.48,4.5,4.5,4.5,4.51,4.51,4.51,4.51,4.52,4.52,4.52,4.53,4.53,4.54,4.55,4.55,4.57,4.58,4.58,4.58,4.58,4.59,4.59,4.59,4.6,4.62,4.63,4.63,4.63,4.65,4.65,4.65,4.66,4.66,4.66,4.67,4.67,4.68,4.69,4.69,4.7,4.71,4.72,4.72,4.73,4.73,4.74,4.74,4.74,4.75,4.76,4.76,4.76,4.76,4.77,4.77,4.8,4.84,4.86,4.86,4.88,4.88,4.88,4.89,4.9,4.9,4.91,4.92,4.92,4.92,4.93,4.93,4.94,5.01,5.01,5.01,5.03,5.04,5.08,5.1,5.1,5.13,5.14,5.14,5.16,5.17,5.2,5.28,5.28,5.28,5.29,5.36,5.36,5.38,5.42,5.49,5.49,5.57,5.59,5.6,5.6,5.61,5.62,5.73,5.77,5.78,5.8,5.81,5.81,5.83,5.83,5.87,5.9,5.91,5.91,5.93,5.94,5.94,5.99,6.06,6.07,6.08,6.08,6.09,6.09,6.1,6.17,6.26,6.4,6.48,6.57,6.59,6.72,6.73,6.79,6.86,7.05,7.14,7.17,7.21,7.47,7.53,7.87,7.97,8.19,8.23,8.29,8.35,8.47,8.52]};
+/* Estadisticas reales del dataset COMPLETO (32 833 filas) por genero: media, mediana, n */
+const REAL={all:{m:3.76,md:3.60,n:32833},edm:{m:3.71,md:3.40,n:6043},latin:{m:3.61,md:3.51,n:5155},
+  pop:{m:3.63,md:3.52,n:5507},"r&b":{m:3.96,md:3.87,n:5431},rap:{m:3.57,md:3.51,n:5746},rock:{m:4.14,md:3.96,n:4951}};
+const GLAB={all:"todas",edm:"EDM",latin:"Latina",pop:"Pop","r&b":"R&B",rap:"Rap",rock:"Rock"};
+
+const NB="\u202F";
+function fmt(x,d){d=d||0;const s=Math.abs(x).toFixed(d),p=s.split(".");
+  return (x<0?"−":"")+p[0].replace(/\B(?=(\d{3})+(?!\d))/g,NB)+(p[1]?","+p[1]:"");}
+
+const ALL=Object.values(MUESTRA).flat().sort((a,b)=>a-b);
+const state={genre:"all",remix:0};
+const base=()=>state.genre==="all"?ALL:(MUESTRA[state.genre]||ALL);
+
+function stats(){
+  const b=base(), r=state.remix, n=b.length+r;
+  let sum=0;for(const v of b)sum+=v;
+  const mean=(sum+10*r)/n;
+  /* b esta ordenado y 10 >= max(b): la mediana sale por indice */
+  const med=i=>i<b.length?b[i]:10;
+  const median=n%2?med((n-1)/2):(med(n/2-1)+med(n/2))/2;
+  let cnt=0;for(const v of b){if(v<=mean)cnt++;else break;}
+  if(10<=mean)cnt+=r;
+  return {n,mean,median,pct:cnt/n*100,base:b};
+}
+const bases={};  // stats con 0 remixes por vista, para los deltas
+function baseline(){const k=state.genre;if(!bases[k]){const s=state.remix;state.remix=0;bases[k]=stats();state.remix=s;}return bases[k];}
+
+/* ---------- Histograma canvas ---------- */
+const cv=document.getElementById("cv"), ctx=cv.getContext("2d");
+const XMAX=10.5, BINS=42, BW=XMAX/BINS;
+function draw(){
+  const dpr=window.devicePixelRatio||1, W=cv.clientWidth, H=380;
+  cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+  const L=44,R=14,T=30,B=34, pw=W-L-R, ph=H-T-B;
+  const s=stats(), b=s.base;
+  const hb=new Array(BINS).fill(0);
+  for(const v of b){let k=Math.min(BINS-1,Math.floor(v/BW));hb[k]++;}
+  const rIdx=Math.min(BINS-1,Math.floor(10/BW));
+  const maxC=Math.max(Math.max(...hb), hb[rIdx]+state.remix, 1);
+  const x=v=>L+v/XMAX*pw, y=c=>T+ph-c/maxC*ph;
+  /* grid + ejes */
+  ctx.strokeStyle="#ececf0";ctx.lineWidth=1;
+  ctx.fillStyle="#8a8a90";ctx.font="12px system-ui, sans-serif";ctx.textAlign="center";
+  for(let m=0;m<=10;m++){ctx.beginPath();ctx.moveTo(x(m),T);ctx.lineTo(x(m),T+ph);ctx.stroke();ctx.fillText(m+"",x(m),H-14);}
+  ctx.fillText("duración (minutos)",L+pw/2,H-1);
+  ctx.textAlign="right";
+  for(let g=0;g<=4;g++){const c=Math.round(maxC*g/4);ctx.fillText(fmt(c),L-6,y(c)+4);}
+  /* barras */
+  const css=getComputedStyle(document.documentElement);
+  const AC=css.getPropertyValue("--acc").trim(), ACL=css.getPropertyValue("--acc-light").trim(), AL=css.getPropertyValue("--alert").trim(), AD=css.getPropertyValue("--acc-dark").trim();
+  for(let k=0;k<BINS;k++){
+    const bx=x(k*BW)+1, bw=pw/BINS-2;
+    if(hb[k]>0){ctx.fillStyle=AC;ctx.globalAlpha=.85;ctx.fillRect(bx,y(hb[k]),bw,T+ph-y(hb[k]));ctx.globalAlpha=1;}
+    if(k===rIdx&&state.remix>0){ctx.fillStyle=ACL;ctx.fillRect(bx,y(hb[k]+state.remix),bw,y(hb[k])-y(hb[k]+state.remix));}
+  }
+  /* marcadores */
+  function marker(v,color,dash,lab,dy){
+    ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.setLineDash(dash);
+    ctx.beginPath();ctx.moveTo(x(v),T-4);ctx.lineTo(x(v),T+ph);ctx.stroke();ctx.setLineDash([]);
+    ctx.font="bold 13px system-ui, sans-serif";
+    const t=lab+" "+fmt(v,2);const wd=ctx.measureText(t).width;
+    let tx=x(v)+6;if(tx+wd>W-4)tx=x(v)-wd-6;
+    ctx.fillStyle=color;ctx.textAlign="left";ctx.fillText(t,tx,dy);
+  }
+  marker(s.mean,AL,[7,5],"media",T+8);
+  marker(s.median,AD,[],"mediana",T+26);
+  cv.setAttribute("aria-label","Histograma de duración. "+fmt(s.n)+" canciones, media "+fmt(s.mean,2)+" minutos, mediana "+fmt(s.median,2)+" minutos.");
+}
+
+/* ---------- UI ---------- */
+const $=id=>document.getElementById(id);
+function update(){
+  const s=stats(), b0=baseline();
+  $("s-n").textContent=fmt(s.n)+(state.remix>0?" ("+fmt(state.remix)+" remixes)":"");
+  $("s-media").textContent=fmt(s.mean,2)+" min";
+  $("s-mediana").textContent=fmt(s.median,2)+" min";
+  $("s-pct").textContent="al "+fmt(s.pct,1)+NB+"% de las canciones";
+  const rn=$("rnote");
+  if(state.remix>0){
+    const dm=(s.mean-b0.mean)*60, dd=(s.median-b0.median)*60;
+    rn.style.display="block";
+    rn.innerHTML="Con <b>"+fmt(state.remix)+" remixes</b> de 10 min ("+fmt(state.remix/s.n*100,1)+NB+"% del total): la <b>media subió "+fmt(dm,0)+" segundos</b>; la mediana, apenas "+fmt(dd,0)+" s. ¿A quién le crees?";
+  } else rn.style.display="none";
+  const gn=$("gnote");
+  if(state.genre!=="all"&&REAL[state.genre]){
+    const r=REAL[state.genre];
+    gn.style.display="block";
+    gn.innerHTML="Género <b>"+GLAB[state.genre]+"</b>: en el dataset completo ("+fmt(r.n)+" canciones) la media real es <b>"+fmt(r.m,2)+" min</b> y la mediana <b>"+fmt(r.md,2)+" min</b>. Aquí ves sus 500 canciones de la muestra.";
+  } else gn.style.display="none";
+  const rg=$("remix");rg.style.setProperty("--p",(state.remix/500*100)+"%");
+  $("remixOut").textContent=fmt(state.remix);
+  draw();
+}
+$("remix").addEventListener("input",e=>{state.remix=+e.target.value;update();});
+$("gToggle").addEventListener("change",e=>{
+  $("gSel").disabled=!e.target.checked;
+  state.genre=e.target.checked?$("gSel").value:"all";
+  update();
+});
+$("gSel").addEventListener("change",e=>{state.genre=e.target.value;update();});
+$("reset").addEventListener("click",()=>{
+  state.remix=0;state.genre="all";
+  $("remix").value=0;$("gToggle").checked=false;$("gSel").disabled=true;
+  update();
+});
+window.addEventListener("resize",draw);
+update();
+</script>
+</body>
+</html>

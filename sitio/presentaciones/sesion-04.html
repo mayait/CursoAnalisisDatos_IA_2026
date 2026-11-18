@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesión 4 · Los cinco minutos — Análisis de Datos con IA y Python</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/marco.css">
+</head>
+<body class="deck" data-acento="#7A4BA8" data-marca="Sesión 4 · 26-ago-2026">
+
+<!-- 1 · portada -->
+<section class="diapo portada" data-notas="Antes de empezar: lab_02 abierto en Colab con la primera celda ejecutada. Hoy el deck ocupa unos 20 minutos al inicio y 35 al final (ataque de fichas, deber, cierre). Verifica que cada equipo trae su ficha de análisis borrador y la empresa del proyecto decidida: sin eso, el ataque de fichas se cae.">
+  <div class="curso">ADM 2003 · Análisis de Datos con IA y Python · USFQ</div>
+  <div class="sello">Sesión 4</div>
+  <div class="kicker">Semana 2 · Taller · Miércoles 26 de agosto</div>
+  <h1>Los cinco minutos</h1>
+  <p class="grande">Toda tabla nueva recibe la misma auditoría antes de cualquier cálculo. Hoy se la haces a Superstore.</p>
+</section>
+
+<!-- 2 · votación -->
+<section class="diapo pregunta" data-notas="0-6 min. Retoma el lunes: el archivo trae 806 filas que no son ventas. Votación: ¿quién las encontraría mirando head()? Deja que algunos digan que sí y pídeles cómo. Revela: imposible, head() enseña las primeras filas y el principio del archivo está impecable. La basura vive al final: por eso la auditoría tiene cinco pasos y no uno.">
+  <div class="kicker">El lunes les conté que hay 806 filas falsas</div>
+  <h2>¿Quién las encontraría mirando <code>head()</code>?</h2>
+  <span class="mano">✋ ¿Se puede?</span>
+  <p class="frag grande">Nadie. <code>head()</code> enseña el principio del archivo, y el principio siempre está limpio. La basura vive al final.</p>
+</section>
+
+<!-- 3 · la secuencia -->
+<section class="diapo" data-notas="6-13 min. La tabla de la sesión: cinco métodos, en este orden, siempre, antes de cualquier otra cosa. Recórrela fila por fila con lo que cada método delata en Superstore. La lección incómoda: head() no delató nada, y por eso existe el resto. describe() cierra la auditoría: mínimos imposibles y medias sospechosas.">
+  <div class="kicker">La secuencia, siempre en este orden</div>
+  <h2>Cinco métodos, una pregunta cada uno</h2>
+  <table class="mini">
+    <tr><th>Método</th><th>Contesta</th><th>En Superstore delató</th></tr>
+    <tr><td><code>shape</code></td><td>¿Cuánto hay?</td><td>10 800 × 21</td></tr>
+    <tr><td><code>head()</code></td><td>¿Qué pinta tiene?</td><td>Nada: todo impecable. Esa es la lección.</td></tr>
+    <tr class="frag"><td><code>info()</code></td><td>¿Cuántos valores hay de verdad?</td><td><code>Sales</code> solo tiene 9 994 no nulos</td></tr>
+    <tr class="frag"><td><code>sample()</code></td><td>¿Cómo es por dentro?</td><td>Una fila «Yes» sin fecha ni cliente</td></tr>
+    <tr class="frag"><td><code>tail()</code></td><td>¿Cómo termina?</td><td>Dos hojas de Excel pegadas debajo</td></tr>
+  </table>
+  <p class="frag">Y <code>describe()</code> remata: mínimos imposibles, medias sospechosas. Cinco minutos que evitan semanas.</p>
+</section>
+
+<!-- 4 · la costura -->
+<section class="diapo" data-notas="13-17 min. Cuenta el misterio resuelto: hasta la fila 9 993 el archivo es una tabla de ventas; justo después aparecen una fila Person/Region, cuatro gerentes con nombre y apellido, una fila Returned/Order ID y 800 filas Yes. Es un libro de Excel con tres hojas exportado a un solo CSV, una hoja pegada debajo de la otra. Y el detalle clave: nadie recibió un error.">
+  <div class="kicker">Dónde estaba escondido</div>
+  <h2>La costura de la fila 9 994</h2>
+  <ul>
+    <li>Hasta la fila 9 993: una tabla de ventas normal.</li>
+    <li class="frag">Después: una fila «Person / Region», cuatro gerentes con nombre, una fila «Returned / Order ID» y 800 filas «Yes».</li>
+    <li class="frag">El archivo nació como un Excel de <strong>tres hojas</strong> y alguien lo exportó a un solo CSV.</li>
+  </ul>
+  <p class="frag grande">Nadie recibió un error: <code>read_csv</code> leyó las 10 800 filas con total obediencia.</p>
+</section>
+
+<!-- 5 · cifra -->
+<section class="diapo cifra" data-notas="17-19 min. La cifra del día. 806 filas que no son ventas, invisibles para head(), delatadas por info() en el conteo de no nulos. Quien sume Sales sin mirarlas no se equivoca: quien cuente filas y las llame ventas, sí.">
+  <div class="kicker">Lo que delató info()</div>
+  <div class="numero">806</div>
+  <p class="etiqueta">filas del archivo no son ventas: son gerentes regionales y devoluciones pegados por un export de Excel. <code>head()</code> jamás te las iba a enseñar.</p>
+</section>
+
+<!-- 6 · encoding y separador -->
+<section class="diapo" data-notas="19-24 min. El peaje de leer archivos reales. Tres síntomas y su parámetro: todo en una sola columna con punto y coma adentro → sep=';'. Caracteres Ã± donde iba la ñ → encoding='latin-1'. Números 1.234,56 leídos como texto → decimal=',' y thousands='.'. El Excel en español exporta así por defecto: no es un archivo roto, es otro dialecto, y se declara al cargar. Les va a pasar con el archivo de su empresa, probablemente este mismo mes.">
+  <div class="kicker">Cuando read_csv escupe basura</div>
+  <h2>El archivo no está roto: está en otro dialecto</h2>
+  <ul>
+    <li>Todo en una sola columna → <code>sep=";"</code></li>
+    <li class="frag">Ã± donde había una ñ → <code>encoding="latin-1"</code></li>
+    <li class="frag">1.234,56 leído como texto → <code>decimal=","</code> y <code>thousands="."</code></li>
+  </ul>
+  <p class="frag">El Excel en español exporta así por defecto. Con el archivo de tu empresa te va a pasar: <strong>se declara al cargar</strong>, no se pelea después.</p>
+</section>
+
+<!-- 7 · sección: ruta del taller -->
+<section class="diapo seccion" data-notas="24-55 min. Suelta a las parejas (teclado rota, como siempre) y deja esta lámina proyectada. Hitos del cuaderno: los cinco minutos, separar las 806 con Sales.notna(), los tres conteos (9 994 · 5 009 · 793) y la clínica de activos. Para tus rondas por las mesas: en el desafío, los 6 pedidos intrusos salen de comparar 5 015 contra 5 009, y los pedidos devueltos son 296, el 5,9 % de los 5 009. A los 55 corta para el ataque de fichas.">
+  <div class="kicker">Los siguientes 30 minutos</div>
+  <h2>Auditar, separar, contar</h2>
+  <p>Los cinco minutos sobre Superstore, las 806 filas fuera y los tres conteos: 9 994 · 5 009 · 793.</p>
+</section>
+
+<!-- 8 · ataque de fichas -->
+<section class="diapo" data-notas="55-75 min. La actividad estrella. Demo primero: proyecta la ficha de ejemplo del cuaderno (campaña de reactivación) y atácala tú en vivo: ¿por qué 180 días y no 90? ¿quién ejecuta la campaña? ¿qué pasa con los clientes del borde del archivo? Luego el intercambio: cada equipo entrega su ficha al de al lado, cinco minutos de ataque sobre la unidad y la decisión, y devolución en voz alta de los dos mejores ataques.">
+  <div class="kicker">A los 55 minutos</div>
+  <h2>El ataque de fichas</h2>
+  <ul>
+    <li>Cada equipo entrega su ficha de análisis al equipo de al lado.</li>
+    <li class="frag">Cinco minutos para atacar dos filas: la <strong>unidad de análisis</strong> y la <strong>decisión que cambia</strong>.</li>
+    <li class="frag">Si demuestran que ninguna decisión cambia, la ficha vuelve y se reescribe. Hoy.</li>
+  </ul>
+  <p class="frag">Primero ataco yo una, en vivo, para calibrar la dureza.</p>
+</section>
+
+<!-- 9 · deber 1 -->
+<section class="diapo" data-notas="75-81 min. Recorre la checklist del deber 1, la primera entrega con nota (los siete deberes suman el 25 % del curso). Todo sale del cuaderno de hoy; lo que faltó se completa en casa. Tarde: hasta 48 horas con el 70 %. Nombre de archivo lab_02_apellido.ipynb.">
+  <div class="kicker">Qué entra al deber 1 · hoy al cierre</div>
+  <h2>La primera entrega con nota</h2>
+  <ul>
+    <li>Cuaderno ejecutado, con las <strong>806 filas identificadas y separadas</strong>.</li>
+    <li class="frag">Los tres ejercicios: en el desafío, los <strong>6 pedidos intrusos</strong> y el % de pedidos devueltos.</li>
+    <li class="frag">Tres observaciones salidas de <code>info()</code>, <code>sample()</code> o <code>tail()</code>, cada una con su cifra.</li>
+    <li class="frag">La <strong>ficha de análisis del equipo</strong>, completa y ya atacada.</li>
+    <li class="frag">Una fila de bitácora: el asistente critica tu ficha como si fuera el gerente.</li>
+  </ul>
+  <p class="frag">Tarde: hasta 48 horas después, con el 70 %.</p>
+</section>
+
+<!-- 10 · la empresa del proyecto -->
+<section class="diapo" data-notas="81-86 min. La decisión de proyecto de la semana. La empresa se confirma hoy y no se cambia: un caso brillante sin datos se convierte en ensayo, y el curso no califica ensayos. Recuerda el protocolo de datos: lo real jamás entra a un asistente de IA; se le describe la estructura con filas inventadas. La carta de consentimiento está en el sitio.">
+  <div class="kicker">Y el proyecto</div>
+  <h2>La empresa se elige hoy y no se cambia</h2>
+  <ul>
+    <li>Comprueben que pueden conseguir un archivo real con <strong>al menos mil filas</strong>.</li>
+    <li class="frag">La fila más difícil de la ficha es «decisión que cambia»: si no se llena, el caso no sirve, por interesante que sea.</li>
+    <li class="frag">Datos reales de la empresa <strong>nunca</strong> entran a un asistente: se describe la estructura con filas inventadas.</li>
+  </ul>
+</section>
+
+<!-- 11 · cierre -->
+<section class="diapo cifra" data-notas="86-90 min. Déjala proyectada mientras salen. Teaser del lunes: cambiamos de industria otra vez — Spotify, 32 833 canciones, y un promedio que miente dos veces en direcciones opuestas.">
+  <div class="kicker">La frase de hoy</div>
+  <p class="grande" style="font-family:var(--serif);font-size:clamp(30px,6vh,64px);max-width:24ch">«head() te enseña el principio. sample() te enseña la verdad.»</p>
+  <p class="etiqueta">Sesión 5 · lunes 31 de agosto — Spotify: 32 833 canciones y un promedio que miente dos veces</p>
+</section>
+
+<script src="assets/marco.js"></script>
+</body>
+</html>

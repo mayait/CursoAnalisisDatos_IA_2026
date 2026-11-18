@@ -22,7 +22,8 @@ from contenido import (SEMANAS, EVALUACION, POLITICA_IA, DATACAMP_LINK,
                        RUBRICAS, PROTOCOLO_DATOS, NIVELACION, RUTA_MINIMA, ACCESIBILIDAD)
 from datos_curso import (SEM2, BLOQUE, SESIONES, CALENDARIO, MATERIAL,
                          MATERIAL_FUERA, CASOS, SIMULADORES, DATACAMP,
-                         PENDIENTES, HEREDADO)
+                         PENDIENTES, HEREDADO, CATALOGO_PUBLICOS)
+from primeras_semanas import CASOS_CLASE, MATERIAL_ESTUDIO, GUIAS
 
 CURSO = "Análisis de Datos con IA y Python"
 CODIGO = "ADM 2003"
@@ -113,6 +114,7 @@ FIJAS = [("index.html", "Portada"), ("calendario.html", "Calendario"),
          ("proyecto.html", "Proyecto integrador"), ("evaluacion.html", "Evaluación y política de IA"),
          ("casos.html", "Casos de estudio"), ("datacamp.html", "DataCamp y concurso"),
          ("laboratorios.html", "Laboratorios"),
+         ("aula.html", "Aula · sesiones 1-8"),
          ("rubricas.html", "Rúbricas"),
          ("apoyo.html", "Apoyo y accesibilidad"),
          ("recursos.html", "Recursos y datasets"),
@@ -261,6 +263,25 @@ def construir_semana(w):
         o.append(f'<li>{e(x)}</li>')
     o.append('</ul>')
 
+    # ── aula: material de las primeras semanas
+    if w in (1, 2, 3, 4):
+        o.append('<h2>Todo lo de esta semana, listo para el aula</h2>')
+        o.append('<div class="rejilla c3">')
+        for n in (2 * w - 1, 2 * w):
+            g = GUIAS[n]
+            o.append(f'<a class="tarjeta" data-b="1" href="presentaciones/sesion-{n:02d}.html">'
+                     f'<div class="n">Sesi\u00f3n {n} \u00b7 {e(g["tipo"])}</div>'
+                     f'<div class="t">Presentaci\u00f3n</div><div class="d">{e(g["titulo"][:70])}</div></a>')
+        o.append(f'<a class="tarjeta" href="caso-clase-{w:02d}.html"><div class="n">{e(CASOS_CLASE[w]["industria"])}</div>'
+                 f'<div class="t">Caso de la clase</div><div class="d">{e(CASOS_CLASE[w]["titulo"][:70])}</div></a>')
+        o.append(f'<a class="tarjeta" href="material-semana-{w:02d}.html"><div class="n">{MATERIAL_ESTUDIO[w]["minutos"]} minutos</div>'
+                 f'<div class="t">Material de estudio</div><div class="d">{e(MATERIAL_ESTUDIO[w]["titulo"][:70])}</div></a>')
+        o.append(f'<a class="tarjeta" href="simuladores/{SIM_SEMANA[w]}"><div class="n">Interactivo</div>'
+                 f'<div class="t">Simulador de la semana</div><div class="d">Se proyecta el lunes y se juega en el taller.</div></a>')
+        o.append(f'<a class="tarjeta" href="docente-sesion-{2*w-1:02d}.html"><div class="n">Minuto a minuto</div>'
+                 f'<div class="t">Guiones del docente</div><div class="d">Las dos sesiones, con tiempos, errores frecuentes y plan si vas tarde.</div></a>')
+        o.append('</div>')
+
     # ── clase teórica
     if lunes:
         tl, dl, entl = SESIONES[(w, "L")]
@@ -299,10 +320,10 @@ def construir_semana(w):
     o.append('</ol>')
 
     if st:
+        fuente = DATASET_SEMANA.get(w, "los datos de Comercial Andina")
         o.append(f'<div class="caja"><div class="titulo">Cuaderno del laboratorio</div>'
                  f'<p><code>labs/lab_{w:02d}.ipynb</code> \u00b7 {st["total"]} celdas '
-                 f'({st["code"]} de c\u00f3digo, {st["md"]} de texto). Corre completo sobre los datos de '
-                 f'Comercial Andina sin instalar nada.</p>'
+                 f'({st["code"]} de c\u00f3digo, {st["md"]} de texto). Corre completo sin instalar nada, sobre {e(fuente)}.</p>'
                  f'<p style="margin-top:.7rem"><a class="boton" href="lab-{w:02d}.html">Ver la gu\u00eda del laboratorio</a> '
                  f'{colab(f"labs/lab_{w:02d}.ipynb")} '
                  f'<a class="boton sec" href="labs/lab_{w:02d}.ipynb">Descargar .ipynb</a></p></div>')
@@ -1038,8 +1059,8 @@ ARCHIVOS_DATOS = [
 ]
 
 FENOMENOS = [
- ("Ticket bimodal", 3, "El 22 % de clientes mayoristas arrastra la media a 180,49 mientras la mediana se queda en 30,22. La media no describe a ning\u00fan cliente real."),
- ("Problemas de calidad", 4, "7,8 % de l\u00edneas sin cliente, 1,1 % de duplicados exactos, dos formatos de fecha conviviendo, cantidades negativas que no son devoluciones y precios con un cero de m\u00e1s."),
+ ("Ticket bimodal", 8, "El 22 % de clientes mayoristas arrastra la media a 180,49 mientras la mediana se queda en 30,22. La media no describe a ning\u00fan cliente real."),
+ ("Problemas de calidad", 5, "7,8 % de l\u00edneas sin cliente, dos formatos de fecha y precios con un cero de m\u00e1s. La semana 4 se entrena con Netflix; la versi\u00f3n sucia de Comercial Andina queda como pr\u00e1ctica de repaso."),
  ("Uniones que duplican", 5, "El padr\u00f3n de contactos tiene m\u00e1s de una fila por cliente. Unir sin mirar la cardinalidad infla la facturaci\u00f3n un 25 %."),
  ("Estacionalidad", 6, "Diciembre pesa un 30 % m\u00e1s que un mes medio y febrero un 18 % menos. Se ve en cuanto se grafica la serie."),
  ("Estructura RFM", 8, "Clientes VIP, leales, en riesgo y perdidos aparecen solos al calcular recencia, frecuencia y monto. El 31 % lleva m\u00e1s de 180 d\u00edas sin comprar."),
@@ -1050,11 +1071,26 @@ FENOMENOS = [
 
 def construir_datos():
     o = []
-    o.append('<div class="kicker">La base del curso</div>')
-    o.append('<h1>Comercial Andina</h1>')
+    o.append('<div class="kicker">Los datos del curso</div>')
+    o.append('<h1>Un negocio distinto cada semana</h1>')
+    o.append('<p class="bajada">Las primeras cuatro semanas cambian de industria cada lunes: una pizzer\u00eda, un retail, '
+             'Spotify y Netflix. Desde la semana 5 entra Comercial Andina, el negocio integrado que acompa\u00f1a el curso '
+             'hasta diciembre, y un cat\u00e1logo de datasets por inter\u00e9s para pr\u00e1cticas y proyectos.</p>')
+    o.append('<h2>Cat\u00e1logo p\u00fablico por industria</h2>')
+    o.append('<p>Doce datasets en <code>datos/publicos/</code>, elegidos para conectar con intereses distintos. '
+             'Varios vienen del propio curso anterior: la pizzer\u00eda del Taller 01 de KNIME, el Credit de estad\u00edstica '
+             'descriptiva, el Telco del caso KNN y el de abandono laboral. Se regeneran con <code>datos/publicos/descargar_publicos.py</code>.</p>')
+    o.append('<table><thead><tr><th scope="col">Archivo</th><th scope="col">Industria</th><th scope="col">Qu\u00e9 es</th>'
+             '<th scope="col" class="num">Filas</th><th scope="col">Uso en el curso</th><th scope="col" class="num">Semana</th></tr></thead><tbody>')
+    for arch, ind, que, filas, cols, uso, sem in CATALOGO_PUBLICOS:
+        o.append(f'<tr><td><a href="datos/publicos/{e(arch)}"><code>{e(arch)}</code></a></td><td><strong>{e(ind)}</strong></td>'
+                 f'<td>{e(que)}</td><td class="num">{e(filas)}</td><td>{e(uso)}</td>'
+                 f'<td class="num"><a href="semana-{int(sem):02d}.html">{e(sem)}</a></td></tr>')
+    o.append('</tbody></table>')
+    o.append('<h2>Comercial Andina \u00b7 la columna vertebral desde la semana 5</h2>')
     o.append('<p class="bajada">Un distribuidor ecuatoriano con tiendas en Quito, Guayaquil, Cuenca, Manta y Loja, '
-             'm\u00e1s canal en l\u00ednea. Los diecis\u00e9is laboratorios trabajan sobre este mismo negocio: lo que '
-             'limpias en la semana 4 es lo que modelas en la 14.</p>')
+             'm\u00e1s canal en l\u00ednea. De la semana 5 a la 16 los laboratorios trabajan sobre este mismo negocio: '
+             'lo que agrupas en la semana 5 es lo que segmentas en la 8 y modelas en la 14.</p>')
     o.append('<div class="caja"><div class="titulo">Datos sint\u00e9ticos, fen\u00f3menos reales</div>'
              '<p>Los datos los genera <code>datos/generar_datos.py</code> con semilla fija, as\u00ed que son id\u00e9nticos '
              'en cualquier computadora. Son sint\u00e9ticos, pero est\u00e1n construidos para que aparezcan de forma natural '
@@ -1231,6 +1267,171 @@ def construir_apoyo():
              'inventadas, nunca las reales.</p></div>')
     pagina("apoyo.html", "Apoyo y accesibilidad", "Apoyo", "\n".join(o))
 
+
+# ══════════════════════════════════════════════════════════════
+# AULA · SEMANAS 1-4 (presentaciones, casos, material, guías)
+# ══════════════════════════════════════════════════════════════
+DATASET_SEMANA = {1: "la pizzer\u00eda (pizza_ventas.csv)", 2: "el retail Superstore (superstore.csv)",
+                  3: "el cat\u00e1logo de Spotify (spotify_canciones.csv)", 4: "el cat\u00e1logo de Netflix (netflix_titulos.csv)"}
+
+SIM_SEMANA = {1: "simulador-pizza-estrella.html", 2: "simulador-unidad-analisis.html",
+              3: "simulador-media-mediana.html", 4: "simulador-detective-datos.html"}
+
+def sesion_semana(n):
+    return (n + 1) // 2
+
+def construir_aula():
+    o = []
+    o.append('<div class="kicker">Las primeras cuatro semanas, listas para dictar</div>')
+    o.append('<h1>Aula \u00b7 sesiones 1 a 8</h1>')
+    o.append('<p class="bajada">Cada sesi\u00f3n tiene su presentaci\u00f3n para proyectar, su gui\u00f3n del docente '
+             'minuto a minuto, su caso o su laboratorio, y su simulador. Un negocio distinto cada semana: '
+             'una pizzer\u00eda, un retail, Spotify y Netflix.</p>')
+    o.append('<div class="caja ia"><div class="titulo">C\u00f3mo se usan las presentaciones</div>'
+             '<p>Se abren en el navegador y se controlan con el teclado: flechas para avanzar, '
+             '<code>N</code> muestra las notas del docente con los minutos, <code>G</code> ve todas las l\u00e1minas, '
+             '<code>F</code> pantalla completa y <code>?</code> la ayuda. Los fragmentos se revelan al avanzar, '
+             'para hacer votar al aula antes de mostrar la respuesta.</p></div>')
+    for w in (1, 2, 3, 4):
+        o.append(f'<div class="franja" data-b="1"><span class="etq">Semana {w} \u00b7 {e(SEM2[w][0][:52])}</span>'
+                 f'<span class="barra"></span><span class="etq"><a href="semana-{w:02d}.html">p\u00e1gina de la semana</a></span></div>')
+        o.append('<div class="rejilla c2">')
+        for n in (2 * w - 1, 2 * w):
+            g = GUIAS[n]
+            deck = f"presentaciones/sesion-{n:02d}.html"
+            o.append(f'<div class="tarjeta" data-b="1"><div class="n">Sesi\u00f3n {n} \u00b7 {e(g["fecha"])} \u00b7 {e(g["tipo"])}</div>'
+                     f'<div class="t">{e(g["titulo"])}</div>'
+                     f'<div class="pie"><a href="{deck}">Presentaci\u00f3n</a>'
+                     f'<a href="docente-sesion-{n:02d}.html">Gui\u00f3n del docente</a>'
+                     + (f'<a href="caso-clase-{w:02d}.html">Caso de la clase</a>' if n % 2 == 1 else
+                        f'<a href="lab-{w:02d}.html">Laboratorio</a>') +
+                     '</div></div>')
+        o.append('</div>')
+        o.append('<p style="margin:-.4rem 0 1.4rem">'
+                 f'<a class="boton sec" href="material-semana-{w:02d}.html">Material de estudio</a> '
+                 f'<a class="boton sec" href="simuladores/{SIM_SEMANA[w]}">Simulador de la semana</a></p>')
+    o.append('<div class="caja"><div class="titulo">Y de la semana 5 en adelante</div>'
+             '<p>Entra <a href="datos.html">Comercial Andina</a>, el negocio integrado que acompa\u00f1a el curso hasta '
+             'diciembre, junto con el proyecto de cada grupo. Las p\u00e1ginas de esas semanas est\u00e1n en el '
+             '<a href="calendario.html">calendario</a>.</p></div>')
+    pagina("aula.html", "Aula \u00b7 sesiones 1 a 8", "Aula", "\n".join(o))
+
+def construir_caso_clase(w):
+    c = CASOS_CLASE[w]
+    o = []
+    o.append(f'<div class="kicker">Caso de clase \u00b7 Semana {w} \u00b7 {e(c["industria"])}</div>')
+    o.append(f'<h1>{e(c["titulo"])}</h1>')
+    o.append(f'<p class="bajada">{e(c["gancho"])}</p>')
+    o.append('<div class="meta">')
+    o.append(f'<span>Se discute en la sesi\u00f3n {c["sesion"]} (lunes)</span>')
+    o.append(f'<span>Dataset: <a href="datos/publicos/{e(c["dataset"])}">{e(c["dataset"])}</a></span>')
+    o.append(f'<span><a href="semana-{w:02d}.html">Semana {w}</a></span>')
+    o.append('</div>')
+    o.append('<h2>La situaci\u00f3n</h2>')
+    for par in c["narrativa"]:
+        o.append(f'<p>{e(par)}</p>')
+    o.append('<h2>Los datos sobre la mesa</h2>')
+    o.append('<div class="rejilla c3">')
+    for etq, val in c["datos_clave"]:
+        o.append(f'<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">{e(val)}</div>'
+                 f'<div class="etq">{e(etq)}</div></div>')
+    o.append('</div>')
+    o.append('<h2>Para discutir en el aula</h2>')
+    o.append('<table><thead><tr><th scope="col">Pregunta</th><th scope="col">Gu\u00eda para el docente</th></tr></thead><tbody>')
+    for pre, gui in c["preguntas"]:
+        o.append(f'<tr><td><strong>{e(pre)}</strong></td><td>{e(gui)}</td></tr>')
+    o.append('</tbody></table>')
+    o.append('<h2>Juego de roles</h2>')
+    o.append('<p>Reparte los roles entre grupos y da cinco minutos para preparar la postura antes del debate.</p>')
+    o.append('<div class="rejilla c2">')
+    for rol, post in c["roles"]:
+        o.append(f'<div class="tarjeta"><div class="t">{e(rol)}</div><div class="d">{e(post)}</div></div>')
+    o.append('</div>')
+    o.append(f'<div class="caja trampa"><div class="titulo">\u26a0\ufe0f El giro</div><p>{e(c["giro"])}</p></div>')
+    o.append(f'<div class="caja entrega"><div class="titulo">C\u00f3mo conecta con el taller</div><p>{e(c["conexion"])}</p></div>')
+    o.append(f'<div class="nav-pie"><a href="aula.html"><span class="e">Aula</span><span class="t">Todas las sesiones</span></a>'
+             f'<a class="sig" href="semana-{w:02d}.html"><span class="e">Semana {w}</span><span class="t">{e(SEM2[w][0][:38])}</span></a></div>')
+    pagina(f"caso-clase-{w:02d}.html", f"Caso de clase \u00b7 {c['titulo']}", f"Caso S{w}", "\n".join(o))
+
+def construir_material_estudio(w):
+    m = MATERIAL_ESTUDIO[w]
+    o = []
+    o.append(f'<div class="kicker">Material de estudio \u00b7 Semana {w} \u00b7 {m["minutos"]} minutos de lectura</div>')
+    o.append(f'<h1>{e(m["titulo"])}</h1>')
+    o.append('<div class="meta">')
+    o.append(f'<span>Se lee antes del lunes</span><span><a href="semana-{w:02d}.html">Semana {w}</a></span>')
+    o.append('</div>')
+    for tit, pars in m["secciones"]:
+        o.append(f'<h2>{e(tit)}</h2>')
+        for par in pars:
+            o.append(f'<p>{e(par)}</p>')
+    o.append('<h2>Para llevarse</h2><ul>')
+    for x in m["ideas"]:
+        o.append(f'<li>{e(x)}</li>')
+    o.append('</ul>')
+    o.append('<h2>Glosario m\u00ednimo</h2>')
+    o.append('<table><thead><tr><th scope="col">T\u00e9rmino</th><th scope="col">En una frase</th></tr></thead><tbody>')
+    for t, d in m["glosario"]:
+        o.append(f'<tr><td><strong>{e(t)}</strong></td><td>{e(d)}</td></tr>')
+    o.append('</tbody></table>')
+    o.append('<div class="caja entrega"><div class="titulo">Antes de venir a clase</div><ul>')
+    for x in m["antes_de_clase"]:
+        o.append(f'<li>{e(x)}</li>')
+    o.append('</ul></div>')
+    o.append(f'<div class="nav-pie"><a href="aula.html"><span class="e">Aula</span><span class="t">Todas las sesiones</span></a>'
+             f'<a class="sig" href="semana-{w:02d}.html"><span class="e">Semana {w}</span><span class="t">{e(SEM2[w][0][:38])}</span></a></div>')
+    pagina(f"material-semana-{w:02d}.html", f"Material \u00b7 Semana {w}", f"Lectura S{w}", "\n".join(o))
+
+def construir_guia_docente(n):
+    g = GUIAS[n]
+    w = sesion_semana(n)
+    o = []
+    o.append(f'<div class="kicker">Gu\u00eda del docente \u00b7 Sesi\u00f3n {n} \u00b7 {e(g["tipo"]).capitalize()}</div>')
+    o.append(f'<h1>{e(g["titulo"])}</h1>')
+    o.append('<div class="meta">')
+    o.append(f'<span>{e(g["fecha"])}</span><span>90 minutos</span>')
+    o.append(f'<span><a href="presentaciones/sesion-{n:02d}.html">Presentaci\u00f3n</a></span>')
+    o.append(f'<span><a href="semana-{w:02d}.html">Semana {w}</a></span>')
+    o.append('</div>')
+    o.append('<h2>Antes de empezar</h2><ul>')
+    for x in g["antes"]:
+        if "/" in x and " " not in x.strip():
+            o.append(f'<li><a href="{html.escape(x, quote=True)}">{e(x)}</a></li>')
+        else:
+            o.append(f'<li>{e(x)}</li>')
+    o.append('</ul>')
+    o.append(f'<div class="caja ia"><div class="titulo">Energ\u00eda interna</div><p>{e(g["energia"])}</p></div>')
+    o.append(f'<h2>Arco de la sesi\u00f3n</h2><p>{e(g["arco"])}</p>')
+    o.append('<h2>Objetivo al cierre</h2><ul>')
+    for x in g["objetivos_salida"]:
+        o.append(f'<li>{e(x)}</li>')
+    o.append('</ul>')
+    o.append('<h2>Minuto a minuto</h2>')
+    o.append('<table><thead><tr><th scope="col" class="num">Min</th><th scope="col">Tramo</th>'
+             '<th scope="col">Indicaciones</th></tr></thead><tbody>')
+    for rango, tit, dets in g["minuto"]:
+        det = "<br>".join(e(d) for d in dets)
+        o.append(f'<tr><td class="num">{e(rango)}</td><td><strong>{e(tit)}</strong></td><td>{det}</td></tr>')
+    o.append('</tbody></table>')
+    if g["errores"]:
+        o.append('<h2>Errores frecuentes y qu\u00e9 hacer</h2>')
+        o.append('<table><thead><tr><th scope="col">Situaci\u00f3n</th><th scope="col">Respuesta</th></tr></thead><tbody>')
+        for sit, resp in g["errores"]:
+            o.append(f'<tr><td><code>{e(sit)}</code></td><td>{e(resp)}</td></tr>')
+        o.append('</tbody></table>')
+    o.append('<div class="caja aviso"><div class="titulo">Si vas tarde</div><ul>')
+    for x in g["si_tarde"]:
+        o.append(f'<li>{e(x)}</li>')
+    o.append('</ul></div>')
+    o.append('<div class="caja"><div class="titulo">Alertas para la pr\u00f3xima sesi\u00f3n</div><ul>')
+    for x in g["alertas"]:
+        o.append(f'<li>{e(x)}</li>')
+    o.append('</ul></div>')
+    prev = f'<a href="docente-sesion-{n-1:02d}.html"><span class="e">Anterior</span><span class="t">Sesi\u00f3n {n-1}</span></a>' if n > 1 else '<a href="aula.html"><span class="e">Aula</span><span class="t">Todas las sesiones</span></a>'
+    sig = f'<a class="sig" href="docente-sesion-{n+1:02d}.html"><span class="e">Siguiente</span><span class="t">Sesi\u00f3n {n+1}</span></a>' if n < 8 else '<a class="sig" href="aula.html"><span class="e">Aula</span><span class="t">Todas las sesiones</span></a>'
+    o.append(f'<div class="nav-pie">{prev}{sig}</div>')
+    pagina(f"docente-sesion-{n:02d}.html", f"Gu\u00eda docente \u00b7 Sesi\u00f3n {n}", f"Gu\u00eda S{n}", "\n".join(o))
+
 # ══════════════════════════════════════════════════════════════
 def main():
     os.makedirs(SITIO, exist_ok=True)
@@ -1246,6 +1447,12 @@ def main():
     construir_datos()
     construir_rubricas()
     construir_apoyo()
+    construir_aula()
+    for w in (1, 2, 3, 4):
+        construir_caso_clase(w)
+        construir_material_estudio(w)
+    for n in range(1, 9):
+        construir_guia_docente(n)
     for w in sorted(SEM2):
         construir_semana(w)
         construir_lab(w)

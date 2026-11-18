@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de clase · La pizza que sale del menú — Análisis de Datos con IA y Python · ADM 2003</title>
+<meta name="description" content="Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header id="topbar">
+  <div class="topbar-left">
+    <button id="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('abierto')" aria-label="Menú">&#9776;</button>
+    <a href="index.html" class="brand"><span class="sigla">USFQ</span><span class="nombre">Análisis de Datos con IA y Python</span></a>
+  </div>
+  <span class="chip">Caso S1</span>
+</header>
+<div id="layout">
+<nav id="sidebar" aria-label="Contenidos del curso">
+<div class="sb-sec">El curso</div>
+<a href="index.html">Portada</a>
+<a href="calendario.html">Calendario</a>
+<a href="proyecto.html">Proyecto integrador</a>
+<a href="evaluacion.html">Evaluación y política de IA</a>
+<a href="casos.html">Casos de estudio</a>
+<a href="datacamp.html">DataCamp y concurso</a>
+<a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
+<a href="rubricas.html">Rúbricas</a>
+<a href="apoyo.html">Apoyo y accesibilidad</a>
+<a href="recursos.html">Recursos y datasets</a>
+<a href="docente.html">Guía del docente</a>
+<div class="sb-div"></div><div class="sb-sec">Semanas</div>
+<div class="sb-sec b1">I · Leer datos</div>
+<a href="semana-01.html" title="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA" aria-label="Semana 1 · Introducción a Business Analytics y Big Data en la era de la IA"><span class="num">01</span><span class="txt">Introducción a Business Analytics…</span></a>
+<a href="semana-02.html" title="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato" aria-label="Semana 2 · Business Analytics en las organizaciones. La pregunta antes del dato"><span class="num">02</span><span class="txt">Business Analytics en las organiz…</span></a>
+<a href="semana-03.html" title="Semana 3 · Estadística descriptiva aplicada al negocio" aria-label="Semana 3 · Estadística descriptiva aplicada al negocio"><span class="num">03</span><span class="txt">Estadística descriptiva aplicada…</span></a>
+<a href="semana-04.html" title="Semana 4 · Anatomía y calidad de los datos" aria-label="Semana 4 · Anatomía y calidad de los datos"><span class="num">04</span><span class="txt">Anatomía y calidad de los datos</span></a>
+<a href="semana-05.html" title="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar" aria-label="Semana 5 · Manipulación de datos. Agrupar, limpiar y combinar"><span class="num">05</span><span class="txt">Manipulación de datos. Agrupar, l…</span></a>
+<div class="sb-sec b2">II · Comunicar datos</div>
+<a href="semana-06.html" title="Semana 6 · Visualización de datos" aria-label="Semana 6 · Visualización de datos"><span class="num">06</span><span class="txt">Visualización de datos</span></a>
+<a href="semana-07.html" title="Semana 7 · Visualización avanzada y tableros" aria-label="Semana 7 · Visualización avanzada y tableros"><span class="num">07</span><span class="txt">Visualización avanzada y tableros</span></a>
+<div class="sb-sec b3">Corte de medio semestre</div>
+<a href="semana-08.html" title="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?" aria-label="Semana 8 · ¿Quiénes son mis clientes y cuánto valen?"><span class="num">08</span><span class="txt">¿Quiénes son mis clientes y cuánt…</span><span class="marca">Corte</span></a>
+<div class="sb-sec b4">III · Decidir con datos</div>
+<a href="semana-09.html" title="Semana 9 · Comparación, variabilidad y causalidad" aria-label="Semana 9 · Comparación, variabilidad y causalidad"><span class="num">09</span><span class="txt">Comparación, variabilidad y causa…</span></a>
+<a href="semana-10.html" title="Semana 10 · Estrategia, transformación digital y experiencia del cliente" aria-label="Semana 10 · Estrategia, transformación digital y experiencia del cliente"><span class="num">10</span><span class="txt">Estrategia, transformación digita…</span></a>
+<a href="semana-11.html" title="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor" aria-label="Semana 11 · Modelos analíticos. Tipos de modelos y creación de valor"><span class="num">11</span><span class="txt">Modelos analíticos. Tipos de mode…</span></a>
+<div class="sb-sec b5">IV · Predecir</div>
+<a href="semana-12.html" title="Semana 12 · Modelos de pronóstico I. Regresión lineal simple" aria-label="Semana 12 · Modelos de pronóstico I. Regresión lineal simple"><span class="num">12</span><span class="txt">Modelos de pronóstico I. Regresió…</span></a>
+<a href="semana-13.html" title="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico" aria-label="Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico"><span class="num">13</span><span class="txt">Modelos de pronóstico II. Regresi…</span></a>
+<a href="semana-14.html" title="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones" aria-label="Semana 14 · Modelos de propensión. Clasificación aplicada a decisiones"><span class="num">14</span><span class="txt">Modelos de propensión. Clasificac…</span></a>
+<div class="sb-sec b6">V · Responder por el modelo</div>
+<a href="semana-15.html" title="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato" aria-label="Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato"><span class="num">15</span><span class="txt">De la predicción a la decisión. É…</span></a>
+<a href="semana-16.html" title="Semana 16 · Cierre del curso y presentación final" aria-label="Semana 16 · Cierre del curso y presentación final"><span class="num">16</span><span class="txt">Cierre del curso y presentación f…</span><span class="marca">Final</span></a>
+</nav>
+<main id="contenido">
+  <div class="envoltorio">
+<div class="kicker">Caso de clase · Semana 1 · Gastronomía</div>
+<h1>La pizza que sale del menú</h1>
+<p class="bajada">El dueño quiere premiar a la pizza estrella y eliminar a la peor. Tiene un año completo de tickets sobre la mesa. ¿Alcanza con eso para decidir?</p>
+<div class="meta">
+<span>Se discute en la sesión 1 (lunes)</span>
+<span>Dataset: <a href="datos/publicos/pizza_ventas.csv">pizza_ventas.csv</a></span>
+<span><a href="semana-01.html">Semana 1</a></span>
+</div>
+<h2>La situación</h2>
+<p>Una pizzería de Estados Unidos cierra su año con todo registrado: 21 350 tickets, 49 574 pizzas vendidas de un menú de 32 y 817 860,05 dólares de ingresos. El dueño convoca una reunión con una sola orden del día: premiar a la mejor pizza con la campaña del próximo trimestre y sacar de la carta a la peor, porque la cocina no da abasto con 32 recetas.</p>
+<p>El administrador llega con el informe listo. La estrella es la Classic Deluxe, con 2 453 unidades en el año; la peor es la Brie Carre, con apenas 490: la líder vende cinco veces más. Recomendación firmada: retirar la Brie Carre y promocionar la Classic Deluxe. Los números son correctos y cualquiera puede verificarlos contra la tabla.</p>
+<p>Lo que está en juego no es un reporte: es qué receta desaparece de la carta y a qué producto se le dedica el presupuesto de promoción. El pizzero que inventó la Brie Carre está en la sala y pide la palabra. La discusión que sigue no es sobre pandas ni sobre datos sucios: los datos están perfectos. Es sobre una palabra que nadie definió antes de calcular.</p>
+<h2>Los datos sobre la mesa</h2>
+<div class="rejilla c3">
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">817 860,05 USD en 21 350 tickets</div><div class="etq">Ingresos del año</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">49 574 unidades de un menú de 32</div><div class="etq">Pizzas vendidas</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">2 453 unidades: la más vendida del año</div><div class="etq">Classic Deluxe</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">43 434,25 USD: la que más factura, siendo 5.ª por unidades</div><div class="etq">Thai Chicken</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">490 unidades, última en todo… y 23,65 USD por unidad, la más alta del menú</div><div class="etq">Brie Carre</div></div>
+<div class="tarjeta cifra"><div class="valor" style="font-size:1.5rem">13,8 % más ingresos con menos pizzas vendidas</div><div class="etq">Thai vs Deluxe</div></div>
+</div>
+<h2>Para discutir en el aula</h2>
+<table><thead><tr><th scope="col">Pregunta</th><th scope="col">Guía para el docente</th></tr></thead><tbody>
+<tr><td><strong>¿Se puede responder la pregunta del dueño con esta tabla de ventas? Votación a mano alzada antes de mostrar un solo número.</strong></td><td>Casi todos votarán que sí. No corrijas: anota el conteo en la pizarra y guárdalo. Ese sí es la materia prima del giro; se les devuelve al final, cuando la tabla haya producido dos estrellas distintas.</td></tr>
+<tr><td><strong>El ranking por unidades corona a la Classic Deluxe. ¿Le damos el premio?</strong></td><td>Deja que se comprometan en voz alta con la respuesta. Cuanto más se comprometan, más duele el giro. Si alguien pregunta «¿mejor en qué?», celébralo con nombre y apellido: acaba de hacer la pregunta de la semana 2.</td></tr>
+<tr><td><strong>¿Mejor en qué? ¿Qué significa exactamente «la pizza estrella»?</strong></td><td>Recoge definiciones: la que más se vende, la que más factura, la que más deja. Escríbelas como métricas distintas y muestra que cada una produce un ranking distinto. Aterriza: elegir la métrica es una decisión de negocio, no un cálculo.</td></tr>
+<tr><td><strong>¿Firmamos la eliminación de la Brie Carre?</strong></td><td>La mayoría dirá que sí por las 490 unidades. Revela el ingreso por unidad: 23,65 USD, primera del menú, 3,5 dólares sobre la siguiente (la Greek, 20,04). Lleva la discusión a que vender poco no es aportar poco: es otro producto jugando otro juego.</td></tr>
+<tr><td><strong>¿Qué dato falta para poder firmar cualquiera de las dos decisiones?</strong></td><td>La respuesta que buscas es el margen: cuánto cuesta producir cada una, y no está en la tabla. Cierra con la frase del curso: decir «esta pregunta no se contesta con estos datos» también es análisis, y separa un informe honesto de uno que solo parece completo.</td></tr>
+</tbody></table>
+<h2>Juego de roles</h2>
+<p>Reparte los roles entre grupos y da cinco minutos para preparar la postura antes del debate.</p>
+<div class="rejilla c2">
+<div class="tarjeta"><div class="t">Administrador</div><div class="d">Defiende su informe: las unidades miden la demanda real, la gente vota con el horno, y complicar la métrica es buscarle cinco patas al gato.</div></div>
+<div class="tarjeta"><div class="t">Pizzero creador de la Brie Carre</div><div class="d">Defiende su receta: cada Brie Carre deja 23,65 dólares, más que cualquier otra del menú, y sus clientes son los que más gastan. Eliminarla es echar al cliente premium.</div></div>
+<div class="tarjeta"><div class="t">Contadora</div><div class="d">Nadie deposita unidades en el banco: el ranking que importa es el de ingresos, y la conversación seria empieza cuando alguien traiga los costos.</div></div>
+<div class="tarjeta"><div class="t">Dueño</div><div class="d">Modera, hace preguntas incómodas y al final debe firmar una sola decisión. Su mejor jugada es negarse a firmar hasta que le definan «estrella».</div></div>
+</div>
+<div class="caja trampa"><div class="titulo">⚠️ El giro</div><p>Mismo archivo, otra métrica: la Thai Chicken, quinta por unidades con 2 371, es la número uno en ingresos con 43 434,25 USD, y la Classic Deluxe cae al cuarto puesto con 38 180,50. Nadie tocó los datos: cambió la definición de estrella. Y la «peor» resulta ser la primera del menú en ingreso por unidad.</p></div>
+<div class="caja entrega"><div class="titulo">Cómo conecta con el taller</div><p>El miércoles (labs/lab_01.ipynb) cada pareja reproduce este informe completo en Colab —carga, rankings, gráfico y corrección— con las mismas cifras como celdas de comprobación, y abre su bitácora de prompts pidiéndole al asistente las tres métricas alternativas. El entregable señala en qué celda exacta la conclusión se da vuelta.</p></div>
+<div class="nav-pie"><a href="aula.html"><span class="e">Aula</span><span class="t">Todas las sesiones</span></a><a class="sig" href="semana-01.html"><span class="e">Semana 1</span><span class="t">Introducción a Business Analytics y Bi</span></a></div>
+  </div>
+</main>
+</div>
+<footer>
+  <div class="linea">
+    <span>Análisis de Datos con IA y Python · ADM 2003 · Primer Semestre 2026-2027 · USFQ Galápagos</span>
+    <span>Repositorio del curso: <code>CursoAnalisisDatos_IA_2026</code></span>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('main a').forEach(function(a){
+  if (a.getAttribute('href') && a.getAttribute('href').startsWith('http')) {
+    a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
+  }
+});
+</script>
+</body>
+</html>

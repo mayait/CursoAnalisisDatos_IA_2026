@@ -29,6 +29,7 @@
 <a href="casos.html">Casos de estudio</a>
 <a href="datacamp.html">DataCamp y concurso</a>
 <a href="laboratorios.html">Laboratorios</a>
+<a href="aula.html">Aula · sesiones 1-8</a>
 <a href="rubricas.html">Rúbricas</a>
 <a href="apoyo.html">Apoyo y accesibilidad</a>
 <a href="recursos.html">Recursos y datasets</a>
@@ -59,9 +60,27 @@
 </nav>
 <main id="contenido">
   <div class="envoltorio">
-<div class="kicker">La base del curso</div>
-<h1>Comercial Andina</h1>
-<p class="bajada">Un distribuidor ecuatoriano con tiendas en Quito, Guayaquil, Cuenca, Manta y Loja, más canal en línea. Los dieciséis laboratorios trabajan sobre este mismo negocio: lo que limpias en la semana 4 es lo que modelas en la 14.</p>
+<div class="kicker">Los datos del curso</div>
+<h1>Un negocio distinto cada semana</h1>
+<p class="bajada">Las primeras cuatro semanas cambian de industria cada lunes: una pizzería, un retail, Spotify y Netflix. Desde la semana 5 entra Comercial Andina, el negocio integrado que acompaña el curso hasta diciembre, y un catálogo de datasets por interés para prácticas y proyectos.</p>
+<h2>Catálogo público por industria</h2>
+<p>Doce datasets en <code>datos/publicos/</code>, elegidos para conectar con intereses distintos. Varios vienen del propio curso anterior: la pizzería del Taller 01 de KNIME, el Credit de estadística descriptiva, el Telco del caso KNN y el de abandono laboral. Se regeneran con <code>datos/publicos/descargar_publicos.py</code>.</p>
+<table><thead><tr><th scope="col">Archivo</th><th scope="col">Industria</th><th scope="col">Qué es</th><th scope="col" class="num">Filas</th><th scope="col">Uso en el curso</th><th scope="col" class="num">Semana</th></tr></thead><tbody>
+<tr><td><a href="datos/publicos/pizza_ventas.csv"><code>pizza_ventas.csv</code></a></td><td><strong>Gastronomía</strong></td><td>La pizzería del gancho inaugural</td><td class="num">48 620</td><td>Laboratorio de la semana 1: el ranking que cambia según la definición de estrella</td><td class="num"><a href="semana-01.html">1</a></td></tr>
+<tr><td><a href="datos/publicos/superstore.csv"><code>superstore.csv</code></a></td><td><strong>Retail</strong></td><td>El dataset insignia del curso anterior</td><td class="num">10 800</td><td>Laboratorio de la semana 2: unidad de análisis y ficha. Trae 806 filas de otras hojas pegadas, a propósito del primer contacto con datos sucios</td><td class="num"><a href="semana-02.html">2</a></td></tr>
+<tr><td><a href="datos/publicos/spotify_canciones.csv"><code>spotify_canciones.csv</code></a></td><td><strong>Música</strong></td><td>32 833 canciones con audio features</td><td class="num">32 833</td><td>Laboratorio de la semana 3: media contra mediana con la duración y la popularidad</td><td class="num"><a href="semana-03.html">3</a></td></tr>
+<tr><td><a href="datos/publicos/netflix_titulos.csv"><code>netflix_titulos.csv</code></a></td><td><strong>Streaming</strong></td><td>El catálogo completo con sus defectos reales</td><td class="num">7 787</td><td>Laboratorio de la semana 4: nulos, tipos mezclados y el duplicado invisible</td><td class="num"><a href="semana-04.html">4</a></td></tr>
+<tr><td><a href="datos/publicos/credit.csv"><code>credit.csv</code></a></td><td><strong>Banca personal</strong></td><td>El adjunto de estadística descriptiva de 202410</td><td class="num">400</td><td>Práctica extra de la semana 3</td><td class="num"><a href="semana-03.html">3</a></td></tr>
+<tr><td><a href="datos/publicos/vuelos_nyc.csv"><code>vuelos_nyc.csv</code></a></td><td><strong>Aviación</strong></td><td>60 000 vuelos desde Nueva York</td><td class="num">60 000</td><td>Práctica extra de agrupación y uniones en la semana 5</td><td class="num"><a href="semana-05.html">5</a></td></tr>
+<tr><td><a href="datos/publicos/videojuegos_steam.csv"><code>videojuegos_steam.csv</code></a></td><td><strong>Videojuegos</strong></td><td>Jugadores mensuales por título en Steam</td><td class="num">83 631</td><td>Práctica extra de visualización y series en la semana 6</td><td class="num"><a href="semana-06.html">6</a></td></tr>
+<tr><td><a href="datos/publicos/cafe_calidad.csv"><code>cafe_calidad.csv</code></a></td><td><strong>Café y agro</strong></td><td>Catas profesionales con puntaje por origen</td><td class="num">1 346</td><td>Práctica extra de descriptiva y comparación entre orígenes</td><td class="num"><a href="semana-06.html">6</a></td></tr>
+<tr><td><a href="datos/publicos/peliculas_bechdel.csv"><code>peliculas_bechdel.csv</code></a></td><td><strong>Cine</strong></td><td>El test de Bechdel película por película</td><td class="num">1 794</td><td>Práctica extra de chi cuadrado en la semana 9</td><td class="num"><a href="semana-09.html">9</a></td></tr>
+<tr><td><a href="datos/publicos/co2_vehiculos.csv"><code>co2_vehiculos.csv</code></a></td><td><strong>Autos y ambiente</strong></td><td>La práctica de emisiones que en 202520 era de KNIME</td><td class="num">234</td><td>Práctica extra de regresión en las semanas 12 y 13</td><td class="num"><a href="semana-12.html">12</a></td></tr>
+<tr><td><a href="datos/publicos/telco_churn.csv"><code>telco_churn.csv</code></a></td><td><strong>Telecomunicaciones</strong></td><td>El caso Telco Churn que en 202410 era de KNN</td><td class="num">7 043</td><td>Práctica extra de clasificación en la semana 14</td><td class="num"><a href="semana-14.html">14</a></td></tr>
+<tr><td><a href="datos/publicos/rrhh_abandono.csv"><code>rrhh_abandono.csv</code></a></td><td><strong>Recursos humanos</strong></td><td>El caso de abandono laboral heredado de 202520</td><td class="num">1 470</td><td>Práctica extra de clasificación en la semana 14</td><td class="num"><a href="semana-14.html">14</a></td></tr>
+</tbody></table>
+<h2>Comercial Andina · la columna vertebral desde la semana 5</h2>
+<p class="bajada">Un distribuidor ecuatoriano con tiendas en Quito, Guayaquil, Cuenca, Manta y Loja, más canal en línea. De la semana 5 a la 16 los laboratorios trabajan sobre este mismo negocio: lo que agrupas en la semana 5 es lo que segmentas en la 8 y modelas en la 14.</p>
 <div class="caja"><div class="titulo">Datos sintéticos, fenómenos reales</div><p>Los datos los genera <code>datos/generar_datos.py</code> con semilla fija, así que son idénticos en cualquier computadora. Son sintéticos, pero están construidos para que aparezcan de forma natural los fenómenos que cada semana necesita enseñar. Nada de lo que vas a encontrar es un accidente.</p></div>
 <h2>Los siete archivos</h2>
 <table><thead><tr><th scope="col">Archivo</th><th scope="col" class="num">Filas</th><th scope="col">Columnas</th><th scope="col">Para qué sirve</th></tr></thead><tbody>
@@ -75,8 +94,8 @@
 </tbody></table>
 <h2>Qué enseña cada fenómeno</h2>
 <div class="rejilla c2">
-<a class="tarjeta" data-b="1" href="semana-03.html"><div class="n">Semana 3</div><div class="t">Ticket bimodal</div><div class="d">El 22 % de clientes mayoristas arrastra la media a 180,49 mientras la mediana se queda en 30,22. La media no describe a ningún cliente real.</div></a>
-<a class="tarjeta" data-b="1" href="semana-04.html"><div class="n">Semana 4</div><div class="t">Problemas de calidad</div><div class="d">7,8 % de líneas sin cliente, 1,1 % de duplicados exactos, dos formatos de fecha conviviendo, cantidades negativas que no son devoluciones y precios con un cero de más.</div></a>
+<a class="tarjeta" data-b="3" href="semana-08.html"><div class="n">Semana 8</div><div class="t">Ticket bimodal</div><div class="d">El 22 % de clientes mayoristas arrastra la media a 180,49 mientras la mediana se queda en 30,22. La media no describe a ningún cliente real.</div></a>
+<a class="tarjeta" data-b="1" href="semana-05.html"><div class="n">Semana 5</div><div class="t">Problemas de calidad</div><div class="d">7,8 % de líneas sin cliente, dos formatos de fecha y precios con un cero de más. La semana 4 se entrena con Netflix; la versión sucia de Comercial Andina queda como práctica de repaso.</div></a>
 <a class="tarjeta" data-b="1" href="semana-05.html"><div class="n">Semana 5</div><div class="t">Uniones que duplican</div><div class="d">El padrón de contactos tiene más de una fila por cliente. Unir sin mirar la cardinalidad infla la facturación un 25 %.</div></a>
 <a class="tarjeta" data-b="2" href="semana-06.html"><div class="n">Semana 6</div><div class="t">Estacionalidad</div><div class="d">Diciembre pesa un 30 % más que un mes medio y febrero un 18 % menos. Se ve en cuanto se grafica la serie.</div></a>
 <a class="tarjeta" data-b="3" href="semana-08.html"><div class="n">Semana 8</div><div class="t">Estructura RFM</div><div class="d">Clientes VIP, leales, en riesgo y perdidos aparecen solos al calcular recencia, frecuencia y monto. El 31 % lleva más de 180 días sin comprar.</div></a>
