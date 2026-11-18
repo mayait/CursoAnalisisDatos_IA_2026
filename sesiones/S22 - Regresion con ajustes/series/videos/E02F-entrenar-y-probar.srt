@@ -1,0 +1,100 @@
+1
+00:00:00,000 --> 00:00:00,916
+Parte seis:
+
+2
+00:00:00,916 --> 00:00:02,415
+entrenar y probar.
+
+3
+00:00:02,800 --> 00:00:06,159
+Hemos hablado de mercados de prueba sin explicar de dónde salen.
+
+4
+00:00:06,159 --> 00:00:07,524
+Aquí están los doscientos.
+
+5
+00:00:07,900 --> 00:00:12,924
+Si estudias con el examen en la mano y sacas veinte, no sabes si aprendiste o si memorizaste.
+
+6
+00:00:12,924 --> 00:00:14,761
+Un modelo tiene el mismo problema.
+
+7
+00:00:15,133 --> 00:00:18,774
+Por eso, antes de ajustar nada, barajamos los mercados al azar.
+
+8
+00:00:19,167 --> 00:00:21,264
+Ciento cincuenta van a entrenamiento:
+
+9
+00:00:21,264 --> 00:00:22,851
+con ellos aprende el modelo.
+
+10
+00:00:23,233 --> 00:00:25,043
+Cincuenta se guardan bajo llave.
+
+11
+00:00:25,043 --> 00:00:25,835
+Son la prueba.
+
+12
+00:00:26,233 --> 00:00:28,485
+El modelo solo ve los de entrenamiento.
+
+13
+00:00:28,485 --> 00:00:32,642
+Los coeficientes, las columnas y hasta la fuerza del freno salen de ahí.
+
+14
+00:00:33,033 --> 00:00:35,723
+Al final, y una sola vez, abrimos la caja.
+
+15
+00:00:35,723 --> 00:00:40,591
+El error en esos cincuenta es el que cuenta, porque el modelo nunca los vio.
+
+16
+00:00:40,967 --> 00:00:42,477
+Compara los dos errores.
+
+17
+00:00:42,477 --> 00:00:48,390
+El plano se equivoca uno coma veintiuno en entrenamiento y uno coma treinta y nueve en prueba.
+
+18
+00:00:48,390 --> 00:00:49,145
+Están cerca:
+
+19
+00:00:49,145 --> 00:00:50,341
+aprendió algo real.
+
+20
+00:00:50,733 --> 00:00:55,212
+Si el error de entrenamiento es mucho mejor que el de prueba, memorizó.
+
+21
+00:00:55,212 --> 00:00:57,294
+En inglés se llaman train y test:
+
+22
+00:00:57,294 --> 00:00:58,429
+entrenar y probar.
+
+23
+00:00:58,800 --> 00:00:59,937
+Un detalle práctico:
+
+24
+00:00:59,937 --> 00:01:03,632
+random state cuarenta y dos hace que el azar salga siempre igual.
+
+25
+00:01:03,632 --> 00:01:06,645
+Por eso todos comparamos contra los mismos cincuenta.
+

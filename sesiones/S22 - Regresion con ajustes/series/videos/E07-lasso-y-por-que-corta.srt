@@ -1,0 +1,96 @@
+1
+00:00:00,000 --> 00:00:01,161
+Episodio siete:
+
+2
+00:00:01,161 --> 00:00:02,941
+Lasso, y por qué corta.
+
+3
+00:00:03,333 --> 00:00:07,033
+Lasso hace casi lo mismo, con una diferencia pequeña en la cuenta.
+
+4
+00:00:07,400 --> 00:00:08,551
+Mira las barras.
+
+5
+00:00:08,551 --> 00:00:11,645
+Ya con muy poco freno hay columnas en cero.
+
+6
+00:00:12,033 --> 00:00:15,063
+Lasso cobra por el valor absoluto, no por el cuadrado.
+
+7
+00:00:15,433 --> 00:00:19,388
+Subimos el freno, y las columnas van cayendo a exactamente cero.
+
+8
+00:00:20,533 --> 00:00:22,400
+Al final quedan dos de nueve.
+
+9
+00:00:22,400 --> 00:00:24,139
+Lasso eligió por su cuenta.
+
+10
+00:00:25,633 --> 00:00:27,974
+Las que no pagan su costo valen cero.
+
+11
+00:00:28,467 --> 00:00:30,796
+¿Por qué uno encoge y el otro corta?
+
+12
+00:00:30,796 --> 00:00:32,543
+La respuesta es una imagen.
+
+13
+00:00:32,543 --> 00:00:37,785
+Cada elipse es un nivel de error, y el punto azul son los coeficientes sin freno.
+
+14
+00:00:38,167 --> 00:00:39,952
+El freno es un presupuesto:
+
+15
+00:00:39,952 --> 00:00:43,061
+los coeficientes no se pueden salir de la zona.
+
+16
+00:00:43,061 --> 00:00:45,111
+En Ridge la zona es un círculo.
+
+17
+00:00:45,111 --> 00:00:46,368
+En Lasso, un rombo.
+
+18
+00:00:46,767 --> 00:00:52,220
+Al encoger el presupuesto, el mejor ajuste queda en el punto rojo, donde el error toca la zona.
+
+19
+00:00:56,567 --> 00:01:00,115
+El círculo no tiene esquinas, así que casi nunca toca un eje.
+
+20
+00:01:00,500 --> 00:01:03,422
+El rombo tiene las esquinas justo sobre los ejes.
+
+21
+00:01:03,422 --> 00:01:06,703
+Y en una esquina, un coeficiente vale exactamente cero.
+
+22
+00:01:07,200 --> 00:01:08,827
+Por eso Lasso es una tijera:
+
+23
+00:01:08,827 --> 00:01:11,036
+corta los hilos que no sostienen nada.
+
+24
+00:01:11,467 --> 00:01:16,575
+Sirve cuando sospechas que casi todas las columnas sobran, y cuando necesitas decir cuáles importan.
+

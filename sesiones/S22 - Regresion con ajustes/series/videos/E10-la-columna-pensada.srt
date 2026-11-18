@@ -1,0 +1,144 @@
+1
+00:00:00,000 --> 00:00:00,916
+Episodio diez:
+
+2
+00:00:00,916 --> 00:00:02,160
+la columna pensada.
+
+3
+00:00:02,160 --> 00:00:04,844
+Míralo después de entregar la etapa seis.
+
+4
+00:00:05,233 --> 00:00:07,452
+Si ya propusiste tu columna, comparemos.
+
+5
+00:00:07,452 --> 00:00:08,784
+Piensa en la publicidad:
+
+6
+00:00:08,784 --> 00:00:12,389
+las primeras pautas rinden mucho y las siguientes cada vez menos.
+
+7
+00:00:12,800 --> 00:00:14,819
+Esa forma tiene nombre en matemáticas:
+
+8
+00:00:14,819 --> 00:00:15,562
+raíz cuadrada.
+
+9
+00:00:15,967 --> 00:00:17,928
+Estos son los mercados con poca radio.
+
+10
+00:00:17,928 --> 00:00:21,387
+La curva gris usa televisión al cuadrado, y arranca demasiado alta.
+
+11
+00:00:21,767 --> 00:00:24,232
+La curva roja usa la raíz de la televisión:
+
+12
+00:00:24,232 --> 00:00:28,131
+sube rápido, luego se aplana, y sigue los puntos desde el principio.
+
+13
+00:00:28,500 --> 00:00:29,687
+Estos eran los modelos.
+
+14
+00:00:30,067 --> 00:00:32,930
+Con la raíz, el error de prueba baja a cero coma veintinueve.
+
+15
+00:00:33,300 --> 00:00:35,905
+Cuatro columnas pensadas le ganan a cincuenta y cinco.
+
+16
+00:00:35,905 --> 00:00:38,559
+El freno es para cuando no sabes qué columnas importan.
+
+17
+00:00:38,559 --> 00:00:39,475
+Si lo sabes, úsalo.
+
+18
+00:00:39,867 --> 00:00:40,811
+El segundo encargo.
+
+19
+00:00:40,811 --> 00:00:44,839
+Consumo en ciudad, en carretera y combinado están correlacionados casi uno a uno.
+
+20
+00:00:45,267 --> 00:00:51,118
+Sin freno, el coeficiente del combinado va de menos ochenta y siete a más ciento noventa y ocho, según la mitad de datos que te toque.
+
+21
+00:00:51,500 --> 00:00:54,571
+Ridge reparte el crédito y se queda quieto, entre cinco y siete.
+
+22
+00:00:54,967 --> 00:00:58,453
+Lasso apaga unas y deja otras, y cuál apaga depende de la muestra.
+
+23
+00:00:58,833 --> 00:01:00,621
+Esto es lo que te llevas para tu proyecto.
+
+24
+00:01:00,621 --> 00:01:03,643
+Si los errores forman un patrón, prueba una curva o una transformación.
+
+25
+00:01:04,033 --> 00:01:06,659
+Si el efecto de una variable depende de otra, una interacción.
+
+26
+00:01:07,033 --> 00:01:09,593
+Si hay muchas columnas para pocas filas, Ridge o Lasso.
+
+27
+00:01:09,967 --> 00:01:11,761
+Si las columnas son casi copias, Ridge.
+
+28
+00:01:12,133 --> 00:01:14,117
+Y si necesitas saber cuáles importan, Lasso.
+
+29
+00:01:14,500 --> 00:01:15,396
+Y una advertencia.
+
+30
+00:01:15,396 --> 00:01:16,990
+Un mejor ajuste no prueba causa.
+
+31
+00:01:16,990 --> 00:01:18,882
+Los doscientos mercados se observaron:
+
+32
+00:01:18,882 --> 00:01:20,376
+nadie asignó la radio al azar.
+
+33
+00:01:20,800 --> 00:01:25,073
+Además, Daniela pone cuarenta y nueve mil en radio, y el dato llega a cuarenta y nueve mil seiscientos.
+
+34
+00:01:25,073 --> 00:01:25,903
+Ya está en el borde.
+
+35
+00:01:26,333 --> 00:01:29,364
+Antes de mover la plata, hay que probar la radio en mercados elegidos al azar.
+
+36
+00:01:29,767 --> 00:01:34,775
+Voy a volver al comité con una cifra más baja, una razón clara y un experimento.
+

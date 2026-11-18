@@ -1,0 +1,20 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-09T03:20:00Z"},
+  "lists": "css",
+  "title": "Una recta no se dobla",
+  "cover": "cover",
+  "order": ["cover", "promesa", "apuesta", "reveal", "v-ajuste", "mapa", "v-columnas", "v-abanico", "v-separar", "v-lineas", "p-reglas", "p-separar", "p-lineas", "v-finca", "v-factor", "v-pendiente", "v-superficie", "v-co2", "v-super", "v-titanic", "v-prensa", "tt-concepto", "v-traintest", "tt-lectura", "p-traintest", "v-receta", "p-e1", "p-e2", "p-e3", "salas-a", "escalera", "antes-despues", "radio-tv", "promesa-corr", "v-errores", "agencia", "v-grado", "grados", "un-mercado", "freno", "escala", "v-ridge", "v-lasso", "v-geometria", "dos-frenos", "v-cv", "tt-cv", "p-e4", "p-e5", "salas-b", "lasso-rejilla", "final", "guia", "limites", "casa", "p-e6", "cierre", "v-python", "v-ej-a", "v-ej-b", "raiz", "final-raiz", "v-co2res"],
+  "sections": {
+    "s1": {"description": "La promesa de Daniela y por qué el plano falla", "start": "cover"},
+    "s2": {"description": "Curvas e interacción: doblar el plano sin dejar de ser regresión", "start": "v-columnas"},
+    "s5": {"description": "Cómo separar las líneas y qué pedirle al asistente", "start": "v-separar"},
+    "s6": {"description": "Qué es una interacción y más ejemplos", "start": "v-finca"},
+    "s7": {"description": "Train y test antes del ejercicio", "start": "tt-concepto"},
+    "s3": {"description": "La agencia, el sobreajuste y el freno", "start": "agencia"},
+    "s4": {"description": "Decidir qué ajuste se queda", "start": "salas-b"},
+    "s8": {"description": "Respaldo y resultados para después de la entrega", "start": "v-python"}
+  },
+  "faces": {"zalando-sans-expanded": {"family": "Zalando Sans Expanded", "href": "https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:wght@400;800;900&display=swap"}},
+  "designSystems": []
+}

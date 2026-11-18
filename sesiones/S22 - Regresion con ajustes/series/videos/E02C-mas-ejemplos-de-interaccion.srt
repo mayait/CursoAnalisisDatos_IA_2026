@@ -1,0 +1,132 @@
+1
+00:00:00,000 --> 00:00:00,629
+Parte tres:
+
+2
+00:00:00,629 --> 00:00:02,229
+más ejemplos de interacción.
+
+3
+00:00:02,600 --> 00:00:03,533
+Primer ejemplo:
+
+4
+00:00:03,533 --> 00:00:04,030
+motores.
+
+5
+00:00:04,030 --> 00:00:08,817
+Para más de mil vehículos, consumo de combustible contra emisiones de CO dos.
+
+6
+00:00:09,200 --> 00:00:14,472
+Con gasolina, cada litro más a los cien kilómetros sube veintitrés gramos de CO dos por kilómetro.
+
+7
+00:00:14,867 --> 00:00:16,525
+Con diésel, veintisiete.
+
+8
+00:00:16,525 --> 00:00:18,046
+Con etanol, dieciséis.
+
+9
+00:00:18,433 --> 00:00:20,641
+La pendiente depende del combustible:
+
+10
+00:00:20,641 --> 00:00:23,684
+una variable numérica interactúa con una categoría.
+
+11
+00:00:23,684 --> 00:00:27,025
+Es casi física, y por eso las líneas quedan tan limpias.
+
+12
+00:00:27,400 --> 00:00:30,002
+Segundo ejemplo, con datos que ya conoces:
+
+13
+00:00:30,002 --> 00:00:30,684
+Superstore.
+
+14
+00:00:30,684 --> 00:00:34,030
+¿Un descuento cuesta lo mismo en todas las categorías?
+
+15
+00:00:34,433 --> 00:00:37,584
+Cada punto es el margen promedio para un nivel de descuento.
+
+16
+00:00:37,584 --> 00:00:40,681
+Sin descuento, suministros de oficina deja el mejor margen.
+
+17
+00:00:41,067 --> 00:00:45,314
+Pero cada diez puntos de descuento le quitan veintiún puntos de margen.
+
+18
+00:00:45,314 --> 00:00:46,630
+A muebles, diecisiete.
+
+19
+00:00:46,630 --> 00:00:47,766
+A tecnología, doce.
+
+20
+00:00:48,133 --> 00:00:49,288
+Las líneas se cruzan.
+
+21
+00:00:49,288 --> 00:00:53,026
+La categoría que más gana sin descuento es la que más pierde con él.
+
+22
+00:00:53,400 --> 00:00:55,470
+Tercer ejemplo, con dos categorías:
+
+23
+00:00:55,470 --> 00:00:59,138
+los pasajeros del Titanic, sobrevivencia por sexo y por clase.
+
+24
+00:00:59,533 --> 00:01:06,269
+La diferencia entre mujeres y hombres fue de sesenta puntos en primera clase, setenta y seis en segunda, y treinta y seis en tercera.
+
+25
+00:01:06,667 --> 00:01:09,052
+El efecto de ser mujer dependió de la clase.
+
+26
+00:01:09,052 --> 00:01:12,848
+Eso también es una interacción, y por eso las líneas no van paralelas.
+
+27
+00:01:13,233 --> 00:01:14,677
+Y un ejemplo donde no hay.
+
+28
+00:01:14,677 --> 00:01:18,064
+La radio cuando hay poca prensa, y la radio cuando hay mucha.
+
+29
+00:01:18,433 --> 00:01:20,137
+Las líneas van casi paralelas.
+
+30
+00:01:20,137 --> 00:01:23,375
+El valor p del término de interacción es cero coma cinco:
+
+31
+00:01:23,375 --> 00:01:24,340
+no hay evidencia.
+
+32
+00:01:24,733 --> 00:01:26,246
+No toda pareja interactúa.
+
+33
+00:01:26,246 --> 00:01:28,049
+Hay que probarlo, no suponerlo.
+

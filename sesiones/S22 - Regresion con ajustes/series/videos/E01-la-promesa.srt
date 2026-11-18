@@ -1,0 +1,172 @@
+1
+00:00:00,000 --> 00:00:01,756
+Una recta no se dobla.
+
+2
+00:00:01,756 --> 00:00:02,794
+Episodio uno:
+
+3
+00:00:02,794 --> 00:00:03,672
+la promesa.
+
+4
+00:00:04,067 --> 00:00:09,691
+El viernes le prometí al comité catorce mil cuatrocientas veinte unidades en el mercado nuevo.
+
+5
+00:00:10,100 --> 00:00:12,924
+Daniela es gerente de marca de Bebidas Cumbre.
+
+6
+00:00:12,924 --> 00:00:15,073
+Tiene datos de doscientos mercados:
+
+7
+00:00:15,073 --> 00:00:19,309
+cuánto invirtió en televisión, en radio y en prensa, y cuánto vendió.
+
+8
+00:00:19,733 --> 00:00:24,241
+Con ellos armó un modelo sencillo, un plano, y con ese plano defendió su plan:
+
+9
+00:00:24,241 --> 00:00:28,171
+cincuenta mil dólares en televisión y cuarenta y nueve mil en radio.
+
+10
+00:00:28,600 --> 00:00:29,804
+Mi duda es simple.
+
+11
+00:00:29,804 --> 00:00:31,343
+¿Esa cifra se sostiene?
+
+12
+00:00:31,767 --> 00:00:32,821
+Hagamos una apuesta.
+
+13
+00:00:32,821 --> 00:00:35,774
+Hay veinte mercados que ya invierten parecido a su plan.
+
+14
+00:00:36,167 --> 00:00:39,375
+¿Cuánto venden en promedio, en miles de unidades?
+
+15
+00:00:39,375 --> 00:00:41,667
+Pausa el video y escribe tu número.
+
+16
+00:00:46,033 --> 00:00:48,743
+El plano les pronostica doce coma cuarenta y tres.
+
+17
+00:00:49,133 --> 00:00:50,875
+Y vendieron diez coma dieciséis.
+
+18
+00:00:51,267 --> 00:00:57,490
+Son dos mil doscientas setenta unidades de más por mercado, y en los veinte se pasó hacia el mismo lado.
+
+19
+00:00:57,490 --> 00:00:58,806
+Eso no es mala suerte.
+
+20
+00:00:59,200 --> 00:01:02,062
+Para entender qué pasó, volvamos a lo básico.
+
+21
+00:01:02,062 --> 00:01:03,651
+Cada punto es un mercado.
+
+22
+00:01:03,651 --> 00:01:07,149
+El modelo más simple pronostica el promedio para todos:
+
+23
+00:01:07,149 --> 00:01:08,230
+es la línea base.
+
+24
+00:01:08,600 --> 00:01:10,863
+Cada error se convierte en un cuadrado.
+
+25
+00:01:10,863 --> 00:01:15,214
+Sumamos esos cuadrados y tenemos un solo número que dice qué tan mal vamos.
+
+26
+00:01:15,600 --> 00:01:19,816
+Si inclinamos la recta de más, algunos cuadrados se achican y otros crecen.
+
+27
+00:01:20,300 --> 00:01:23,405
+Si la inclinamos al revés, la suma sube todavía más.
+
+28
+00:01:23,800 --> 00:01:27,101
+Ajustar es mover la recta hasta llegar al punto más bajo.
+
+29
+00:01:27,101 --> 00:01:29,185
+A eso se le llama mínimos cuadrados.
+
+30
+00:01:30,300 --> 00:01:31,685
+Fíjate en un detalle.
+
+31
+00:01:31,685 --> 00:01:33,531
+El ajuste no elige la forma.
+
+32
+00:01:33,531 --> 00:01:36,432
+Busca la mejor recta entre todas las rectas.
+
+33
+00:01:36,432 --> 00:01:40,653
+Si el mundo se curva, igual te entrega una recta, y no te avisa.
+
+34
+00:01:41,033 --> 00:01:44,256
+Para saber si nos falló la forma, miramos los errores.
+
+35
+00:01:44,256 --> 00:01:49,090
+Cada punto es un mercado, ubicado según lo que invirtió en televisión y en radio.
+
+36
+00:01:49,467 --> 00:01:52,557
+En rojo, los mercados donde el plano prometió de más.
+
+37
+00:01:52,557 --> 00:01:54,480
+En azul, donde prometió de menos.
+
+38
+00:01:54,867 --> 00:01:57,645
+Si fuera ruido, los colores estarían mezclados.
+
+39
+00:01:57,645 --> 00:02:00,365
+Pero el rojo se junta donde hay un solo medio.
+
+40
+00:02:00,733 --> 00:02:03,518
+Y el azul, arriba a la derecha, donde están los dos.
+
+41
+00:02:03,900 --> 00:02:05,958
+La equis es el plan de Daniela.
+
+42
+00:02:05,958 --> 00:02:07,154
+Cayó en zona roja.
+
+43
+00:02:07,154 --> 00:02:11,138
+El plano falla con un patrón, y un patrón se puede arreglar.
+

@@ -1,0 +1,136 @@
+1
+00:00:00,000 --> 00:00:00,604
+Parte dos:
+
+2
+00:00:00,604 --> 00:00:01,992
+qué es una interacción.
+
+3
+00:00:02,367 --> 00:00:05,923
+Una interacción es cuando el efecto de una cosa depende de otra.
+
+4
+00:00:05,923 --> 00:00:08,924
+Piensa en una finca de la parte alta de San Cristóbal.
+
+5
+00:00:09,333 --> 00:00:13,507
+El abono sirve mucho si la tierra tiene agua, y casi nada si está seca.
+
+6
+00:00:13,507 --> 00:00:17,034
+Preguntar cuánto rinde el abono no tiene una sola respuesta.
+
+7
+00:00:17,467 --> 00:00:19,401
+Con la publicidad pasa lo mismo.
+
+8
+00:00:19,401 --> 00:00:21,093
+¿Cuánto rinde la televisión?
+
+9
+00:00:21,093 --> 00:00:22,846
+Depende de cuánta radio haya.
+
+10
+00:00:23,267 --> 00:00:25,127
+Mira la ecuación con interacción.
+
+11
+00:00:25,127 --> 00:00:26,367
+Tiene cuatro términos.
+
+12
+00:00:26,767 --> 00:00:30,033
+Ahora juntamos todo lo que multiplica a la televisión.
+
+13
+00:00:30,400 --> 00:00:31,083
+Queda esto:
+
+14
+00:00:31,083 --> 00:00:34,437
+la pendiente de la televisión ya no es un número fijo.
+
+15
+00:00:34,437 --> 00:00:39,034
+Es cero coma cero uno nueve, más cero coma cero cero uno uno por la radio.
+
+16
+00:00:39,433 --> 00:00:41,249
+Por eso se dice que interactúan:
+
+17
+00:00:41,249 --> 00:00:43,745
+una variable cambia la pendiente de la otra.
+
+18
+00:00:43,745 --> 00:00:47,150
+Sin ese último término, la pendiente sería siempre la misma.
+
+19
+00:00:47,533 --> 00:00:48,742
+Míralo en movimiento.
+
+20
+00:00:48,742 --> 00:00:53,289
+Con la radio en cero, cada mil dólares en televisión traen diecinueve unidades.
+
+21
+00:00:53,667 --> 00:00:55,623
+Subimos la radio y la línea gira.
+
+22
+00:00:55,623 --> 00:00:58,765
+Con veinte mil en radio, son cuarenta y una unidades.
+
+23
+00:00:59,133 --> 00:01:01,046
+Con cuarenta y cinco mil, sesenta y ocho.
+
+24
+00:01:01,433 --> 00:01:03,910
+Comparemos con el modelo sin interacción.
+
+25
+00:01:03,910 --> 00:01:06,024
+La línea sube y baja, pero no gira:
+
+26
+00:01:06,024 --> 00:01:08,017
+siempre cuarenta y seis unidades.
+
+27
+00:01:08,400 --> 00:01:12,991
+Si agregamos la radio como tercer eje, el modelo sin interacción es un plano:
+
+28
+00:01:12,991 --> 00:01:13,945
+una hoja rígida.
+
+29
+00:01:14,333 --> 00:01:19,312
+Cortamos la hoja con radio baja y con radio alta, y salen dos rectas paralelas.
+
+30
+00:01:19,733 --> 00:01:21,390
+La interacción tuerce la hoja.
+
+31
+00:01:21,390 --> 00:01:23,323
+Una esquina sube más que las otras.
+
+32
+00:01:23,733 --> 00:01:25,856
+Ahora los cortes ya no son paralelos.
+
+33
+00:01:25,856 --> 00:01:28,437
+Eso, en tres dimensiones, es una interacción.
+
+34
+00:01:28,867 --> 00:01:31,019
+Por eso esta parte se llama doblar el plano.
+

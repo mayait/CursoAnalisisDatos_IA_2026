@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajustes de una regresión</title>
+<style>
+  :root {
+    --rojo: #E11B22;
+    --negro: #111111;
+    --gris-texto: #555555;
+    --gris-medio: #8A8A8A;
+    --gris-claro: #D9D9D9;
+    --gris-fondo: #F2F2F2;
+    --curva: #1F6FB2;
+    --titular: 'Zalando Sans Expanded', 'Arial Black', Arial, sans-serif;
+    font-size: max(18px, min(2.5vh, 1.4vw));
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    color: var(--negro);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.25;
+    padding: 0.6rem 1rem 0.7rem;
+    overflow-x: hidden;
+  }
+  header { flex: none; margin-bottom: 0.5rem; }
+  h1 {
+    margin: 0;
+    font-family: var(--titular);
+    font-weight: 900;
+    font-size: 1.7rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--negro);
+  }
+  h1::after {
+    content: "";
+    display: inline-block;
+    width: 0.55em;
+    height: 0.55em;
+    margin-left: 0.3em;
+    background: var(--rojo);
+  }
+  .bajada { margin: 0.15rem 0 0; color: var(--gris-texto); }
+
+  main {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 21rem;
+    gap: 1.1rem;
+  }
+
+  .graficos { display: flex; flex-direction: column; min-width: 0; min-height: 0; gap: 0.35rem; }
+  .leyenda { flex: none; display: flex; flex-wrap: wrap; gap: 0.1rem 1.3rem; }
+  .leyenda span.item { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .leyenda span.item[hidden] { display: none; }
+  .marca { display: inline-block; flex: none; }
+  .marca.punto { width: 0.72rem; height: 0.72rem; border-radius: 50%; background: var(--negro); }
+  .marca.aro { width: 0.72rem; height: 0.72rem; border-radius: 50%; border: 2px solid var(--rojo); }
+  .marca.linea { width: 1.5rem; height: 0.22rem; background: var(--curva); }
+
+  .lienzo { position: relative; min-width: 0; }
+  .lienzo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .lienzo-ajuste { flex: 1; min-height: 12rem; }
+  .lienzo-coefs { flex: none; height: 6.2rem; }
+
+  .datos {
+    flex: none;
+    display: grid;
+    grid-template-columns: 1.25fr 1.25fr 0.9fr;
+    gap: 0.6rem;
+  }
+  .dato { min-width: 0; border-top: 3px solid var(--negro); padding-top: 0.15rem; }
+  .dato-rotulo { display: block; }
+  .dato-valor {
+    font-family: var(--titular);
+    font-weight: 900;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .dato-unidad { color: var(--gris-texto); margin-left: 0.25rem; white-space: nowrap; }
+  .dato.prueba { border-top-color: var(--rojo); }
+  .dato.prueba .dato-valor { color: var(--rojo); }
+
+  h2 {
+    margin: 0;
+    font-family: var(--titular);
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  .controles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.8rem;
+    min-width: 0;
+    border-left: 3px solid var(--negro);
+    padding-left: 1.1rem;
+  }
+  .grupo { display: flex; flex-direction: column; gap: 0.6rem; }
+  .control { display: flex; flex-direction: column; gap: 0.1rem; }
+  .fila { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+  .fila output { font-family: var(--titular); font-weight: 900; font-size: 1.3rem; white-space: nowrap; }
+  .apagado { color: var(--gris-medio); }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1.5rem;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-runnable-track { height: 0.3rem; background: var(--negro); }
+  input[type="range"]::-moz-range-track { height: 0.3rem; background: var(--negro); }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: -0.5rem;
+    border: 0;
+    border-radius: 50%;
+    background: var(--rojo);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 0;
+    border-radius: 50%;
+    background: var(--rojo);
+  }
+  input[type="range"]:disabled { cursor: not-allowed; }
+  input[type="range"]:disabled::-webkit-slider-runnable-track { background: var(--gris-claro); }
+  input[type="range"]:disabled::-moz-range-track { background: var(--gris-claro); }
+  input[type="range"]:disabled::-webkit-slider-thumb { background: var(--gris-medio); }
+  input[type="range"]:disabled::-moz-range-thumb { background: var(--gris-medio); }
+  input:focus-visible, button:focus-visible { outline: 3px solid var(--negro); outline-offset: 2px; }
+
+  button {
+    font: inherit;
+    font-weight: 700;
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    color: #FFFFFF;
+    background: var(--negro);
+    border: 0;
+    cursor: pointer;
+  }
+  button:hover { background: var(--rojo); }
+
+  .interruptor { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+  .interruptor input { width: 1.2rem; height: 1.2rem; margin: 0; accent-color: var(--rojo); flex: none; }
+
+  fieldset.selector { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); }
+  fieldset.selector legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  fieldset.selector label { position: relative; cursor: pointer; }
+  fieldset.selector input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  fieldset.selector span {
+    display: block;
+    padding: 0.4rem 0.2rem;
+    text-align: center;
+    font-weight: 700;
+    border: 2px solid var(--negro);
+    border-left-width: 0;
+  }
+  fieldset.selector label:first-of-type span { border-left-width: 2px; }
+  fieldset.selector input:checked + span { background: var(--rojo); color: #FFFFFF; border-color: var(--rojo); }
+  fieldset.selector input:focus-visible + span { outline: 3px solid var(--negro); outline-offset: 2px; }
+
+  .pista { margin: 0; min-height: 2.5em; color: var(--gris-texto); }
+
+  @media (max-width: 860px), (max-height: 520px) {
+    html, body { height: auto; }
+    main { grid-template-columns: minmax(0, 1fr); }
+    .lienzo-ajuste { flex: none; height: clamp(18rem, 70vw, 30rem); }
+    .controles { border-left: 0; padding-left: 0; border-top: 3px solid var(--negro); padding-top: 0.7rem; }
+  }
+  @media (max-width: 620px) {
+    h1 { font-size: 1.45rem; }
+    .datos { grid-template-columns: minmax(0, 1fr); }
+    .lienzo-coefs { height: 8rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ajustes de una regresión</h1>
+  <p class="bajada">Bebidas Cumbre, 200 mercados reales. Mueve el grado y el freno, y mira qué pasa con los mercados que el modelo no vio.</p>
+</header>
+
+<main>
+  <section class="graficos" aria-label="Gráficos del ajuste">
+    <div class="leyenda">
+      <span class="item"><span class="marca punto"></span>Mercados para entrenar</span>
+      <span class="item" id="leyendaPrueba" hidden><span class="marca aro"></span>Mercados que no vio</span>
+      <span class="item"><span class="marca linea"></span>Curva del modelo</span>
+    </div>
+    <div class="lienzo lienzo-ajuste"><canvas id="ajuste" role="img" aria-label="Ventas contra inversión en TV, con la curva del modelo"></canvas></div>
+
+    <div class="datos">
+      <div class="dato">
+        <span class="dato-rotulo">Error medio entrenamiento</span>
+        <span class="dato-valor" id="errorEntrenamiento"></span><span class="dato-unidad">miles de unidades</span>
+      </div>
+      <div class="dato prueba">
+        <span class="dato-rotulo">Error medio prueba</span>
+        <span class="dato-valor" id="errorPrueba"></span><span class="dato-unidad">miles de unidades</span>
+      </div>
+      <div class="dato">
+        <span class="dato-rotulo">Columnas vivas</span>
+        <span class="dato-valor" id="columnasVivas"></span>
+      </div>
+    </div>
+
+    <h2>Coeficientes estandarizados, escala comprimida</h2>
+    <div class="lienzo lienzo-coefs"><canvas id="coefs" role="img" aria-label="Barras con los coeficientes estandarizados"></canvas></div>
+  </section>
+
+  <aside class="controles" aria-label="Controles">
+    <div class="grupo">
+    <div class="control">
+      <div class="fila"><label for="n">Mercados para entrenar</label><output id="nValor" for="n"></output></div>
+      <input type="range" id="n" min="10" max="150" step="1" value="13">
+    </div>
+    <button type="button" id="otraMuestra">Otra muestra</button>
+    <label class="interruptor"><input type="checkbox" id="mostrarPrueba">Mostrar mercados que no vio</label>
+    </div>
+
+    <div class="grupo">
+    <div class="control">
+      <div class="fila"><label for="grado">Grado del polinomio</label><output id="gradoValor" for="grado"></output></div>
+      <input type="range" id="grado" min="1" max="12" step="1" value="9">
+    </div>
+    </div>
+
+    <div class="grupo">
+    <fieldset class="selector">
+      <legend>Tipo de freno</legend>
+      <label><input type="radio" name="modo" value="sin" checked><span>Sin freno</span></label>
+      <label><input type="radio" name="modo" value="ridge"><span>Ridge</span></label>
+      <label><input type="radio" name="modo" value="lasso"><span>Lasso</span></label>
+    </fieldset>
+
+    <div class="control">
+      <div class="fila"><label for="lambda" id="lambdaRotulo">Fuerza del freno λ</label><output id="lambdaValor" for="lambda"></output></div>
+      <input type="range" id="lambda" min="-3" max="2" step="0.05" value="-1">
+    </div>
+    <p class="pista" id="pista"></p>
+    </div>
+  </aside>
+</main>
+
+<script id="modelo">
+// Datos reales: [inversión en TV en miles de USD, ventas en miles de unidades].
+var MERCADOS = [
+  [230.1,22.1],[44.5,10.4],[17.2,9.3],[151.5,18.5],[180.8,12.9],[8.7,7.2],[57.5,11.8],[120.2,13.2],[8.6,4.8],[199.8,10.6],
+  [66.1,8.6],[214.7,17.4],[23.8,9.2],[97.5,9.7],[204.1,19],[195.4,22.4],[67.8,12.5],[281.4,24.4],[69.2,11.3],[147.3,14.6],
+  [218.4,18],[237.4,12.5],[13.2,5.6],[228.3,15.5],[62.3,9.7],[262.9,12],[142.9,15],[240.1,15.9],[248.8,18.9],[70.6,10.5],
+  [292.9,21.4],[112.9,11.9],[97.2,9.6],[265.6,17.4],[95.7,9.5],[290.7,12.8],[266.9,25.4],[74.7,14.7],[43.1,10.1],[228,21.5],
+  [202.5,16.6],[177,17.1],[293.6,20.7],[206.9,12.9],[25.1,8.5],[175.1,14.9],[89.7,10.6],[239.9,23.2],[227.2,14.8],[66.9,9.7],
+  [199.8,11.4],[100.4,10.7],[216.4,22.6],[182.6,21.2],[262.7,20.2],[198.9,23.7],[7.3,5.5],[136.2,13.2],[210.8,23.8],[210.7,18.4],
+  [53.5,8.1],[261.3,24.2],[239.3,15.7],[102.7,14],[131.1,18],[69,9.3],[31.5,9.5],[139.3,13.4],[237.4,18.9],[216.8,22.3],
+  [199.1,18.3],[109.8,12.4],[26.8,8.8],[129.4,11],[213.4,17],[16.9,8.7],[27.5,6.9],[120.5,14.2],[5.4,5.3],[116,11],
+  [76.4,11.8],[239.8,12.3],[75.3,11.3],[68.4,13.6],[213.5,21.7],[193.2,15.2],[76.3,12],[110.7,16],[88.3,12.9],[109.8,16.7],
+  [134.3,11.2],[28.6,7.3],[217.7,19.4],[250.9,22.2],[107.4,11.5],[163.3,16.9],[197.6,11.7],[184.9,15.5],[289.7,25.4],[135.2,17.2],
+  [222.4,11.7],[296.4,23.8],[280.2,14.8],[187.9,14.7],[238.2,20.7],[137.9,19.2],[25,7.2],[90.4,8.7],[13.1,5.3],[255.4,19.8],
+  [225.8,13.4],[241.7,21.8],[175.7,14.1],[209.6,15.9],[78.2,14.6],[75.1,12.6],[139.2,12.2],[76.4,9.4],[125.7,15.9],[19.4,6.6],
+  [141.3,15.5],[18.8,7],[224,11.6],[123.1,15.2],[229.5,19.7],[87.2,10.6],[7.8,6.6],[80.2,8.8],[220.3,24.7],[59.6,9.7],
+  [0.7,1.6],[265.2,12.7],[8.4,5.7],[219.8,19.6],[36.9,10.8],[48.3,11.6],[25.6,9.5],[273.7,20.8],[43,9.6],[184.9,20.7],
+  [73.4,10.9],[193.7,19.2],[220.5,20.1],[104.6,10.4],[96.2,11.4],[140.3,10.3],[240.1,13.2],[243.2,25.4],[38,10.9],[44.7,10.1],
+  [280.7,16.1],[121,11.6],[197.6,16.6],[171.3,19],[187.8,15.6],[4.1,3.2],[93.9,15.3],[149.8,10.1],[11.7,7.3],[131.7,12.9],
+  [172.5,14.4],[85.7,13.3],[188.4,14.9],[163.5,18],[117.2,11.9],[234.5,11.9],[17.9,8],[206.8,12.2],[215.4,17.1],[284.3,15],
+  [50,8.4],[164.5,14.5],[19.6,7.6],[168.4,11.7],[222.4,11.5],[276.9,27],[248.4,20.2],[170.2,11.7],[276.7,11.8],[165.6,12.6],
+  [156.6,10.5],[218.5,12.2],[56.2,8.7],[287.6,26.2],[253.8,17.6],[205,22.6],[139.5,10.3],[191.1,17.3],[286,15.9],[18.7,6.7],
+  [39.5,10.8],[75.5,9.9],[17.2,5.9],[166.8,19.6],[149.7,17.3],[38.2,7.6],[94.2,9.7],[177,12.8],[283.6,25.5],[232.1,13.4]
+];
+
+var GRADO_MAXIMO = 12;
+var UMBRAL_CERO_LASSO = 1e-6;
+var LAMBDA_SIN_FRENO = 1e-10;
+var MAX_BARRIDOS_LASSO = 20000;
+var TOLERANCIA_LASSO = 1e-10;
+
+function generadorSemilla(semilla) {
+  var a = semilla >>> 0;
+  return function () {
+    a = (a + 0x6D2B79F5) >>> 0;
+    var t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function barajar(semilla, total) {
+  var azar = generadorSemilla(semilla);
+  var orden = [];
+  for (var i = 0; i < total; i++) orden.push(i);
+  for (var j = total - 1; j > 0; j--) {
+    var k = Math.floor(azar() * (j + 1));
+    var t = orden[j]; orden[j] = orden[k]; orden[k] = t;
+  }
+  return orden;
+}
+
+function potencias(tv, grado) {
+  var u = (tv - 150) / 150, salida = new Array(grado), p = 1;
+  for (var i = 0; i < grado; i++) { p *= u; salida[i] = p; }
+  return salida;
+}
+
+function disenar(entrenamiento, grado) {
+  var n = entrenamiento.length, medias = new Array(grado).fill(0), desvios = new Array(grado).fill(0);
+  var crudas = entrenamiento.map(function (m) { return potencias(m[0], grado); });
+  var mediaY = 0;
+  for (var i = 0; i < n; i++) {
+    mediaY += entrenamiento[i][1] / n;
+    for (var j = 0; j < grado; j++) medias[j] += crudas[i][j] / n;
+  }
+  for (i = 0; i < n; i++) for (j = 0; j < grado; j++) desvios[j] += Math.pow(crudas[i][j] - medias[j], 2) / n;
+  for (j = 0; j < grado; j++) {
+    desvios[j] = Math.sqrt(desvios[j]);
+    if (desvios[j] < 1e-12) desvios[j] = 1;
+  }
+  var X = crudas.map(function (fila) { return fila.map(function (v, c) { return (v - medias[c]) / desvios[c]; }); });
+  var y = entrenamiento.map(function (m) { return m[1] - mediaY; });
+
+  var XtX = [], Xty = new Array(grado).fill(0);
+  for (j = 0; j < grado; j++) XtX.push(new Array(grado).fill(0));
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < grado; j++) {
+      Xty[j] += X[i][j] * y[i];
+      for (var k = j; k < grado; k++) XtX[j][k] += X[i][j] * X[i][k];
+    }
+  }
+  for (j = 0; j < grado; j++) for (k = 0; k < j; k++) XtX[j][k] = XtX[k][j];
+  return { n: n, grado: grado, medias: medias, desvios: desvios, mediaY: mediaY, XtX: XtX, Xty: Xty };
+}
+
+// Eliminación gaussiana con pivoteo parcial.
+function resolverSistema(A, b) {
+  var d = b.length;
+  var M = A.map(function (fila, i) { return fila.concat(b[i]); });
+  for (var c = 0; c < d; c++) {
+    var piv = c;
+    for (var f = c + 1; f < d; f++) if (Math.abs(M[f][c]) > Math.abs(M[piv][c])) piv = f;
+    var t = M[c]; M[c] = M[piv]; M[piv] = t;
+    if (M[c][c] === 0) continue;
+    for (f = c + 1; f < d; f++) {
+      var factor = M[f][c] / M[c][c];
+      if (factor === 0) continue;
+      for (var k = c; k <= d; k++) M[f][k] -= factor * M[c][k];
+    }
+  }
+  var x = new Array(d).fill(0);
+  for (var i = d - 1; i >= 0; i--) {
+    var suma = M[i][d];
+    for (var j = i + 1; j < d; j++) suma -= M[i][j] * x[j];
+    x[i] = M[i][i] === 0 ? 0 : suma / M[i][i];
+  }
+  return x;
+}
+
+function ridge(dis, lambda) {
+  var A = dis.XtX.map(function (fila, i) {
+    var copia = fila.slice();
+    copia[i] += lambda * dis.n;
+    return copia;
+  });
+  return resolverSistema(A, dis.Xty);
+}
+
+function suavizar(z, g) {
+  if (z > g) return z - g;
+  if (z < -g) return z + g;
+  return 0;
+}
+
+// Descenso coordenado cíclico sobre la forma XtX/n, que evita recorrer los n datos en cada barrido.
+function lasso(dis, lambda, inicio) {
+  var d = dis.grado, n = dis.n, b = inicio.slice(0, d), barridos = 0;
+  while (b.length < d) b.push(0);
+  for (; barridos < MAX_BARRIDOS_LASSO; barridos++) {
+    var cambio = 0;
+    for (var j = 0; j < d; j++) {
+      var rho = dis.Xty[j] / n, fila = dis.XtX[j];
+      for (var k = 0; k < d; k++) if (k !== j) rho -= (fila[k] / n) * b[k];
+      var nuevo = suavizar(rho, lambda) / (fila[j] / n);
+      var delta = Math.abs(nuevo - b[j]);
+      if (delta > cambio) cambio = delta;
+      b[j] = nuevo;
+    }
+    if (cambio < TOLERANCIA_LASSO) { barridos++; break; }
+  }
+  return { b: b, barridos: barridos };
+}
+
+function ajustar(entrenamiento, grado, modo, lambda, inicio) {
+  var dis = disenar(entrenamiento, grado), b, barridos = 0;
+  if (modo === 'lasso') {
+    var r = lasso(dis, lambda, inicio || []);
+    b = r.b.map(function (v) { return Math.abs(v) < UMBRAL_CERO_LASSO ? 0 : v; });
+    barridos = r.barridos;
+  } else {
+    b = ridge(dis, modo === 'ridge' ? lambda : LAMBDA_SIN_FRENO);
+  }
+  var vivas = 0;
+  for (var j = 0; j < grado; j++) if (b[j] !== 0) vivas++;
+  return { grado: grado, b: b, medias: dis.medias, desvios: dis.desvios, mediaY: dis.mediaY, vivas: vivas, barridos: barridos };
+}
+
+function predecir(modelo, tv) {
+  var f = potencias(tv, modelo.grado), y = modelo.mediaY;
+  for (var j = 0; j < modelo.grado; j++) y += modelo.b[j] * (f[j] - modelo.medias[j]) / modelo.desvios[j];
+  return y;
+}
+
+function errorMedio(modelo, mercados) {
+  if (!mercados.length) return 0;
+  var suma = 0;
+  for (var i = 0; i < mercados.length; i++) suma += Math.abs(mercados[i][1] - predecir(modelo, mercados[i][0]));
+  return suma / mercados.length;
+}
+</script>
+
+<script id="interfaz">
+(function () {
+  var LIMITE_TV = [0, 300], LIMITE_VENTAS = [0, 30], LIMITE_BARRAS = 5;
+  var COLOR = { rojo: '#E11B22', negro: '#111111', texto: '#555555', medio: '#8A8A8A', claro: '#D9D9D9', fondo: '#FFFFFF', curva: '#1F6FB2' };
+  var PISTAS = {
+    sin: 'Nada limita el tamaño de los coeficientes.',
+    ridge: 'Encoge todas las columnas y no elimina ninguna.',
+    lasso: 'Lleva a cero las columnas que no pagan su costo.'
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var estado = { semilla: 2, n: 13, grado: 9, modo: 'sin', logLambda: -1, mostrarPrueba: false };
+  var inicioLasso = new Array(GRADO_MAXIMO).fill(0);
+  var orden = barajar(estado.semilla, MERCADOS.length);
+  var vista = { modelo: null, entrenamiento: [], prueba: [] };
+  var pendiente = false;
+
+  function numero(valor) {
+    if (!isFinite(valor)) return 'sin dato';
+    var absoluto = Math.abs(valor);
+    var decimales = absoluto < 100 ? 2 : absoluto < 1000 ? 1 : 0;
+    var partes = absoluto.toFixed(decimales).split('.');
+    var entero = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return (valor < 0 ? '-' : '') + entero + (partes[1] ? ',' + partes[1] : '');
+  }
+
+  function numeroLambda(valor) {
+    var decimales = Math.min(5, Math.max(0, 1 - Math.floor(Math.log10(valor) + 1e-9)));
+    var texto = valor.toFixed(decimales);
+    if (texto.indexOf('.') >= 0) texto = texto.replace(/0+$/, '').replace(/\.$/, '');
+    return texto.replace('.', ',');
+  }
+
+  function mostrarError(id, valor) {
+    var texto = numero(valor), caja = $(id);
+    caja.textContent = texto;
+    caja.style.fontSize = texto.length > 6 ? '1.3rem' : '';
+  }
+
+  function recalcular() {
+    var ids = orden;
+    var entrenamiento = ids.slice(0, estado.n).map(function (i) { return MERCADOS[i]; });
+    var prueba = ids.slice(estado.n).map(function (i) { return MERCADOS[i]; });
+    var lambda = Math.pow(10, estado.logLambda);
+    var modelo = ajustar(entrenamiento, estado.grado, estado.modo, lambda, inicioLasso.slice(0, estado.grado));
+    if (estado.modo === 'lasso') {
+      inicioLasso = new Array(GRADO_MAXIMO).fill(0);
+      modelo.b.forEach(function (v, j) { inicioLasso[j] = v; });
+    }
+    vista.modelo = modelo;
+    vista.entrenamiento = entrenamiento;
+    vista.prueba = prueba;
+
+    mostrarError('errorEntrenamiento', errorMedio(modelo, entrenamiento));
+    if (estado.mostrarPrueba) { mostrarError('errorPrueba', errorMedio(modelo, prueba)); }
+    else { $('errorPrueba').textContent = '?'; $('errorPrueba').style.fontSize = ''; }
+    $('columnasVivas').textContent = modelo.vivas + ' de ' + estado.grado;
+    $('nValor').textContent = estado.n;
+    $('gradoValor').textContent = estado.grado;
+
+    var sinFreno = estado.modo === 'sin';
+    $('lambda').disabled = sinFreno;
+    $('lambdaRotulo').classList.toggle('apagado', sinFreno);
+    $('lambdaValor').classList.toggle('apagado', sinFreno);
+    $('lambdaValor').textContent = sinFreno ? 'apagado' : numeroLambda(lambda);
+    $('pista').textContent = PISTAS[estado.modo];
+    $('leyendaPrueba').hidden = !estado.mostrarPrueba;
+
+    dibujar();
+  }
+
+  function programar() {
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(function () { pendiente = false; recalcular(); });
+  }
+
+  function prepararLienzo(canvas) {
+    var caja = canvas.parentElement.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    var w = Math.max(1, Math.round(caja.width)), h = Math.max(1, Math.round(caja.height));
+    if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+    }
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    return { ctx: ctx, w: w, h: h };
+  }
+
+  function tamanoBase() { return parseFloat(getComputedStyle(document.documentElement).fontSize); }
+
+  function recortar(xa, ya, xb, yb, arriba, abajo) {
+    if ((ya < arriba && yb < arriba) || (ya > abajo && yb > abajo)) return null;
+    var inicio = [xa, ya], fin = [xb, yb], s;
+    if (ya < arriba) { s = (arriba - ya) / (yb - ya); inicio = [xa + s * (xb - xa), arriba]; }
+    else if (ya > abajo) { s = (abajo - ya) / (yb - ya); inicio = [xa + s * (xb - xa), abajo]; }
+    if (yb < arriba) { s = (arriba - ya) / (yb - ya); fin = [xa + s * (xb - xa), arriba]; }
+    else if (yb > abajo) { s = (abajo - ya) / (yb - ya); fin = [xa + s * (xb - xa), abajo]; }
+    return [inicio, fin];
+  }
+
+  function dibujarAjuste() {
+    var c = prepararLienzo($('ajuste')), ctx = c.ctx, rem = tamanoBase();
+    var izq = rem * 3.6, der = c.w - rem * 1.3, arriba = rem * 0.5, abajo = c.h - rem * 2.8;
+    var px = function (tv) { return izq + (tv - LIMITE_TV[0]) / (LIMITE_TV[1] - LIMITE_TV[0]) * (der - izq); };
+    var py = function (v) { return abajo - (v - LIMITE_VENTAS[0]) / (LIMITE_VENTAS[1] - LIMITE_VENTAS[0]) * (abajo - arriba); };
+    var fuente = rem + 'px Arial, Helvetica, sans-serif';
+
+    ctx.font = fuente;
+    ctx.fillStyle = COLOR.texto;
+    ctx.strokeStyle = COLOR.claro;
+    ctx.lineWidth = 1;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    [0, 10, 20, 30].forEach(function (v) {
+      var y = Math.round(py(v)) + 0.5;
+      ctx.beginPath(); ctx.moveTo(izq, y); ctx.lineTo(der, y); ctx.stroke();
+      ctx.fillText(String(v), izq - rem * 0.45, y);
+    });
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    var pasoX = der - izq < 26 * rem ? 100 : 50;
+    for (var t = 0; t <= 300; t += pasoX) ctx.fillText(String(t), px(t), abajo + rem * 0.3);
+
+    ctx.strokeStyle = COLOR.negro;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(izq, arriba); ctx.lineTo(izq, abajo); ctx.lineTo(der, abajo); ctx.stroke();
+
+    ctx.fillStyle = COLOR.negro;
+    ctx.fillText('Inversión en TV (miles de USD)', (izq + der) / 2, abajo + rem * 1.55);
+    ctx.save();
+    ctx.translate(rem * 0.75, (arriba + abajo) / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Ventas (miles de unidades)', 0, 0);
+    ctx.restore();
+
+    var radio = rem * 0.33;
+    if (estado.mostrarPrueba) {
+      ctx.strokeStyle = COLOR.rojo;
+      ctx.lineWidth = 2;
+      vista.prueba.forEach(function (m) {
+        ctx.beginPath(); ctx.arc(px(m[0]), py(m[1]), radio, 0, Math.PI * 2); ctx.stroke();
+      });
+    }
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(izq, arriba, der - izq, abajo - arriba);
+    ctx.clip();
+    ctx.strokeStyle = COLOR.curva;
+    ctx.lineWidth = Math.max(3, rem * 0.2);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    var previo = null, ultimo = null;
+    for (var x = izq; x <= der + 0.5; x += 1) {
+      var tv = LIMITE_TV[0] + (x - izq) / (der - izq) * (LIMITE_TV[1] - LIMITE_TV[0]);
+      var y = py(predecir(vista.modelo, tv));
+      if (!isFinite(y)) { previo = null; continue; }
+      if (previo) {
+        var seg = recortar(previo[0], previo[1], x, y, arriba, abajo);
+        if (seg) {
+          if (!ultimo || ultimo[0] !== seg[0][0] || ultimo[1] !== seg[0][1]) ctx.moveTo(seg[0][0], seg[0][1]);
+          ctx.lineTo(seg[1][0], seg[1][1]);
+          ultimo = seg[1];
+        }
+      }
+      previo = [x, y];
+    }
+    ctx.stroke();
+    ctx.restore();
+
+    vista.entrenamiento.forEach(function (m) {
+      ctx.beginPath();
+      ctx.arc(px(m[0]), py(m[1]), radio, 0, Math.PI * 2);
+      ctx.fillStyle = COLOR.negro;
+      ctx.fill();
+      ctx.strokeStyle = COLOR.fondo;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+  }
+
+  function comprimir(b) { return (b < 0 ? -1 : 1) * Math.log10(1 + 4 * Math.abs(b)); }
+
+  function dibujarCoeficientes() {
+    var c = prepararLienzo($('coefs')), ctx = c.ctx, rem = tamanoBase();
+    var izq = rem * 4.2, der = c.w - rem * 0.2, arriba = rem * 0.2, abajo = c.h - rem * 1.5;
+    var cero = (arriba + abajo) / 2, medio = (abajo - arriba) / 2;
+    var altura = function (v) { return cero - comprimir(v) / LIMITE_BARRAS * medio; };
+    var fuente = rem + 'px Arial, Helvetica, sans-serif';
+
+    ctx.font = fuente;
+    ctx.strokeStyle = COLOR.claro;
+    ctx.lineWidth = 1;
+    [1, 1000].forEach(function (v) {
+      [v, -v].forEach(function (s) {
+        var y = Math.round(altura(s)) + 0.5;
+        ctx.beginPath(); ctx.moveTo(izq, y); ctx.lineTo(der, y); ctx.stroke();
+      });
+    });
+    ctx.fillStyle = COLOR.texto;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('1.000', izq - rem * 0.4, altura(1000));
+    ctx.fillText('0', izq - rem * 0.4, cero);
+    ctx.fillText('-1.000', izq - rem * 0.4, altura(-1000));
+
+    ctx.strokeStyle = COLOR.negro;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(izq, Math.round(cero) + 0.5); ctx.lineTo(der, Math.round(cero) + 0.5); ctx.stroke();
+
+    var ancho = (der - izq) / GRADO_MAXIMO;
+    var barra = Math.min(ancho * 0.6, rem * 1.6);
+    var espacioEtiquetas = ancho >= rem * 1.6;
+    for (var j = 0; j < GRADO_MAXIMO; j++) {
+      var centro = izq + ancho * (j + 0.5);
+      var activo = j < estado.grado;
+      if (activo && vista.modelo) {
+        var b = vista.modelo.b[j];
+        if (b === 0) {
+          ctx.fillStyle = COLOR.fondo;
+          ctx.fillRect(centro - rem * 0.5, cero - rem * 0.6, rem, rem * 1.2);
+          ctx.fillStyle = COLOR.medio;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.font = 'bold ' + rem * 1.1 + 'px Arial, Helvetica, sans-serif';
+          ctx.fillText('0', centro, cero);
+          ctx.font = fuente;
+        } else {
+          var yBarra = Math.max(arriba, Math.min(abajo, altura(b)));
+          ctx.fillStyle = COLOR.negro;
+          ctx.fillRect(centro - barra / 2, Math.min(cero, yBarra), barra, Math.max(1.5, Math.abs(yBarra - cero)));
+        }
+      }
+      if (espacioEtiquetas || j % 2 === 0) etiquetaPotencia(ctx, j + 1, centro, c.h - rem * 0.1, rem, activo);
+    }
+  }
+
+  function etiquetaPotencia(ctx, p, centro, base, rem, activo) {
+    ctx.fillStyle = activo ? COLOR.negro : COLOR.claro;
+    ctx.textBaseline = 'alphabetic';
+    ctx.textAlign = 'left';
+    var fuenteX = rem + 'px Arial, Helvetica, sans-serif';
+    var fuenteExp = rem * 0.72 + 'px Arial, Helvetica, sans-serif';
+    ctx.font = fuenteX;
+    var anchoX = ctx.measureText('x').width;
+    var exp = p > 1 ? String(p) : '';
+    ctx.font = fuenteExp;
+    var anchoExp = exp ? ctx.measureText(exp).width : 0;
+    var inicio = centro - (anchoX + anchoExp) / 2;
+    ctx.font = fuenteX;
+    ctx.fillText('x', inicio, base);
+    if (exp) {
+      ctx.font = fuenteExp;
+      ctx.fillText(exp, inicio + anchoX, base - rem * 0.38);
+    }
+    ctx.font = fuenteX;
+  }
+
+  function dibujar() {
+    if (!vista.modelo) return;
+    dibujarAjuste();
+    dibujarCoeficientes();
+  }
+
+  $('n').addEventListener('input', function (e) { estado.n = +e.target.value; programar(); });
+  $('grado').addEventListener('input', function (e) { estado.grado = +e.target.value; programar(); });
+  $('lambda').addEventListener('input', function (e) { estado.logLambda = +e.target.value; programar(); });
+  $('mostrarPrueba').addEventListener('change', function (e) { estado.mostrarPrueba = e.target.checked; programar(); });
+  $('otraMuestra').addEventListener('click', function () {
+    estado.semilla += 1;
+    orden = barajar(estado.semilla, MERCADOS.length);
+    programar();
+  });
+  document.querySelectorAll('input[name="modo"]').forEach(function (r) {
+    r.addEventListener('change', function (e) { estado.modo = e.target.value; programar(); });
+  });
+
+  new ResizeObserver(function () { dibujar(); }).observe(document.body);
+  window.addEventListener('resize', dibujar);
+  recalcular();
+})();
+</script>
+</body>
+</html>

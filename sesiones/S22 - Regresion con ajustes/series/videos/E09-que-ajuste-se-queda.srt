@@ -1,0 +1,120 @@
+1
+00:00:00,000 --> 00:00:01,026
+Episodio nueve:
+
+2
+00:00:01,026 --> 00:00:02,394
+qué ajuste se queda.
+
+3
+00:00:02,394 --> 00:00:06,567
+Mira este episodio cuando termines las etapas cuatro y cinco.
+
+4
+00:00:06,967 --> 00:00:08,423
+Estos son los resultados.
+
+5
+00:00:08,423 --> 00:00:13,490
+Arriba, cuántas de las cincuenta y cinco columnas sobreviven según la fuerza del freno.
+
+6
+00:00:13,867 --> 00:00:15,911
+Abajo, el error en validación.
+
+7
+00:00:15,911 --> 00:00:21,225
+El mínimo está en alfa cero coma cero cero tres, con dieciséis columnas vivas.
+
+8
+00:00:21,600 --> 00:00:24,405
+Y mira lo que pasa con alfa cero coma tres.
+
+9
+00:00:24,405 --> 00:00:26,036
+Quedan solo dos columnas:
+
+10
+00:00:26,036 --> 00:00:28,319
+televisión, y televisión por radio.
+
+11
+00:00:28,700 --> 00:00:29,809
+Nadie se lo indicó.
+
+12
+00:00:29,809 --> 00:00:35,006
+Lasso encontró por su cuenta la misma interacción que encontramos pensando en el negocio.
+
+13
+00:00:35,400 --> 00:00:37,961
+Comparemos en los cincuenta mercados de prueba.
+
+14
+00:00:37,961 --> 00:00:38,451
+El plano:
+
+15
+00:00:38,451 --> 00:00:39,814
+uno coma treinta y nueve.
+
+16
+00:00:40,200 --> 00:00:41,770
+El grado cinco sin freno:
+
+17
+00:00:41,770 --> 00:00:42,838
+uno coma setenta.
+
+18
+00:00:43,233 --> 00:00:45,360
+Con Ridge, cero coma treinta y seis.
+
+19
+00:00:45,360 --> 00:00:47,546
+Con Lasso, cero coma treinta y cinco.
+
+20
+00:00:47,546 --> 00:00:49,614
+Los frenos rescataron las columnas.
+
+21
+00:00:50,000 --> 00:00:54,153
+La curva de cuatro columnas queda en cero coma cuarenta y ocho.
+
+22
+00:00:54,153 --> 00:00:55,207
+Pierde por poco.
+
+23
+00:00:55,600 --> 00:00:59,824
+Con cuatro columnas puedo pararme frente al comité y explicar cada una.
+
+24
+00:01:00,200 --> 00:01:01,729
+Queda un último encargo.
+
+25
+00:01:01,729 --> 00:01:06,124
+Propón una columna que tenga sentido de negocio y gánale a mi modelo.
+
+26
+00:01:06,124 --> 00:01:10,010
+Y dime si el freno sirve cuando las columnas son casi copias.
+
+27
+00:01:10,400 --> 00:01:17,963
+Piensa en cómo funciona la publicidad, escribe en una frase por qué tu columna tiene sentido, y mide el error en los mismos cincuenta mercados.
+
+28
+00:01:18,333 --> 00:01:25,320
+Luego abre el archivo de consumo de combustible, de un taller de años anteriores, y toma seis mitades distintas de los datos.
+
+29
+00:01:25,700 --> 00:01:32,045
+En cada una ajusta sin freno, con Ridge y con Lasso, y anota cuánto se mueve el coeficiente del consumo combinado.
+
+30
+00:01:32,433 --> 00:01:37,412
+Entrega tu memo, el enlace del cuaderno y tus prompts en la carpeta de la actividad.
+

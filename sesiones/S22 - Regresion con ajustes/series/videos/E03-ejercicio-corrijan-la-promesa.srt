@@ -1,0 +1,128 @@
+1
+00:00:00,000 --> 00:00:01,331
+Episodio tres.
+
+2
+00:00:01,331 --> 00:00:02,282
+Ejercicio:
+
+3
+00:00:02,282 --> 00:00:04,184
+corrijan la promesa.
+
+4
+00:00:04,567 --> 00:00:06,714
+Este episodio es para trabajar.
+
+5
+00:00:06,714 --> 00:00:13,362
+Abre la página del curso, descarga el archivo de los doscientos mercados y el cuaderno de Colab.
+
+6
+00:00:13,767 --> 00:00:17,541
+Puedes hacerlo con tu asistente de inteligencia artificial.
+
+7
+00:00:17,541 --> 00:00:22,212
+Lo que se califica es que sepas qué te entregó y que lo hayas verificado.
+
+8
+00:00:22,633 --> 00:00:25,226
+En grupo, repártanse tres roles:
+
+9
+00:00:25,226 --> 00:00:30,653
+uno pide, otro verifica una fila a mano y otro escribe la decisión.
+
+10
+00:00:31,067 --> 00:00:37,214
+Antes de volver al comité quiero saber si el plano se equivoca parejo o siempre en el mismo tipo de mercado.
+
+11
+00:00:37,600 --> 00:00:43,646
+Primero, ajusta el plano con los doscientos mercados y calcula el error de cada uno:
+
+12
+00:00:43,646 --> 00:00:45,230
+real menos pronóstico.
+
+13
+00:00:45,600 --> 00:00:51,680
+Después haz un gráfico de televisión contra radio, con el color según ese error.
+
+14
+00:00:52,067 --> 00:00:57,847
+Por último, promedia los mercados con televisión hasta noventa y radio desde treinta y cinco.
+
+15
+00:00:58,233 --> 00:00:59,092
+Pausa aquí.
+
+16
+00:00:59,092 --> 00:01:03,933
+Cuando tengas tu número, escríbelo en el candado de la página.
+
+17
+00:01:08,298 --> 00:01:13,598
+Quiero un modelo que entienda que televisión y radio juntas no son lo mismo que por separado.
+
+18
+00:01:13,998 --> 00:01:20,348
+Separa ciento cincuenta mercados para entrenar y cincuenta para probar, con random state cuarenta y dos.
+
+19
+00:01:20,731 --> 00:01:25,476
+Crea la columna televisión por radio, y luego televisión al cuadrado.
+
+20
+00:01:25,476 --> 00:01:28,501
+Mide cada modelo en los cincuenta de prueba.
+
+21
+00:01:28,898 --> 00:01:31,968
+Compáralos con la línea base y con el plano.
+
+22
+00:01:32,365 --> 00:01:33,430
+Pausa y hazlo.
+
+23
+00:01:33,430 --> 00:01:36,245
+¿Cuál de las dos columnas aportó más?
+
+24
+00:01:40,630 --> 00:01:46,941
+Necesito la cifra correcta de mi plan, la de la agencia, y saber dónde conviene el próximo dólar de radio.
+
+25
+00:01:47,330 --> 00:01:52,790
+Ajusta el modelo de cuatro columnas con los doscientos mercados y pronostica los dos planes.
+
+26
+00:01:53,163 --> 00:01:54,500
+Calcula la utilidad:
+
+27
+00:01:54,500 --> 00:01:58,242
+unidades por doce dólares de margen, menos la inversión.
+
+28
+00:01:58,242 --> 00:02:00,113
+Ojo, que todo está en miles.
+
+29
+00:02:00,497 --> 00:02:08,257
+Y calcula cuánto trae cada mil dólares en radio cuando la televisión vale cincuenta, ciento cincuenta y doscientos cincuenta.
+
+30
+00:02:08,630 --> 00:02:09,141
+Pausa.
+
+31
+00:02:09,141 --> 00:02:12,034
+Escribe tu decisión con el número.
+
+32
+00:02:12,034 --> 00:02:14,501
+Una frase sin número no vale.
+

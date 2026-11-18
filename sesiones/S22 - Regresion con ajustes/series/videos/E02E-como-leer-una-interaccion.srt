@@ -1,0 +1,100 @@
+1
+00:00:00,000 --> 00:00:00,608
+Parte cinco:
+
+2
+00:00:00,608 --> 00:00:02,734
+cómo leer una interacción sin equivocarte.
+
+3
+00:00:03,133 --> 00:00:03,856
+Primer error:
+
+4
+00:00:03,856 --> 00:00:07,305
+leer cero coma cero uno nueve como el efecto de la televisión.
+
+5
+00:00:07,305 --> 00:00:12,144
+Ese número es su efecto solo cuando la radio vale cero, y casi ningún mercado está ahí.
+
+6
+00:00:12,533 --> 00:00:13,287
+Segundo error:
+
+7
+00:00:13,287 --> 00:00:16,517
+despreciar la interacción porque su coeficiente es diminuto.
+
+8
+00:00:16,517 --> 00:00:20,071
+Se multiplica por televisión y por radio, que son números grandes.
+
+9
+00:00:20,467 --> 00:00:21,186
+Tercer error:
+
+10
+00:00:21,186 --> 00:00:24,283
+meter solo el producto y sacar las variables originales.
+
+11
+00:00:24,283 --> 00:00:28,320
+El error de prueba sube de cero coma sesenta y cinco a cero coma noventa.
+
+12
+00:00:28,700 --> 00:00:29,434
+Cuarto error:
+
+13
+00:00:29,434 --> 00:00:32,541
+creer que los grupos rojo y negro son parte del modelo.
+
+14
+00:00:32,541 --> 00:00:34,349
+Los grupos solo sirven para ver.
+
+15
+00:00:34,349 --> 00:00:36,326
+El modelo usa la radio como número.
+
+16
+00:00:36,700 --> 00:00:39,271
+Antes de ir al ejercicio, esta es la receta.
+
+17
+00:00:39,271 --> 00:00:41,140
+Primero mira el mapa de errores:
+
+18
+00:00:41,140 --> 00:00:42,659
+si hay patrón, falta algo.
+
+19
+00:00:43,033 --> 00:00:44,596
+Segundo, piensa en el negocio:
+
+20
+00:00:44,596 --> 00:00:46,523
+qué variable podría potenciar a cuál.
+
+21
+00:00:46,900 --> 00:00:48,429
+Tercero, agrega la columna.
+
+22
+00:00:48,800 --> 00:00:51,821
+Cuarto, mide en los mercados de prueba, contra el modelo anterior.
+
+23
+00:00:52,200 --> 00:00:53,947
+Y quinto, tradúcelo a dólares.
+
+24
+00:00:53,947 --> 00:00:55,986
+Un coeficiente solo no decide nada.
+
+25
+00:00:56,367 --> 00:00:58,726
+Ahora sí, con todo esto, vamos al ejercicio.
+

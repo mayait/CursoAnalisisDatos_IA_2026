@@ -1,0 +1,192 @@
+1
+00:00:00,000 --> 00:00:01,065
+Episodio cinco:
+
+2
+00:00:01,065 --> 00:00:02,768
+la oferta de la agencia.
+
+3
+00:00:03,167 --> 00:00:07,032
+Daniela, tu modelo de cuatro columnas está bien para empezar.
+
+4
+00:00:07,032 --> 00:00:09,504
+Nosotros traemos uno de ochenta y tres.
+
+5
+00:00:09,933 --> 00:00:12,869
+R cuadrado de cero coma nueve nueve ocho.
+
+6
+00:00:12,869 --> 00:00:13,871
+Casi perfecto.
+
+7
+00:00:13,871 --> 00:00:16,807
+Se equivoca en ciento cincuenta unidades.
+
+8
+00:00:17,233 --> 00:00:18,559
+¿Y en mercados nuevos?
+
+9
+00:00:18,967 --> 00:00:19,961
+Buena pregunta.
+
+10
+00:00:19,961 --> 00:00:21,618
+Antes de seguir, apuesta.
+
+11
+00:00:21,618 --> 00:00:25,131
+¿Cuánto se equivoca en cincuenta mercados que no vio?
+
+12
+00:00:25,131 --> 00:00:26,855
+Pausa y escribe tu número.
+
+13
+00:00:31,267 --> 00:00:34,809
+Para verlo con calma, tomemos solo trece mercados.
+
+14
+00:00:34,809 --> 00:00:37,643
+Una recta, grado uno, no pasa por todos.
+
+15
+00:00:38,033 --> 00:00:39,785
+Subimos hasta el grado tres.
+
+16
+00:00:39,785 --> 00:00:41,411
+Ya sigue mejor los puntos.
+
+17
+00:00:41,800 --> 00:00:42,458
+Seguimos:
+
+18
+00:00:42,458 --> 00:00:44,357
+grado cinco, siete, nueve.
+
+19
+00:00:44,357 --> 00:00:48,960
+La curva se retuerce y el error de entrenamiento sigue bajando.
+
+20
+00:00:49,333 --> 00:00:50,040
+Grado doce:
+
+21
+00:00:50,040 --> 00:00:51,324
+pasa por sus puntos.
+
+22
+00:00:51,324 --> 00:00:53,828
+El error de entrenamiento llega a cero.
+
+23
+00:00:54,200 --> 00:00:55,292
+Perfecto, ¿verdad?
+
+24
+00:00:55,292 --> 00:00:57,597
+Ahora miremos los mercados que no vio.
+
+25
+00:00:58,900 --> 00:01:03,287
+El error de prueba, la línea roja, sube justo cuando el otro baja.
+
+26
+00:01:03,287 --> 00:01:05,348
+El modelo se aprendió el ruido.
+
+27
+00:01:05,348 --> 00:01:07,009
+Eso se llama sobreajuste.
+
+28
+00:01:07,500 --> 00:01:11,408
+Hagámoslo con los tres medios y los ciento cincuenta mercados.
+
+29
+00:01:11,408 --> 00:01:16,513
+A la izquierda, el R cuadrado de entrenamiento sube con cada grado y nunca avisa.
+
+30
+00:01:16,900 --> 00:01:20,170
+A la derecha, el error de prueba baja hasta el grado tres.
+
+31
+00:01:20,567 --> 00:01:22,286
+En el grado cinco se rompe.
+
+32
+00:01:22,286 --> 00:01:26,108
+En el seis, el de la agencia, llega a tres coma veinticinco.
+
+33
+00:01:26,500 --> 00:01:29,265
+Y en el grado siete, a casi cuarenta y tres.
+
+34
+00:01:29,265 --> 00:01:30,835
+Peor que no tener modelo.
+
+35
+00:01:31,233 --> 00:01:32,324
+¿Cómo se equivoca?
+
+36
+00:01:32,324 --> 00:01:36,080
+Estos son los cincuenta mercados, de menor a mayor venta real.
+
+37
+00:01:36,080 --> 00:01:37,716
+En negro, lo que vendieron.
+
+38
+00:01:38,100 --> 00:01:40,462
+En rojo, el pronóstico del grado seis.
+
+39
+00:01:40,462 --> 00:01:44,006
+En cuarenta y cinco mercados el error es menor a dos mil.
+
+40
+00:01:44,006 --> 00:01:44,690
+Se ve bien.
+
+41
+00:01:45,067 --> 00:01:47,585
+Y entonces aparece el mercado diecisiete.
+
+42
+00:01:47,967 --> 00:01:51,654
+El modelo le pronostica menos noventa y ocho mil unidades.
+
+43
+00:01:51,654 --> 00:01:52,735
+Ventas negativas.
+
+44
+00:01:52,735 --> 00:01:54,451
+Vendió doce mil quinientas.
+
+45
+00:01:54,833 --> 00:01:58,833
+Ese mercado tiene la inversión en prensa más alta de toda la base.
+
+46
+00:01:58,833 --> 00:02:01,075
+Un sobreajuste no se equivoca parejo:
+
+47
+00:02:01,075 --> 00:02:04,711
+se equivoca en los bordes, y no sabes de antemano en cuáles.
+
+48
+00:02:05,133 --> 00:02:05,990
+No lo compro.
+

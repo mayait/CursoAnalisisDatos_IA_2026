@@ -1,0 +1,148 @@
+1
+00:00:00,000 --> 00:00:01,220
+Episodio cuatro:
+
+2
+00:00:01,220 --> 00:00:02,821
+la promesa corregida.
+
+3
+00:00:02,821 --> 00:00:08,006
+Si todavía no haces las etapas uno a tres, vuelve cuando las tengas.
+
+4
+00:00:08,400 --> 00:00:13,415
+Empecemos por el error, medido en los mismos cincuenta mercados de prueba.
+
+5
+00:00:13,415 --> 00:00:18,768
+Pronosticar el promedio se equivoca en cuatro coma sesenta y ocho mil unidades.
+
+6
+00:00:19,167 --> 00:00:21,616
+El plano bajó a uno coma treinta y nueve.
+
+7
+00:00:22,000 --> 00:00:24,955
+Con la interacción, cero coma sesenta y cinco.
+
+8
+00:00:25,333 --> 00:00:29,409
+Y con la televisión al cuadrado, cero coma cuarenta y ocho.
+
+9
+00:00:29,409 --> 00:00:32,311
+Dos columnas más, y el error es un tercio.
+
+10
+00:00:32,700 --> 00:00:34,130
+El mapa lo confirma.
+
+11
+00:00:34,130 --> 00:00:39,779
+Este es el plano, con cuarenta mercados que fallan por más de dos mil unidades.
+
+12
+00:00:40,167 --> 00:00:42,832
+Y este es el plano doblado.
+
+13
+00:00:42,832 --> 00:00:44,905
+El patrón desaparece:
+
+14
+00:00:44,905 --> 00:00:46,485
+solo quedan dos.
+
+15
+00:00:46,867 --> 00:00:52,004
+Un mapa casi en blanco es la prueba que se le pide a cualquier ajuste antes de creerle.
+
+16
+00:00:52,400 --> 00:00:55,088
+Ahora, la consecuencia de negocio.
+
+17
+00:00:55,088 --> 00:00:57,776
+La semana pasada la respuesta fue:
+
+18
+00:00:57,776 --> 00:01:01,808
+los próximos mil dólares, a radio, en todas partes.
+
+19
+00:01:02,200 --> 00:01:03,652
+Esa es la línea gris.
+
+20
+00:01:03,652 --> 00:01:06,901
+El plano dice que la radio rinde igual siempre.
+
+21
+00:01:07,300 --> 00:01:12,982
+Pero con cincuenta mil en televisión, cada mil dólares en radio deja sesenta y ocho dólares.
+
+22
+00:01:13,367 --> 00:01:16,446
+Con ciento cincuenta mil, mil trescientos sesenta.
+
+23
+00:01:16,833 --> 00:01:20,659
+Y con doscientos cincuenta mil, dos mil seiscientos cincuenta y dos.
+
+24
+00:01:21,033 --> 00:01:25,645
+Por debajo de cuarenta y cinco mil dólares en televisión, la radio no se paga.
+
+25
+00:01:26,033 --> 00:01:28,071
+Y ahora, la cifra que importa.
+
+26
+00:01:28,467 --> 00:01:32,877
+El plan de Daniela no vende catorce mil cuatrocientas veinte unidades.
+
+27
+00:01:32,877 --> 00:01:35,082
+Vende once mil setecientas setenta.
+
+28
+00:01:35,467 --> 00:01:39,001
+Son dos mil seiscientas cincuenta unidades que prometió de más.
+
+29
+00:01:39,400 --> 00:01:40,279
+¿Y la agencia?
+
+30
+00:01:40,279 --> 00:01:45,429
+Sube a quince mil doscientas veinte, pero invierte setenta y seis mil dólares más.
+
+31
+00:01:45,800 --> 00:01:47,217
+Utilidad de Daniela:
+
+32
+00:01:47,217 --> 00:01:49,130
+cuarenta y dos mil dólares.
+
+33
+00:01:49,130 --> 00:01:50,759
+Utilidad de la agencia:
+
+34
+00:01:50,759 --> 00:01:52,318
+siete mil setecientos.
+
+35
+00:01:52,700 --> 00:01:54,610
+La decisión se sostiene.
+
+36
+00:01:54,610 --> 00:01:55,565
+La cifra no.
+
+37
+00:01:55,565 --> 00:01:58,191
+Voy a tener que volver al comité.
+

@@ -1,3 +1,22 @@
 .DS_Store
 __pycache__/
 *.pyc
+
+# Claves de API: nunca al repositorio
+.env
+.env.*
+
+# S24 La fría cuesta más: respuestas de la ronda 1 y material del profesor
+sesiones/S24 - La fria cuesta mas/guia_profesor.md
+sesiones/S24 - La fria cuesta mas/Guia-del-profesor.pdf
+sesiones/S24 - La fria cuesta mas/PLAN.md
+sesiones/S24 - La fria cuesta mas/podcast/
+sesiones/S24 - La fria cuesta mas/datos_demo/
+sesiones/S24 - La fria cuesta mas/deck/
+sesiones/S24 - La fria cuesta mas/La-fria-cuesta-mas.pdf
+sesiones/S24 - La fria cuesta mas/La-fria-cuesta-mas.pptx
+sesiones/S24 - La fria cuesta mas/video/
+*.mp4
+*.wav
+*.mp3
+sesiones/S24 - La fria cuesta mas/Resumen-de-clase.*

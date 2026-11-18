@@ -1,0 +1,124 @@
+1
+00:00:00,000 --> 00:00:01,018
+Episodio ocho.
+
+2
+00:00:01,018 --> 00:00:01,746
+Ejercicio:
+
+3
+00:00:01,746 --> 00:00:03,201
+contesten la oferta.
+
+4
+00:00:03,600 --> 00:00:04,679
+Falta una pregunta:
+
+5
+00:00:04,679 --> 00:00:05,474
+¿cuánto freno?
+
+6
+00:00:05,474 --> 00:00:10,299
+Si lo eliges mirando los mercados de prueba, ya no son mercados que el modelo no vio.
+
+7
+00:00:10,700 --> 00:00:12,205
+La solución es hacer turnos.
+
+8
+00:00:12,633 --> 00:00:16,382
+Partimos los ciento cincuenta mercados de entrenamiento en cinco grupos.
+
+9
+00:00:16,382 --> 00:00:18,413
+Cada vez, cuatro entrenan y uno valida.
+
+10
+00:00:18,800 --> 00:00:22,736
+Un punto de la curva es el promedio de esos cinco turnos, para una fuerza de freno.
+
+11
+00:00:24,800 --> 00:00:26,279
+Repetimos con cada fuerza.
+
+12
+00:00:26,279 --> 00:00:28,611
+Con demasiado freno, el error se dispara.
+
+13
+00:00:29,167 --> 00:00:31,281
+El punto más bajo es el alfa elegido.
+
+14
+00:00:31,281 --> 00:00:32,824
+Y la prueba sigue guardada:
+
+15
+00:00:32,824 --> 00:00:34,596
+se abre una sola vez, al final.
+
+16
+00:00:35,067 --> 00:00:40,255
+La agencia me ofrece grado seis con R cuadrado de cero coma nueve nueve ocho.
+
+17
+00:00:40,255 --> 00:00:40,996
+¿Lo compro?
+
+18
+00:00:41,367 --> 00:00:45,803
+Con los tres medios, ajusta polinomios de grado uno a siete en los ciento cincuenta de entrenamiento.
+
+19
+00:00:46,200 --> 00:00:50,773
+Para cada grado anota el R cuadrado de entrenamiento, el error de entrenamiento y el error de prueba.
+
+20
+00:00:51,167 --> 00:00:53,650
+Mira los errores del grado seis, mercado por mercado.
+
+21
+00:00:54,033 --> 00:00:56,825
+Pausa, y responde con el número que un comité entendería.
+
+22
+00:01:01,199 --> 00:01:03,738
+No descarto todas esas columnas todavía.
+
+23
+00:01:03,738 --> 00:01:06,215
+Quiero ver si un freno las hace útiles.
+
+24
+00:01:06,599 --> 00:01:09,069
+Toma el grado cinco, con cincuenta y cinco columnas.
+
+25
+00:01:09,069 --> 00:01:12,300
+Para cada alfa de la lista, calcula el error con validación cruzada.
+
+26
+00:01:12,699 --> 00:01:15,051
+Elige el mejor alfa de Lasso y el mejor de Ridge.
+
+27
+00:01:15,051 --> 00:01:17,259
+Solo entonces mide en los cincuenta de prueba.
+
+28
+00:01:17,632 --> 00:01:21,365
+Cuenta cuántas columnas quedan vivas en Lasso, y mira qué pasa con alfa cero coma tres.
+
+29
+00:01:21,732 --> 00:01:23,120
+Lasso tarda unos segundos.
+
+30
+00:01:23,120 --> 00:01:23,921
+Pausa y decide:
+
+31
+00:01:23,921 --> 00:01:26,109
+¿la curva de cuatro columnas, o el Lasso?
+

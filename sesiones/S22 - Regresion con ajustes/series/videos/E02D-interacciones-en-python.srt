@@ -1,0 +1,184 @@
+1
+00:00:00,000 --> 00:00:00,830
+Parte cuatro:
+
+2
+00:00:00,830 --> 00:00:02,361
+interacciones en Python.
+
+3
+00:00:02,733 --> 00:00:05,280
+La forma más directa es crear la columna a mano.
+
+4
+00:00:05,280 --> 00:00:08,675
+Multiplicas televisión por radio, y ya tienes una columna nueva.
+
+5
+00:00:09,067 --> 00:00:12,254
+Esa columna entra al modelo junto con las otras dos:
+
+6
+00:00:12,254 --> 00:00:14,216
+televisión, radio y su producto.
+
+7
+00:00:14,216 --> 00:00:16,668
+Es la misma regresión lineal de siempre.
+
+8
+00:00:17,067 --> 00:00:19,185
+El modelo devuelve tres coeficientes.
+
+9
+00:00:19,185 --> 00:00:22,848
+El último, cero coma cero cero uno uno, es el de la interacción.
+
+10
+00:00:23,233 --> 00:00:24,994
+Con statsmodels hay un atajo.
+
+11
+00:00:24,994 --> 00:00:28,817
+En la fórmula, el asterisco entre televisión y radio significa:
+
+12
+00:00:28,817 --> 00:00:31,488
+cada una por separado, y además su producto.
+
+13
+00:00:31,867 --> 00:00:34,113
+Salen los mismos números, y con nombres.
+
+14
+00:00:34,113 --> 00:00:37,930
+Si escribes dos puntos en vez del asterisco, te da solo el producto.
+
+15
+00:00:37,930 --> 00:00:39,783
+Eso casi nunca es lo que quieres.
+
+16
+00:00:40,167 --> 00:00:41,954
+Ahora lo que de verdad importa:
+
+17
+00:00:41,954 --> 00:00:42,357
+leerlo.
+
+18
+00:00:42,357 --> 00:00:48,987
+La pendiente de la televisión es su coeficiente, más el de la interacción multiplicado por la radio de ese mercado.
+
+19
+00:00:49,367 --> 00:00:52,449
+Multiplicado por mil, son unidades por cada mil dólares:
+
+20
+00:00:52,449 --> 00:00:57,568
+diecinueve sin radio, cuarenta y una con veinte mil, sesenta y ocho con cuarenta y cinco mil.
+
+21
+00:00:57,967 --> 00:01:02,139
+Si tienes varias variables, scikit-learn crea todos los productos por ti.
+
+22
+00:01:02,139 --> 00:01:05,397
+Con interaction only no agrega cuadrados, solo productos.
+
+23
+00:01:05,767 --> 00:01:07,730
+De tres medios salen seis columnas:
+
+24
+00:01:07,730 --> 00:01:09,918
+los tres originales y sus tres parejas.
+
+25
+00:01:10,300 --> 00:01:12,510
+Con una categoría la idea es la misma.
+
+26
+00:01:12,510 --> 00:01:16,988
+La letra C le dice a statsmodels que el tipo de combustible es una categoría.
+
+27
+00:01:17,367 --> 00:01:20,797
+Se lee contra la categoría de referencia, que aquí es diésel:
+
+28
+00:01:20,797 --> 00:01:22,203
+veintisiete de pendiente.
+
+29
+00:01:22,600 --> 00:01:24,176
+Etanol es once menos:
+
+30
+00:01:24,176 --> 00:01:24,926
+dieciséis.
+
+31
+00:01:24,926 --> 00:01:26,651
+Gasolina, cuatro menos:
+
+32
+00:01:26,651 --> 00:01:27,477
+veintitrés.
+
+33
+00:01:27,867 --> 00:01:31,321
+Y esta es exactamente la separación de los puntos rojos y negros:
+
+34
+00:01:31,321 --> 00:01:33,181
+dos filtros sobre la columna radio.
+
+35
+00:01:33,567 --> 00:01:37,905
+Cincuenta y siete mercados, con radio promedio de cuarenta y uno coma nueve.
+
+36
+00:01:37,905 --> 00:01:39,959
+Sesenta y uno, con cinco coma siete.
+
+37
+00:01:39,959 --> 00:01:42,585
+Esos promedios son los que van en la ecuación.
+
+38
+00:01:42,967 --> 00:01:46,466
+Para dibujarlas, primero se crea una rejilla de valores de televisión.
+
+39
+00:01:46,833 --> 00:01:52,825
+Luego, para cada grupo, se pintan sus puntos, se pronostica con el promedio de radio del grupo y se traza la línea.
+
+40
+00:01:53,200 --> 00:01:55,240
+Este es el gráfico que vas a obtener.
+
+41
+00:01:55,240 --> 00:01:57,556
+Es el mismo de la animación, hecho por ti.
+
+42
+00:01:57,933 --> 00:01:59,394
+Falta lo más importante:
+
+43
+00:01:59,394 --> 00:02:00,368
+medir si sirvió.
+
+44
+00:02:00,368 --> 00:02:03,167
+Siempre con los mercados que el modelo no vio.
+
+45
+00:02:03,567 --> 00:02:06,200
+Con dos columnas, el error es uno coma treinta y nueve.
+
+46
+00:02:06,200 --> 00:02:08,403
+Con la interacción, cero coma sesenta y cinco.
+

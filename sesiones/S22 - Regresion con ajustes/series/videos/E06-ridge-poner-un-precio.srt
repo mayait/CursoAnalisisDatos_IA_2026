@@ -1,0 +1,172 @@
+1
+00:00:00,000 --> 00:00:01,114
+Episodio seis.
+
+2
+00:00:01,114 --> 00:00:01,592
+Ridge:
+
+3
+00:00:01,592 --> 00:00:02,865
+poner un precio.
+
+4
+00:00:03,233 --> 00:00:06,044
+Las columnas de la agencia no son el problema.
+
+5
+00:00:06,044 --> 00:00:09,220
+El problema es que nada le impide usarlas a lo loco.
+
+6
+00:00:09,220 --> 00:00:11,786
+Hasta ahora el modelo tenía una sola meta:
+
+7
+00:00:11,786 --> 00:00:12,703
+bajar el error.
+
+8
+00:00:13,100 --> 00:00:15,524
+Regularizar le agrega una segunda cosa:
+
+9
+00:00:15,524 --> 00:00:18,011
+un precio por usar coeficientes grandes.
+
+10
+00:00:18,400 --> 00:00:21,607
+Ese precio lo controla una perilla que se llama lambda.
+
+11
+00:00:21,607 --> 00:00:23,706
+En el código la vas a ver como alfa.
+
+12
+00:00:23,706 --> 00:00:24,405
+Es lo mismo.
+
+13
+00:00:24,800 --> 00:00:26,654
+Con lambda cero, no hay freno:
+
+14
+00:00:26,654 --> 00:00:28,631
+la cinta enredada de la agencia.
+
+15
+00:00:29,000 --> 00:00:33,628
+Con lambda enorme, todos los coeficientes valen cero y el modelo es el promedio.
+
+16
+00:00:33,628 --> 00:00:35,711
+La respuesta buena está en el medio.
+
+17
+00:00:36,100 --> 00:00:38,601
+Antes de frenar, un detalle que parece menor.
+
+18
+00:00:38,601 --> 00:00:43,658
+La televisión en miles de dólares tiene un coeficiente de cero coma cero cuatro cinco ocho.
+
+19
+00:00:44,033 --> 00:00:48,629
+Si la misma televisión estuviera en dólares, el coeficiente sería mil veces más chico.
+
+20
+00:00:49,000 --> 00:00:53,537
+El pronóstico es idéntico, pero ese coeficiente diminuto casi no pagaría.
+
+21
+00:00:53,537 --> 00:00:56,395
+El freno castigaría la unidad, no la variable.
+
+22
+00:00:56,767 --> 00:01:00,794
+Por eso, antes de frenar, cada columna se pone en la misma escala:
+
+23
+00:01:00,794 --> 00:01:02,441
+media cero, desviación uno.
+
+24
+00:01:02,833 --> 00:01:06,631
+Volvamos a unos pocos mercados, con un polinomio de grado nueve.
+
+25
+00:01:06,631 --> 00:01:08,529
+Sin freno, la curva se retuerce.
+
+26
+00:01:08,900 --> 00:01:11,676
+A la derecha, el tamaño de cada coeficiente.
+
+27
+00:01:11,676 --> 00:01:16,029
+Son enormes, unos positivos y otros negativos, cancelándose entre sí.
+
+28
+00:01:16,400 --> 00:01:19,331
+Ridge cobra por el cuadrado de cada coeficiente.
+
+29
+00:01:19,331 --> 00:01:20,430
+Esta es su cuenta:
+
+30
+00:01:20,430 --> 00:01:23,239
+error más lambda por la suma de los cuadrados.
+
+31
+00:01:23,633 --> 00:01:24,608
+Subimos el freno.
+
+32
+00:01:24,608 --> 00:01:28,218
+La curva se calma y todos los coeficientes se encogen a la vez.
+
+33
+00:01:28,600 --> 00:01:31,676
+Con mucho freno, la curva se aplana hasta el promedio.
+
+34
+00:01:31,676 --> 00:01:32,588
+Frenamos de más.
+
+35
+00:01:33,200 --> 00:01:35,474
+En un punto intermedio queda lo mejor:
+
+36
+00:01:35,474 --> 00:01:37,030
+la forma, sin las locuras.
+
+37
+00:01:37,400 --> 00:01:38,375
+Todas se encogen.
+
+38
+00:01:38,375 --> 00:01:39,464
+Ninguna desaparece:
+
+39
+00:01:39,464 --> 00:01:41,757
+por eso las nueve columnas siguen vivas.
+
+40
+00:01:42,233 --> 00:01:45,365
+Piensa en Ridge como alguien que sostiene muchas correas.
+
+41
+00:01:45,365 --> 00:01:47,617
+Las acerca todas, pero no suelta ninguna.
+
+42
+00:01:48,033 --> 00:01:51,212
+Por eso sirve cuando varias columnas dicen casi lo mismo:
+
+43
+00:01:51,212 --> 00:01:52,941
+reparte el crédito entre ellas.
+

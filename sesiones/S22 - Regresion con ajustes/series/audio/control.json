@@ -1,0 +1,1362 @@
+{
+"narrador:Una recta no se dobla. Episodio uno: la promesa.": {
+"coincide": 0.89,
+"seg": 3.67,
+"cps": 13.1
+},
+"narrador:Daniela es gerente de marca de Bebidas Cumbre. Tiene datos d": {
+"coincide": 0.96,
+"seg": 9.21,
+"cps": 16.5
+},
+"narrador:Con ellos armó un modelo sencillo, un plano, y con ese plano": {
+"coincide": 0.85,
+"seg": 8.44,
+"cps": 17.4
+},
+"narrador:Hagamos una apuesta. Hay veinte mercados que ya invierten pa": {
+"coincide": 0.92,
+"seg": 4.01,
+"cps": 19.2
+},
+"narrador:¿Cuánto venden en promedio, en miles de unidades? Pausa el v": {
+"coincide": 1.0,
+"seg": 5.5,
+"cps": 15.5
+},
+"narrador:El plano les pronostica doce coma cuarenta y tres.": {
+"coincide": 0.44,
+"seg": 2.71,
+"cps": 18.4
+},
+"narrador:Y vendieron diez coma dieciséis.": {
+"coincide": 0.4,
+"seg": 1.74,
+"cps": 18.4
+},
+"narrador:Son dos mil doscientas setenta unidades de más por mercado, ": {
+"coincide": 0.8,
+"seg": 7.54,
+"cps": 16.8
+},
+"narrador:Para entender qué pasó, volvamos a lo básico. Cada punto es ": {
+"coincide": 1.0,
+"seg": 9.03,
+"cps": 16.1
+},
+"narrador:Cada error se convierte en un cuadrado. Sumamos esos cuadrad": {
+"coincide": 1.0,
+"seg": 6.61,
+"cps": 17.4
+},
+"narrador:Si inclinamos la recta de más, algunos cuadrados se achican ": {
+"coincide": 1.0,
+"seg": 4.22,
+"cps": 17.8
+},
+"narrador:Si la inclinamos al revés, la suma sube todavía más.": {
+"coincide": 1.0,
+"seg": 3.11,
+"cps": 16.7
+},
+"narrador:Ajustar es mover la recta hasta llegar al punto más bajo. A ": {
+"coincide": 1.0,
+"seg": 5.39,
+"cps": 17.5
+},
+"narrador:Fíjate en un detalle. El ajuste no elige la forma. Busca la ": {
+"coincide": 1.0,
+"seg": 10.35,
+"cps": 15.5
+},
+"narrador:Para saber si nos falló la forma, miramos los errores. Cada ": {
+"coincide": 0.96,
+"seg": 8.06,
+"cps": 16.9
+},
+"narrador:En rojo, los mercados donde el plano prometió de más. En azu": {
+"coincide": 0.88,
+"seg": 5.01,
+"cps": 17.4
+},
+"narrador:Si fuera ruido, los colores estarían mezclados. Pero el rojo": {
+"coincide": 1.0,
+"seg": 5.5,
+"cps": 17.1
+},
+"narrador:Y el azul, arriba a la derecha, donde están los dos.": {
+"coincide": 1.0,
+"seg": 2.79,
+"cps": 18.7
+},
+"narrador:La equis es el plan de Daniela. Cayó en zona roja. El plano ": {
+"coincide": 0.96,
+"seg": 7.24,
+"cps": 15.3
+},
+"narrador:Episodio dos: doblar el plano.": {
+"coincide": 0.8,
+"seg": 2.97,
+"cps": 10.1
+},
+"narrador:Una recta no se dobla. Pero no hace falta un método nuevo. E": {
+"coincide": 1.0,
+"seg": 8.8,
+"cps": 13.8
+},
+"narrador:Agregamos una columna que se calcula con una multiplicación:": {
+"coincide": 0.95,
+"seg": 8.33,
+"cps": 14.5
+},
+"narrador:Agregamos otra: televisión al cuadrado. Pregunta si la telev": {
+"coincide": 0.93,
+"seg": 7.02,
+"cps": 13.7
+},
+"narrador:Mírala bien. Sigue siendo una suma de columnas, y mínimos cu": {
+"coincide": 1.0,
+"seg": 9.27,
+"cps": 13.7
+},
+"narrador:Veamos lo que cambia. En rojo, mercados con mucha radio. En ": {
+"coincide": 1.0,
+"seg": 6.3,
+"cps": 12.1
+},
+"narrador:El plano obliga a dibujar dos rectas paralelas: dice que la ": {
+"coincide": 1.0,
+"seg": 6.58,
+"cps": 16.0
+},
+"narrador:Ahora le dejamos doblarse. Las líneas se curvan, se abren en": {
+"coincide": 1.0,
+"seg": 7.99,
+"cps": 11.9
+},
+"narrador:Con poca televisión, la radio separa unas dos mil unidades.": {
+"coincide": 0.8,
+"seg": 4.28,
+"cps": 13.8
+},
+"narrador:Con mucha televisión, separa once mil. La radio rinde según ": {
+"coincide": 0.87,
+"seg": 6.54,
+"cps": 13.0
+},
+"narrador:A eso se le llama interacción: el efecto de una variable dep": {
+"coincide": 1.0,
+"seg": 5.16,
+"cps": 14.1
+},
+"narrador:Y a la curva que se aplana se le llama saturación: las prime": {
+"coincide": 1.0,
+"seg": 7.5,
+"cps": 13.1
+},
+"narrador:Cuando las columnas nuevas son potencias, hablamos de ajuste": {
+"coincide": 1.0,
+"seg": 7.17,
+"cps": 14.8
+},
+"narrador:Ahora te toca a ti. ¿Cuánto cambia la promesa de Daniela?": {
+"coincide": 1.0,
+"seg": 3.92,
+"cps": 14.5
+},
+"narrador:Episodio tres. Ejercicio: corrijan la promesa.": {
+"coincide": 0.83,
+"seg": 4.18,
+"cps": 11.0
+},
+"narrador:Este episodio es para trabajar. Abre la página del curso, de": {
+"coincide": 0.95,
+"seg": 8.8,
+"cps": 14.6
+},
+"narrador:Puedes hacerlo con tu asistente de inteligencia artificial. ": {
+"coincide": 1.0,
+"seg": 8.45,
+"cps": 15.7
+},
+"narrador:En grupo, repártanse tres roles: uno pide, otro verifica una": {
+"coincide": 1.0,
+"seg": 8.02,
+"cps": 12.5
+},
+"narrador:Primero, ajusta el plano con los doscientos mercados y calcu": {
+"coincide": 0.94,
+"seg": 7.63,
+"cps": 14.0
+},
+"narrador:Después haz un gráfico de televisión contra radio, con el co": {
+"coincide": 1.0,
+"seg": 6.08,
+"cps": 13.2
+},
+"narrador:Por último, promedia los mercados con televisión hasta noven": {
+"coincide": 0.73,
+"seg": 5.78,
+"cps": 16.1
+},
+"narrador:Pausa aquí. Cuando tengas tu número, escríbelo en el candado": {
+"coincide": 1.0,
+"seg": 5.7,
+"cps": 13.0
+},
+"narrador:Separa ciento cincuenta mercados para entrenar y cincuenta p": {
+"coincide": 0.62,
+"seg": 6.35,
+"cps": 16.4
+},
+"narrador:Crea la columna televisión por radio, y luego televisión al ": {
+"coincide": 0.95,
+"seg": 7.77,
+"cps": 14.7
+},
+"narrador:Compáralos con la línea base y con el plano.": {
+"coincide": 1.0,
+"seg": 3.07,
+"cps": 14.3
+},
+"narrador:Pausa y hazlo. ¿Cuál de las dos columnas aportó más?": {
+"coincide": 0.9,
+"seg": 3.88,
+"cps": 13.4
+},
+"narrador:Ajusta el modelo de cuatro columnas con los doscientos merca": {
+"coincide": 0.87,
+"seg": 5.46,
+"cps": 16.8
+},
+"narrador:Calcula la utilidad: unidades por doce dólares de margen, me": {
+"coincide": 0.94,
+"seg": 6.95,
+"cps": 15.3
+},
+"narrador:Y calcula cuánto trae cada mil dólares en radio cuando la te": {
+"coincide": 0.74,
+"seg": 7.76,
+"cps": 16.1
+},
+"narrador:Pausa. Escribe tu decisión con el número. Una frase sin núme": {
+"coincide": 1.0,
+"seg": 5.87,
+"cps": 12.1
+},
+"narrador:Episodio cuatro: la promesa corregida. Si todavía no haces l": {
+"coincide": 0.83,
+"seg": 8.01,
+"cps": 13.4
+},
+"narrador:Empecemos por el error, medido en los mismos cincuenta merca": {
+"coincide": 0.76,
+"seg": 10.37,
+"cps": 14.9
+},
+"narrador:El plano bajó a uno coma treinta y nueve.": {
+"coincide": 0.44,
+"seg": 2.45,
+"cps": 16.7
+},
+"narrador:Con la interacción, cero coma sesenta y cinco.": {
+"coincide": 0.38,
+"seg": 2.96,
+"cps": 15.6
+},
+"narrador:Y con la televisión al cuadrado, cero coma cuarenta y ocho. ": {
+"coincide": 0.75,
+"seg": 6.98,
+"cps": 14.6
+},
+"narrador:El mapa lo confirma. Este es el plano, con cuarenta mercados": {
+"coincide": 0.84,
+"seg": 7.08,
+"cps": 14.1
+},
+"narrador:Y este es el plano doblado. El patrón desaparece: solo queda": {
+"coincide": 0.58,
+"seg": 6.32,
+"cps": 10.4
+},
+"narrador:Un mapa casi en blanco es la prueba que se le pide a cualqui": {
+"coincide": 0.94,
+"seg": 5.14,
+"cps": 16.9
+},
+"narrador:Ahora, la consecuencia de negocio. La semana pasada la respu": {
+"coincide": 1.0,
+"seg": 9.41,
+"cps": 12.9
+},
+"narrador:Esa es la línea gris. El plano dice que la radio rinde igual": {
+"coincide": 1.0,
+"seg": 4.7,
+"cps": 14.7
+},
+"narrador:Pero con cincuenta mil en televisión, cada mil dólares en ra": {
+"coincide": 0.75,
+"seg": 5.68,
+"cps": 16.2
+},
+"narrador:Con ciento cincuenta mil, mil trescientos sesenta.": {
+"coincide": 0.43,
+"seg": 3.08,
+"cps": 16.2
+},
+"narrador:Y con doscientos cincuenta mil, dos mil seiscientos cincuent": {
+"coincide": 0.27,
+"seg": 3.83,
+"cps": 17.8
+},
+"narrador:Por debajo de cuarenta y cinco mil dólares en televisión, la": {
+"coincide": 0.8,
+"seg": 4.61,
+"cps": 16.9
+},
+"narrador:Y ahora, la cifra que importa.": {
+"coincide": 1.0,
+"seg": 2.04,
+"cps": 14.7
+},
+"narrador:El plan de Daniela no vende catorce mil cuatrocientas veinte": {
+"coincide": 0.5,
+"seg": 6.62,
+"cps": 16.0
+},
+"narrador:Son dos mil seiscientas cincuenta unidades que prometió de m": {
+"coincide": 0.6,
+"seg": 3.53,
+"cps": 17.8
+},
+"narrador:¿Y la agencia? Sube a quince mil doscientas veinte, pero inv": {
+"coincide": 0.59,
+"seg": 6.03,
+"cps": 16.1
+},
+"narrador:Utilidad de Daniela: cuarenta y dos mil dólares. Utilidad de": {
+"coincide": 0.6,
+"seg": 6.52,
+"cps": 14.6
+},
+"narrador:Episodio cinco: la oferta de la agencia.": {
+"coincide": 0.86,
+"seg": 2.77,
+"cps": 14.5
+},
+"narrador:Buena pregunta. Antes de seguir, apuesta. ¿Cuánto se equivoc": {
+"coincide": 0.95,
+"seg": 7.89,
+"cps": 15.5
+},
+"narrador:Para verlo con calma, tomemos solo trece mercados. Una recta": {
+"coincide": 0.88,
+"seg": 6.38,
+"cps": 14.3
+},
+"narrador:Subimos hasta el grado tres. Ya sigue mejor los puntos.": {
+"coincide": 0.9,
+"seg": 3.38,
+"cps": 16.3
+},
+"narrador:Seguimos: grado cinco, siete, nueve. La curva se retuerce y ": {
+"coincide": 0.81,
+"seg": 7.16,
+"cps": 14.0
+},
+"narrador:Grado doce: pasa por sus puntos. El error de entrenamiento l": {
+"coincide": 0.92,
+"seg": 4.49,
+"cps": 16.0
+},
+"narrador:Perfecto, ¿verdad? Ahora miremos los mercados que no vio.": {
+"coincide": 1.0,
+"seg": 3.4,
+"cps": 16.8
+},
+"narrador:El error de prueba, la línea roja, sube justo cuando el otro": {
+"coincide": 1.0,
+"seg": 8.11,
+"cps": 15.3
+},
+"narrador:Hagámoslo con los tres medios y los ciento cincuenta mercado": {
+"coincide": 0.92,
+"seg": 9.01,
+"cps": 16.0
+},
+"narrador:A la derecha, el error de prueba baja hasta el grado tres.": {
+"coincide": 0.92,
+"seg": 3.27,
+"cps": 17.7
+},
+"narrador:En el grado cinco se rompe. En el seis, el de la agencia, ll": {
+"coincide": 0.72,
+"seg": 5.54,
+"cps": 15.9
+},
+"narrador:Y en el grado siete, a casi cuarenta y tres. Peor que no ten": {
+"coincide": 0.73,
+"seg": 4.34,
+"cps": 16.1
+},
+"narrador:¿Cómo se equivoca? Estos son los cincuenta mercados, de meno": {
+"coincide": 0.95,
+"seg": 6.48,
+"cps": 16.8
+},
+"narrador:En rojo, el pronóstico del grado seis. En cuarenta y cinco m": {
+"coincide": 0.73,
+"seg": 6.59,
+"cps": 16.4
+},
+"narrador:Y entonces aparece el mercado diecisiete.": {
+"coincide": 0.83,
+"seg": 2.52,
+"cps": 16.3
+},
+"narrador:El modelo le pronostica menos noventa y ocho mil unidades. V": {
+"coincide": 0.56,
+"seg": 6.48,
+"cps": 16.0
+},
+"narrador:Ese mercado tiene la inversión en prensa más alta de toda la": {
+"coincide": 1.0,
+"seg": 9.88,
+"cps": 16.7
+},
+"narrador:Episodio seis. Ridge: poner un precio.": {
+"coincide": 0.67,
+"seg": 2.87,
+"cps": 13.3
+},
+"narrador:Las columnas de la agencia no son el problema. El problema e": {
+"coincide": 1.0,
+"seg": 9.47,
+"cps": 16.7
+},
+"narrador:Regularizar le agrega una segunda cosa: un precio por usar c": {
+"coincide": 1.0,
+"seg": 4.91,
+"cps": 16.3
+},
+"narrador:Ese precio lo controla una perilla que se llama lambda. En e": {
+"coincide": 1.0,
+"seg": 6.01,
+"cps": 17.5
+},
+"narrador:Con lambda cero, no hay freno: la cinta enredada de la agenc": {
+"coincide": 0.92,
+"seg": 3.83,
+"cps": 16.4
+},
+"narrador:Con lambda enorme, todos los coeficientes valen cero y el mo": {
+"coincide": 0.95,
+"seg": 6.71,
+"cps": 17.4
+},
+"narrador:Antes de frenar, un detalle que parece menor. La televisión ": {
+"coincide": 0.75,
+"seg": 7.56,
+"cps": 18.1
+},
+"narrador:Si la misma televisión estuviera en dólares, el coeficiente ": {
+"coincide": 1.0,
+"seg": 4.6,
+"cps": 18.7
+},
+"narrador:El pronóstico es idéntico, pero ese coeficiente diminuto cas": {
+"coincide": 1.0,
+"seg": 7.4,
+"cps": 16.2
+},
+"narrador:Por eso, antes de frenar, cada columna se pone en la misma e": {
+"coincide": 0.88,
+"seg": 5.67,
+"cps": 16.6
+},
+"narrador:Volvamos a unos pocos mercados, con un polinomio de grado nu": {
+"coincide": 0.94,
+"seg": 5.7,
+"cps": 17.0
+},
+"narrador:A la derecha, el tamaño de cada coeficiente. Son enormes, un": {
+"coincide": 1.0,
+"seg": 7.13,
+"cps": 16.0
+},
+"narrador:Ridge cobra por el cuadrado de cada coeficiente. Esta es su ": {
+"coincide": 0.95,
+"seg": 6.84,
+"cps": 16.7
+},
+"narrador:Subimos el freno. La curva se calma y todos los coeficientes": {
+"coincide": 1.0,
+"seg": 4.58,
+"cps": 17.7
+},
+"narrador:Con mucho freno, la curva se aplana hasta el promedio. Frena": {
+"coincide": 1.0,
+"seg": 3.99,
+"cps": 17.8
+},
+"narrador:En un punto intermedio queda lo mejor: la forma, sin las loc": {
+"coincide": 1.0,
+"seg": 3.83,
+"cps": 17.0
+},
+"narrador:Todas se encogen. Ninguna desaparece: por eso las nueve colu": {
+"coincide": 0.92,
+"seg": 4.36,
+"cps": 17.9
+},
+"narrador:Piensa en Ridge como alguien que sostiene muchas correas. La": {
+"coincide": 0.94,
+"seg": 5.38,
+"cps": 18.4
+},
+"narrador:Por eso sirve cuando varias columnas dicen casi lo mismo: re": {
+"coincide": 1.0,
+"seg": 4.91,
+"cps": 18.1
+},
+"narrador:Episodio siete: Lasso, y por qué corta.": {
+"coincide": 0.71,
+"seg": 2.94,
+"cps": 13.3
+},
+"narrador:Lasso hace casi lo mismo, con una diferencia pequeña en la c": {
+"coincide": 0.92,
+"seg": 3.7,
+"cps": 17.8
+},
+"narrador:Mira las barras. Ya con muy poco freno hay columnas en cero.": {
+"coincide": 1.0,
+"seg": 4.24,
+"cps": 14.1
+},
+"narrador:Lasso cobra por el valor absoluto, no por el cuadrado.": {
+"coincide": 0.9,
+"seg": 3.03,
+"cps": 17.8
+},
+"narrador:Subimos el freno, y las columnas van cayendo a exactamente c": {
+"coincide": 1.0,
+"seg": 3.95,
+"cps": 16.2
+},
+"narrador:Al final quedan dos de nueve. Lasso eligió por su cuenta.": {
+"coincide": 0.91,
+"seg": 3.61,
+"cps": 15.8
+},
+"narrador:Las que no pagan su costo valen cero.": {
+"coincide": 1.0,
+"seg": 2.34,
+"cps": 15.8
+},
+"narrador:¿Por qué uno encoge y el otro corta? La respuesta es una ima": {
+"coincide": 1.0,
+"seg": 9.32,
+"cps": 15.7
+},
+"narrador:El freno es un presupuesto: los coeficientes no se pueden sa": {
+"coincide": 0.92,
+"seg": 8.2,
+"cps": 15.5
+},
+"narrador:Al encoger el presupuesto, el mejor ajuste queda en el punto": {
+"coincide": 1.0,
+"seg": 5.45,
+"cps": 17.4
+},
+"narrador:El círculo no tiene esquinas, así que casi nunca toca un eje": {
+"coincide": 1.0,
+"seg": 3.55,
+"cps": 17.2
+},
+"narrador:El rombo tiene las esquinas justo sobre los ejes. Y en una e": {
+"coincide": 1.0,
+"seg": 6.2,
+"cps": 16.9
+},
+"narrador:Por eso Lasso es una tijera: corta los hilos que no sostiene": {
+"coincide": 0.92,
+"seg": 3.84,
+"cps": 17.5
+},
+"narrador:Sirve cuando sospechas que casi todas las columnas sobran, y": {
+"coincide": 1.0,
+"seg": 5.11,
+"cps": 19.6
+},
+"narrador:Episodio ocho. Ejercicio: contesten la oferta.": {
+"coincide": 0.67,
+"seg": 3.2,
+"cps": 14.4
+},
+"narrador:Falta una pregunta: ¿cuánto freno? Si lo eliges mirando los ": {
+"coincide": 1.0,
+"seg": 6.7,
+"cps": 17.9
+},
+"narrador:La solución es hacer turnos.": {
+"coincide": 1.0,
+"seg": 1.5,
+"cps": 18.6
+},
+"narrador:Partimos los ciento cincuenta mercados de entrenamiento en c": {
+"coincide": 0.88,
+"seg": 5.78,
+"cps": 19.4
+},
+"narrador:Un punto de la curva es el promedio de esos cinco turnos, pa": {
+"coincide": 1.0,
+"seg": 3.94,
+"cps": 21.1
+},
+"narrador:Repetimos con cada fuerza. Con demasiado freno, el error se ": {
+"coincide": 1.0,
+"seg": 3.81,
+"cps": 17.8
+},
+"narrador:El punto más bajo es el alfa elegido. Y la prueba sigue guar": {
+"coincide": 1.0,
+"seg": 5.43,
+"cps": 17.9
+},
+"narrador:Con los tres medios, ajusta polinomios de grado uno a siete ": {
+"coincide": 0.76,
+"seg": 4.44,
+"cps": 22.8
+},
+"narrador:Para cada grado anota el R cuadrado de entrenamiento, el err": {
+"coincide": 1.0,
+"seg": 4.57,
+"cps": 22.1
+},
+"narrador:Mira los errores del grado seis, mercado por mercado.": {
+"coincide": 0.89,
+"seg": 2.48,
+"cps": 21.3
+},
+"narrador:Pausa, y responde con el número que un comité entendería.": {
+"coincide": 1.0,
+"seg": 2.79,
+"cps": 20.4
+},
+"narrador:Toma el grado cinco, con cincuenta y cinco columnas. Para ca": {
+"coincide": 0.81,
+"seg": 5.7,
+"cps": 21.2
+},
+"narrador:Elige el mejor alfa de Lasso y el mejor de Ridge. Solo enton": {
+"coincide": 0.79,
+"seg": 4.56,
+"cps": 21.1
+},
+"narrador:Cuenta cuántas columnas quedan vivas en Lasso, y mira qué pa": {
+"coincide": 0.69,
+"seg": 3.73,
+"cps": 23.3
+},
+"narrador:Lasso tarda unos segundos. Pausa y decide: ¿la curva de cuat": {
+"coincide": 0.87,
+"seg": 4.38,
+"cps": 19.2
+},
+"narrador:Episodio nueve: qué ajuste se queda. Mira este episodio cuan": {
+"coincide": 0.81,
+"seg": 6.57,
+"cps": 14.9
+},
+"narrador:Estos son los resultados. Arriba, cuántas de las cincuenta y": {
+"coincide": 0.78,
+"seg": 6.52,
+"cps": 17.3
+},
+"narrador:Abajo, el error en validación. El mínimo está en alfa cero c": {
+"coincide": 0.68,
+"seg": 7.36,
+"cps": 14.8
+},
+"narrador:Y mira lo que pasa con alfa cero coma tres. Quedan solo dos ": {
+"coincide": 0.84,
+"seg": 6.72,
+"cps": 15.6
+},
+"narrador:Nadie se lo indicó. Lasso encontró por su cuenta la misma in": {
+"coincide": 0.94,
+"seg": 6.31,
+"cps": 17.3
+},
+"narrador:Comparemos en los cincuenta mercados de prueba. El plano: un": {
+"coincide": 0.57,
+"seg": 4.41,
+"cps": 18.8
+},
+"narrador:El grado cinco sin freno: uno coma setenta.": {
+"coincide": 0.5,
+"seg": 2.64,
+"cps": 16.3
+},
+"narrador:Con Ridge, cero coma treinta y seis. Con Lasso, cero coma tr": {
+"coincide": 0.37,
+"seg": 6.38,
+"cps": 17.2
+},
+"narrador:La curva de cuatro columnas queda en cero coma cuarenta y oc": {
+"coincide": 0.6,
+"seg": 5.21,
+"cps": 15.4
+},
+"narrador:Piensa en cómo funciona la publicidad, escribe en una frase ": {
+"coincide": 0.96,
+"seg": 7.56,
+"cps": 18.9
+},
+"narrador:Luego abre el archivo de consumo de combustible, de un talle": {
+"coincide": 1.0,
+"seg": 6.99,
+"cps": 17.9
+},
+"narrador:En cada una ajusta sin freno, con Ridge y con Lasso, y anota": {
+"coincide": 0.9,
+"seg": 6.34,
+"cps": 18.0
+},
+"narrador:Entrega tu memo, el enlace del cuaderno y tus prompts en la ": {
+"coincide": 1.0,
+"seg": 4.98,
+"cps": 16.9
+},
+"narrador:Episodio diez: la columna pensada. Míralo después de entrega": {
+"coincide": 0.83,
+"seg": 4.84,
+"cps": 15.7
+},
+"narrador:Si ya propusiste tu columna, comparemos. Piensa en la public": {
+"coincide": 1.0,
+"seg": 7.16,
+"cps": 18.3
+},
+"narrador:Esa forma tiene nombre en matemáticas: raíz cuadrada.": {
+"coincide": 1.0,
+"seg": 2.76,
+"cps": 19.2
+},
+"narrador:Estos son los mercados con poca radio. La curva gris usa tel": {
+"coincide": 1.0,
+"seg": 5.42,
+"cps": 19.6
+},
+"narrador:La curva roja usa la raíz de la televisión: sube rápido, lue": {
+"coincide": 1.0,
+"seg": 6.36,
+"cps": 17.6
+},
+"narrador:Estos eran los modelos.": {
+"coincide": 1.0,
+"seg": 1.19,
+"cps": 19.4
+},
+"narrador:Con la raíz, el error de prueba baja a cero coma veintinueve": {
+"coincide": 0.75,
+"seg": 2.86,
+"cps": 21.3
+},
+"narrador:Cuatro columnas pensadas le ganan a cincuenta y cinco. El fr": {
+"coincide": 0.87,
+"seg": 6.18,
+"cps": 21.1
+},
+"narrador:El segundo encargo. Consumo en ciudad, en carretera y combin": {
+"coincide": 1.0,
+"seg": 4.97,
+"cps": 20.3
+},
+"narrador:Sin freno, el coeficiente del combinado va de menos ochenta ": {
+"coincide": 0.73,
+"seg": 5.85,
+"cps": 22.9
+},
+"narrador:Ridge reparte el crédito y se queda quieto, entre cinco y si": {
+"coincide": 0.75,
+"seg": 3.07,
+"cps": 20.8
+},
+"narrador:Lasso apaga unas y deja otras, y cuál apaga depende de la mu": {
+"coincide": 0.85,
+"seg": 3.49,
+"cps": 18.9
+},
+"narrador:Esto es lo que te llevas para tu proyecto. Si los errores fo": {
+"coincide": 1.0,
+"seg": 4.81,
+"cps": 23.7
+},
+"narrador:Si el efecto de una variable depende de otra, una interacció": {
+"coincide": 1.0,
+"seg": 2.63,
+"cps": 23.6
+},
+"narrador:Si hay muchas columnas para pocas filas, Ridge o Lasso.": {
+"coincide": 0.9,
+"seg": 2.56,
+"cps": 21.5
+},
+"narrador:Si las columnas son casi copias, Ridge.": {
+"coincide": 0.86,
+"seg": 1.79,
+"cps": 21.7
+},
+"narrador:Y si necesitas saber cuáles importan, Lasso.": {
+"coincide": 1.0,
+"seg": 1.98,
+"cps": 22.2
+},
+"narrador:Y una advertencia. Un mejor ajuste no prueba causa. Los dosc": {
+"coincide": 0.95,
+"seg": 5.88,
+"cps": 20.6
+},
+"narrador:Además, Daniela pone cuarenta y nueve mil en radio, y el dat": {
+"coincide": 0.62,
+"seg": 5.1,
+"cps": 24.3
+},
+"narrador:Antes de mover la plata, hay que probar la radio en mercados": {
+"coincide": 1.0,
+"seg": 3.03,
+"cps": 25.7
+},
+"daniela:El viernes le prometí al comité catorce mil cuatrocientas ve": {
+"coincide": 0.73,
+"seg": 5.62,
+"cps": 16.7
+},
+"daniela:Mi duda es simple. ¿Esa cifra se sostiene?": {
+"coincide": 1.0,
+"seg": 2.74,
+"cps": 15.3
+},
+"daniela:Antes de volver al comité quiero saber si el plano se equivo": {
+"coincide": 1.0,
+"seg": 6.15,
+"cps": 17.6
+},
+"daniela:Quiero un modelo que entienda que televisión y radio juntas ": {
+"coincide": 1.0,
+"seg": 5.3,
+"cps": 17.5
+},
+"daniela:Necesito la cifra correcta de mi plan, la de la agencia, y s": {
+"coincide": 1.0,
+"seg": 6.31,
+"cps": 16.8
+},
+"daniela:La decisión se sostiene. La cifra no. Voy a tener que volver": {
+"coincide": 1.0,
+"seg": 5.49,
+"cps": 12.9
+},
+"daniela:¿Y en mercados nuevos?": {
+"coincide": 1.0,
+"seg": 1.33,
+"cps": 16.6
+},
+"daniela:No lo compro.": {
+"coincide": 1.0,
+"seg": 0.86,
+"cps": 15.2
+},
+"daniela:La agencia me ofrece grado seis con R cuadrado de cero coma ": {
+"coincide": 0.59,
+"seg": 5.93,
+"cps": 15.0
+},
+"daniela:No descarto todas esas columnas todavía. Quiero ver si un fr": {
+"coincide": 1.0,
+"seg": 5.02,
+"cps": 15.9
+},
+"daniela:Con cuatro columnas puedo pararme frente al comité y explica": {
+"coincide": 1.0,
+"seg": 4.22,
+"cps": 16.8
+},
+"daniela:Queda un último encargo. Propón una columna que tenga sentid": {
+"coincide": 0.97,
+"seg": 9.81,
+"cps": 15.9
+},
+"daniela:Voy a volver al comité con una cifra más baja, una razón cla": {
+"coincide": 1.0,
+"seg": 5.01,
+"cps": 16.0
+},
+"agencia:Daniela, tu modelo de cuatro columnas está bien para empezar": {
+"coincide": 0.82,
+"seg": 6.34,
+"cps": 15.9
+},
+"agencia:R cuadrado de cero coma nueve nueve ocho. Casi perfecto. Se ": {
+"coincide": 0.44,
+"seg": 6.87,
+"cps": 14.3
+},
+"narrador:Doblar el plano, parte uno: de dónde salieron los puntos roj": {
+"coincide": 0.92,
+"seg": 4.93,
+"cps": 14.6
+},
+"narrador:Estos son los doscientos mercados: televisión en horizontal ": {
+"coincide": 0.97,
+"seg": 10.88,
+"cps": 15.6
+},
+"narrador:¿Por qué se abre? Porque falta una variable. Cada mercado ta": {
+"coincide": 1.0,
+"seg": 8.49,
+"cps": 16.1
+},
+"narrador:Entonces usamos el color. Pintamos cada punto según su radio": {
+"coincide": 1.0,
+"seg": 12.66,
+"cps": 12.9
+},
+"narrador:A la derecha está la columna radio, ordenada. Para contar la": {
+"coincide": 1.0,
+"seg": 6.73,
+"cps": 17.4
+},
+"narrador:Rojo: los cincuenta y siete mercados con treinta y cinco mil": {
+"coincide": 0.62,
+"seg": 7.54,
+"cps": 17.4
+},
+"narrador:Los ochenta y dos del medio quedan en gris. Siguen existiend": {
+"coincide": 0.83,
+"seg": 6.93,
+"cps": 17.3
+},
+"narrador:Esos cortes no salen de ninguna fórmula. Los elegí yo, miran": {
+"coincide": 1.0,
+"seg": 8.0,
+"cps": 17.9
+},
+"narrador:Si muevo los cortes, los grupos cambian de tamaño, pero el a": {
+"coincide": 1.0,
+"seg": 4.01,
+"cps": 19.2
+},
+"narrador:Un último cuidado. La televisión promedio de los dos grupos ": {
+"coincide": 0.7,
+"seg": 8.03,
+"cps": 18.7
+},
+"narrador:Ahora, las líneas. Aquí está lo que más confunde: el modelo ": {
+"coincide": 0.96,
+"seg": 8.73,
+"cps": 16.5
+},
+"narrador:La ecuación es una sola: televisión, radio y su producto, ca": {
+"coincide": 1.0,
+"seg": 5.14,
+"cps": 16.7
+},
+"narrador:Para dibujar la línea roja, tomo el promedio de radio del gr": {
+"coincide": 0.85,
+"seg": 9.02,
+"cps": 19.7
+},
+"narrador:Para la negra hago lo mismo, con radio de cinco coma siete.": {
+"coincide": 0.75,
+"seg": 2.7,
+"cps": 21.9
+},
+"narrador:Y con el grupo del medio, radio de veintitrés coma cuatro, l": {
+"coincide": 0.86,
+"seg": 7.49,
+"cps": 15.5
+},
+"narrador:Comprobación. Si ajusto una recta aparte solo con los rojos,": {
+"coincide": 0.7,
+"seg": 13.86,
+"cps": 16.5
+},
+"narrador:Aquí dejé solo la interacción, para verla pura. En el video ": {
+"coincide": 1.0,
+"seg": 7.55,
+"cps": 19.7
+},
+"narrador:Parte dos: qué es una interacción.": {
+"coincide": 0.83,
+"seg": 1.99,
+"cps": 17.1
+},
+"narrador:Una interacción es cuando el efecto de una cosa depende de o": {
+"coincide": 1.0,
+"seg": 6.56,
+"cps": 18.1
+},
+"narrador:El abono sirve mucho si la tierra tiene agua, y casi nada si": {
+"coincide": 1.0,
+"seg": 7.7,
+"cps": 17.1
+},
+"narrador:Con la publicidad pasa lo mismo. ¿Cuánto rinde la televisión": {
+"coincide": 1.0,
+"seg": 5.38,
+"cps": 16.9
+},
+"narrador:Mira la ecuación con interacción. Tiene cuatro términos.": {
+"coincide": 1.0,
+"seg": 3.1,
+"cps": 18.1
+},
+"narrador:Ahora juntamos todo lo que multiplica a la televisión.": {
+"coincide": 1.0,
+"seg": 3.27,
+"cps": 16.5
+},
+"narrador:Queda esto: la pendiente de la televisión ya no es un número": {
+"coincide": 0.59,
+"seg": 8.63,
+"cps": 16.3
+},
+"narrador:Por eso se dice que interactúan: una variable cambia la pend": {
+"coincide": 1.0,
+"seg": 7.72,
+"cps": 17.9
+},
+"narrador:Míralo en movimiento. Con la radio en cero, cada mil dólares": {
+"coincide": 0.94,
+"seg": 5.76,
+"cps": 17.5
+},
+"narrador:Subimos la radio y la línea gira. Con veinte mil en radio, s": {
+"coincide": 0.71,
+"seg": 5.1,
+"cps": 17.1
+},
+"narrador:Con cuarenta y cinco mil, sesenta y ocho.": {
+"coincide": 0.12,
+"seg": 1.91,
+"cps": 21.4
+},
+"narrador:Comparemos con el modelo sin interacción. La línea sube y ba": {
+"coincide": 0.84,
+"seg": 6.58,
+"cps": 16.9
+},
+"narrador:Si agregamos la radio como tercer eje, el modelo sin interac": {
+"coincide": 1.0,
+"seg": 5.55,
+"cps": 17.0
+},
+"narrador:Cortamos la hoja con radio baja y con radio alta, y salen do": {
+"coincide": 1.0,
+"seg": 4.98,
+"cps": 15.9
+},
+"narrador:La interacción tuerce la hoja. Una esquina sube más que las ": {
+"coincide": 1.0,
+"seg": 3.59,
+"cps": 18.4
+},
+"narrador:Ahora los cortes ya no son paralelos. Eso, en tres dimension": {
+"coincide": 1.0,
+"seg": 4.7,
+"cps": 17.6
+},
+"narrador:Por eso esta parte se llama doblar el plano.": {
+"coincide": 1.0,
+"seg": 2.15,
+"cps": 20.4
+},
+"narrador:Parte tres: más ejemplos de interacción.": {
+"coincide": 0.83,
+"seg": 2.23,
+"cps": 17.9
+},
+"narrador:Primer ejemplo: motores. Para más de mil vehículos, consumo ": {
+"coincide": 0.69,
+"seg": 6.22,
+"cps": 16.4
+},
+"narrador:Con gasolina, cada litro más a los cien kilómetros sube vein": {
+"coincide": 0.76,
+"seg": 5.27,
+"cps": 18.6
+},
+"narrador:Con diésel, veintisiete. Con etanol, dieciséis.": {
+"coincide": 0.67,
+"seg": 3.18,
+"cps": 14.8
+},
+"narrador:La pendiente depende del combustible: una variable numérica ": {
+"coincide": 1.0,
+"seg": 8.59,
+"cps": 17.0
+},
+"narrador:Segundo ejemplo, con datos que ya conoces: Superstore. ¿Un d": {
+"coincide": 1.0,
+"seg": 6.63,
+"cps": 16.4
+},
+"narrador:Cada punto es el margen promedio para un nivel de descuento.": {
+"coincide": 0.95,
+"seg": 6.25,
+"cps": 19.2
+},
+"narrador:Pero cada diez puntos de descuento le quitan veintiún puntos": {
+"coincide": 0.67,
+"seg": 6.7,
+"cps": 17.0
+},
+"narrador:Las líneas se cruzan. La categoría que más gana sin descuent": {
+"coincide": 1.0,
+"seg": 4.89,
+"cps": 18.4
+},
+"narrador:Tercer ejemplo, con dos categorías: los pasajeros del Titani": {
+"coincide": 1.0,
+"seg": 5.74,
+"cps": 17.1
+},
+"narrador:La diferencia entre mujeres y hombres fue de sesenta puntos ": {
+"coincide": 0.71,
+"seg": 6.74,
+"cps": 19.7
+},
+"narrador:El efecto de ser mujer dependió de la clase. Eso también es ": {
+"coincide": 1.0,
+"seg": 6.18,
+"cps": 18.6
+},
+"narrador:Y un ejemplo donde no hay. La radio cuando hay poca prensa, ": {
+"coincide": 1.0,
+"seg": 4.83,
+"cps": 18.2
+},
+"narrador:Las líneas van casi paralelas. El valor p del término de int": {
+"coincide": 0.84,
+"seg": 5.91,
+"cps": 17.9
+},
+"narrador:No toda pareja interactúa. Hay que probarlo, no suponerlo.": {
+"coincide": 1.0,
+"seg": 3.32,
+"cps": 17.5
+},
+"narrador:Parte cuatro: interacciones en Python.": {
+"coincide": 0.8,
+"seg": 2.36,
+"cps": 16.1
+},
+"narrador:La forma más directa es crear la columna a mano. Multiplicas": {
+"coincide": 1.0,
+"seg": 5.94,
+"cps": 19.0
+},
+"narrador:Esa columna entra al modelo junto con las otras dos: televis": {
+"coincide": 1.0,
+"seg": 7.6,
+"cps": 16.6
+},
+"narrador:El modelo devuelve tres coeficientes. El último, cero coma c": {
+"coincide": 0.67,
+"seg": 5.78,
+"cps": 17.6
+},
+"narrador:Con statsmodels hay un atajo. En la fórmula, el asterisco en": {
+"coincide": 0.96,
+"seg": 8.25,
+"cps": 16.7
+},
+"narrador:Salen los mismos números, y con nombres. Si escribes dos pun": {
+"coincide": 1.0,
+"seg": 7.92,
+"cps": 18.1
+},
+"narrador:Ahora lo que de verdad importa: leerlo. La pendiente de la t": {
+"coincide": 1.0,
+"seg": 8.82,
+"cps": 17.6
+},
+"narrador:Multiplicado por mil, son unidades por cada mil dólares: die": {
+"coincide": 0.5,
+"seg": 8.2,
+"cps": 18.3
+},
+"narrador:Si tienes varias variables, scikit-learn crea todos los prod": {
+"coincide": 0.95,
+"seg": 7.43,
+"cps": 17.6
+},
+"narrador:De tres medios salen seis columnas: los tres originales y su": {
+"coincide": 1.0,
+"seg": 4.15,
+"cps": 18.1
+},
+"narrador:Con una categoría la idea es la misma. La letra C le dice a ": {
+"coincide": 0.96,
+"seg": 6.69,
+"cps": 17.3
+},
+"narrador:Se lee contra la categoría de referencia, que aquí es diésel": {
+"coincide": 0.79,
+"seg": 4.84,
+"cps": 18.0
+},
+"narrador:Etanol es once menos: dieciséis. Gasolina, cuatro menos: vei": {
+"coincide": 0.56,
+"seg": 4.88,
+"cps": 13.9
+},
+"narrador:Y esta es exactamente la separación de los puntos rojos y ne": {
+"coincide": 0.83,
+"seg": 5.31,
+"cps": 19.0
+},
+"narrador:Cincuenta y siete mercados, con radio promedio de cuarenta y": {
+"coincide": 0.52,
+"seg": 9.02,
+"cps": 17.7
+},
+"narrador:Para dibujarlas, primero se crea una rejilla de valores de t": {
+"coincide": 1.0,
+"seg": 3.5,
+"cps": 20.0
+},
+"narrador:Luego, para cada grupo, se pintan sus puntos, se pronostica ": {
+"coincide": 0.95,
+"seg": 5.99,
+"cps": 19.2
+},
+"narrador:Este es el gráfico que vas a obtener. Es el mismo de la anim": {
+"coincide": 1.0,
+"seg": 4.36,
+"cps": 18.4
+},
+"narrador:Falta lo más importante: medir si sirvió. Siempre con los me": {
+"coincide": 1.0,
+"seg": 5.23,
+"cps": 16.8
+},
+"narrador:Con dos columnas, el error es uno coma treinta y nueve. Con ": {
+"coincide": 0.47,
+"seg": 4.84,
+"cps": 21.1
+},
+"narrador:Parte cinco: cómo leer una interacción sin equivocarte.": {
+"coincide": 0.88,
+"seg": 2.73,
+"cps": 20.1
+},
+"narrador:Primer error: leer cero coma cero uno nueve como el efecto d": {
+"coincide": 0.77,
+"seg": 9.01,
+"cps": 18.2
+},
+"narrador:Segundo error: despreciar la interacción porque su coeficien": {
+"coincide": 1.0,
+"seg": 7.54,
+"cps": 18.8
+},
+"narrador:Tercer error: meter solo el producto y sacar las variables o": {
+"coincide": 0.69,
+"seg": 7.85,
+"cps": 18.3
+},
+"narrador:Cuarto error: creer que los grupos rojo y negro son parte de": {
+"coincide": 1.0,
+"seg": 7.63,
+"cps": 18.1
+},
+"narrador:Antes de ir al ejercicio, esta es la receta. Primero mira el": {
+"coincide": 1.0,
+"seg": 5.96,
+"cps": 17.5
+},
+"narrador:Segundo, piensa en el negocio: qué variable podría potenciar": {
+"coincide": 1.0,
+"seg": 3.49,
+"cps": 19.5
+},
+"narrador:Tercero, agrega la columna.": {
+"coincide": 1.0,
+"seg": 1.53,
+"cps": 17.7
+},
+"narrador:Cuarto, mide en los mercados de prueba, contra el modelo ant": {
+"coincide": 1.0,
+"seg": 3.02,
+"cps": 21.8
+},
+"narrador:Y quinto, tradúcelo a dólares. Un coeficiente solo no decide": {
+"coincide": 1.0,
+"seg": 3.79,
+"cps": 17.4
+},
+"narrador:Ahora sí, con todo esto, vamos al ejercicio.": {
+"coincide": 1.0,
+"seg": 2.36,
+"cps": 18.6
+},
+"narrador:Parte seis: entrenar y probar.": {
+"coincide": 0.8,
+"seg": 2.41,
+"cps": 12.4
+},
+"narrador:Hemos hablado de mercados de prueba sin explicar de dónde sa": {
+"coincide": 0.87,
+"seg": 4.72,
+"cps": 19.3
+},
+"narrador:Si estudias con el examen en la mano y sacas veinte, no sabe": {
+"coincide": 0.96,
+"seg": 6.86,
+"cps": 18.7
+},
+"narrador:Por eso, antes de ajustar nada, barajamos los mercados al az": {
+"coincide": 1.0,
+"seg": 3.64,
+"cps": 17.3
+},
+"narrador:Ciento cincuenta van a entrenamiento: con ellos aprende el m": {
+"coincide": 0.8,
+"seg": 3.68,
+"cps": 17.9
+},
+"narrador:Cincuenta se guardan bajo llave. Son la prueba.": {
+"coincide": 0.88,
+"seg": 2.6,
+"cps": 18.1
+},
+"narrador:El modelo solo ve los de entrenamiento. Los coeficientes, la": {
+"coincide": 1.0,
+"seg": 6.41,
+"cps": 17.5
+},
+"narrador:Al final, y una sola vez, abrimos la caja. El error en esos ": {
+"coincide": 0.92,
+"seg": 7.56,
+"cps": 15.7
+},
+"narrador:Compara los dos errores. El plano se equivoca uno coma veint": {
+"coincide": 0.69,
+"seg": 9.37,
+"cps": 16.2
+},
+"narrador:Si el error de entrenamiento es mucho mejor que el de prueba": {
+"coincide": 1.0,
+"seg": 7.7,
+"cps": 16.1
+},
+"narrador:Un detalle práctico: random state cuarenta y dos hace que el": {
+"coincide": 0.83,
+"seg": 7.85,
+"cps": 17.8
+}
+}
