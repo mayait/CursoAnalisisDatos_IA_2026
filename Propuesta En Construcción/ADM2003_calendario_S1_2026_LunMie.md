@@ -6,6 +6,7 @@ Del **17 de agosto** al **9 de diciembre de 2026**. Diecisiete semanas de calend
 El cronograma de dieciséis semanas de `ADM2003_cronograma_python_ia_v2.md` entra completo en el calendario con dos ajustes obligados:
 
 - **La semana 9 del calendario es receso** (9 al 18 de octubre, según el calendario oficial; las clases afectadas son el lunes 12 y el miércoles 14). El semestre académico se parte ahí, y el proyecto de medio semestre se entrega justo antes: la última clase previa al receso es el 7 de octubre. Entre esa clase y el retorno del 19 de octubre hay doce días para cerrarlo.
+- **Ajuste del 29 de septiembre de 2026.** Las semanas 6 y 7 se dictaron como un bloque unificado de IA para análisis de datos con Google Antigravity (caso Carolina). Visualización y tableros pasan a la semana 8; el RFM de la semana 8 pasa a la semana 9, después del receso; las semanas 9 y 10 originales se comprimen en la semana 10. El proyecto de medio semestre se mantiene en el receso y se hace con IA.
 - **El lunes 2 de noviembre es feriado** (Día de Difuntos e Independencia de Cuenca). La semana 11, la del mapa de modelos, se dicta comprimida en una sola sesión de noventa minutos el miércoles 4: treinta de concepto y sesenta de taller.
 
 La evaluación docente se abre del 7 al 10 de diciembre. La última clase de este paralelo es el miércoles 9, así que la ventana sigue abierta un día después de terminar el curso.
@@ -26,26 +27,26 @@ La evaluación docente se abre del 7 al 10 de diciembre. La última clase de est
 | 8 | 09-sep-2026 | Miércoles | 4 | I · Leer datos | **Inventario de problemas de calidad** | **Deber 2**: bitácora de limpieza. Propuesta de proyecto final. |
 | 9 | 14-sep-2026 | Lunes | 5 | I · Leer datos | **Dividir, aplicar y recombinar. Uniones y cardinalidad** | — |
 | 10 | 16-sep-2026 | Miércoles | 5 | I · Leer datos | **Torneo de preguntas y tabla de indicadores** | **Deber 3**: tabla de indicadores reproducible. DataCamp: Data Manipulation with pandas y Joining Data with pandas. |
-| 11 | 21-sep-2026 | Lunes | 6 | II · Comunicar datos | **Explorar, verificar y comunicar** | Lectura previa: Storytelling con datos (Knaflic). |
-| 12 | 23-sep-2026 | Miércoles | 6 | II · Comunicar datos | **Clínica de rediseño** | **Deber 4**: tres gráficos anotados del negocio. DataCamp: Introduction to Data Visualization with Matplotlib. |
-| 13 | 28-sep-2026 | Lunes | 7 | II · Comunicar datos | **Del gráfico al tablero** | — |
-| 14 | 30-sep-2026 | Miércoles | 7 | II · Comunicar datos | **Construcción del tablero del proyecto** | Tablero interactivo entregado dentro del cuaderno. |
-| 15 | 05-oct-2026 | Lunes | 8 | Corte de medio semestre | **Quién es un cliente valioso** | — |
-| 16 | 07-oct-2026 | Miércoles | 8 | Corte de medio semestre | **Segmentar, nombrar y accionar** | **PROYECTO DE MEDIO SEMESTRE**: análisis RFM+P con recomendación comercial por segmento. Se entrega durante el receso. DataCamp: Unsupervised Learning in Python. |
+| 11 | 21-sep-2026 | Lunes | 6-7 | II · Analizar con IA | **Qué es la IA y cómo pedirle las cosas** | Práctica «Hagamos prompts». |
+| 12 | 23-sep-2026 | Miércoles | 6-7 | II · Analizar con IA | **Un asistente que trabaja sobre una carpeta (Antigravity)** | Desafío Antigravity. |
+| 13 | 28-sep-2026 | Lunes | 6-7 | II · Analizar con IA | **Caso Carolina I: reconocer el terreno** | — |
+| 14 | 30-sep-2026 | Miércoles | 6-7 | II · Analizar con IA | **Caso Carolina II: del cruce al comité** | **Deber 7**: caso Carolina (carpeta, Excel y presentación). Domingo 4-oct, 23h59. |
+| 15 | 05-oct-2026 | Lunes | 8 | II · Comunicar datos | **Del gráfico al tablero** | Lectura previa: Storytelling con datos (Knaflic). |
+| 16 | 07-oct-2026 | Miércoles | 8 | II · Comunicar datos | **Tablero con IA y lanzamiento del proyecto de medio semestre** | Tablero de una pregunta gerencial. **PROYECTO DE MEDIO SEMESTRE**: RFM+P con Antigravity, entrega domingo 18-oct, 23h59. |
 | — | 12-oct-2026 | Lunes | — | — | **RECESO** · Receso académico de medio semestre y Feriado Independencia de Guayaquil | — |
 | — | 14-oct-2026 | Miércoles | — | — | **RECESO** · Receso académico de medio semestre y Feriado Independencia de Guayaquil | — |
-| 17 | 19-oct-2026 | Lunes | 9 | III · Decidir con datos | **Comparado con qué** | Devolución del proyecto de medio semestre. |
-| 18 | 21-oct-2026 | Miércoles | 9 | III · Decidir con datos | **Pruebas estadísticas y diseño experimental** | **Deber 5**: diseño experimental de una página. |
-| 19 | 26-oct-2026 | Lunes | 10 | III · Decidir con datos | **De la eficiencia al modelo de negocio** | — |
-| 20 | 28-oct-2026 | Miércoles | 10 | III · Decidir con datos | **Customer journey map y service blueprint** | Journey map y blueprint anotados con los puntos de captura de datos. |
+| 17 | 19-oct-2026 | Lunes | 9 | Corte de medio semestre | **Quién es un cliente valioso** | Devolución del proyecto de medio semestre. |
+| 18 | 21-oct-2026 | Miércoles | 9 | Corte de medio semestre | **Segmentar, nombrar y accionar** | DataCamp: Unsupervised Learning in Python. |
+| 19 | 26-oct-2026 | Lunes | 10 | III · Decidir con datos | **Comparado con qué** | **Deber 8**: diseño experimental de una página. |
+| 20 | 28-oct-2026 | Miércoles | 10 | III · Decidir con datos | **Transformación digital, journey map y service blueprint** | Journey map y blueprint anotados con los puntos de captura de datos. |
 | — | 02-nov-2026 | Lunes | — | — | **FERIADO** · Feriado Día de Difuntos e Independencia de Cuenca | — |
 | 21 | 04-nov-2026 | Miércoles | 11 | III · Decidir con datos | **Semana comprimida · El mapa de los modelos y la ecuación de valor** | Evaluación intermedia sobre criterio de negocio. |
 | 22 | 09-nov-2026 | Lunes | 12 | IV · Predecir | **Una variable explica otra** | — |
-| 23 | 11-nov-2026 | Miércoles | 12 | IV · Predecir | **Pronóstico con línea base** | **Deber 6**: pronóstico con línea base declarada. DataCamp: Introduction to Regression with statsmodels. |
+| 23 | 11-nov-2026 | Miércoles | 12 | IV · Predecir | **Pronóstico con línea base** | **Deber 9**: pronóstico con línea base declarada. DataCamp: Introduction to Regression with statsmodels. |
 | 24 | 16-nov-2026 | Lunes | 13 | IV · Predecir | **Varias variables a la vez** | — |
 | 25 | 18-nov-2026 | Miércoles | 13 | IV · Predecir | **Modelo múltiple del negocio** | Avance de proyecto: modelo de pronóstico documentado. |
 | 26 | 23-nov-2026 | Lunes | 14 | IV · Predecir | **Probabilidad como recurso de focalización** | — |
-| 27 | 25-nov-2026 | Miércoles | 14 | IV · Predecir | **Focalización con presupuesto limitado** | **Deber 7**: recomendación de focalización con retorno esperado. DataCamp: Supervised Learning with scikit-learn. |
+| 27 | 25-nov-2026 | Miércoles | 14 | IV · Predecir | **Focalización con presupuesto limitado** | **Deber 10**: recomendación de focalización con retorno esperado. DataCamp: Supervised Learning with scikit-learn. |
 | 28 | 30-nov-2026 | Lunes | 15 | V · Responder por el modelo | **Un modelo aprende del pasado y reproduce sus desigualdades** | — |
 | 29 | 02-dic-2026 | Miércoles | 15 | V · Responder por el modelo | **Consultoría entre grupos** | Borrador completo del cuaderno reproducible. |
 | 30 | 07-dic-2026 | Lunes | 16 | V · Responder por el modelo | **Presentaciones finales · primera mitad** | **Proyecto final**: recomendación de una página y cuaderno reproducible. |
@@ -139,89 +140,93 @@ Cada grupo formula tres preguntas de negocio y otro las responde con datos. Cons
 
 > Entrega: **Deber 3**: tabla de indicadores reproducible. DataCamp: Data Manipulation with pandas y Joining Data with pandas.
 
-### Semana 6 · Visualización de datos
+### Semanas 6 y 7 · Analizar datos con IA (bloque unificado)
 
-*matplotlib y seaborn* · Bloque II · Comunicar datos
+*Fundamentos de IA, prompting y Google Antigravity sobre una carpeta de trabajo* · Bloque II · Comunicar datos
 
-**Material del seminario de Python:** `S04-C2 · Visualizaciones · clase_08.ipynb (secciones 4-7)` · `Material Actual/Actividades Organizadas/99_Lecturas_y_Material_de_Apoyo/CONTEXTO - Storytelling con datos - Cole Nussbaumer Knaflic (1).pdf`
+**Ajuste del 29 de septiembre de 2026.** Las semanas 6 y 7 se dictaron como un solo bloque de talleres de IA para análisis de datos. La visualización y los tableros pasan a la semana 8, el RFM a la semana 9, y las semanas 9 y 10 originales se comprimen en la semana 10. Desde la semana 11 el calendario no cambia.
 
-**Sesión 11 · Lunes 21 de septiembre — Explorar, verificar y comunicar**
+**Material:** presentación *Fundamentos de IA* · páginas D2L de la unidad «Aprender a usar la IA» · caso Carolina (facturados y no entregados), cinco correos con sus ZIP.
 
-Cuarteto de Anscombe. Repertorio mínimo de gráficos, ejes, escalas y el título que lleva la conclusión. Reglas de honestidad visual.
+**Sesión 11 · Lunes 21 de septiembre — Qué es la IA y cómo pedirle las cosas**
+
+Qué es y cómo funciona la IA generativa, sus límites, sesgos y fecha de corte. Prompting con PTFC (persona, tarea, formato, contexto), iteración, metaprompting y encadenamiento.
+
+> Entrega: práctica «Hagamos prompts».
+
+**Sesión 12 · Miércoles 23 de septiembre — Un asistente que trabaja sobre una carpeta**
+
+Instalación de Google Antigravity. El marco de trabajo del curso: una carpeta por encargo con entradas, datos, procesamiento, salidas, archivo y contexto; el contexto se escribe una vez en `contexto/CONTEXTO.md`; se revisan los archivos y se aprueba un plan antes de ejecutar.
+
+> Entrega: desafío Antigravity (el viaje a Guadalajara).
+
+**Sesión 13 · Lunes 28 de septiembre — Caso Carolina I: reconocer el terreno**
+
+Correo 1. Inventario de los archivos de importaciones sin escribir código, primer `CONTEXTO.md` y primera base con una fila por VIN.
+
+**Sesión 14 · Miércoles 30 de septiembre — Caso Carolina II: del cruce al comité**
+
+Correos 2 a 5 en grupos. Ubicación de cada unidad, facturas vigentes, actas de entrega, fecha prometida y el Excel del comité. Cada etapa cierra con una salida parcial revisada contra los archivos originales.
+
+> Entrega: **Deber 7**: caso Carolina. Carpeta de trabajo, Excel del comité y presentación de 6 a 8 láminas. Domingo 4 de octubre, 23h59.
+
+### Semana 8 · Visualización y tableros con IA
+
+*Gráficos honestos y tablero construido con Antigravity (Plotly o Streamlit)* · Bloque II · Comunicar datos
+
+**Material del seminario de Python:** `S04-C2 · Visualizaciones · clase_08.ipynb (secciones 4-7)` · `S08-C1 · Dashboards con Streamlit · clase_15.ipynb` · `Material Actual/Actividades Organizadas/99_Lecturas_y_Material_de_Apoyo/CONTEXTO - Storytelling con datos - Cole Nussbaumer Knaflic (1).pdf`
+
+**Sesión 15 · Lunes 5 de octubre — Del gráfico al tablero**
+
+Cuarteto de Anscombe, repertorio mínimo de gráficos y el título que lleva la conclusión. Reglas de honestidad visual. Jerarquía, interactividad y qué se elimina; fondo blanco y nada de decoración. Clínica de rediseño corta sobre los gráficos del caso Carolina.
 
 > Entrega: Lectura previa: Storytelling con datos (Knaflic).
 
-**Sesión 12 · Miércoles 23 de septiembre — Clínica de rediseño**
+**Sesión 16 · Miércoles 7 de octubre — Construcción del tablero con IA y lanzamiento del proyecto de medio semestre**
 
-matplotlib y seaborn. Cada grupo toma un gráfico malo publicado y lo rediseña justificando cada cambio.
+Cada grupo pide a Antigravity, desde su carpeta, un tablero que conteste una pregunta gerencial, lo revisa contra los datos y recibe fuego cruzado. Últimos 25 minutos: presentación del proyecto de medio semestre y de RFM+P en lo esencial.
 
-> Entrega: **Deber 4**: tres gráficos anotados del negocio. DataCamp: Introduction to Data Visualization with Matplotlib.
-
-### Semana 7 · Visualización avanzada y tableros
-
-*Plotly y Streamlit* · Bloque II · Comunicar datos
-
-**Material del seminario de Python:** `S08-C1 · Dashboards con Streamlit · clase_15.ipynb`
-
-**Sesión 13 · Lunes 28 de septiembre — Del gráfico al tablero**
-
-Interactividad, jerarquía visual y qué se elimina. Fondo blanco y ausencia de decoración. El estado de resultados contado a no financieros.
-
-**Sesión 14 · Miércoles 30 de septiembre — Construcción del tablero del proyecto**
-
-Plotly y Streamlit. Cada grupo contesta una pregunta gerencial con su tablero y recibe fuego cruzado.
-
-> Entrega: Tablero interactivo entregado dentro del cuaderno.
-
-### Semana 8 · ¿Quiénes son mis clientes y cuánto valen?
-
-*pandas: qcut, quantile, groupby para RFM+P. KMeans y StandardScaler como contraste* · Bloque Corte de medio semestre
-
-**Material del seminario de Python:** `casos/Caso_01_Segmentacion_Clientes_Retail.md` · `casos/Entregable_Intermedio_Mitad_Seminario.md`
-
-**Sesión 15 · Lunes 5 de octubre — Quién es un cliente valioso**
-
-Recencia, frecuencia, monto y margen. Los tres requisitos de un segmento útil: accionable, medible y estable.
-
-**Sesión 16 · Miércoles 7 de octubre — Segmentar, nombrar y accionar**
-
-qcut y groupby para el puntaje RFM+P. Nombrar los segmentos y escribir el mensaje comercial de cada uno. KMeans con RobustScaler como contraste: la máquina encuentra los segmentos que el grupo definió a mano.
-
-> Entrega: **PROYECTO DE MEDIO SEMESTRE**: análisis RFM+P con recomendación comercial por segmento. Se entrega durante el receso. DataCamp: Unsupervised Learning in Python.
+> Entrega: tablero de una pregunta gerencial en `salidas/`. DataCamp: Introduction to Data Visualization with Matplotlib.
 
 ### Semana de calendario 9 · receso académico
 
-**9 al 18 de octubre.** Receso de medio semestre y feriado de Independencia de Guayaquil. Las dos sesiones afectadas son el lunes 12 y el miércoles 14. Ventana de cierre del proyecto de medio semestre.
+**9 al 18 de octubre.** Receso de medio semestre y feriado de Independencia de Guayaquil. Las dos sesiones afectadas son el lunes 12 y el miércoles 14. Ventana de trabajo del proyecto de medio semestre.
 
-### Semana 9 · Comparación, variabilidad y causalidad
+> Entrega: **PROYECTO DE MEDIO SEMESTRE**: segmentación RFM+P de Comercial Andina hecha con Antigravity, con recomendación comercial por segmento. Domingo 18 de octubre, 23h59.
 
-*crosstab y scipy.stats: prueba t, chi cuadrado, ANOVA. Diseño de pruebas A/B* · Bloque III · Decidir con datos
+### Semana 9 · ¿Quiénes son mis clientes y cuánto valen?
 
-**Material del seminario de Python:** `S07-C2 · Hipótesis y pruebas estadísticas · clase_14.ipynb`
+*RFM+P, qcut, quantile y groupby. KMeans y RobustScaler como contraste* · Bloque Corte de medio semestre
 
-**Sesión 17 · Lunes 19 de octubre — Comparado con qué**
+**Material del seminario de Python:** `casos/Caso_01_Segmentacion_Clientes_Retail.md` · `casos/Entregable_Intermedio_Mitad_Seminario.md`
 
-Ruido frente a señal, regresión a la media, variables de confusión y causalidad inversa. Caso: los clientes del programa de fidelidad gastan el doble.
+**Sesión 17 · Lunes 19 de octubre — Quién es un cliente valioso**
+
+Recencia, frecuencia, monto y margen. Los tres requisitos de un segmento útil: accionable, medible y estable. La clase se arma sobre los segmentos que entregaron los grupos.
 
 > Entrega: Devolución del proyecto de medio semestre.
 
-**Sesión 18 · Miércoles 21 de octubre — Pruebas estadísticas y diseño experimental**
+**Sesión 18 · Miércoles 21 de octubre — Segmentar, nombrar y accionar**
 
-Prueba t, chi cuadrado y ANOVA sobre la base del proyecto. Diseño de una prueba A y B ejecutable, con unidad de asignación, duración y presupuesto.
+Revisión cruzada de los segmentos y de sus mensajes comerciales. KMeans con RobustScaler como contraste: la máquina encuentra los segmentos que el grupo definió con reglas.
 
-> Entrega: **Deber 5**: diseño experimental de una página.
+> Entrega: DataCamp: Unsupervised Learning in Python.
 
-### Semana 10 · Estrategia, transformación digital y experiencia del cliente
+### Semana 10 · Decidir con datos: comparación y experiencia del cliente
 
-*Customer journey map, service blueprint y diagnóstico de madurez digital* · Bloque III · Decidir con datos
+*Semanas 9 y 10 originales, comprimidas* · Bloque III · Decidir con datos
 
-**Sesión 19 · Lunes 26 de octubre — De la eficiencia al modelo de negocio**
+**Material del seminario de Python:** `S07-C2 · Hipótesis y pruebas estadísticas · clase_14.ipynb`
 
-Qué es transformación digital y qué es solamente comprar software. Madurez digital y dónde se rompe la experiencia del cliente.
+**Sesión 19 · Lunes 26 de octubre — Comparado con qué**
 
-**Sesión 20 · Miércoles 28 de octubre — Customer journey map y service blueprint**
+Ruido frente a señal, regresión a la media, variables de confusión y causalidad inversa. Prueba t y chi cuadrado pedidas a Antigravity y leídas con criterio. Diseño de una prueba A y B ejecutable.
 
-Mapa del proceso del negocio del proyecto. Sobre el blueprint se marca dónde nace cada dato y qué decisión se toma hoy a ciegas.
+> Entrega: **Deber 8**: diseño experimental de una página.
+
+**Sesión 20 · Miércoles 28 de octubre — Transformación digital, journey map y service blueprint**
+
+Qué es transformación digital y qué es solamente comprar software. Mapa del proceso del negocio del proyecto y, sobre el blueprint, dónde nace cada dato y qué decisión se toma hoy a ciegas.
 
 > Entrega: Journey map y blueprint anotados con los puntos de captura de datos.
 
@@ -251,7 +256,7 @@ Mínimos cuadrados, lectura del coeficiente en unidades del negocio y error de p
 
 LinearRegression y DummyRegressor sobre los datos del proyecto. Primero la regla ingenua, luego la regresión, y comparación honesta entre ambas con error porcentual.
 
-> Entrega: **Deber 6**: pronóstico con línea base declarada. DataCamp: Introduction to Regression with statsmodels.
+> Entrega: **Deber 9**: pronóstico con línea base declarada. DataCamp: Introduction to Regression with statsmodels.
 
 ### Semana 13 · Modelos de pronóstico II. Regresión múltiple y diagnóstico
 
@@ -283,7 +288,7 @@ Matriz de confusión traducida a dinero. El umbral como palanca gerencial. Clase
 
 LogisticRegression y DecisionTreeClassifier. Si solo alcanza para el veinte por ciento de la cartera, a quiénes y por qué.
 
-> Entrega: **Deber 7**: recomendación de focalización con retorno esperado. DataCamp: Supervised Learning with scikit-learn.
+> Entrega: **Deber 10**: recomendación de focalización con retorno esperado. DataCamp: Supervised Learning with scikit-learn.
 
 ### Semana 15 · De la predicción a la decisión. Ética y gobernanza del dato
 
@@ -323,20 +328,25 @@ Diez minutos de exposición y diez de preguntas ante panel. Evaluación docente 
 
 | Momento | Fecha | Entregable |
 |---|---|---|
-| Semana 2 · miércoles | 26-ago-2026 | Deber 1 · ficha de análisis |
-| Semana 4 · miércoles | 09-sep-2026 | Deber 2 · bitácora de limpieza y propuesta de proyecto |
-| Semana 5 · miércoles | 16-sep-2026 | Deber 3 · tabla de indicadores |
-| Semana 6 · miércoles | 23-sep-2026 | Deber 4 · tres gráficos anotados |
-| Semana 7 · miércoles | 30-sep-2026 | Tablero interactivo |
-| **Semana 8 · miércoles** | **07-oct-2026** | **Proyecto de medio semestre · RFM+P** (se cierra durante el receso) |
-| Semana 9 · miércoles | 21-oct-2026 | Deber 5 · diseño experimental |
+| Semana 1 | 19-ago-2026 | Deber 1 · Prepara tu pregunta (New Coke) |
+| Semana 2 · jueves | 27-ago-2026 | Deber 2 · Cuestionario de Big Data |
+| Semana 4 · viernes | 11-sep-2026 | Deber 3 · Caso María: taller de estadística en Superstore |
+| Semana 5 · lunes | 14-sep-2026 | Deber 4 · Datos vacíos de cliente |
+| Semana 6 · viernes | 18-sep-2026 | Deber 5 · Hagamos prompts |
+| Semana 6-7 · miércoles | 23-sep-2026 | Deber 6 · Desafío Antigravity: el viaje a Guadalajara |
+| Semana 6-7 · domingo | 04-oct-2026 | Deber 7 · Caso Carolina |
+| Semana 8 · miércoles | 07-oct-2026 | Tablero de una pregunta gerencial (taller) |
+| **Receso · domingo** | **18-oct-2026** | **Proyecto de medio semestre · RFM+P con Antigravity** |
+| Semana 10 · lunes | 26-oct-2026 | Deber 8 · diseño experimental |
 | Semana 10 · miércoles | 28-oct-2026 | Journey map y blueprint anotados |
 | Semana 11 · miércoles | 04-nov-2026 | Evaluación intermedia sobre criterio de negocio |
-| Semana 12 · miércoles | 11-nov-2026 | Deber 6 · pronóstico con línea base |
+| Semana 12 · miércoles | 11-nov-2026 | Deber 9 · pronóstico con línea base |
 | Semana 13 · miércoles | 18-nov-2026 | Avance de proyecto · modelo documentado |
-| Semana 14 · miércoles | 25-nov-2026 | Deber 7 · recomendación de focalización |
+| Semana 14 · miércoles | 25-nov-2026 | Deber 10 · recomendación de focalización |
 | Semana 15 · miércoles | 02-dic-2026 | Borrador del cuaderno reproducible |
 | Semana 16 · lunes y miércoles | 07 y 09-dic-2026 | Proyecto final y evaluación 360 |
+
+La numeración de los deberes 1 a 7 es la que está en D2L (ajuste del 29-sep-2026). Estructura de la nota en D2L: Participación 25 %, Deberes 25 % (todos pesan igual), Evaluaciones y certificaciones 25 % (por puntos: evaluación intermedia 10 y ocho certificaciones que suman 30) y Proyectos 25 % (medio semestre 40 y final 60).
 
 Quince entregables calificados repartidos en quince semanas. Todos caen en miércoles salvo el proyecto final, que se defiende el lunes 7 y el miércoles 9 de diciembre. Dos merecen atención: el proyecto de medio semestre se cierra durante el receso, y la evaluación intermedia del 4 de noviembre cae en la semana del feriado, en la única sesión que tiene esa semana.
 

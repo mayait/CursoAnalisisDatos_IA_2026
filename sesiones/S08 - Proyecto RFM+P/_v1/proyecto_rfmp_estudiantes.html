@@ -1,0 +1,145 @@
+<meta charset="utf-8">
+<title>Proyecto RFM+P Superstore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Enunciado de una columna: el caso, cómo funciona, cuatro entregas y las reglas. Fondo blanco siempre. */
+
+:root {
+  --bg: #ffffff; --ink: #1e1e1e; --mute: #6b6b6b; --line: #e6e2df; --acc: #A6192E; --wash: #f7f4f3;
+  --f-display: "Source Serif 4", Georgia, serif;
+  --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: var(--f-body); font-size: 16.5px; line-height: 1.6; }
+.wrap { max-width: 900px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 90px; }
+.prose { max-width: 66ch; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); }
+h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(30px, 5vw, 42px); line-height: 1.1; margin: 8px 0 14px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 26px; line-height: 1.2; margin: 52px 0 10px; text-wrap: balance; }
+h3 { font-size: 16px; font-weight: 600; margin: 22px 0 6px; }
+p { margin: 0 0 12px; }
+header.top { border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+.lede { font-size: 18px; }
+code { font-family: var(--f-mono); font-size: .88em; background: var(--wash); padding: 1px 5px; }
+.scroll { overflow-x: auto; margin: 12px 0 18px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+th { text-align: left; font-size: 12px; font-weight: 600; color: var(--mute); border-bottom: 1.5px solid var(--ink); padding: 8px 12px 6px 0; }
+td { border-bottom: 1px solid var(--line); padding: 9px 12px 9px 0; vertical-align: top; }
+.qid { font-family: var(--f-mono); font-size: 12px; color: var(--acc); white-space: nowrap; }
+.mono { font-family: var(--f-mono); font-size: 13px; }
+.avz { font-family: var(--f-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--acc); border: 1px solid currentColor; padding: 0 5px; margin-left: 6px; white-space: nowrap; }
+.entrega { border-top: 1px solid var(--line); margin-top: 44px; padding-top: 8px; scroll-margin-top: 20px; }
+.eh { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 16px; align-items: start; }
+.big { font-family: var(--f-display); font-size: 56px; font-weight: 600; color: var(--acc); line-height: 1; margin-top: 30px; }
+.eh h2 { margin-top: 34px; }
+ol.pasos { margin: 6px 0 14px; padding-left: 22px; max-width: 66ch; }
+ol.pasos li { margin-bottom: 6px; }
+.box { background: var(--wash); padding: 14px 18px; margin: 14px 0; max-width: 72ch; }
+.box p:last-child { margin-bottom: 0; }
+.mapa { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 26px 0 8px; }
+.mapa a { display: block; border-top: 3px solid var(--ink); padding-top: 10px; color: var(--ink); text-decoration: none; min-width: 0; }
+.mapa a:hover .mt, .mapa a:focus-visible .mt { color: var(--acc); }
+.mapa a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
+.mn { font-family: var(--f-display); font-size: 30px; font-weight: 600; color: var(--acc); line-height: 1; }
+.mt { font-weight: 600; margin-top: 4px; }
+.md { font-size: 13.5px; color: var(--mute); margin-top: 2px; }
+button.copiar { font: inherit; font-size: 13.5px; background: var(--bg); color: var(--ink); border: 1px solid var(--ink); padding: 5px 12px; cursor: pointer; }
+button.copiar:hover, button.copiar:focus-visible { color: var(--acc); border-color: var(--acc); outline: none; }
+pre { background: var(--wash); padding: 14px 16px; overflow-x: auto; font-family: var(--f-mono); font-size: 12.5px; line-height: 1.5; max-height: 320px; }
+.src { font-size: 13.5px; color: var(--mute); }
+.src a { color: var(--ink); }
+@media (max-width: 720px) { .mapa { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .eh { grid-template-columns: minmax(0, 1fr); } .big { margin-top: 24px; font-size: 42px; } .eh h2 { margin-top: 4px; } }
+
+</style>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">ADM 2003 · Análisis de Datos · Proyecto de medio semestre</div>
+  <h1>Proyecto RFM+P: ¿qué clientes cuidar en Superstore?</h1>
+  <p class="lede prose">Superstore vende muebles, suministros de oficina y tecnología en Estados Unidos. Tiene 793 clientes y cuatro años de historia en <code>superstore_2026.csv</code>. La gerencia comercial necesita responder tres preguntas: a qué clientes cuidar primero, a quiénes vale la pena recuperar y con quiénes está perdiendo plata. Ustedes las van a responder con un análisis RFM+P.</p>
+</header>
+
+<h2>RFM+P en pocas palabras</h2>
+<div class="prose">
+<p>A cada cliente se le miden cuatro cosas. <b>R</b>, recencia: cuántos días pasaron desde su última compra. <b>F</b>, frecuencia: cuántos pedidos hizo. <b>M</b>, monto: cuánto compró en total. <b>P</b>, utilidad: cuánto ganó la empresa con él. Con esas cuatro medidas se arman grupos de clientes parecidos y se decide qué hacer con cada grupo.</p>
+<p>Las tres primeras son el RFM clásico del marketing. La P es la que agregamos en este curso, porque en Superstore hay clientes que compran mucho y dejan pérdidas.</p>
+</div>
+
+<h2>Cómo funciona el proyecto</h2>
+<div class="prose">
+<p>El trabajo es en grupo y tiene cuatro entregas. Las tres primeras son puntos de control: las revisamos en clase con las preguntas de control. Si sus números coinciden, siguen adelante. Si no coinciden, encuentran el error antes de avanzar, que es mucho más barato que encontrarlo al final. La cuarta entrega es el informe con la defensa oral del grupo.</p>
+</div>
+<nav class="mapa" aria-label="Entregas"><a href="#entrega-1"><div class="mn">1</div><div class="mt">Conocer la base</div><div class="md">La base y su calidad</div></a><a href="#entrega-2"><div class="mn">2</div><div class="mt">La tabla RFM+P</div><div class="md">Una fila por cliente</div></a><a href="#entrega-3"><div class="mn">3</div><div class="mt">Segmentos y utilidad</div><div class="md">Grupos con nombre y la P</div></a><a href="#entrega-4"><div class="mn">4</div><div class="mt">Informe final y defensa</div><div class="md">Causas, acciones y defensa</div></a></nav>
+
+<h2>Los clientes testigo</h2>
+<div class="prose">
+<p>Durante todo el proyecto van a seguir a seis clientes. Cada uno tiene algo particular que pone a prueba una parte del cálculo. Sus números son la forma más rápida de saber si van bien, para ustedes y para mí.</p>
+</div>
+<div class="scroll"><table><thead><tr><th>ID</th><th>Cliente</th><th>Por qué lo seguimos</th></tr></thead><tbody><tr><td class="mono">AB-10105</td><td>Adrian Barton</td><td>Compra muchos productos por pedido.</td></tr><tr><td class="mono">SM-20320</td><td>Sean Miller</td><td>El que más compra en toda la base.</td></tr><tr><td class="mono">LB-16795</td><td>Laurel Beltran</td><td>Tiene la fila duplicada.</td></tr><tr><td class="mono">BP-11185</td><td>Ben Peterman</td><td>Su último pedido todavía estaba en tránsito.</td></tr><tr><td class="mono">AD-10180</td><td>Alan Dominguez</td><td>Cambia de segmento según cómo se califique.</td></tr><tr><td class="mono">AH-10690</td><td>Anna Häberlin</td><td>Muy valiosa y lleva más de un año sin comprar.</td></tr></tbody></table></div>
+
+<section class="entrega" id="entrega-1"><div class="eh"><div class="big">1</div><div><h2>Conocer la base</h2><p class="prose">Antes de medir clientes hay que saber qué es cada fila. Casi todos los errores de este proyecto nacen aquí.</p></div></div><h3>Qué hacen</h3><ol class="pasos"><li>Escriban en un párrafo la pregunta de negocio que van a responder.</li><li>Describan la base: cuántas filas, pedidos y clientes, qué periodo cubre y qué representa una fila.</li><li>Revisen la calidad: tipos de datos, nulos, duplicados, fechas raras. Anoten cada problema y qué decidieron hacer con él.</li></ol><h3>Qué entregan</h3><p class="prose">El cuaderno con la ficha de la base, la bitácora de limpieza y las respuestas de control de esta entrega.</p><h3>Preguntas de control</h3><p class="prose">Respondan con el número, no con un párrafo.</p><div class="scroll"><table><thead><tr><th>#</th><th>Pregunta</th></tr></thead><tbody><tr><td class="qid">1.1</td><td>¿Cuántas líneas, pedidos y clientes tiene la base?</td></tr><tr><td class="qid">1.2</td><td>¿Cuántas líneas tiene el pedido CA-2026-100111?</td></tr><tr><td class="qid">1.3</td><td>¿En cuántos pedidos distintos compró Adrian Barton (AB-10105) y cuántas líneas tiene?</td></tr><tr><td class="qid">1.4</td><td>¿Cuántas filas duplicadas encontraron? ¿En qué pedido?</td></tr><tr><td class="qid">1.5</td><td>¿Cuántas líneas tienen fecha de envío posterior al último pedido registrado?</td></tr></tbody></table></div></section><section class="entrega" id="entrega-2"><div class="eh"><div class="big">2</div><div><h2>La tabla RFM+P</h2><p class="prose">Aquí la base pasa de líneas a clientes. Si esta tabla está bien, el resto del proyecto se apoya en terreno firme.</p></div></div><h3>Qué hacen</h3><ol class="pasos"><li>Elijan la fecha de referencia y expliquen por qué.</li><li>Construyan una tabla con una fila por cliente y cuatro columnas: R, F, M y P. Escriban cómo calcularon cada una.</li><li>Miren las distribuciones de las cuatro métricas antes de seguir. Una gráfica por métrica y dos líneas de lectura.</li></ol><h3>Qué entregan</h3><p class="prose">La tabla de clientes, las gráficas de distribución y las respuestas de control.</p><h3>Preguntas de control</h3><p class="prose">Respondan con el número, no con un párrafo.</p><div class="scroll"><table><thead><tr><th>#</th><th>Pregunta</th></tr></thead><tbody><tr><td class="qid">2.1</td><td>¿Qué fecha de referencia usaron?</td></tr><tr><td class="qid">2.2</td><td>¿Cuánto les dio R, F, M y P de Adrian Barton (AB-10105)?</td></tr><tr><td class="qid">2.3</td><td>¿Cuánto les dio la R de Ben Peterman (BP-11185)?</td></tr><tr><td class="qid">2.4</td><td>¿Cuánto les dio M y P de Laurel Beltran (LB-16795)?</td></tr><tr><td class="qid">2.5</td><td>¿Cuál es la mediana de R y cuánto suma P en toda la base?</td></tr><tr><td class="qid">2.6</td><td>¿Cuántos clientes tienen utilidad total negativa?</td></tr></tbody></table></div></section><section class="entrega" id="entrega-3"><div class="eh"><div class="big">3</div><div><h2>Segmentos y utilidad</h2><p class="prose">Los números se convierten en grupos con nombre. La P es la que muestra que vender no es lo mismo que ganar.</p></div></div><h3>Qué hacen</h3><ol class="pasos"><li>Califiquen cada métrica de 1 a 5 por quintiles. Recuerden que en R menos días es mejor. Expliquen cómo resolvieron los empates.</li><li>Agrupen las combinaciones en segmentos con nombre y publiquen las reglas. Comprueben que cada nombre describe de verdad a sus clientes.</li><li>Crucen los segmentos con la utilidad: cuánto aporta cada uno, cuántos clientes pierden plata y dónde están.</li><li>Repitan la calificación dentro de cada segmento comercial (Consumidor, Corporativo, Oficina en casa) y expliquen cuándo sirve cada versión.</li></ol><h3>Qué entregan</h3><p class="prose">Tabla de segmentos con tamaño, % de ventas, % de utilidad y margen, el mapa de reglas y las respuestas de control.</p><h3>Preguntas de control</h3><p class="prose">Respondan con el número, no con un párrafo.</p><div class="scroll"><table><thead><tr><th>#</th><th>Pregunta</th></tr></thead><tbody><tr><td class="qid">3.1</td><td>¿Qué puntajes r, f, m y p tiene Adrian Barton?</td></tr><tr><td class="qid">3.2</td><td>Sean Miller tiene F = 5. ¿Qué puntaje f le tocó y por qué?</td></tr><tr><td class="qid">3.3</td><td>¿En qué segmento quedan Ben Peterman, Anna Häberlin y Laurel Beltran?</td></tr><tr><td class="qid">3.4</td><td>¿Cuántos Campeones tienen y qué porcentaje de la utilidad aportan?</td></tr><tr><td class="qid">3.5</td><td>¿En qué puesto de ventas está Sean Miller y cuánto les dio su P?</td></tr><tr><td class="qid">3.6</td><td>¿Cuántos clientes con m = 5 tienen utilidad negativa?</td></tr><tr><td class="qid">3.7</td><td>¿Qué porcentaje de la utilidad aporta el 20 % de clientes más rentable?</td></tr><tr><td class="qid">3.8</td><td>¿En qué segmento queda Alan Dominguez (AD-10180) calificando sobre toda la base y calificando solo dentro de Oficina en casa?</td></tr><tr><td class="qid">3.9</td><td>¿Cuántos clientes de Oficina en casa tienen m = 5 en cada versión?</td></tr></tbody></table></div></section><section class="entrega" id="entrega-4"><div class="eh"><div class="big">4</div><div><h2>Informe final y defensa</h2><p class="prose">El cierre explica por qué pasa lo que encontraron y qué haría la gerencia con eso.</p></div></div><h3>Qué hacen</h3><ol class="pasos"><li>Bajen de cliente a línea para explicar la utilidad negativa: descuento, subcategoría y estado.</li><li>Escriban por cada segmento una acción, un mensaje comercial de una frase y la métrica que diría si funcionó.</li><li>Cierren con las limitaciones del análisis y el prompt final que usaron con la IA.</li><li>Para nota sobresaliente: repitan el RFM+P en cortes de 12 meses (septiembre a agosto) para ver cómo se mueven los clientes, o contrasten con KMeans.</li></ol><h3>Qué entregan</h3><p class="prose">Informe en el cuaderno, con las respuestas de control al inicio. Defensa oral del grupo.</p><h3>Preguntas de control</h3><p class="prose">Respondan con el número, no con un párrafo.</p><div class="scroll"><table><thead><tr><th>#</th><th>Pregunta</th></tr></thead><tbody><tr><td class="qid">4.1</td><td>¿Cuál es la peor línea de Laurel Beltran (utilidad, subcategoría y descuento) y cuánto sería su P sin ella?</td></tr><tr><td class="qid">4.2</td><td>¿Qué porcentaje de los clientes con pérdida sería rentable sin su peor línea?</td></tr><tr><td class="qid">4.3</td><td>¿Cuánta utilidad dejan, en total, las líneas con descuento mayor a 20 %? ¿Cuántas son?</td></tr><tr><td class="qid">4.4</td><td>¿Cuánta utilidad suman los segmentos En riesgo y No se pueden perder?</td></tr><tr><td class="qid">4.5</td><td>Al corte del 30-ago-2026, con ventana de 12 meses, ¿cuánto les dio R y F de Anna Häberlin? ¿En qué segmento queda?<span class=avz>opcional</span></td></tr><tr><td class="qid">4.6</td><td>¿Cuánto les dio la P de Laurel Beltran en las ventanas que cierran el 30-ago-2025 y el 30-ago-2026?<span class=avz>opcional</span></td></tr><tr><td class="qid">4.7</td><td>¿Qué porcentaje de clientes conserva su segmento entre esos dos cortes?<span class=avz>opcional</span></td></tr><tr><td class="qid">4.8</td><td>Con KMeans y k = 4 sobre variables transformadas, ¿qué silueta obtienen?<span class=avz>opcional</span></td></tr></tbody></table></div></section>
+
+<h2>Las respuestas de control en su cuaderno</h2>
+<div class="prose">
+<p>Pongan esta tabla al inicio del cuaderno y llénenla a medida que avanzan. Es lo primero que voy a mirar en cada revisión. Las preguntas marcadas como opcionales son para quienes buscan la nota más alta.</p>
+</div>
+<p><button type="button" class="copiar" id="copiar">Copiar plantilla</button> <span id="copiado" class="src" role="status"></span></p>
+<pre id="plantilla">## Respuestas de control
+
+| # | Pregunta | Respuesta |
+|---|---|---|
+| 1.1 | ¿Cuántas líneas, pedidos y clientes tiene la base? | |
+| 1.2 | ¿Cuántas líneas tiene el pedido CA-2026-100111? | |
+| 1.3 | ¿En cuántos pedidos distintos compró Adrian Barton (AB-10105) y cuántas líneas tiene? | |
+| 1.4 | ¿Cuántas filas duplicadas encontraron? ¿En qué pedido? | |
+| 1.5 | ¿Cuántas líneas tienen fecha de envío posterior al último pedido registrado? | |
+| 2.1 | ¿Qué fecha de referencia usaron? | |
+| 2.2 | ¿Cuánto les dio R, F, M y P de Adrian Barton (AB-10105)? | |
+| 2.3 | ¿Cuánto les dio la R de Ben Peterman (BP-11185)? | |
+| 2.4 | ¿Cuánto les dio M y P de Laurel Beltran (LB-16795)? | |
+| 2.5 | ¿Cuál es la mediana de R y cuánto suma P en toda la base? | |
+| 2.6 | ¿Cuántos clientes tienen utilidad total negativa? | |
+| 3.1 | ¿Qué puntajes r, f, m y p tiene Adrian Barton? | |
+| 3.2 | Sean Miller tiene F = 5. ¿Qué puntaje f le tocó y por qué? | |
+| 3.3 | ¿En qué segmento quedan Ben Peterman, Anna Häberlin y Laurel Beltran? | |
+| 3.4 | ¿Cuántos Campeones tienen y qué porcentaje de la utilidad aportan? | |
+| 3.5 | ¿En qué puesto de ventas está Sean Miller y cuánto les dio su P? | |
+| 3.6 | ¿Cuántos clientes con m = 5 tienen utilidad negativa? | |
+| 3.7 | ¿Qué porcentaje de la utilidad aporta el 20 % de clientes más rentable? | |
+| 3.8 | ¿En qué segmento queda Alan Dominguez (AD-10180) calificando sobre toda la base y calificando solo dentro de Oficina en casa? | |
+| 3.9 | ¿Cuántos clientes de Oficina en casa tienen m = 5 en cada versión? | |
+| 4.1 | ¿Cuál es la peor línea de Laurel Beltran (utilidad, subcategoría y descuento) y cuánto sería su P sin ella? | |
+| 4.2 | ¿Qué porcentaje de los clientes con pérdida sería rentable sin su peor línea? | |
+| 4.3 | ¿Cuánta utilidad dejan, en total, las líneas con descuento mayor a 20 %? ¿Cuántas son? | |
+| 4.4 | ¿Cuánta utilidad suman los segmentos En riesgo y No se pueden perder? | |
+| 4.5 | Al corte del 30-ago-2026, con ventana de 12 meses, ¿cuánto les dio R y F de Anna Häberlin? ¿En qué segmento queda? (opcional) | |
+| 4.6 | ¿Cuánto les dio la P de Laurel Beltran en las ventanas que cierran el 30-ago-2025 y el 30-ago-2026? (opcional) | |
+| 4.7 | ¿Qué porcentaje de clientes conserva su segmento entre esos dos cortes? (opcional) | |
+| 4.8 | Con KMeans y k = 4 sobre variables transformadas, ¿qué silueta obtienen? (opcional) | |</pre>
+
+<h2>Sobre el uso de IA</h2>
+<div class="prose">
+<p>Pueden usar IA en todo el proyecto, y les va a ahorrar tiempo con el código. Tres condiciones. Los números del informe salen de su cuaderno, no del chat; si la IA les da una cifra, verifíquenla con los clientes testigo. Cada decisión (qué hicieron con el duplicado, cómo resolvieron los empates, qué fecha de referencia usaron) la explican con sus palabras. Y al final del cuaderno va el prompt final que usaron.</p>
+<p>En la defensa cualquier integrante del grupo puede recibir cualquier pregunta, y se responde sin leer. Por ejemplo: ¿por qué Sean Miller no es un buen cliente si es el que más compra?</p>
+</div>
+
+<h2>Qué cuenta en la nota</h2>
+<div class="prose">
+<p>Cuatro cosas, en este orden de importancia. Que los números sean correctos, y eso se ve en las respuestas de control. Que las decisiones estén escritas y justificadas. Que los hallazgos usen la utilidad y no solo las ventas. Y que las recomendaciones sean concretas para Superstore, no consejos que servirían para cualquier tienda, y que puedan defenderlas.</p>
+</div>
+</div>
+<script>
+(function () {
+  var b = document.getElementById('copiar'), pre = document.getElementById('plantilla'), msg = document.getElementById('copiado');
+  function seleccionar() { var r = document.createRange(); r.selectNodeContents(pre); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  b.addEventListener('click', function () {
+    var t = pre.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(function () { msg.textContent = 'Copiada. Péguenla en una celda de texto del cuaderno.'; },
+        function () { seleccionar(); msg.textContent = 'Texto seleccionado. Cópienlo con Ctrl+C o Cmd+C.'; });
+    } else { seleccionar(); msg.textContent = 'Texto seleccionado. Cópienlo con Ctrl+C o Cmd+C.'; }
+  });
+})();
+</script>

@@ -1,0 +1,53 @@
+{
+ "v": 4,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-05T14:18:12Z"
+ },
+ "lists": "css",
+ "title": "RFM+P Superstore",
+ "order": [
+  "cover",
+  "crisp",
+  "historia",
+  "letras",
+  "rosa",
+  "notas",
+  "grupos",
+  "por-que-p",
+  "etapas",
+  "etapa1",
+  "etapa2",
+  "etapa3",
+  "etapa4",
+  "ia",
+  "nota",
+  "empezar"
+ ],
+ "sections": {
+  "s1": {
+   "description": "Cómo trabajamos: el ciclo CRISP-DM conectado con las etapas",
+   "start": "cover"
+  },
+  "s2": {
+   "description": "RFM+P: qué mide y cómo se arma",
+   "start": "historia"
+  },
+  "s3": {
+   "description": "El trabajo: cuatro etapas con preguntas de control",
+   "start": "etapas"
+  }
+ },
+ "cover": "cover",
+ "faces": {
+  "rubik": {
+   "family": "Rubik",
+   "href": "https://fonts.googleapis.com/css2?family=Rubik:wght@400..700&display=swap"
+  },
+  "nunito-sans": {
+   "family": "Nunito Sans",
+   "href": "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap"
+  }
+ },
+ "designSystems": []
+}

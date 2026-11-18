@@ -19,3 +19,7 @@ _rescate_worktrees/
 *.m4a
 *.mp3
 *.wav
+
+# Claves locales (nunca se suben)
+.env
+.env.*

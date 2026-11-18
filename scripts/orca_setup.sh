@@ -34,6 +34,12 @@ if [ "$ROOT_DIR" != "$WORKTREE_DIR" ] && [ -d "$ROOT_DIR" ]; then
   done < <(git -C "$ROOT_DIR" ls-files --others --exclude-standard -z)
   echo "    $n archivos copiados"
 
+  # Claves locales (ignoradas por git): se copian con permisos restringidos.
+  if [ -f "$ROOT_DIR/.env" ] && [ ! -e "$WORKTREE_DIR/.env" ]; then
+    install -m 600 "$ROOT_DIR/.env" "$WORKTREE_DIR/.env"
+    echo ">>> .env copiado desde la raíz"
+  fi
+
   # 2. Grabaciones y transcripciones: enlace simbólico a la carpeta de la raíz.
   if [ -d "$ROOT_DIR/grabaciones" ] && [ ! -e "$WORKTREE_DIR/grabaciones" ]; then
     ln -s "$ROOT_DIR/grabaciones" "$WORKTREE_DIR/grabaciones"

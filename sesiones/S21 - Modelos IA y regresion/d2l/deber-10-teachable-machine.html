@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deber 10 &middot; Teachable Machine: un modelo para un problema de empresa</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1e1e1e;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:16px;line-height:1.6}
+.cab{background:#111;color:#fff;border-bottom:5px solid #A6192E;padding:22px 20px 18px}
+.cab .serie{font-size:13px;letter-spacing:.04em;color:#e8b4bc;margin:0 0 4px}
+.cab h1{margin:0;font-size:26px;line-height:1.25;font-weight:600}
+.cab .sub{margin:6px 0 0;color:#d6d6d6;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:8px 20px 40px}
+h2{color:#A6192E;font-size:21px;margin:38px 0 10px;padding-top:6px;border-top:1px solid #eee}
+h3{font-size:17px;margin:22px 0 6px}
+a{color:#A6192E}
+.indice{background:#faf6f7;border:1px solid #efdfe2;border-radius:6px;padding:12px 18px;margin:20px 0}
+.indice p{margin:0 0 6px;font-weight:600}
+.indice ol{margin:0;padding-left:20px}
+.volver{font-size:13px;margin:14px 0 0}
+.nota{border:1px solid #e3e3e3;border-left:4px solid #A6192E;border-radius:6px;padding:12px 16px;margin:16px 0;background:#fcfcfc}
+.nota b{color:#A6192E}
+.prompt{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;margin:10px 0 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre-wrap;line-height:1.5}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+th,td{border:1px solid #e1e1e1;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}
+td.num,th.num{text-align:right}
+.btn{display:inline-block;background:#A6192E;color:#fff !important;text-decoration:none;padding:7px 14px;border-radius:4px;font-size:14px;margin:4px 6px 4px 0}
+.check{list-style:none;padding-left:0}
+.check li{padding-left:26px;position:relative;margin:4px 0}
+.check li:before{content:'';position:absolute;left:2px;top:6px;width:13px;height:13px;border:2px solid #A6192E;border-radius:2px}
+.apuesta{border:1px solid #efdfe2;border-radius:6px;padding:12px 16px;margin:18px 0;position:relative}
+.apuesta .preg{font-weight:600;margin:0 0 6px}
+.apuesta input[type=radio]{position:absolute;opacity:0}
+.apuesta label{display:block;border:1px solid #ddd;border-radius:4px;padding:7px 10px;margin:6px 0;cursor:pointer}
+.apuesta input:checked + label{border-color:#A6192E;background:#faf6f7}
+.apuesta .fb,.apuesta .reveal{display:none}
+.apuesta input[type=text]{width:100%;border:1px solid #ccc;border-radius:4px;padding:8px 10px;font-size:15px;font-family:inherit;margin:6px 0}
+.apuesta input[type=text]:not(:placeholder-shown) ~ .reveal{display:block}
+.fb{margin:8px 0;padding:8px 12px;border-radius:4px;background:#f4f4f4}
+.reveal{margin-top:12px}
+.etapa{border:1px solid #e3e3e3;border-radius:6px;padding:4px 18px 12px;margin:18px 0}
+.etapa h3{color:#A6192E}
+.lab{font-size:13px;letter-spacing:.04em;color:#6b6b6b;margin:14px 0 2px;text-transform:uppercase}
+.decision{border:2px solid #A6192E;border-radius:6px;padding:10px 16px;margin:14px 0 6px;background:#fff}
+.decision p{margin:4px 0}
+.decision .q{font-size:18px;font-weight:700;color:#A6192E}
+.linea{border-left:3px solid #A6192E;padding:2px 0 2px 14px;margin:10px 0}
+.linea p{margin:2px 0}
+.linea .anio{font-weight:700;color:#A6192E}
+.pie{margin:40px 0 0;padding-top:12px;border-top:1px solid #eee;text-align:right;font-weight:600}
+</style></head>
+<body><header class="cab"><p class="serie">ADM 2003 &middot; An&aacute;lisis de Datos &middot; Semana 9 &middot; Modelos e inteligencia artificial</p><h1>Deber 10 &middot; Teachable Machine: un modelo para un problema de empresa</h1><p class="sub">Entrega grupal &middot; presentaci&oacute;n en vivo el mi&eacute;rcoles 4 de noviembre</p></header>
+<main><nav class="indice" id="indice"><p>En esta p&aacute;gina</p><ol><li><a href="#s1">Qu&eacute; hacen</a></li><li><a href="#s2">Etapa 1 &middot; El problema y la decisi&oacute;n</a></li><li><a href="#s3">Etapa 2 &middot; Los datos</a></li><li><a href="#s4">Etapa 3 &middot; Entrenar y buscar d&oacute;nde falla</a></li><li><a href="#s5">Etapa 4 &middot; La presentaci&oacute;n en vivo</a></li><li><a href="#s6">Qu&eacute; entregan</a></li></ol></nav>
+<h2 id="s1">Qu&eacute; hacen</h2><p>En grupo entrenan con Teachable Machine un modelo que resuelva un problema de empresa y lo presentan funcionando en vivo en la clase del mi&eacute;rcoles 4 de noviembre. Teachable Machine es una herramienta de Google que entrena un modelo en el navegador con ejemplos que t&uacute; grabas, sin escribir c&oacute;digo.</p><p><a class="btn" href="https://teachablemachine.withgoogle.com/" target="_blank">Abrir Teachable Machine</a></p><table><tr><th>Grupo</th><th>Tipo de proyecto</th></tr><tr><td>1</td><td>Imagen</td></tr><tr><td>2</td><td>Audio</td></tr><tr><td>3</td><td>Posturas</td></tr><tr><td>4</td><td>Imagen</td></tr><tr><td>5</td><td>Audio</td></tr></table><ul class="check"><li>El problema es de una empresa y alguien hace algo distinto cuando el modelo responde.</li><li>El modelo tiene al menos cuatro clases. En audio, el ruido de fondo cuenta como una de ellas.</li><li>Funciona en vivo con algo que no usaron al entrenar: otra persona, otro fondo u otra luz.</li><li>No vale repetir los ejemplos de clase: si el profesor est&aacute; o no, la botella de alcohol, la tos o la campana.</li></ul><p class="volver"><a href="#indice">&uarr; volver al &iacute;ndice</a></p><h2 id="s2">Etapa 1 &middot; El problema y la decisi&oacute;n</h2><p>Antes de grabar nada, escriban en una frase qu&eacute; decide la empresa con este modelo. Por ejemplo: cuando la c&aacute;mara de la bodega ve una caja abierta, el supervisor la revisa antes del despacho. Si nadie hace algo distinto con la respuesta, el modelo no vale nada, aunque acierte siempre.</p><p>Elijan un problema que se pueda repetir en condiciones distintas. Un modelo entrenado con una sola luz, un solo fondo y una sola persona suele fallar apenas algo cambia, y en la presentaci&oacute;n les vamos a pedir justo eso.</p><p class="volver"><a href="#indice">&uarr; volver al &iacute;ndice</a></p><h2 id="s3">Etapa 2 &middot; Los datos</h2><p>Graben muchas muestras de cada clase y en condiciones distintas: otra luz, otro fondo, otro &aacute;ngulo, otra persona. El modelo solo aprende lo que le muestran. Equilibren las clases: si una tiene 350 muestras y otra 100, el modelo se inclina hacia la grande.</p><p>En audio, la primera clase es siempre el ruido de fondo, como el aire acondicionado, la calle o gente hablando, porque el modelo compara cada sonido contra ese fondo. En posturas, var&iacute;en la distancia a la c&aacute;mara y la ropa.</p><p class="volver"><a href="#indice">&uarr; volver al &iacute;ndice</a></p><h2 id="s4">Etapa 3 &middot; Entrenar y buscar d&oacute;nde falla</h2><p>Entrenen y prueben el modelo hasta encontrar sus fallas: en los bordes de la imagen, con poca luz, con dos objetos a la vez, con otra voz. Esa lista es parte de la presentaci&oacute;n. Un modelo que dice 50 % y 50 % est&aacute; confundido y les est&aacute; diciendo qu&eacute; datos le faltan.</p><div class="nota"><b>Cuidado.</b> Si cierran la pesta&ntilde;a, el modelo se pierde. Guarden el proyecto en Drive desde el men&uacute; de Teachable Machine y, cuando est&eacute; listo, usen Exportar modelo y Subir mi modelo para obtener un enlace que cualquiera puede abrir.</div><p class="volver"><a href="#indice">&uarr; volver al &iacute;ndice</a></p><h2 id="s5">Etapa 4 &middot; La presentaci&oacute;n en vivo</h2><p>Cinco minutos por grupo el mi&eacute;rcoles 4:</p><ol><li>El problema y la decisi&oacute;n que habilita, en una frase.</li><li>Las clases y cu&aacute;ntas muestras tiene cada una.</li><li>La demostraci&oacute;n en vivo.</li><li>D&oacute;nde falla y qu&eacute; datos le agregar&iacute;an.</li><li>Cu&aacute;nto valdr&iacute;a para la empresa: cu&aacute;ntas decisiones al a&ntilde;o toca y cu&aacute;nto vale acertar una vez.</li></ol><p class="volver"><a href="#indice">&uarr; volver al &iacute;ndice</a></p><h2 id="s6">Qu&eacute; entregan</h2><p>Una entrega por grupo en la carpeta <b>Deber 10 &middot; Teachable Machine</b>, hasta el mi&eacute;rcoles 4 de noviembre a las 23:59. Un integrante sube el archivo <b>deber10-grupo-N.pptx</b> con un solo slide: el problema, las cuatro clases, d&oacute;nde falla y la decisi&oacute;n. En el comentario de la entrega pegan el enlace del modelo.</p><table><tr><th>Criterio</th><th class=num>Puntos</th></tr><tr><td>El problema es de empresa y la decisi&oacute;n es clara</td><td class=num>2</td></tr><tr><td>Cuatro clases o m&aacute;s, con datos variados y equilibrados</td><td class=num>2</td></tr><tr><td>Funciona en vivo con otra persona, fondo o luz</td><td class=num>3</td></tr><tr><td>Explican d&oacute;nde falla y qu&eacute; datos faltan</td><td class=num>2</td></tr><tr><td>Enlace del modelo y slide entregados</td><td class=num>1</td></tr><tr><td><b>Total</b></td><td class=num><b>10</b></td></tr></table><p class="volver"><a href="#indice">&uarr; volver al &iacute;ndice</a></p><p class="pie">Ve al siguiente tema &rarr;</p></main></body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyecto de medio semestre</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1e1e1e;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:16px;line-height:1.6}
+.cab{background:#111;color:#fff;border-bottom:5px solid #A6192E;padding:22px 20px 18px}
+.cab .serie{font-size:13px;letter-spacing:.04em;color:#e8b4bc;margin:0 0 4px}
+.cab h1{margin:0;font-size:26px;line-height:1.25;font-weight:600}
+.cab .sub{margin:6px 0 0;color:#d6d6d6;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:8px 20px 40px}
+h2{color:#A6192E;font-size:21px;margin:38px 0 10px;padding-top:6px;border-top:1px solid #eee}
+h3{font-size:17px;margin:26px 0 6px}
+a{color:#A6192E}
+.indice{background:#faf6f7;border:1px solid #efdfe2;border-radius:6px;padding:12px 18px;margin:20px 0}
+.indice p{margin:0 0 6px;font-weight:600}
+.indice ol{margin:0;padding-left:20px}
+.volver{font-size:13px;margin:14px 0 0}
+.nota{border:1px solid #e3e3e3;border-radius:6px;padding:12px 16px;margin:16px 0;background:#fcfcfc}
+.lab{font-weight:600;margin:14px 0 4px}
+.preg{background:#faf6f7;border-radius:6px;padding:4px 16px 8px;margin:12px 0}
+.preg ul{list-style:none;padding:0;margin:0}
+.preg li{padding:5px 0;border-bottom:1px solid #efdfe2}
+.preg li:last-child{border-bottom:none}
+.preg b{color:#A6192E;margin-right:4px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid #e6e2df;vertical-align:top}
+th{font-size:13px;color:#6b6b6b}
+.scroll{overflow-x:auto}
+table.grid{border-collapse:separate;border-spacing:3px;min-width:560px}
+table.grid td{text-align:center;font-size:13px;font-weight:600;border:none;border-radius:4px;padding:10px 4px}
+table.grid th{text-align:center;border:none}
+.letras td:first-child{font-weight:700;color:#A6192E;white-space:nowrap}
+.boton{display:inline-block;background:#A6192E;color:#fff;text-decoration:none;padding:9px 18px;border-radius:5px;font-weight:600}
+pre{background:#f6f6f6;padding:12px 14px;overflow-x:auto;font-size:13px;border-radius:5px}
+.entrega{border:1px solid #e3e3e3;border-radius:8px;padding:4px 18px 12px;margin:14px 0}
+.entrega p.cuando{color:#6b6b6b;margin:6px 0 0}
+.pie{border-top:1px solid #eee;margin-top:40px;padding-top:12px;color:#6b6b6b;font-size:14px}
+</style></head><body>
+<header class="cab">
+<p class="serie">ADM 2003 &#183; An&#225;lisis de Datos &#183; Corte de medio semestre</p>
+<h1>Proyecto de medio semestre: &#191;a qu&#233; clientes debe cuidar Superstore?</h1>
+<p class="sub">Segmentaci&#243;n RFM+P en dos entregas. Individual: domingo 11 de octubre, 23h59. Grupal: domingo 18 de octubre, 23h59.</p>
+</header>
+<main>
+<nav class="indice" id="indice"><p>En esta p&#225;gina</p><ol>
+<li><a href="#encargo">El encargo</a></li>
+<li><a href="#rfmp">RFM+P en pocas palabras</a></li>
+<li><a href="#como">C&#243;mo vamos a trabajar</a></li>
+<li><a href="#entrega1">Entrega 1 &#183; Individual: las tablas</a></li>
+<li><a href="#entrega2">Entrega 2 &#183; Grupal: las decisiones</a></li>
+<li><a href="#ia">Sobre la IA</a></li>
+<li><a href="#rubrica">R&#250;brica</a></li>
+</ol></nav>
+
+<h2 id="encargo">El encargo</h2>
+<p>Superstore vende muebles, suministros de oficina y tecnolog&#237;a en Estados Unidos. Tiene 793 clientes y cuatro a&#241;os de ventas. La gerencia comercial quiere saber a qu&#233; clientes cuidar primero, a qui&#233;nes vale la pena recuperar y con qui&#233;nes est&#225; perdiendo plata.</p>
+<p>Ustedes lo van a responder con un an&#225;lisis RFM+P, en dos partes. Primero cada uno, por su cuenta, construye las tablas. Despu&#233;s, en grupo, convierten esas tablas en decisiones.</p>
+<p><a class="boton" href="superstore-2026.csv" download>Descargar</a> &nbsp;<code>superstore-2026.csv</code>, una fila por producto dentro de cada pedido.</p>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+
+<h2 id="rfmp">RFM+P en pocas palabras</h2>
+<p>A cada cliente se le miden cuatro cosas.</p>
+<table class="letras">
+<tr><td>R &#183; Recencia</td><td>Hace cu&#225;ntos d&#237;as compr&#243; por &#250;ltima vez. Menos es mejor.</td></tr>
+<tr><td>F &#183; Frecuencia</td><td>Cu&#225;ntos pedidos distintos ha hecho.</td></tr>
+<tr><td>M &#183; Monto</td><td>Cu&#225;nto ha comprado en total.</td></tr>
+<tr><td>P &#183; Utilidad</td><td>Cu&#225;nto ha ganado la empresa con &#233;l.</td></tr>
+</table>
+<div class="nota"><b>Un ejemplo inventado.</b> Rosa compr&#243; tres veces. La &#250;ltima fue hace 10 d&#237;as, en total gast&#243; $500 y la tienda le gan&#243; $60. Su RFM+P es R = 10, F = 3, M = $500, P = $60.</div>
+<p>RFM viene del marketing directo de los a&#241;os sesenta y lo populariz&#243; Arthur Hughes en <i>Strategic Database Marketing</i> (1994). Fader, Hardie y Lee mostraron en 2005 que R, F y M bastan para estimar el valor futuro de un cliente. La P la agregamos en este curso, porque en Superstore vender no siempre es ganar.</p>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+
+<h2 id="como">C&#243;mo vamos a trabajar</h2>
+<p>Seguimos el ciclo CRISP-DM que vimos en la presentaci&#243;n. La entrega individual recorre las primeras fases: entender el negocio, entender los datos, prepararlos y modelar, que aqu&#237; significa poner notas y armar grupos. La entrega grupal recorre las &#250;ltimas: evaluar si los grupos tienen sentido y desplegar el resultado como recomendaciones.</p>
+<p>Cada etapa termina con preguntas que se responden con un n&#250;mero. En clase revisamos esos n&#250;meros juntos. Si coinciden con los m&#237;os, siguen. Si no, encuentran el error antes de avanzar.</p>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+
+<h2 id="entrega1">Entrega 1 &#183; Individual: las tablas</h2>
+<div class="entrega"><p class="cuando">15 puntos &#183; domingo 11 de octubre, 23h59 &#183; carpeta <b>Proyecto &#183; Entrega 1 individual</b></p>
+<p>Cada uno construye, por su cuenta, las tablas RFM+P completas y verificadas. Es la base sobre la que su grupo va a decidir.</p></div>
+<h3>Etapa 1 &#183; Conocer los datos</h3><p>Antes de calcular nada, entiendan qu&#233; tienen en las manos. Cada fila del archivo es un producto dentro de un pedido, no un pedido completo.</p><p class="lab">Qu&#233; hacen</p><ol><li>Cuenten filas, pedidos y clientes.</li><li>Busquen problemas: datos vac&#237;os, filas repetidas, fechas raras.</li><li>Anoten cada problema y qu&#233; hicieron con &#233;l.</li></ol><div class="preg"><p class="lab">Respondan con un n&#250;mero</p><ul><li><b>1.1</b> &#191;Cu&#225;ntas filas, pedidos y clientes tiene la base?</li><li><b>1.2</b> &#191;Cu&#225;ntas filas repetidas encontraron?</li></ul></div>
+<h3>Etapa 2 &#183; Calcular R, F, M y P</h3><p>Ahora pasan de filas a clientes. Al final de esta etapa tienen una tabla con una fila por cliente y cuatro n&#250;meros.</p><p class="lab">Qu&#233; hacen</p><ol><li>Usen como fecha de hoy el 30-ago-2026, el d&#237;a despu&#233;s del &#250;ltimo pedido.</li><li>R: d&#237;as desde la &#250;ltima compra. F: pedidos distintos. M: suma de ventas. P: suma de utilidad.</li><li>Hagan un histograma de cada una y escriban qu&#233; ven.</li></ol><div class="preg"><p class="lab">Respondan con un n&#250;mero</p><ul><li><b>2.1</b> &#191;Cu&#225;nto les dio R, F, M y P de Adrian Barton (AB-10105)?</li><li><b>2.2</b> &#191;Cu&#225;ntos clientes tienen P negativa?</li></ul></div>
+<h3>Etapa 3 &#183; Armar los grupos</h3><p>Cada cliente recibe una nota de 1 a 5 en cada letra, y con las notas de R y F se le asigna un grupo con nombre.</p><p class="lab">Qu&#233; hacen</p><ol><li>Ordenen a los clientes en cada letra y p&#225;rtanlos en cinco partes iguales. El 20 % mejor recibe 5. En R es al rev&#233;s: quien compr&#243; m&#225;s recientemente recibe 5.</li><li>Con las notas de R y F, ubiquen a cada cliente en la tabla de grupos de abajo.</li><li>Para cada grupo, calculen cu&#225;ntos clientes tiene, cu&#225;nto vende y cu&#225;nto gana.</li></ol><p class="lab">La tabla de grupos</p><div class="scroll"><table class="grid"><tr><th></th><th>F = 1</th><th>F = 2</th><th>F = 3</th><th>F = 4</th><th>F = 5</th></tr><tr><th>R = 5</th><td style="background:#e6f4ec;color:#1e1e1e">Nuevos</td><td style="background:#f8e6e9;color:#1e1e1e">Potenciales leales</td><td style="background:#f8e6e9;color:#1e1e1e">Potenciales leales</td><td style="background:#a6192e;color:#fff">Campeones</td><td style="background:#a6192e;color:#fff">Campeones</td></tr><tr><th>R = 4</th><td style="background:#b9e0c8;color:#1e1e1e">Prometedores</td><td style="background:#f8e6e9;color:#1e1e1e">Potenciales leales</td><td style="background:#f8e6e9;color:#1e1e1e">Potenciales leales</td><td style="background:#e7a3ad;color:#1e1e1e">Leales</td><td style="background:#e7a3ad;color:#1e1e1e">Leales</td></tr><tr><th>R = 3</th><td style="background:#f6c08e;color:#1e1e1e">Por dormirse</td><td style="background:#f6c08e;color:#1e1e1e">Por dormirse</td><td style="background:#fde3c8;color:#1e1e1e">Necesitan atenci&#243;n</td><td style="background:#e7a3ad;color:#1e1e1e">Leales</td><td style="background:#e7a3ad;color:#1e1e1e">Leales</td></tr><tr><th>R = 2</th><td style="background:#ececec;color:#1e1e1e">Hibernando</td><td style="background:#ececec;color:#1e1e1e">Hibernando</td><td style="background:#c9dbf2;color:#1e1e1e">En riesgo</td><td style="background:#c9dbf2;color:#1e1e1e">En riesgo</td><td style="background:#1f5fa8;color:#fff">No se pueden perder</td></tr><tr><th>R = 1</th><td style="background:#ececec;color:#1e1e1e">Hibernando</td><td style="background:#ececec;color:#1e1e1e">Hibernando</td><td style="background:#c9dbf2;color:#1e1e1e">En riesgo</td><td style="background:#c9dbf2;color:#1e1e1e">En riesgo</td><td style="background:#1f5fa8;color:#fff">No se pueden perder</td></tr></table></div><div class="preg"><p class="lab">Respondan con un n&#250;mero</p><ul><li><b>3.1</b> &#191;Qu&#233; notas tiene Adrian Barton y en qu&#233; grupo qued&#243;?</li><li><b>3.2</b> &#191;Cu&#225;ntos clientes quedaron en Campeones y cu&#225;ntos en Hibernando?</li><li><b>3.3</b> Sean Miller es el cliente que m&#225;s compra. &#191;Cu&#225;nto les dio su P?</li></ul></div>
+<h3>Qu&#233; entregan</h3>
+<p>Un cuaderno <code>.ipynb</code> que corra de principio a fin, con estas partes en este orden:</p>
+<ol>
+<li>La hoja de respuestas de las etapas 1 a 3, en una celda de texto al inicio.</li>
+<li>La lista de problemas que encontraron en los datos y qu&#233; hicieron con cada uno.</li>
+<li>La tabla de clientes: una fila por cliente con R, F, M, P, sus cuatro notas y su grupo.</li>
+<li>La tabla de grupos: clientes, % de clientes, % de ventas, % de utilidad y margen de cada grupo.</li>
+<li>Los cuatro histogramas, con una frase cada uno.</li>
+<li>Al final, el prompt que usaron con la IA.</li>
+</ol>
+<p class="lab">Hoja de respuestas para copiar en el cuaderno</p>
+<pre>| # | Pregunta | Respuesta |
+|---|---|---|
+| 1.1 | &#191;Cu&#225;ntas filas, pedidos y clientes tiene la base? | |
+| 1.2 | &#191;Cu&#225;ntas filas repetidas encontraron? | |
+| 2.1 | &#191;Cu&#225;nto les dio R, F, M y P de Adrian Barton (AB-10105)? | |
+| 2.2 | &#191;Cu&#225;ntos clientes tienen P negativa? | |
+| 3.1 | &#191;Qu&#233; notas tiene Adrian Barton y en qu&#233; grupo qued&#243;? | |
+| 3.2 | &#191;Cu&#225;ntos clientes quedaron en Campeones y cu&#225;ntos en Hibernando? | |
+| 3.3 | Sean Miller es el cliente que m&#225;s compra. &#191;Cu&#225;nto les dio su P? | |</pre>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+
+<h2 id="entrega2">Entrega 2 &#183; Grupal: las decisiones</h2>
+<div class="entrega"><p class="cuando">25 puntos &#183; domingo 18 de octubre, 23h59 &#183; carpeta <b>Proyecto &#183; Entrega 2 grupal</b></p>
+<p>Con los mismos grupos del caso Carolina. Comparen sus tablas individuales, qu&#233;dense con una que pase todas las preguntas de control y &#250;senla para decidir.</p></div>
+<h3>Etapa 4 &#183; Explicar y recomendar</h3><p>Ya saben qui&#233;n es qui&#233;n. Ahora digan por qu&#233; pasa lo que vieron y qu&#233; har&#237;a la gerencia con cada grupo.</p><p class="lab">Qu&#233; hacen</p><ol><li>Busquen qu&#233; tienen en com&#250;n las ventas que pierden plata. Miren el descuento.</li><li>Comparen los tres segmentos comerciales (Consumidor, Corporativo y Oficina en casa) usando la tabla de toda la base.</li><li>Escriban para cada grupo una acci&#243;n concreta y c&#243;mo sabr&#237;an si funcion&#243;.</li></ol><div class="preg"><p class="lab">Respondan con un n&#250;mero</p><ul><li><b>4.1</b> &#191;Qu&#233; porcentaje de la utilidad total aporta el 20 % de clientes m&#225;s rentable?</li><li><b>4.2</b> &#191;Qu&#233; porcentaje de las filas con descuento mayor a 20 % pierde plata?</li><li><b>4.3</b> &#191;Cu&#225;nta utilidad suman los grupos En riesgo y No se pueden perder?</li><li><b>4.4</b> &#191;Qu&#233; margen (utilidad entre ventas) tiene cada segmento comercial?</li></ul></div>
+<h3>Qu&#233; entregan</h3>
+<p>Un PowerPoint corto, de 6 a 8 l&#225;minas, para la gerencia comercial de Superstore. Cada t&#237;tulo dice la conclusi&#243;n y cada l&#225;mina muestra la cifra que la sostiene. Una gu&#237;a:</p>
+<ol>
+<li>La pregunta y su respuesta en una frase.</li>
+<li>C&#243;mo se reparte la base: qu&#233; grupos hay y cu&#225;nto de la utilidad deja cada uno.</li>
+<li>D&#243;nde se pierde plata y por qu&#233;.</li>
+<li>A qui&#233;n cuidar primero.</li>
+<li>Una acci&#243;n concreta por grupo y c&#243;mo sabr&#237;an si funcion&#243;.</li>
+<li>Lo que estos datos no permiten decir.</li>
+</ol>
+<p>En una l&#225;mina final de anexo van las respuestas de la etapa 4. Sube el archivo un solo integrante. Despu&#233;s viene la defensa oral en clase: cualquiera del grupo puede recibir cualquier pregunta, y se responde sin leer.</p>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+
+<h2 id="ia">Sobre la IA</h2>
+<p>Pueden usarla todo lo que quieran. Tres condiciones: los n&#250;meros salen de su cuaderno, no del chat. Cada decisi&#243;n la explican con sus palabras. Y al final del cuaderno pegan el prompt que usaron.</p>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+
+<h2 id="rubrica">R&#250;brica</h2>
+<p>El proyecto vale 40 puntos: 15 la entrega individual y 25 la grupal. Es el 40 % de la categor&#237;a Proyectos, que pesa 25 %: el 10 % de la nota del curso.</p>
+<h3>Entrega 1 &#183; Individual (15 puntos)</h3>
+<table>
+<tr><th>Criterio</th><th>Qu&#233; se mira</th><th>Puntos</th></tr>
+<tr><td>Respuestas de control</td><td>Las preguntas de las etapas 1 a 3 respondidas y correctas.</td><td>5</td></tr>
+<tr><td>Las dos tablas</td><td>Tabla de clientes y tabla de grupos completas, con las columnas pedidas.</td><td>5</td></tr>
+<tr><td>Decisiones explicadas</td><td>Qu&#233; hicieron con la fila repetida, qu&#233; fecha usaron y c&#243;mo resolvieron los empates.</td><td>3</td></tr>
+<tr><td>Cuaderno y prompt</td><td>El cuaderno corre de principio a fin y trae el prompt final.</td><td>2</td></tr>
+</table>
+<h3>Entrega 2 &#183; Grupal (25 puntos)</h3>
+<table>
+<tr><th>Criterio</th><th>Qu&#233; se mira</th><th>Puntos</th></tr>
+<tr><td>Diagn&#243;stico con la utilidad</td><td>Muestran d&#243;nde se gana y d&#243;nde se pierde, no solo d&#243;nde se vende.</td><td>7</td></tr>
+<tr><td>Recomendaciones</td><td>Una acci&#243;n concreta por grupo, pensada para Superstore, con su forma de medirla.</td><td>8</td></tr>
+<tr><td>L&#225;minas claras</td><td>T&#237;tulos que dicen la conclusi&#243;n y una cifra que la sostiene. Anexo con las respuestas de la etapa 4.</td><td>5</td></tr>
+<tr><td>Defensa oral</td><td>Cualquier integrante responde sin leer.</td><td>5</td></tr>
+</table>
+<p class="volver"><a href="#indice">&#8593; volver al &#237;ndice</a></p>
+<p class="pie">Ve al siguiente tema &#8594;</p>
+</main></body></html>

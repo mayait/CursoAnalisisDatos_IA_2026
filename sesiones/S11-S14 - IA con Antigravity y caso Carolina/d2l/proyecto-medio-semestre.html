@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyecto de medio semestre: &iquest;qui&eacute;nes son nuestros clientes? &#183; USFQ</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1e1e1e;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:16px;line-height:1.6}
+.cab{background:#111;color:#fff;border-bottom:5px solid #A6192E;padding:22px 20px 18px}
+.cab .serie{font-size:13px;letter-spacing:.04em;color:#e8b4bc;margin:0 0 4px}
+.cab h1{margin:0;font-size:26px;line-height:1.25;font-weight:600}
+.cab .sub{margin:6px 0 0;color:#d6d6d6;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:8px 20px 40px}
+h2{color:#A6192E;font-size:21px;margin:38px 0 10px;padding-top:6px;border-top:1px solid #eee}
+h3{font-size:17px;margin:22px 0 6px}
+a{color:#A6192E}
+.indice{background:#faf6f7;border:1px solid #efdfe2;border-radius:6px;padding:12px 18px;margin:20px 0}
+.indice p{margin:0 0 6px;font-weight:600}
+.indice ol{margin:0;padding-left:20px}
+.volver{font-size:13px;margin:14px 0 0}
+.nota{border:1px solid #e3e3e3;border-radius:6px;padding:12px 16px;margin:16px 0;background:#fcfcfc}
+.nota b{color:#A6192E}
+.prompt{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;margin:10px 0 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre-wrap;line-height:1.5}
+.prompt-t{font-size:13px;color:#6b6b6b;margin:14px 0 -4px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+th,td{border:1px solid #e1e1e1;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}
+.arbol{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre;overflow-x:auto;line-height:1.5}
+.btn{display:inline-block;background:#A6192E;color:#fff !important;text-decoration:none;padding:7px 14px;border-radius:4px;font-size:14px;margin:4px 6px 4px 0}
+.etapa{border:1px solid #e3e3e3;border-left:0;border-radius:6px;padding:4px 18px 12px;margin:18px 0}
+.etapa h3{color:#A6192E}
+.check{list-style:none;padding-left:0}
+.check li{padding-left:26px;position:relative;margin:4px 0}
+.check li:before{content:'';position:absolute;left:2px;top:6px;width:13px;height:13px;border:2px solid #A6192E;border-radius:2px}
+.apuesta{border:1px solid #efdfe2;border-radius:6px;padding:12px 16px;margin:18px 0}
+.apuesta input{position:absolute;opacity:0}
+.apuesta label{display:block;border:1px solid #ddd;border-radius:4px;padding:7px 10px;margin:6px 0;cursor:pointer}
+.apuesta input:checked + label{border-color:#A6192E;background:#faf6f7}
+.fb{display:none;margin-top:10px;padding:10px 12px;background:#f7f7f7;border-radius:4px}
+#a1:checked ~ .fb1,#a2:checked ~ .fb2,#a3:checked ~ .fb3{display:block}
+#b1:checked ~ .fb1,#b2:checked ~ .fb2,#b3:checked ~ .fb3{display:block}
+.correo{border:1px solid #d9d9d9;border-radius:6px;margin:10px 0 18px;background:#fff}
+.cab-correo{margin:0;border:0;font-size:14px;background:#f7f7f7}
+.cab-correo td{border:0;border-bottom:1px solid #eee;padding:5px 12px}
+.cab-correo .ck{width:90px;color:#6b6b6b}
+.cuerpo-correo{padding:6px 16px 4px;font-size:15px}
+.paso{margin:10px 0}
+.paso p{margin:0 0 4px}
+ol.control{padding-left:22px}
+ol.control li{margin:0 0 18px}
+ol.control .q{font-weight:600;margin:0 0 6px}
+details{border:1px solid #e3e3e3;border-radius:4px;margin:6px 0;padding:0 12px}
+details summary{cursor:pointer;padding:7px 0;color:#A6192E;font-size:14px}
+details[open]{padding-bottom:10px}
+.cifra{background:#faf6f7;border-left:0;padding:8px 12px;border-radius:4px}
+.trampa p{margin:6px 0}
+.pie{max-width:760px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid #eee;font-size:14px;color:#6b6b6b}
+@media (max-width:600px){.cab h1{font-size:22px}}
+</style></head>
+<body><header class="cab"><p class="serie">ADM 2003 &#183; An&aacute;lisis de Datos &#183; Corte de medio semestre</p><h1>Proyecto de medio semestre: &iquest;qui&eacute;nes son nuestros clientes?</h1><p class="sub">Segmentaci&oacute;n RFM+P de Comercial Andina hecha con Antigravity</p></header>
+<main><nav class="indice" id="indice"><p>En esta p&aacute;gina</p><ol><li><a href="#s1">El encargo</a></li><li><a href="#s2">RFM+P en cinco minutos</a></li><li><a href="#s3">Las etapas en Antigravity</a></li><li><a href="#s4">Qu&eacute; se entrega y cu&aacute;ndo</a></li><li><a href="#s5">R&uacute;brica</a></li></ol></nav><section id="s1"><h2>El encargo</h2>
+<p>Andr&eacute;s Villac&iacute;s, Gerente Comercial de Comercial Andina, quiere dejar de tratar a todos sus clientes igual. Tiene 1.800 clientes en cinco ciudades y una tienda en l&iacute;nea, y siente que buena parte del presupuesto de promociones se va en descuentos para gente que igual iba a comprar.</p>
+<div class="nota"><b>&iquest;Qui&eacute;nes son nuestros clientes, cu&aacute;nto valen y qu&eacute; le decimos a cada segmento el pr&oacute;ximo mes?</b></div>
+<p>El proyecto se hace en grupo y con Antigravity, con el mismo marco de trabajo del caso Carolina: una carpeta ordenada, contexto escrito, plan aprobado antes de ejecutar y salidas parciales revisadas en cada etapa.</p>
+<p><a class="btn" href="proyecto-medio-semestre.zip" download>Descargar la carpeta del proyecto</a></p>
+<div class="arbol">rfm-comercial-andina/
+  AGENTS.md
+  entradas/       encargo.md
+  datos/          ventas.csv, clientes.csv, productos.csv, sucursales.csv
+  contexto/       CONTEXTO.md, PLAN.md
+  procesamiento/
+  salidas/
+  archivo/</div><p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s2"><h2>RFM+P en cinco minutos</h2>
+<p>RFM+P describe a cada cliente con cuatro n&uacute;meros calculados a una fecha de corte, aqu&iacute; el 31 de diciembre de 2025.</p>
+<table><tr><th>Letra</th><th>Qu&eacute; mide</th><th>C&oacute;mo se calcula</th></tr>
+<tr><td>R &middot; Recencia</td><td>Qu&eacute; tan reciente es su &uacute;ltima compra.</td><td>D&iacute;as entre su &uacute;ltima compra y la fecha de corte. Menos es mejor.</td></tr>
+<tr><td>F &middot; Frecuencia</td><td>Cu&aacute;ntas veces compra.</td><td>N&uacute;mero de facturas distintas.</td></tr>
+<tr><td>M &middot; Monto</td><td>Cu&aacute;nto compra.</td><td>Ventas netas, restando devoluciones.</td></tr>
+<tr><td>P &middot; Margen</td><td>Cu&aacute;nto deja.</td><td>Ventas netas menos costo (cantidad por costo unitario).</td></tr></table>
+<p>Con esos cuatro n&uacute;meros se ordena a los clientes, por ejemplo en quintiles, y se arman pocos segmentos con nombre de negocio: VIP, leales, en riesgo, dormidos, nuevos. El que m&aacute;s compra no siempre es el que m&aacute;s deja: por eso va la P.</p>
+<p>Un segmento sirve si cumple tres requisitos:</p>
+<ul class="check"><li><b>Accionable</b>: cambia lo que se le dice o se le ofrece.</li><li><b>Medible</b>: se sabe qui&eacute;n est&aacute; adentro y cu&aacute;nto vale.</li><li><b>Estable</b>: no cambia por completo si se mueve un poco el corte.</li></ul>
+<div class="apuesta"><p><b>Un segmento se llama &laquo;Cluster 3&raquo;. &iquest;Qu&eacute; pasa en el equipo comercial?</b></p>
+<input type="radio" name="b" id="b1"><label for="b1">Lo usan igual, el nombre no importa.</label>
+<input type="radio" name="b" id="b2"><label for="b2">Nadie sabe qu&eacute; hacer con &eacute;l.</label>
+<input type="radio" name="b" id="b3"><label for="b3">Le piden al analista que lo explique cada vez.</label>
+<div class="fb fb1">El nombre es la primera instrucci&oacute;n. Sin &eacute;l, el segmento no cambia ninguna acci&oacute;n.</div>
+<div class="fb fb2">As&iacute; es. Un segmento sin nombre de negocio no es accionable.</div>
+<div class="fb fb3">Pasa, y a la segunda vez dejan de usarlo. Ponle un nombre que se entienda solo.</div></div>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s3"><h2>Las etapas en Antigravity</h2><div class="etapa"><h3>Etapa 1 &middot; Reconocer y limpiar</h3><p><b>Qu&eacute; pide Carolina.</b> Entender los cuatro archivos y decidir qu&eacute; se hace con devoluciones, ventas sin cliente, fechas en varios formatos, precios vac&iacute;os y ciudades mal escritas.</p><p class="prompt-t">Reconocimiento</p><div class="prompt">Lee entradas/encargo.md y revisa los archivos de datos/. Para cada archivo dime qu&#233; representa una fila, qu&#233; columnas trae, cu&#225;l es la llave para cruzarlo y qu&#233; problemas de calidad encuentras, con cu&#225;ntas filas afecta cada uno. No escribas c&#243;digo todav&#237;a.</div><p class="prompt-t">Plan de limpieza</p><div class="prompt">Escribe en contexto/PLAN.md qu&#233; propones hacer con cada problema y por qu&#233;. Espera mi visto bueno. Cuando lo apruebe, deja la base limpia en procesamiento/ y anota en CONTEXTO.md cu&#225;ntas filas quedaron fuera y por qu&#233;.</div><p><b>Salida parcial en salidas/.</b> <b>etapa-1-calidad.md</b> con cada problema, cu&aacute;ntas filas afecta y la decisi&oacute;n tomada.</p><p><b>Antes de pasar a la siguiente etapa</b></p><ul class="check"><li>datos/ est&aacute; intacto.</li><li>Las devoluciones restan, no se borran.</li><li>Se sabe cu&aacute;ntas ventas quedaron fuera por no tener cliente.</li></ul></div><div class="etapa"><h3>Etapa 2 &middot; Calcular R, F, M y P</h3><p><b>Qu&eacute; pide Carolina.</b> Una fila por cliente con sus cuatro m&eacute;tricas.</p><p class="prompt-t">C&aacute;lculo</p><div class="prompt">Con la base limpia, calcula para cada cliente recencia, frecuencia, monto y margen seg&#250;n las definiciones de contexto/CONTEXTO.md. Mu&#233;strame el plan antes. Guarda el resultado en salidas/etapa-2-rfmp.xlsx.</div><p class="prompt-t">Verificaci&oacute;n</p><div class="prompt">Dame tres clientes con todas sus facturas para verificar a mano sus cuatro m&#233;tricas. &#191;Cu&#225;ntos clientes tienen margen negativo?</div><p><b>Salida parcial en salidas/.</b> <b>etapa-2-rfmp.xlsx</b> con una fila por cliente.</p><p><b>Antes de pasar a la siguiente etapa</b></p><ul class="check"><li>El margen sale de costo y precio, no se inventa.</li><li>El auditor verific&oacute; tres clientes a mano.</li></ul></div><div class="etapa"><h3>Etapa 3 &middot; Segmentar y nombrar</h3><p><b>Qu&eacute; pide Carolina.</b> Pocos segmentos con nombre comercial, con cu&aacute;ntos clientes y cu&aacute;nto margen tiene cada uno.</p><p class="prompt-t">Propuesta</p><div class="prompt">Prop&#243;n una segmentaci&#243;n de 4 a 6 grupos a partir de R, F, M y P. Explica el criterio de corte, ponle a cada segmento un nombre de negocio y dime cu&#225;ntos clientes y qu&#233; porcentaje del margen tiene cada uno. Espera mi visto bueno antes de guardarla.</div><p class="prompt-t">Estabilidad</p><div class="prompt">Si muevo los cortes un poco, &#191;cu&#225;ntos clientes cambian de segmento? Mu&#233;strame el resultado y dime si la segmentaci&#243;n es estable.</div><p><b>Salida parcial en salidas/.</b> <b>rfm-por-cliente.xlsx</b> con una fila por cliente y su segmento, y una hoja resumen por segmento.</p><p><b>Antes de pasar a la siguiente etapa</b></p><ul class="check"><li>Ning&uacute;n segmento se llama con n&uacute;mero o letra.</li><li>Se prob&oacute; la estabilidad.</li></ul></div><div class="etapa"><h3>Etapa 4 &middot; Recomendar y presentar</h3><p><b>Qu&eacute; pide Carolina.</b> Un mensaje comercial por segmento, con su costo estimado y el retorno esperado, y la presentaci&oacute;n para el comit&eacute; de Andr&eacute;s.</p><p class="prompt-t">Recomendaci&oacute;n</p><div class="prompt">Para cada segmento propone una acci&#243;n para el pr&#243;ximo mes, cu&#225;nto costar&#237;a y qu&#233; retorno esperamos, con los supuestos escritos. Separa lo que sale de los datos de lo que es supuesto.</div><p class="prompt-t">Presentaci&oacute;n</p><div class="prompt">Lee CONTEXTO.md y salidas/. Prop&#243;n primero el guion de una presentaci&#243;n de 8 a 10 l&#225;minas con t&#237;tulos que digan la conclusi&#243;n y la cifra que sostiene cada uno. Espera mi visto bueno y despu&#233;s gen&#233;rala en salidas/ con fondo blanco.</div><p><b>Salida parcial en salidas/.</b> <b>presentacion-comite</b> (PDF o PPTX) y <b>bitacora-ia.md</b>.</p><p><b>Antes de pasar a la siguiente etapa</b></p><ul class="check"><li>Cada cifra de la presentaci&oacute;n est&aacute; en salidas/.</li><li>Los supuestos de costo y retorno est&aacute;n escritos.</li></ul></div><p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s4"><h2>Qu&eacute; se entrega y cu&aacute;ndo</h2>
+<table><tr><th>Fecha</th><th>Qu&eacute; pasa</th></tr>
+<tr><td>Mi&eacute;rcoles 7 de octubre</td><td>Lanzamiento en clase. Los grupos arman la carpeta y cierran la etapa 1.</td></tr>
+<tr><td>9 al 18 de octubre</td><td>Receso. Ventana de trabajo del proyecto.</td></tr>
+<tr><td><b>Domingo 18 de octubre, 23h59</b></td><td><b>Entrega en D2L</b>: la carpeta rfm-comercial-andina comprimida en ZIP.</td></tr>
+<tr><td>Lunes 19 y mi&eacute;rcoles 21 de octubre</td><td>Devoluci&oacute;n. La clase de RFM se arma sobre los segmentos de los grupos y se contrasta con KMeans.</td></tr></table>
+<p>El ZIP debe traer:</p>
+<ul class="check">
+<li>contexto/CONTEXTO.md y contexto/PLAN.md al d&iacute;a.</li>
+<li>salidas/etapa-1-calidad.md y salidas/etapa-2-rfmp.xlsx.</li>
+<li>salidas/rfm-por-cliente.xlsx con el segmento de cada cliente y el resumen por segmento.</li>
+<li>La presentaci&oacute;n para el comit&eacute;, de 8 a 10 l&aacute;minas, en salidas/.</li>
+<li>salidas/bitacora-ia.md con los prompts de cada etapa y qu&eacute; se verific&oacute;.</li>
+<li>Los scripts de procesamiento/, para que el an&aacute;lisis se pueda volver a correr.</li>
+</ul>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s5"><h2>R&uacute;brica</h2>
+<p>Vale el 20 % de la nota del curso.</p>
+<table><tr><th>Criterio</th><th>Qu&eacute; se mira</th><th>Puntos</th></tr>
+<tr><td>Preparaci&oacute;n de los datos</td><td>Devoluciones netadas, ventas sin cliente tratadas y cada decisi&oacute;n documentada. Se declara cu&aacute;ntas filas quedaron fuera y por qu&eacute;.</td><td>15</td></tr>
+<tr><td>C&aacute;lculo de R, F, M y P</td><td>Las cuatro m&eacute;tricas por cliente, con la definici&oacute;n escrita y el margen calculado desde costo y precio.</td><td>20</td></tr>
+<tr><td>Segmentos con nombre de negocio</td><td>Nombre comercial, no n&uacute;mero, y criterio de corte justificado.</td><td>20</td></tr>
+<tr><td>Los tres requisitos</td><td>Se muestra que cada segmento es accionable, medible y estable.</td><td>15</td></tr>
+<tr><td>Recomendaci&oacute;n comercial</td><td>Un mensaje por segmento, con costo estimado y retorno esperado.</td><td>20</td></tr>
+<tr><td>Carpeta, reproducibilidad y bit&aacute;cora</td><td>La estructura se respeta, los scripts corren de nuevo y la bit&aacute;cora dice qu&eacute; se pidi&oacute; y qu&eacute; se verific&oacute;.</td><td>10</td></tr>
+<tr><td colspan="2"><b>Total</b></td><td><b>100</b></td></tr></table>
+<p>En la devoluci&oacute;n cualquier persona del grupo tiene que poder explicar, sin leer, por qu&eacute; eligieron esos segmentos y de d&oacute;nde sale cada cifra.</p>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section></main>
+<footer class="pie">Ve al siguiente tema &rarr; Entrega del proyecto</footer></body></html>

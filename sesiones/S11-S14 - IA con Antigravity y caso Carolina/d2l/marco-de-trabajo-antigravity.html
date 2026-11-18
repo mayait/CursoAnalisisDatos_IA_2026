@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C&oacute;mo se trabaja con Antigravity &#183; USFQ</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1e1e1e;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:16px;line-height:1.6}
+.cab{background:#111;color:#fff;border-bottom:5px solid #A6192E;padding:22px 20px 18px}
+.cab .serie{font-size:13px;letter-spacing:.04em;color:#e8b4bc;margin:0 0 4px}
+.cab h1{margin:0;font-size:26px;line-height:1.25;font-weight:600}
+.cab .sub{margin:6px 0 0;color:#d6d6d6;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:8px 20px 40px}
+h2{color:#A6192E;font-size:21px;margin:38px 0 10px;padding-top:6px;border-top:1px solid #eee}
+h3{font-size:17px;margin:22px 0 6px}
+a{color:#A6192E}
+.indice{background:#faf6f7;border:1px solid #efdfe2;border-radius:6px;padding:12px 18px;margin:20px 0}
+.indice p{margin:0 0 6px;font-weight:600}
+.indice ol{margin:0;padding-left:20px}
+.volver{font-size:13px;margin:14px 0 0}
+.nota{border:1px solid #e3e3e3;border-radius:6px;padding:12px 16px;margin:16px 0;background:#fcfcfc}
+.nota b{color:#A6192E}
+.prompt{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;margin:10px 0 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre-wrap;line-height:1.5}
+.prompt-t{font-size:13px;color:#6b6b6b;margin:14px 0 -4px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+th,td{border:1px solid #e1e1e1;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}
+.arbol{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre;overflow-x:auto;line-height:1.5}
+.btn{display:inline-block;background:#A6192E;color:#fff !important;text-decoration:none;padding:7px 14px;border-radius:4px;font-size:14px;margin:4px 6px 4px 0}
+.etapa{border:1px solid #e3e3e3;border-left:0;border-radius:6px;padding:4px 18px 12px;margin:18px 0}
+.etapa h3{color:#A6192E}
+.check{list-style:none;padding-left:0}
+.check li{padding-left:26px;position:relative;margin:4px 0}
+.check li:before{content:'';position:absolute;left:2px;top:6px;width:13px;height:13px;border:2px solid #A6192E;border-radius:2px}
+.apuesta{border:1px solid #efdfe2;border-radius:6px;padding:12px 16px;margin:18px 0}
+.apuesta input{position:absolute;opacity:0}
+.apuesta label{display:block;border:1px solid #ddd;border-radius:4px;padding:7px 10px;margin:6px 0;cursor:pointer}
+.apuesta input:checked + label{border-color:#A6192E;background:#faf6f7}
+.fb{display:none;margin-top:10px;padding:10px 12px;background:#f7f7f7;border-radius:4px}
+#a1:checked ~ .fb1,#a2:checked ~ .fb2,#a3:checked ~ .fb3{display:block}
+#b1:checked ~ .fb1,#b2:checked ~ .fb2,#b3:checked ~ .fb3{display:block}
+.correo{border:1px solid #d9d9d9;border-radius:6px;margin:10px 0 18px;background:#fff}
+.cab-correo{margin:0;border:0;font-size:14px;background:#f7f7f7}
+.cab-correo td{border:0;border-bottom:1px solid #eee;padding:5px 12px}
+.cab-correo .ck{width:90px;color:#6b6b6b}
+.cuerpo-correo{padding:6px 16px 4px;font-size:15px}
+.paso{margin:10px 0}
+.paso p{margin:0 0 4px}
+ol.control{padding-left:22px}
+ol.control li{margin:0 0 18px}
+ol.control .q{font-weight:600;margin:0 0 6px}
+details{border:1px solid #e3e3e3;border-radius:4px;margin:6px 0;padding:0 12px}
+details summary{cursor:pointer;padding:7px 0;color:#A6192E;font-size:14px}
+details[open]{padding-bottom:10px}
+.cifra{background:#faf6f7;border-left:0;padding:8px 12px;border-radius:4px}
+.trampa p{margin:6px 0}
+.mc .op{position:relative;margin:6px 0}
+.mc input{position:absolute;opacity:0}
+.mc label{display:block;border:1px solid #ddd;border-radius:4px;padding:8px 12px;cursor:pointer;background:#fff}
+.mc label:hover{border-color:#A6192E}
+.mc input:checked + label{border-color:#A6192E;background:#faf6f7;font-weight:600}
+.mc input:focus-visible + label{outline:2px solid #A6192E}
+.mc .fb{display:none;margin:6px 0 10px;padding:10px 12px;border-radius:4px}
+.mc input:checked + label + .fb{display:block}
+.mc .ok{background:#eef6ef;border:1px solid #cfe3d2}
+.mc .mal{background:#fbf1f2;border:1px solid #efd3d7}
+.foto{margin:14px 0}
+.foto img{width:100%;height:auto;border-radius:6px;display:block}
+.lamina{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin:10px 0}
+.lamina .wire{max-width:100%;height:auto;flex:0 0 auto}
+.lamina div{flex:1 1 220px}
+.critico{border:2px solid #A6192E;border-radius:6px;padding:12px 18px;margin:12px 0;background:#fff}
+.critico .q{font-size:19px;font-weight:700;color:#A6192E;margin:4px 0 8px}
+.pie{max-width:760px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid #eee;font-size:14px;color:#6b6b6b}
+@media (max-width:600px){.cab h1{font-size:22px}}
+</style></head>
+<body><header class="cab"><p class="serie">ADM 2003 &#183; An&aacute;lisis de Datos &#183; Semanas 6 y 7 &#183; Analizar datos con IA</p><h1>C&oacute;mo se trabaja con Antigravity</h1><p class="sub">La carpeta, el contexto, el plan y las salidas parciales</p></header>
+<main><nav class="indice" id="indice"><p>En esta p&aacute;gina</p><ol><li><a href="#s1">Una carpeta por encargo</a></li><li><a href="#s2">Las seis carpetas</a></li><li><a href="#s3">El contexto se escribe una vez</a></li><li><a href="#s4">Revisar los archivos antes de pedir nada</a></li><li><a href="#s5">Primero el plan, despu&eacute;s la ejecuci&oacute;n</a></li><li><a href="#s6">Cada etapa deja una salida parcial</a></li><li><a href="#s7">El ciclo completo, en una tabla</a></li></ol></nav><section id="s1"><h2>Una carpeta por encargo</h2>
+<p>Antigravity no trabaja sobre un chat, trabaja sobre una carpeta. Todo lo que el agente puede leer y todo lo que produce vive ah&iacute;. Por eso cada encargo empieza igual: se crea una carpeta, se abre completa en Antigravity (<i>File &gt; Open Folder</i>) y no se trabaja fuera de ella.</p>
+<p>Si el grupo trabaja junto, la carpeta es la que se comparte. Lo que no est&aacute; en la carpeta no existe para el agente, y lo que el agente no dej&oacute; en la carpeta no se hizo.</p>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s2"><h2>Las seis carpetas</h2>
+<p>Todos los trabajos del curso usan la misma estructura. As&iacute; cualquier persona del grupo, o el profesor, sabe d&oacute;nde buscar cada cosa.</p>
+<div class="arbol">mi-encargo/
+  AGENTS.md          reglas que Antigravity lee al empezar
+  entradas/          lo que se pide: correos, enunciados, preguntas
+  datos/             archivos originales; nunca se modifican
+  contexto/          CONTEXTO.md y PLAN.md
+  procesamiento/     scripts y bases intermedias
+  salidas/           lo que se entrega
+  archivo/           versiones viejas; nada se borra</div>
+<table><tr><th>Carpeta</th><th>Regla</th></tr>
+<tr><td>entradas</td><td>Se lee. Es la pregunta del cliente con sus palabras.</td></tr>
+<tr><td>datos</td><td>Se lee y nunca se toca. Si hay que limpiar, la versi&oacute;n limpia va a procesamiento.</td></tr>
+<tr><td>contexto</td><td>Se escribe una vez y se actualiza al cerrar cada etapa.</td></tr>
+<tr><td>procesamiento</td><td>Lo que el agente necesita para llegar al resultado: scripts, tablas intermedias.</td></tr>
+<tr><td>salidas</td><td>Solo entregables. Si no lo mostrar&iacute;as al cliente, no va aqu&iacute;.</td></tr>
+<tr><td>archivo</td><td>Lo que se reemplaz&oacute;, con la fecha en el nombre.</td></tr></table>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s3"><h2>El contexto se escribe una vez</h2>
+<p>El chat se olvida. El archivo <b>contexto/CONTEXTO.md</b> no. Ah&iacute; va qui&eacute;n pide, qu&eacute; pregunta, la fecha de corte, las reglas del caso y cada decisi&oacute;n que se tom&oacute; con su raz&oacute;n. Cuando abres una conversaci&oacute;n nueva, el agente lo lee y sigue donde qued&oacute;.</p>
+<p>El archivo <b>AGENTS.md</b>, en la ra&iacute;z de la carpeta, tiene las reglas de trabajo. Antigravity lo carga solo al empezar. Los ZIP del curso ya lo traen.</p>
+<p class="prompt-t">Prompt para crear o completar el contexto</p><div class="prompt">Lee entradas/ y contexto/CONTEXTO.md. Completa CONTEXTO.md con qui&#233;n pide, qu&#233; pregunta, la fecha de corte y las reglas que salen del correo. No inventes nada que no est&#233; en los archivos; si falta un dato, d&#233;jalo marcado como pendiente.</div><p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s4"><h2>Revisar los archivos antes de pedir nada</h2>
+<p>El primer pedido nunca es &laquo;hazlo&raquo;. Es &laquo;dime qu&eacute; hay&raquo;. Cada archivo viene de un sistema distinto, con sus columnas, sus fechas y sus filas que sobran. Si el agente cruza sin mirar, el error aparece tres etapas despu&eacute;s y nadie sabe de d&oacute;nde vino.</p>
+<p class="prompt-t">Prompt de reconocimiento</p><div class="prompt">Revisa todo lo que hay en datos/. Para cada archivo dime qu&#233; sistema parece haberlo producido, en qu&#233; fila empieza la tabla, qu&#233; columnas trae, cu&#225;l es la llave para cruzarlo y en qu&#233; formato vienen las fechas. No escribas c&#243;digo todav&#237;a.</div><p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s5"><h2>Primero el plan, despu&eacute;s la ejecuci&oacute;n</h2>
+<p>Usa el modo <b>Planning</b> de Antigravity. El agente escribe un plan antes de tocar nada: qu&eacute; archivo une con cu&aacute;l, por qu&eacute; campo y qu&eacute; va a dejar en salidas. El grupo lo lee, lo corrige con comentarios y solo entonces lo aprueba.</p>
+<p class="prompt-t">Prompt de plan</p><div class="prompt">Antes de ejecutar, escribe en contexto/PLAN.md el plan de esta etapa: qu&#233; archivos vas a leer, qu&#233; vas a unir con qu&#233; y por qu&#233; campo, qu&#233; decisiones de limpieza propones y qu&#233; archivo vas a dejar en salidas/. Espera mi visto bueno.</div>
+<div class="nota"><b>Si la revisi&oacute;n falla, se corrige el encargo.</b> No basta con arreglar el archivo: se ajusta el plan o el contexto para que el error no vuelva en la siguiente etapa.</div>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s6"><h2>Cada etapa deja una salida parcial</h2>
+<p>Un encargo grande se parte en etapas. Cada etapa termina con un archivo en <b>salidas/</b> que el grupo abre y revisa: una base, una tabla de conteos, una respuesta corta al cliente. El mensaje de &laquo;terminado&raquo; del agente es el inicio de la revisi&oacute;n, no el final.</p>
+<ul class="check">
+<li>Abrir el archivo de salida, no leer el resumen del chat.</li>
+<li>Pedir las cifras de control: cu&aacute;ntas filas ley&oacute;, cu&aacute;ntas dej&oacute; fuera y por qu&eacute;.</li>
+<li>Rastrear tres casos a mano en los archivos originales.</li>
+<li>Anotar en CONTEXTO.md las decisiones y las cifras de la etapa.</li>
+</ul>
+<p class="prompt-t">Prompt de revisi&oacute;n</p><div class="prompt">&#191;Cu&#225;ntas filas le&#237;ste de cada archivo, cu&#225;ntas descartaste y por qu&#233;? Dame tres casos con todos sus datos y el archivo del que sale cada uno para verificarlos a mano. Despu&#233;s actualiza contexto/CONTEXTO.md con las decisiones y las cifras de esta etapa.</div>
+<div class="apuesta"><p><b>Antigravity te dice &laquo;Listo, encontr&eacute; 4.327 veh&iacute;culos&raquo;. &iquest;Qu&eacute; haces?</b></p>
+<input type="radio" name="a" id="a1"><label for="a1">Copio la cifra en la respuesta al cliente.</label>
+<input type="radio" name="a" id="a2"><label for="a2">Abro el archivo en salidas, pido cu&aacute;ntas filas ley&oacute; y descart&oacute;, y rastreo tres casos.</label>
+<input type="radio" name="a" id="a3"><label for="a3">Le pregunto al agente si est&aacute; seguro.</label>
+<div class="fb fb1">La cifra puede cuadrar y estar mal. Sin revisar la salida no sabes si cont&oacute; dos veces el mismo veh&iacute;culo.</div>
+<div class="fb fb2">Eso. La revisi&oacute;n se hace sobre el archivo y sobre los originales, no sobre el resumen del chat.</div>
+<div class="fb fb3">El agente casi siempre va a decir que s&iacute;. La seguridad no es evidencia.</div></div>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section><section id="s7"><h2>El ciclo completo, en una tabla</h2>
+<table><tr><th>Paso</th><th>Qu&eacute; haces</th><th>Qu&eacute; queda en la carpeta</th></tr>
+<tr><td>1. Ordenar</td><td>Crear la carpeta con las seis subcarpetas y abrirla en Antigravity.</td><td>La estructura y AGENTS.md</td></tr>
+<tr><td>2. Contexto</td><td>Pedir que lea entradas y complete el contexto.</td><td>contexto/CONTEXTO.md</td></tr>
+<tr><td>3. Reconocer</td><td>Pedir el inventario de datos sin c&oacute;digo.</td><td>Nada nuevo, solo lectura</td></tr>
+<tr><td>4. Planificar</td><td>Pedir el plan en modo Planning y aprobarlo.</td><td>contexto/PLAN.md</td></tr>
+<tr><td>5. Ejecutar</td><td>Dejar que el agente trabaje.</td><td>procesamiento/ y salidas/</td></tr>
+<tr><td>6. Revisar</td><td>Cifras de control y tres casos a mano.</td><td>CONTEXTO.md actualizado</td></tr></table>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section></main>
+<footer class="pie">Ve al siguiente tema &rarr; Caso Carolina</footer></body></html>

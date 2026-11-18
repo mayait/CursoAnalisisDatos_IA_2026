@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deber 7: qu&eacute; entrega el grupo &#183; USFQ</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1e1e1e;font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;font-size:16px;line-height:1.6}
+.cab{background:#111;color:#fff;border-bottom:5px solid #A6192E;padding:22px 20px 18px}
+.cab .serie{font-size:13px;letter-spacing:.04em;color:#e8b4bc;margin:0 0 4px}
+.cab h1{margin:0;font-size:26px;line-height:1.25;font-weight:600}
+.cab .sub{margin:6px 0 0;color:#d6d6d6;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:8px 20px 40px}
+h2{color:#A6192E;font-size:21px;margin:38px 0 10px;padding-top:6px;border-top:1px solid #eee}
+h3{font-size:17px;margin:22px 0 6px}
+a{color:#A6192E}
+.indice{background:#faf6f7;border:1px solid #efdfe2;border-radius:6px;padding:12px 18px;margin:20px 0}
+.indice p{margin:0 0 6px;font-weight:600}
+.indice ol{margin:0;padding-left:20px}
+.volver{font-size:13px;margin:14px 0 0}
+.nota{border:1px solid #e3e3e3;border-radius:6px;padding:12px 16px;margin:16px 0;background:#fcfcfc}
+.nota b{color:#A6192E}
+.prompt{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;margin:10px 0 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre-wrap;line-height:1.5}
+.prompt-t{font-size:13px;color:#6b6b6b;margin:14px 0 -4px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+th,td{border:1px solid #e1e1e1;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f4f4f4}
+.arbol{background:#f7f7f7;border:1px solid #e1e1e1;border-radius:6px;padding:12px 14px;font-family:Consolas,'Courier New',monospace;font-size:14px;white-space:pre;overflow-x:auto;line-height:1.5}
+.btn{display:inline-block;background:#A6192E;color:#fff !important;text-decoration:none;padding:7px 14px;border-radius:4px;font-size:14px;margin:4px 6px 4px 0}
+.etapa{border:1px solid #e3e3e3;border-left:0;border-radius:6px;padding:4px 18px 12px;margin:18px 0}
+.etapa h3{color:#A6192E}
+.check{list-style:none;padding-left:0}
+.check li{padding-left:26px;position:relative;margin:4px 0}
+.check li:before{content:'';position:absolute;left:2px;top:6px;width:13px;height:13px;border:2px solid #A6192E;border-radius:2px}
+.apuesta{border:1px solid #efdfe2;border-radius:6px;padding:12px 16px;margin:18px 0}
+.apuesta input{position:absolute;opacity:0}
+.apuesta label{display:block;border:1px solid #ddd;border-radius:4px;padding:7px 10px;margin:6px 0;cursor:pointer}
+.apuesta input:checked + label{border-color:#A6192E;background:#faf6f7}
+.fb{display:none;margin-top:10px;padding:10px 12px;background:#f7f7f7;border-radius:4px}
+#a1:checked ~ .fb1,#a2:checked ~ .fb2,#a3:checked ~ .fb3{display:block}
+#b1:checked ~ .fb1,#b2:checked ~ .fb2,#b3:checked ~ .fb3{display:block}
+.correo{border:1px solid #d9d9d9;border-radius:6px;margin:10px 0 18px;background:#fff}
+.cab-correo{margin:0;border:0;font-size:14px;background:#f7f7f7}
+.cab-correo td{border:0;border-bottom:1px solid #eee;padding:5px 12px}
+.cab-correo .ck{width:90px;color:#6b6b6b}
+.cuerpo-correo{padding:6px 16px 4px;font-size:15px}
+.paso{margin:10px 0}
+.paso p{margin:0 0 4px}
+ol.control{padding-left:22px}
+ol.control li{margin:0 0 18px}
+ol.control .q{font-weight:600;margin:0 0 6px}
+details{border:1px solid #e3e3e3;border-radius:4px;margin:6px 0;padding:0 12px}
+details summary{cursor:pointer;padding:7px 0;color:#A6192E;font-size:14px}
+details[open]{padding-bottom:10px}
+.cifra{background:#faf6f7;border-left:0;padding:8px 12px;border-radius:4px}
+.trampa p{margin:6px 0}
+.mc .op{position:relative;margin:6px 0}
+.mc input{position:absolute;opacity:0}
+.mc label{display:block;border:1px solid #ddd;border-radius:4px;padding:8px 12px;cursor:pointer;background:#fff}
+.mc label:hover{border-color:#A6192E}
+.mc input:checked + label{border-color:#A6192E;background:#faf6f7;font-weight:600}
+.mc input:focus-visible + label{outline:2px solid #A6192E}
+.mc .fb{display:none;margin:6px 0 10px;padding:10px 12px;border-radius:4px}
+.mc input:checked + label + .fb{display:block}
+.mc .ok{background:#eef6ef;border:1px solid #cfe3d2}
+.mc .mal{background:#fbf1f2;border:1px solid #efd3d7}
+.foto{margin:14px 0}
+.foto img{width:100%;height:auto;border-radius:6px;display:block}
+.lamina{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin:10px 0}
+.lamina .wire{max-width:100%;height:auto;flex:0 0 auto}
+.lamina div{flex:1 1 220px}
+.pie{max-width:760px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid #eee;font-size:14px;color:#6b6b6b}
+@media (max-width:600px){.cab h1{font-size:22px}}
+</style></head>
+<body><header class="cab"><p class="serie">ADM 2003 &middot; Caso Carolina &middot; Entrega</p><h1>Deber 7: qu&eacute; entrega el grupo</h1><p class="sub">Un solo ZIP por grupo, domingo 4 de octubre, 23h59</p></header>
+<main><nav class="indice" id="indice"><p>En esta p&aacute;gina</p><ol><li><a href="#s1">El deber</a></li></ol></nav><section id="s1"><h2>El deber</h2>
+<div class="nota"><b>Deber 7 &middot; Caso Carolina. Es grupal.</b> Se trabaja con su grupo de D2L y se entrega <b>un solo archivo por grupo</b> hasta el <b>domingo 4 de octubre a las 23h59</b>, en la carpeta de entrega &laquo;Deber 7 &middot; Caso Carolina&raquo;. Cualquier integrante puede subirlo y la nota es la misma para todo el grupo.</div>
+<h3>Qu&eacute; se entrega</h3>
+<p>Un solo ZIP con la carpeta <b>caso-carolina</b> completa, llamado as&iacute;: <b>deber7-grupo-N.zip</b>, donde N es el n&uacute;mero de su grupo en D2L. No se aceptan archivos sueltos ni enlaces.</p>
+<p>Antes de comprimir, revisen que la carpeta tenga exactamente esto:</p>
+<div class="arbol">caso-carolina/
+  AGENTS.md
+  entradas/                 los 5 correos, sin cambios
+  datos/                    los archivos originales, sin cambios
+  contexto/
+    CONTEXTO.md             decisiones y cifras de control de cada parte
+    PLAN.md                 los planes que aprobaron
+    PROCESO.md              los pasos para correrlo el pr&#243;ximo lunes
+  procesamiento/            los scripts que hizo Antigravity
+  salidas/
+    etapa-1-importaciones.xlsx      etapa-1-respuesta.md
+    etapa-2-ubicacion.xlsx          etapa-2-respuesta.md
+    etapa-3-facturacion.xlsx        etapa-3-correcciones.xlsx
+    etapa-3-respuesta.md
+    etapa-4-por-entregar.xlsx       etapa-4-respuesta.md
+    Vehiculos_por_entregar_2026-09-18.xlsx
+    etapa-5-respuesta.md
+    lamina-parte-1.png ... lamina-parte-5.png
+    lamina-recomendacion.png
+    presentacion-comite.pdf         (o .pptx, 7 l&#225;minas)
+    bitacora-ia.md
+  archivo/                  lo que reemplazaron</div>
+<h3>Lista de revisi&oacute;n antes de subir</h3>
+<ul class="check">
+<li>Las cinco respuestas a Carolina (etapa-1 a etapa-5-respuesta.md) traen las cifras pedidas y lo raro que encontraron, en m&aacute;ximo cinco l&iacute;neas cada una.</li>
+<li>Las preguntas de control de cada parte cuadran, y en CONTEXTO.md est&aacute; anotada cada cifra con el archivo de donde sale.</li>
+<li>El Excel del comit&eacute; tiene las cuatro hojas (Resumen, Por entregar, Alertas y Base unificada) y el Resumen est&aacute; hecho con f&oacute;rmulas.</li>
+<li>La presentaci&oacute;n tiene las 7 l&aacute;minas (portada, una por parte y la recomendaci&oacute;n), t&iacute;tulos que dicen la conclusi&oacute;n y solo cifras que est&aacute;n en salidas/.</li>
+<li>bitacora-ia.md tiene, por cada parte, los prompts que usaron, qu&eacute; pregunta de control no cuadr&oacute; y c&oacute;mo lo corrigieron.</li>
+<li>La primera l&iacute;nea de bitacora-ia.md dice el n&uacute;mero del grupo, los nombres de todos los integrantes y qu&eacute; papel tuvo cada uno en cada parte.</li>
+<li>datos/ y entradas/ est&aacute;n intactos.</li>
+</ul>
+<h3>C&oacute;mo se califica</h3>
+<table><tr><th>Criterio</th><th>Qu&eacute; se mira</th><th>Puntos</th></tr>
+<tr><td>Carpeta y contexto</td><td>La estructura se respeta, datos/ est&aacute; intacto y CONTEXTO.md cuenta qu&eacute; se decidi&oacute; y por qu&eacute;.</td><td>20</td></tr>
+<tr><td>Cifras de control</td><td>Las preguntas de control de cada parte cuadran y cada cifra dice de qu&eacute; archivo sale.</td><td>30</td></tr>
+<tr><td>Excel del comit&eacute;</td><td>Cuatro hojas, fechas con la regla y Resumen con f&oacute;rmulas.</td><td>20</td></tr>
+<tr><td>Presentaci&oacute;n</td><td>Responde la pregunta del comit&eacute;, t&iacute;tulos con conclusi&oacute;n, recomendaci&oacute;n clara.</td><td>20</td></tr>
+<tr><td>Bit&aacute;cora de IA</td><td>Prompts por parte, qu&eacute; no cuadr&oacute; y c&oacute;mo lo corrigieron.</td><td>10</td></tr>
+<tr><td colspan="2"><b>Total</b></td><td><b>100</b></td></tr></table>
+<p>Si no alcanzan a cerrar las cinco partes, entreguen hasta donde llegaron con las preguntas de control respondidas. Una parte que cuadra vale m&aacute;s que cinco sin revisar.</p>
+<p class="volver"><a href="#indice">&uarr; Volver al &iacute;ndice</a></p></section></main>
+<footer class="pie">Suban el ZIP en la carpeta de entrega &laquo;Deber 7 &middot; Caso Carolina&raquo;</footer></body></html>
